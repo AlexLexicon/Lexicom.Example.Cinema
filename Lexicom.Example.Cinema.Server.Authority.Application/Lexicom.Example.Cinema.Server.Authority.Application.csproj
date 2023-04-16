@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lexicom.Authority" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Cryptography" Version="7.0.7" />
+    <PackageReference Include="Lexicom.DependencyInjection.Primitives" Version="7.0.7" />
+    <PackageReference Include="Lexicom.EntityFramework" Version="4.0.0" />
+    <PackageReference Include="Lexicom.EntityFramework.Identity" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Extensions.TimeSpans" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Http" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Smtp" Version="7.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Shared\Lexicom.Example.Cinema.Server.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

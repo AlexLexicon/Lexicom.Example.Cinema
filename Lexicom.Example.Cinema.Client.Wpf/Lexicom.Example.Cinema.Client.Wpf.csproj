@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <OutputType>WinExe</OutputType>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+    <None Remove="Fonts\password.ttf" />
+    <None Remove="Images\add.full.b.256.png" />
+    <None Remove="Images\close.full.a.256.png" />
+    <None Remove="Images\date.full.a.256.png" />
+    <None Remove="Images\director.256.png" />
+    <None Remove="Images\gear.full.a.256.png" />
+    <None Remove="Images\movie.256.png" />
+    <None Remove="Images\play.full.a.256.png" />
+    <None Remove="Images\search.full.a.256.png" />
+    <None Remove="Images\star.256.png" />
+    <None Remove="Images\user.full.a.256.png" />
+    <None Remove="Images\wait.circle.b.256.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <PackageReference Include="Lexicom.Concentrate.Client.Authentication.For.Wpf" Version="7.0.3" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Amenities" Version="7.0.3" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Controls" Version="7.0.3" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Themes" Version="7.0.3" />
+    <PackageReference Include="Lexicom.Configuration.Settings.For.Wpf" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Extensions.Debugging" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Mvvm.For.Wpf" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Validation.For.Wpf" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Wpf.Amenities" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Wpf.AttachedProperties" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Wpf.Controls" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Wpf.ValueConverters" Version="7.0.7" />
+    <Resource Include="Fonts\password.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\add.full.b.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\close.full.a.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\date.full.a.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\director.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\gear.full.a.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\movie.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\play.full.a.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\search.full.a.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\star.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\user.full.a.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\wait.circle.b.256.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Client.Wpf.ViewModels\Lexicom.Example.Cinema.Client.Wpf.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

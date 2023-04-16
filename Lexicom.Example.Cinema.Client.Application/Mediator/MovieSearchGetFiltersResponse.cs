@@ -1,0 +1,2 @@
+﻿namespace Lexicom.Example.Cinema.Client.Application.Mediator;
+public record class MovieSearchGetFiltersResponse(bool IsTitleFilter, bool IsReleaseDateFilter, bool IsDurationFilter, bool IsSynopsisFilter);

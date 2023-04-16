@@ -1,0 +1,77 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="xBaseCheckBoxFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <!--this is what shows up over the checkbox when it has focus (from tabbing)-->
+                    <Border 
+                        BorderBrush="{DynamicResource xChange}"
+                        BorderThickness="3">        
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="xBaseCheckBoxStyle" TargetType="CheckBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        Padding="{TemplateBinding Padding}"
+                        CornerRadius="4">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Viewbox>
+                                    <Path 
+                                        x:Name="xCheckMark"
+                                        Width="9" 
+                                        Height="9" 
+                                        SnapsToDevicePixels="False" 
+                                        Stroke="{TemplateBinding Foreground}"
+                                        StrokeThickness="2"
+                                        Data="F1 M 0.468732,4.66838L 3.03345,7.95443L 7.28127,0.420569"/>
+                                </Viewbox>
+                            </BulletDecorator.Bullet>
+                        </BulletDecorator>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="xCheckMark" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="xCheckMark" Property="Data" Value="M 0 7 L 7 0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="18"/>
+        <Setter Property="Height" Value="18"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="FocusVisualStyle"	Value="{StaticResource xBaseCheckBoxFocusVisualStyle}"/>
+    </Style>
+
+    <Style x:Key="xDefaultCheckBoxStyle" TargetType="CheckBox" BasedOn="{StaticResource xBaseCheckBoxStyle}">
+        <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusSoft}"/>
+        <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
+                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimaryHard}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="CheckBox" BasedOn="{StaticResource xDefaultCheckBoxStyle}"/>
+
+</ResourceDictionary>

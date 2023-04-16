@@ -1,0 +1,171 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server.Authority", "Server.Authority", "{DECB30B4-E260-42A0-A0E5-D3AAECA0550A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server.Movies", "Server.Movies", "{D73A5E99-15D5-4748-8F92-00EE0E055EF9}"
+	ProjectSection(SolutionItems) = preProject
+		movies.json = movies.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client.Wpf", "Client.Wpf", "{EF195EC8-983F-45F4-BD74-F09113FE588E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client.Blazor.WebAssembly", "Client.Blazor.WebAssembly", "{97675FFC-EB10-4AA2-A4BF-8326471F5D0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server.Shared", "Server.Shared", "{EFBE8AAE-39C6-4622-BC80-17C8FCCD4864}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Shared", "Lexicom.Example.Cinema.Server.Shared\Lexicom.Example.Cinema.Server.Shared.csproj", "{24D97B3E-A0C9-4AA6-895D-3F30AE70546F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Movies.Application", "Lexicom.Example.Cinema.Server.Movies.Application\Lexicom.Example.Cinema.Server.Movies.Application.csproj", "{D2026D67-39D7-4B19-9CF4-9740A1AA71CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Movies.Application.UnitTests", "Lexicom.Example.Cinema.Server.Movies.Application.UnitTests\Lexicom.Example.Cinema.Server.Movies.Application.UnitTests.csproj", "{C201FF0C-46D2-49CC-AF63-78B251944C6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Authority.Application", "Lexicom.Example.Cinema.Server.Authority.Application\Lexicom.Example.Cinema.Server.Authority.Application.csproj", "{BCA559CC-6D3E-424A-9167-1A3D4A14B23F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Authority.Application.UnitTests", "Lexicom.Example.Cinema.Server.Authority.Application.UnitTests\Lexicom.Example.Cinema.Server.Authority.Application.UnitTests.csproj", "{66D7C10F-29F2-45E1-A447-DDD705EA5CA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Authority.ConsoleApp", "Lexicom.Example.Cinema.Server.Authority.ConsoleApp\Lexicom.Example.Cinema.Server.Authority.ConsoleApp.csproj", "{DA0F06C7-0178-4C00-87DD-C9623FDF8FC7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Authority.Api", "Lexicom.Example.Cinema.Server.Authority.Api\Lexicom.Example.Cinema.Server.Authority.Api.csproj", "{DB6141D4-49AD-4332-B8A4-1D94F89C6033}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Authority.Api.Contracts", "Lexicom.Example.Cinema.Server.Authority.Api.Contracts\Lexicom.Example.Cinema.Server.Authority.Api.Contracts.csproj", "{4898260C-3F8F-4F2B-AF61-9CE7682483C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Movies.Api", "Lexicom.Example.Cinema.Server.Movies.Api\Lexicom.Example.Cinema.Server.Movies.Api.csproj", "{66E83157-E329-48F2-B7A6-601DFD882169}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Movies.Api.Contracts", "Lexicom.Example.Cinema.Server.Movies.Api.Contracts\Lexicom.Example.Cinema.Server.Movies.Api.Contracts.csproj", "{EF48BF30-4825-4FCB-B09B-291D055168C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Client.Wpf", "Lexicom.Example.Cinema.Client.Wpf\Lexicom.Example.Cinema.Client.Wpf.csproj", "{0C71D874-9ED6-4372-B73D-1055B59EA83C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{51779F2B-C886-4898-83D2-66804D88A618}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Client.Application", "Lexicom.Example.Cinema.Client.Application\Lexicom.Example.Cinema.Client.Application.csproj", "{FF7C0FA3-F141-4624-A8E1-8A34C43D674C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Client.Wpf.ViewModels", "Lexicom.Example.Cinema.Client.Wpf.ViewModels\Lexicom.Example.Cinema.Client.Wpf.ViewModels.csproj", "{50CDA346-1FAC-471B-861B-E51835E4E3A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server.Persons", "Server.Persons", "{0A099907-5324-4F2C-AF6E-F25472E9FA65}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Persons.Api.Contracts", "Lexicom.Example.Cinema.Server.Persons.Api.Contracts\Lexicom.Example.Cinema.Server.Persons.Api.Contracts.csproj", "{3C30CF92-EA05-4D2F-9A5B-992E8927187B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Persons.Api", "Lexicom.Example.Cinema.Server.Persons.Api\Lexicom.Example.Cinema.Server.Persons.Api.csproj", "{15D7023A-C434-45A6-833E-A9FE88BF48CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Persons.Application", "Lexicom.Example.Cinema.Server.Persons.Application\Lexicom.Example.Cinema.Server.Persons.Application.csproj", "{05DC3FD1-E1F3-4007-A02C-60F2E1251422}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Client.Blazor.WebAssembly", "Lexicom.Example.Cinema.Client.Blazor.WebAssembly\Lexicom.Example.Cinema.Client.Blazor.WebAssembly.csproj", "{0AE9D03D-20EE-486F-B9FE-23E91721EAFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Persons.Application.UnitTests", "Lexicom.Example.Cinema.Server.Persons.Application.UnitTests\Lexicom.Example.Cinema.Server.Persons.Application.UnitTests.csproj", "{646C2780-3686-41B7-80E1-C386850D50CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexicom.Example.Cinema.Server.Movies.ConsoleApp", "Lexicom.Example.Cinema.Server.Movies.ConsoleApp\Lexicom.Example.Cinema.Server.Movies.ConsoleApp.csproj", "{C608F65F-F99B-4C92-8F55-172AD75508E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24D97B3E-A0C9-4AA6-895D-3F30AE70546F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24D97B3E-A0C9-4AA6-895D-3F30AE70546F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24D97B3E-A0C9-4AA6-895D-3F30AE70546F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24D97B3E-A0C9-4AA6-895D-3F30AE70546F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2026D67-39D7-4B19-9CF4-9740A1AA71CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2026D67-39D7-4B19-9CF4-9740A1AA71CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2026D67-39D7-4B19-9CF4-9740A1AA71CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2026D67-39D7-4B19-9CF4-9740A1AA71CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C201FF0C-46D2-49CC-AF63-78B251944C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C201FF0C-46D2-49CC-AF63-78B251944C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C201FF0C-46D2-49CC-AF63-78B251944C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C201FF0C-46D2-49CC-AF63-78B251944C6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCA559CC-6D3E-424A-9167-1A3D4A14B23F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCA559CC-6D3E-424A-9167-1A3D4A14B23F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCA559CC-6D3E-424A-9167-1A3D4A14B23F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCA559CC-6D3E-424A-9167-1A3D4A14B23F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D7C10F-29F2-45E1-A447-DDD705EA5CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D7C10F-29F2-45E1-A447-DDD705EA5CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D7C10F-29F2-45E1-A447-DDD705EA5CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D7C10F-29F2-45E1-A447-DDD705EA5CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA0F06C7-0178-4C00-87DD-C9623FDF8FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA0F06C7-0178-4C00-87DD-C9623FDF8FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA0F06C7-0178-4C00-87DD-C9623FDF8FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA0F06C7-0178-4C00-87DD-C9623FDF8FC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB6141D4-49AD-4332-B8A4-1D94F89C6033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6141D4-49AD-4332-B8A4-1D94F89C6033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6141D4-49AD-4332-B8A4-1D94F89C6033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6141D4-49AD-4332-B8A4-1D94F89C6033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4898260C-3F8F-4F2B-AF61-9CE7682483C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4898260C-3F8F-4F2B-AF61-9CE7682483C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4898260C-3F8F-4F2B-AF61-9CE7682483C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4898260C-3F8F-4F2B-AF61-9CE7682483C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66E83157-E329-48F2-B7A6-601DFD882169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E83157-E329-48F2-B7A6-601DFD882169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E83157-E329-48F2-B7A6-601DFD882169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E83157-E329-48F2-B7A6-601DFD882169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF48BF30-4825-4FCB-B09B-291D055168C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF48BF30-4825-4FCB-B09B-291D055168C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF48BF30-4825-4FCB-B09B-291D055168C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF48BF30-4825-4FCB-B09B-291D055168C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C71D874-9ED6-4372-B73D-1055B59EA83C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C71D874-9ED6-4372-B73D-1055B59EA83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C71D874-9ED6-4372-B73D-1055B59EA83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C71D874-9ED6-4372-B73D-1055B59EA83C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF7C0FA3-F141-4624-A8E1-8A34C43D674C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7C0FA3-F141-4624-A8E1-8A34C43D674C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7C0FA3-F141-4624-A8E1-8A34C43D674C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7C0FA3-F141-4624-A8E1-8A34C43D674C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50CDA346-1FAC-471B-861B-E51835E4E3A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50CDA346-1FAC-471B-861B-E51835E4E3A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50CDA346-1FAC-471B-861B-E51835E4E3A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50CDA346-1FAC-471B-861B-E51835E4E3A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C30CF92-EA05-4D2F-9A5B-992E8927187B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C30CF92-EA05-4D2F-9A5B-992E8927187B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C30CF92-EA05-4D2F-9A5B-992E8927187B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C30CF92-EA05-4D2F-9A5B-992E8927187B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15D7023A-C434-45A6-833E-A9FE88BF48CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15D7023A-C434-45A6-833E-A9FE88BF48CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15D7023A-C434-45A6-833E-A9FE88BF48CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15D7023A-C434-45A6-833E-A9FE88BF48CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05DC3FD1-E1F3-4007-A02C-60F2E1251422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05DC3FD1-E1F3-4007-A02C-60F2E1251422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05DC3FD1-E1F3-4007-A02C-60F2E1251422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05DC3FD1-E1F3-4007-A02C-60F2E1251422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AE9D03D-20EE-486F-B9FE-23E91721EAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AE9D03D-20EE-486F-B9FE-23E91721EAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AE9D03D-20EE-486F-B9FE-23E91721EAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AE9D03D-20EE-486F-B9FE-23E91721EAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{646C2780-3686-41B7-80E1-C386850D50CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{646C2780-3686-41B7-80E1-C386850D50CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{646C2780-3686-41B7-80E1-C386850D50CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{646C2780-3686-41B7-80E1-C386850D50CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C608F65F-F99B-4C92-8F55-172AD75508E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C608F65F-F99B-4C92-8F55-172AD75508E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C608F65F-F99B-4C92-8F55-172AD75508E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C608F65F-F99B-4C92-8F55-172AD75508E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{24D97B3E-A0C9-4AA6-895D-3F30AE70546F} = {EFBE8AAE-39C6-4622-BC80-17C8FCCD4864}
+		{D2026D67-39D7-4B19-9CF4-9740A1AA71CD} = {D73A5E99-15D5-4748-8F92-00EE0E055EF9}
+		{C201FF0C-46D2-49CC-AF63-78B251944C6A} = {D73A5E99-15D5-4748-8F92-00EE0E055EF9}
+		{BCA559CC-6D3E-424A-9167-1A3D4A14B23F} = {DECB30B4-E260-42A0-A0E5-D3AAECA0550A}
+		{66D7C10F-29F2-45E1-A447-DDD705EA5CA0} = {DECB30B4-E260-42A0-A0E5-D3AAECA0550A}
+		{DA0F06C7-0178-4C00-87DD-C9623FDF8FC7} = {DECB30B4-E260-42A0-A0E5-D3AAECA0550A}
+		{DB6141D4-49AD-4332-B8A4-1D94F89C6033} = {DECB30B4-E260-42A0-A0E5-D3AAECA0550A}
+		{4898260C-3F8F-4F2B-AF61-9CE7682483C1} = {DECB30B4-E260-42A0-A0E5-D3AAECA0550A}
+		{66E83157-E329-48F2-B7A6-601DFD882169} = {D73A5E99-15D5-4748-8F92-00EE0E055EF9}
+		{EF48BF30-4825-4FCB-B09B-291D055168C1} = {D73A5E99-15D5-4748-8F92-00EE0E055EF9}
+		{0C71D874-9ED6-4372-B73D-1055B59EA83C} = {EF195EC8-983F-45F4-BD74-F09113FE588E}
+		{FF7C0FA3-F141-4624-A8E1-8A34C43D674C} = {51779F2B-C886-4898-83D2-66804D88A618}
+		{50CDA346-1FAC-471B-861B-E51835E4E3A1} = {EF195EC8-983F-45F4-BD74-F09113FE588E}
+		{3C30CF92-EA05-4D2F-9A5B-992E8927187B} = {0A099907-5324-4F2C-AF6E-F25472E9FA65}
+		{15D7023A-C434-45A6-833E-A9FE88BF48CC} = {0A099907-5324-4F2C-AF6E-F25472E9FA65}
+		{05DC3FD1-E1F3-4007-A02C-60F2E1251422} = {0A099907-5324-4F2C-AF6E-F25472E9FA65}
+		{0AE9D03D-20EE-486F-B9FE-23E91721EAFD} = {97675FFC-EB10-4AA2-A4BF-8326471F5D0A}
+		{646C2780-3686-41B7-80E1-C386850D50CB} = {0A099907-5324-4F2C-AF6E-F25472E9FA65}
+		{C608F65F-F99B-4C92-8F55-172AD75508E9} = {D73A5E99-15D5-4748-8F92-00EE0E055EF9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E519E7F1-C8BA-405F-9DF1-BA96AD251DC5}
+	EndGlobalSection
+EndGlobal

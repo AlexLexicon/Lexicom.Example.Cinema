@@ -1,0 +1,13 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:c="clr-namespace:Lexicom.Wpf.Controls;assembly=Lexicom.Wpf.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="xDefaultSpinnerStyle" TargetType="{x:Type c:Spinner}">
+        <Setter Property="RingBackground" Value="{DynamicResource xThemeInteriorSecondarySoft}"/>
+        <Setter Property="RingForeground" Value="{DynamicResource xThemeInteriorNoticeSoft}"/>
+    </Style>
+
+    <Style TargetType="{x:Type c:Spinner}" BasedOn="{StaticResource xDefaultSpinnerStyle}"/>
+
+</ResourceDictionary>

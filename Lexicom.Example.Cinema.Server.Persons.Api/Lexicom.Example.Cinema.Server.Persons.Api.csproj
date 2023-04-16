@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lexicom.Authentication.For.AspNetCore.Controllers" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Authorization.For.AspNetCore.Controllers" Version="7.0.7" />
+    <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Logging.For.AspNetCore.Controllers" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Swashbuckle.For.AspNetCore.Controllers" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Validation.For.AspNetCore.Controllers" Version="7.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Persons.Api.Contracts\Lexicom.Example.Cinema.Server.Persons.Api.Contracts.csproj" />
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Persons.Application\Lexicom.Example.Cinema.Server.Persons.Application.csproj" />
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Shared\Lexicom.Example.Cinema.Server.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

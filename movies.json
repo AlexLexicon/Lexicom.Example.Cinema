@@ -1,0 +1,488 @@
+[
+    {
+        "Title": "The Shawshank Redemption",
+        "Duration": "0.02:22:00",
+        "ReleaseDateTimeOffsetUtc": "1994-09-10T00:00:00",
+        "Synopsis": "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion."
+    },
+    {
+        "Title": "The Godfather",
+        "Duration": "0.02:55:00",
+        "ReleaseDateTimeOffsetUtc": "1972-03-14T00:00:00",
+        "Synopsis": "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son."
+    },
+    {
+        "Title": "The Dark Knight",
+        "Duration": "0.02:32:00",
+        "ReleaseDateTimeOffsetUtc": "2008-07-14T00:00:00",
+        "Synopsis": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
+    },
+    {
+        "Title": "The Godfather Part II",
+        "Duration": "0.03:22:00",
+        "ReleaseDateTimeOffsetUtc": "1974-12-12T00:00:00",
+        "Synopsis": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate."
+    },
+    {
+        "Title": "12 Angry Men",
+        "Duration": "0.01:36:00",
+        "ReleaseDateTimeOffsetUtc": "1957-04-10T00:00:00",
+        "Synopsis": "The jury in a New York City murder trial is frustrated by a single member whose skeptical caution forces them to more carefully consider the evidence before jumping to a hasty verdict."
+    },
+    {
+        "Title": "Schindler's List",
+        "Duration": "0.03:15:00",
+        "ReleaseDateTimeOffsetUtc": "1993-11-30T00:00:00",
+        "Synopsis": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis."
+    },
+    {
+        "Title": "The Lord of the Rings: The Return of the King",
+        "Duration": "0.03:21:00",
+        "ReleaseDateTimeOffsetUtc": "2003-12-01T00:00:00",
+        "Synopsis": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring."
+    },
+    {
+        "Title": "Pulp Fiction",
+        "Duration": "0.02:34:00",
+        "ReleaseDateTimeOffsetUtc": "1994-05-21T00:00:00",
+        "Synopsis": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."
+    },
+    {
+        "Title": "The Lord of the Rings: The Fellowship of the Ring",
+        "Duration": "0.02:58:00",
+        "ReleaseDateTimeOffsetUtc": "2001-12-10T00:00:00",
+        "Synopsis": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
+    },
+    {
+        "Title": "The Good, the Bad and the Ugly",
+        "Duration": "0.02:58:00",
+        "ReleaseDateTimeOffsetUtc": "1966-12-23T00:00:00",
+        "Synopsis": "A bounty hunting scam joins two men in an uneasy alliance against a third in a race to find a fortune in gold buried in a remote cemetery."
+    },
+    {
+        "Title": "Forrest Gump",
+        "Duration": "0.02:22:00",
+        "ReleaseDateTimeOffsetUtc": "1994-06-23T00:00:00",
+        "Synopsis": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart."
+    },
+    {
+        "Title": "Fight Club",
+        "Duration": "0.02:19:00",
+        "ReleaseDateTimeOffsetUtc": "1999-09-10T00:00:00",
+        "Synopsis": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more."
+    },
+    {
+        "Title": "The Lord of the Rings: The Two Towers",
+        "Duration": "0.02:59:00",
+        "ReleaseDateTimeOffsetUtc": "2002-12-05T00:00:00",
+        "Synopsis": "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally, Saruman, and his hordes of Isengard."
+    },
+    {
+        "Title": "Inception",
+        "Duration": "0.02:28:00",
+        "ReleaseDateTimeOffsetUtc": "2010-07-08T00:00:00",
+        "Synopsis": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster."
+    },
+    {
+        "Title": "Star Wars: Episode V - The Empire Strikes Back",
+        "Duration": "0.02:04:00",
+        "ReleaseDateTimeOffsetUtc": "1980-05-17T00:00:00",
+        "Synopsis": "After the Rebels are overpowered by the Empire, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett."
+    },
+    {
+        "Title": "The Matrix",
+        "Duration": "0.02:16:00",
+        "ReleaseDateTimeOffsetUtc": "1999-03-24T00:00:00",
+        "Synopsis": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence."
+    },
+    {
+        "Title": "Goodfellas",
+        "Duration": "0.02:25:00",
+        "ReleaseDateTimeOffsetUtc": "1990-09-09T00:00:00",
+        "Synopsis": "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate."
+    },
+    {
+        "Title": "One Flew Over the Cuckoo's Nest",
+        "Duration": "0.02:13:00",
+        "ReleaseDateTimeOffsetUtc": "1975-11-19T00:00:00",
+        "Synopsis": "In the Fall of 1963, a Korean War veteran and criminal pleads insanity and is admitted to a mental institution, where he rallies up the scared patients against the tyrannical nurse."
+    },
+    {
+        "Title": "Se7en",
+        "Duration": "0.02:07:00",
+        "ReleaseDateTimeOffsetUtc": "1995-09-15T00:00:00",
+        "Synopsis": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives."
+    },
+    {
+        "Title": "It's a Wonderful Life",
+        "Duration": "0.02:10:00",
+        "ReleaseDateTimeOffsetUtc": "1946-12-20T00:00:00",
+        "Synopsis": "An angel is sent from Heaven to help a desperately frustrated businessman by showing him what life would have been like if he had never existed."
+    },
+    {
+        "Title": "Seven Samurai",
+        "Duration": "0.03:27:00",
+        "ReleaseDateTimeOffsetUtc": "1954-04-26T00:00:00",
+        "Synopsis": "Farmers from a village exploited by bandits hire a veteran samurai for protection, who gathers six other samurai to join him."
+    },
+    {
+        "Title": "The Silence of the Lambs",
+        "Duration": "0.01:58:00",
+        "ReleaseDateTimeOffsetUtc": "1991-01-30T00:00:00",
+        "Synopsis": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims."
+    },
+    {
+        "Title": "Saving Private Ryan",
+        "Duration": "0.02:49:00",
+        "ReleaseDateTimeOffsetUtc": "1998-07-21T00:00:00",
+        "Synopsis": "Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action."
+    },
+    {
+        "Title": "City of God",
+        "Duration": "0.02:10:00",
+        "ReleaseDateTimeOffsetUtc": "2002-05-18T00:00:00",
+        "Synopsis": "In the slums of Rio, two kids' paths diverge as one struggles to become a photographer and the other a kingpin."
+    },
+    {
+        "Title": "Interstellar",
+        "Duration": "0.02:49:00",
+        "ReleaseDateTimeOffsetUtc": "2014-10-26T00:00:00",
+        "Synopsis": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
+    },
+    {
+        "Title": "Life Is Beautiful",
+        "Duration": "0.01:56:00",
+        "ReleaseDateTimeOffsetUtc": "1997-12-20T00:00:00",
+        "Synopsis": "When an open-minded Jewish waiter and his son become victims of the Holocaust, he uses a perfect mixture of will, humor and imagination to protect his son from the dangers around their camp."
+    },
+    {
+        "Title": "The Green Mile",
+        "Duration": "0.03:09:00",
+        "ReleaseDateTimeOffsetUtc": "1999-12-06T00:00:00",
+        "Synopsis": "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder and rape, yet who has a mysterious gift."
+    },
+    {
+        "Title": "Star Wars: Episode IV - A New Hope",
+        "Duration": "0.02:01:00",
+        "ReleaseDateTimeOffsetUtc": "1977-05-25T00:00:00",
+        "Synopsis": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader."
+    },
+    {
+        "Title": "Terminator 2: Judgment Day",
+        "Duration": "0.02:17:00",
+        "ReleaseDateTimeOffsetUtc": "1991-07-01T00:00:00",
+        "Synopsis": "A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her 10-year old son John from an even more advanced and powerful cyborg."
+    },
+    {
+        "Title": "Back to the Future",
+        "Duration": "0.01:56:00",
+        "ReleaseDateTimeOffsetUtc": "1985-06-03T00:00:00",
+        "Synopsis": "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown."
+    },
+    {
+        "Title": "Spirited Away",
+        "Duration": "0.02:05:00",
+        "ReleaseDateTimeOffsetUtc": "2001-07-20T00:00:00",
+        "Synopsis": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches and spirits, a world where humans are changed into beasts."
+    },
+    {
+        "Title": "The Pianist",
+        "Duration": "0.02:30:00",
+        "ReleaseDateTimeOffsetUtc": "2002-05-24T00:00:00",
+        "Synopsis": "A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto of World War II."
+    },
+    {
+        "Title": "Psycho",
+        "Duration": "0.01:49:00",
+        "ReleaseDateTimeOffsetUtc": "1960-06-16T00:00:00",
+        "Synopsis": "A Phoenix secretary embezzles $40,000 from her employer's client, goes on the run and checks into a remote motel run by a young man under the domination of his mother."
+    },
+    {
+        "Title": "Parasite",
+        "Duration": "0.02:12:00",
+        "ReleaseDateTimeOffsetUtc": "2019-05-21T00:00:00",
+        "Synopsis": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan."
+    },
+    {
+        "Title": "Léon: The Professional",
+        "Duration": "0.01:50:00",
+        "ReleaseDateTimeOffsetUtc": "1994-09-14T00:00:00",
+        "Synopsis": "12-year-old Mathilda is reluctantly taken in by Léon, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his protégée and learns the assassin's trade."
+    },
+    {
+        "Title": "The Lion King",
+        "Duration": "0.01:28:00",
+        "ReleaseDateTimeOffsetUtc": "1994-06-12T00:00:00",
+        "Synopsis": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself."
+    },
+    {
+        "Title": "Gladiator",
+        "Duration": "0.02:35:00",
+        "ReleaseDateTimeOffsetUtc": "2000-05-01T00:00:00",
+        "Synopsis": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery."
+    },
+    {
+        "Title": "American History X",
+        "Duration": "0.01:59:00",
+        "ReleaseDateTimeOffsetUtc": "1998-07-01T00:00:00",
+        "Synopsis": "A former neo-nazi skinhead tries to prevent his younger brother from going down the same wrong path that he did."
+    },
+    {
+        "Title": "The Departed",
+        "Duration": "0.02:31:00",
+        "ReleaseDateTimeOffsetUtc": "2006-09-26T00:00:00",
+        "Synopsis": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston."
+    },
+    {
+        "Title": "Whiplash",
+        "Duration": "0.01:46:00",
+        "ReleaseDateTimeOffsetUtc": "2014-01-16T00:00:00",
+        "Synopsis": "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential."
+    },
+    {
+        "Title": "The Prestige",
+        "Duration": "0.02:10:00",
+        "ReleaseDateTimeOffsetUtc": "2006-10-17T00:00:00",
+        "Synopsis": "After a tragic accident, two stage magicians in 1890s London engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other."
+    },
+    {
+        "Title": "The Usual Suspects",
+        "Duration": "0.01:46:00",
+        "ReleaseDateTimeOffsetUtc": "1995-01-25T00:00:00",
+        "Synopsis": "A sole survivor tells of the twisty events leading up to a horrific gun battle on a boat, which began when five criminals met at a seemingly random police lineup."
+    },
+    {
+        "Title": "Casablanca",
+        "Duration": "0.01:42:00",
+        "ReleaseDateTimeOffsetUtc": "1942-11-26T00:00:00",
+        "Synopsis": "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco."
+    },
+    {
+        "Title": "Grave of the Fireflies",
+        "Duration": "0.01:29:00",
+        "ReleaseDateTimeOffsetUtc": "1988-04-16T00:00:00",
+        "Synopsis": "A young boy and his little sister struggle to survive in Japan during World War II."
+    },
+    {
+        "Title": "Harakiri",
+        "Duration": "0.02:13:00",
+        "ReleaseDateTimeOffsetUtc": "1962-09-16T00:00:00",
+        "Synopsis": "When a ronin requesting seppuku at a feudal lord's palace is told of the brutal suicide of another ronin who previously visited, he reveals how their pasts are intertwined - and in doing so challenges the clan's integrity."
+    },
+    {
+        "Title": "The Intouchables",
+        "Duration": "0.02:52:00",
+        "ReleaseDateTimeOffsetUtc": "2011-09-23T00:00:00",
+        "Synopsis": "After he becomes a quadriplegic from a paragliding accident, an aristocrat hires a young man from the projects to be his caregiver."
+    },
+    {
+        "Title": "Modern Times",
+        "Duration": "0.01:27:00",
+        "ReleaseDateTimeOffsetUtc": "1936-02-05T00:00:00",
+        "Synopsis": "The Tramp struggles to live in modern industrial society with the help of a young homeless woman."
+    },
+    {
+        "Title": "Once Upon a Time in the West",
+        "Duration": "0.02:45:00",
+        "ReleaseDateTimeOffsetUtc": "1968-12-20T00:00:00",
+        "Synopsis": "A mysterious stranger with a harmonica joins forces with a notorious desperado to protect a beautiful widow from a ruthless assassin working for the railroad."
+    },
+    {
+        "Title": "Cinema Paradiso",
+        "Duration": "0.02:35:00",
+        "ReleaseDateTimeOffsetUtc": "1988-09-29T00:00:00",
+        "Synopsis": "A filmmaker recalls his childhood when falling in love with the pictures at the cinema of his home village and forms a deep friendship with the cinema's projectionist."
+    },
+    {
+        "Title": "Rear Window",
+        "Duration": "0.01:52:00",
+        "ReleaseDateTimeOffsetUtc": "1954-08-01T00:00:00",
+        "Synopsis": "A wheelchair-bound photographer spies on his neighbors from his Greenwich Village courtyard apartment window, and becomes convinced one of them has committed murder, despite the skepticism of his fashion-model girlfriend."
+    },
+    {
+        "Title": "Alien",
+        "Duration": "0.01:57:00",
+        "ReleaseDateTimeOffsetUtc": "1979-05-25T00:00:00",
+        "Synopsis": "The crew of a commercial spacecraft encounter a deadly lifeform after investigating an unknown transmission."
+    },
+    {
+        "Title": "City Lights",
+        "Duration": "0.01:27:00",
+        "ReleaseDateTimeOffsetUtc": "1931-01-30T00:00:00",
+        "Synopsis": "With the aid of a wealthy erratic tippler, a dewy-eyed tramp who has fallen in love with a sightless flower girl accumulates money to be able to help her medically."
+    },
+    {
+        "Title": "Apocalypse Now",
+        "Duration": "0.02:27:00",
+        "ReleaseDateTimeOffsetUtc": "1979-05-19T00:00:00",
+        "Synopsis": "A U.S. Army officer serving in Vietnam is tasked with assassinating a renegade Special Forces Colonel who sees himself as a god."
+    },
+    {
+        "Title": "Memento",
+        "Duration": "0.01:53:00",
+        "ReleaseDateTimeOffsetUtc": "2000-09-05T00:00:00",
+        "Synopsis": "A man with short-term memory loss attempts to track down his wife's murderer."
+    },
+    {
+        "Title": "Django Unchained",
+        "Duration": "0.02:45:00",
+        "ReleaseDateTimeOffsetUtc": "2012-12-11T00:00:00",
+        "Synopsis": "With the help of a German bounty-hunter, a freed slave sets out to rescue his wife from a brutal plantation owner in Mississippi."
+    },
+    {
+        "Title": "Raiders of the Lost Ark",
+        "Duration": "0.01:55:00",
+        "ReleaseDateTimeOffsetUtc": "1981-06-12T00:00:00",
+        "Synopsis": "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers."
+    },
+    {
+        "Title": "WALL·E",
+        "Duration": "0.01:38:00",
+        "ReleaseDateTimeOffsetUtc": "2008-06-21T00:00:00",
+        "Synopsis": "In the distant future, a small waste-collecting robot inadvertently embarks on a space journey that will ultimately decide the fate of mankind."
+    },
+    {
+        "Title": "The Lives of Others",
+        "Duration": "0.02:17:00",
+        "ReleaseDateTimeOffsetUtc": "2006-03-15T00:00:00",
+        "Synopsis": "In 1984 East Berlin, an agent of the secret police, conducting surveillance on a writer and his lover, finds himself becoming increasingly absorbed by their lives."
+    },
+    {
+        "Title": "Sunset Blvd.",
+        "Duration": "0.01:50:00",
+        "ReleaseDateTimeOffsetUtc": "1950-08-04T00:00:00",
+        "Synopsis": "A screenwriter develops a dangerous relationship with a faded film star determined to make a triumphant return."
+    },
+    {
+        "Title": "Paths of Glory",
+        "Duration": "0.01:28:00",
+        "ReleaseDateTimeOffsetUtc": "1957-11-10T00:00:00",
+        "Synopsis": "After refusing to attack an enemy position, a general accuses the soldiers of cowardice and their commanding officer must defend them."
+    },
+    {
+        "Title": "The Shining",
+        "Duration": "0.02:26:00",
+        "ReleaseDateTimeOffsetUtc": "1980-05-23T00:00:00",
+        "Synopsis": "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future."
+    },
+    {
+        "Title": "The Great Dictator",
+        "Duration": "0.02:05:00",
+        "ReleaseDateTimeOffsetUtc": "1940-10-15T00:00:00",
+        "Synopsis": "Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel's regime."
+    },
+    {
+        "Title": "Avengers: Infinity War",
+        "Duration": "0.02:29:00",
+        "ReleaseDateTimeOffsetUtc": "2018-04-23T00:00:00",
+        "Synopsis": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe."
+    },
+    {
+        "Title": "Witness for the Prosecution",
+        "Duration": "0.01:56:00",
+        "ReleaseDateTimeOffsetUtc": "1957-12-17T00:00:00",
+        "Synopsis": "A veteran British barrister must defend his client in a murder trial that has surprise after surprise."
+    },
+    {
+        "Title": "Aliens",
+        "Duration": "0.02:17:00",
+        "ReleaseDateTimeOffsetUtc": "1986-06-14T00:00:00",
+        "Synopsis": "Decades after surviving the Nostromo incident, Ellen Ripley is sent out to re-establish contact with a terraforming colony but finds herself battling the Alien Queen and her offspring."
+    },
+    {
+        "Title": "Spider-Man: Into the Spider-Verse",
+        "Duration": "0.01:57:00",
+        "ReleaseDateTimeOffsetUtc": "2018-12-06T00:00:00",
+        "Synopsis": "Teen Miles Morales becomes the Spider-Man of his universe, and must join with five spider-powered individuals from other dimensions to stop a threat for all realities."
+    },
+    {
+        "Title": "American Beauty",
+        "Duration": "0.02:02:00",
+        "ReleaseDateTimeOffsetUtc": "1999-09-08T00:00:00",
+        "Synopsis": "A sexually frustrated suburban father has a mid-life crisis after becoming infatuated with his daughter's best friend."
+    },
+    {
+        "Title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+        "Duration": "0.01:35:00",
+        "ReleaseDateTimeOffsetUtc": "1964-01-29T00:00:00",
+        "Synopsis": "An insane American general orders a bombing attack on the Soviet Union, triggering a path to nuclear holocaust that a war room full of politicians and generals frantically tries to stop."
+    },
+    {
+        "Title": "The Dark Knight Rises",
+        "Duration": "0.02:44:00",
+        "ReleaseDateTimeOffsetUtc": "2012-06-16T00:00:00",
+        "Synopsis": "Eight years after the Joker's reign of chaos, Batman is coerced out of exile with the assistance of the mysterious Selina Kyle in order to defend Gotham City from the vicious guerrilla terrorist Bane."
+    },
+    {
+        "Title": "Oldboy",
+        "Duration": "0.02:00:00",
+        "ReleaseDateTimeOffsetUtc": "2003-11-21T00:00:00",
+        "Synopsis": "After being kidnapped and imprisoned for fifteen years, Oh Dae-Su is released, only to find that he must find his captor in five days."
+    },
+    {
+        "Title": "Inglourious Basterds",
+        "Duration": "0.02:33:00",
+        "ReleaseDateTimeOffsetUtc": "2009-05-20T00:00:00",
+        "Synopsis": "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same."
+    },
+    {
+        "Title": "Amadeus",
+        "Duration": "0.02:40:00",
+        "ReleaseDateTimeOffsetUtc": "1984-09-06T00:00:00",
+        "Synopsis": "The life, success and troubles of Wolfgang Amadeus Mozart, as told by Antonio Salieri, the contemporaneous composer who was deeply jealous of Mozart's talent and claimed to have murdered him."
+    },
+    {
+        "Title": "Coco",
+        "Duration": "0.01:45:00",
+        "ReleaseDateTimeOffsetUtc": "2017-10-20T00:00:00",
+        "Synopsis": "Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer."
+    },
+    {
+        "Title": "Toy Story",
+        "Duration": "0.01:21:00",
+        "ReleaseDateTimeOffsetUtc": "1995-11-19T00:00:00",
+        "Synopsis": "A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boy's bedroom."
+    },
+    {
+        "Title": "Braveheart",
+        "Duration": "0.02:58:00",
+        "ReleaseDateTimeOffsetUtc": "1995-05-18T00:00:00",
+        "Synopsis": "Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England."
+    },
+    {
+        "Title": "Joker",
+        "Duration": "0.02:02:00",
+        "ReleaseDateTimeOffsetUtc": "2019-08-31T00:00:00",
+        "Synopsis": "The rise of Arthur Fleck, from aspiring stand-up comedian and pariah to Gotham's clown prince and leader of the revolution."
+    },
+    {
+        "Title": "Das Boot",
+        "Duration": "0.02:29:00",
+        "ReleaseDateTimeOffsetUtc": "1981-09-17T00:00:00",
+        "Synopsis": "A German U-boat stalks the frigid waters of the North Atlantic as its young crew experience the sheer terror and claustrophobic life of a submariner in World War II."
+    },
+    {
+        "Title": "Avengers: Endgame",
+        "Duration": "0.03:01:00",
+        "ReleaseDateTimeOffsetUtc": "2019-04-22T00:00:00",
+        "Synopsis": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe."
+    },
+    {
+        "Title": "Princess Mononoke",
+        "Duration": "0.02:14:00",
+        "ReleaseDateTimeOffsetUtc": "1997-07-12T00:00:00",
+        "Synopsis": "On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime."
+    },
+    {
+        "Title": "Star Wars: Episode VI - Return of the Jedi",
+        "Duration": "0.02:11:00",
+        "ReleaseDateTimeOffsetUtc": "1983-05-23T00:00:00",
+        "Synopsis": "After rescuing Han Solo from Jabba the Hutt, the Rebels attempt to destroy the second Death Star, while Luke struggles to help Darth Vader back from the dark side."
+    },
+    {
+        "Title": "The Call of Cthulhu",
+        "Duration": "0.00:47:00",
+        "ReleaseDateTimeOffsetUtc": "2005-07-10T00:00:00",
+        "Synopsis": "While sorting the affairs of his late Uncle, a man accidentally stumbles across a series of dark secrets connected to an ancient horror waiting to be freed."
+    }
+]

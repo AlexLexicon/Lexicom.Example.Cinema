@@ -1,0 +1,52 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+    "profiles":
+    {
+        "Lexicom.Example.Cinema.Server.Persons.Api.Http.Dev":
+        {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "applicationUrl": "http://localhost:5017",
+            "environmentVariables":
+            {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        "Lexicom.Example.Cinema.Server.Persons.Api.Http.Release":
+        {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "applicationUrl": "http://localhost:5017",
+            "environmentVariables":
+            {
+            }
+        },
+        "Lexicom.Example.Cinema.Server.Persons.Api.Https.Dev":
+        {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "applicationUrl": "https://localhost:7054;http://localhost:5017",
+            "environmentVariables":
+            {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        "Lexicom.Example.Cinema.Server.Persons.Api.Https.Release":
+        {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "applicationUrl": "https://localhost:7054;http://localhost:5017",
+            "environmentVariables":
+            {
+            }
+        }
+    }
+}

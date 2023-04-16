@@ -1,0 +1,40 @@
+﻿<Application 
+    x:Class="Lexicom.Example.Cinema.Client.Wpf.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:t="clr-namespace:Lexicom.Wpf.Amenities.Themes;assembly=Lexicom.Wpf.Amenities">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Brushes.xaml"/>
+                <ResourceDictionary Source="/Converters.xaml"/>
+
+                <t:ThemeResourceDictionary Theme="Light">
+                    <t:ThemeResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/Lexicom.Concentrate.Wpf.Themes;component/LightTheme.xaml"/>
+                    </t:ThemeResourceDictionary.MergedDictionaries>
+                </t:ThemeResourceDictionary>
+
+                <t:ThemeResourceDictionary Theme="Dark">
+                    <t:ThemeResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/Lexicom.Concentrate.Wpf.Themes;component/DarkTheme.xaml"/>
+                    </t:ThemeResourceDictionary.MergedDictionaries>
+                </t:ThemeResourceDictionary>
+
+                <ResourceDictionary Source="pack://application:,,,/Lexicom.Concentrate.Wpf.Controls;component/Styles.xaml"/>
+                
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/CheckBoxStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ComboBoxStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/HyperLinkStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/LabelStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/SpinnerStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/TextBoxStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/TextFieldStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/TextInputStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ToggleButtonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

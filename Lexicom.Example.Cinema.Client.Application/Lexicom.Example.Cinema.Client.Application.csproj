@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lexicom.AspNetCore.Controllers.Contracts" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Concentrate.Client.Authentication" Version="7.0.3" />
+    <PackageReference Include="Lexicom.Extensions.Expressions" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Http" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Mvvm.Amenities" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Validation.Options" Version="7.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Authority.Api.Contracts\Lexicom.Example.Cinema.Server.Authority.Api.Contracts.csproj" />
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Movies.Api.Contracts\Lexicom.Example.Cinema.Server.Movies.Api.Contracts.csproj" />
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Persons.Api.Contracts\Lexicom.Example.Cinema.Server.Persons.Api.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,135 @@
+﻿<UserControl 
+    x:Class="Lexicom.Example.Cinema.Client.Wpf.Views.PaginationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:c="clr-namespace:Lexicom.Wpf.Controls;assembly=Lexicom.Wpf.Controls"
+    xmlns:vm="clr-namespace:Lexicom.Example.Cinema.Client.Wpf.ViewModels;assembly=Lexicom.Example.Cinema.Client.Wpf.ViewModels"
+    mc:Ignorable="d" 
+    d:DesignWidth="352"
+    Height="32"
+    x:Name="xPaginationView"
+    d:Background="{DynamicResource xThemeSurfaceFocusSoft}">
+
+    <UserControl.Resources>
+        <Style x:Key="xPageNumberButtonStyle" TargetType="Button" BasedOn="{StaticResource xSymbolButtonStyle}">
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DockPanel 
+            Grid.Column="0"
+            LastChildFill="False">
+            <ItemsControl 
+                DockPanel.Dock="Right"
+                ItemsSource="{Binding PreviousPageNumbers}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel 
+                            Orientation="Horizontal" 
+                            FlowDirection="RightToLeft"/><!--is this needed?-->
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            Content="{Binding}"
+                            Style="{StaticResource xPageNumberButtonStyle}"
+                            Command="{Binding DataContext.PageCommand, ElementName=xPaginationView}"
+                            CommandParameter="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Label 
+                DockPanel.Dock="Right"
+                Padding="6,0"
+                Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                Visibility="{Binding IsFirstPage, Converter={StaticResource xVisibilityConverter}, ConverterParameter=invert_hide:c}">
+                <TextBlock Text="..."/>
+            </Label>
+            <Button 
+                DockPanel.Dock="Right"
+                d:Content="1"
+                Content="{Binding FirstPageNumber}"
+                Style="{StaticResource xPageNumberButtonStyle}"
+                Command="{Binding FirstPageCommand}"
+                Visibility="{Binding IsFirstPage, Converter={StaticResource xVisibilityConverter}, ConverterParameter=invert_hide:c}"/>
+            <Button 
+                DockPanel.Dock="Right"
+                Width="32"
+                Padding="8"
+                Style="{StaticResource xSymbolButtonStyle}"
+                Command="{Binding PreviousPageCommand}">
+                <c:ButtonForegroundImage ImageSource="/Lexicom.Example.Cinema.Client.Wpf;component/images/play.full.a.256.png" RenderTransformOrigin="0.5,0.5">
+                    <c:ButtonForegroundImage.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                        </TransformGroup>
+                    </c:ButtonForegroundImage.RenderTransform>
+                </c:ButtonForegroundImage>
+            </Button>
+        </DockPanel>
+        <Label 
+            Grid.Column="1"
+            FontWeight="Bold"
+            Foreground="{DynamicResource xThemeInteriorFocusSoft}">
+            <TextBlock 
+                d:Text="3"
+                Text="{Binding CurrentPageNumber}"/>
+        </Label> 
+        <DockPanel 
+            Grid.Column="2" 
+            LastChildFill="False">
+            <ItemsControl 
+                DockPanel.Dock="Left"
+                Grid.Column="0"
+                ItemsSource="{Binding NextPageNumbers}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            Content="{Binding}"
+                            Style="{StaticResource xPageNumberButtonStyle}"
+                            Command="{Binding DataContext.PageCommand, ElementName=xPaginationView}"
+                            CommandParameter="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Label 
+                DockPanel.Dock="Left"
+                Padding="6,0"
+                Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                Visibility="{Binding IsLastPage, Converter={StaticResource xVisibilityConverter}, ConverterParameter=invert_hide:c}">
+                <TextBlock Text="..."/>
+            </Label>
+            <Button 
+                DockPanel.Dock="Left"
+                d:Content="5"
+                Content="{Binding LastPageNumber}"
+                Style="{StaticResource xPageNumberButtonStyle}"
+                Command="{Binding LastPageCommand}"
+                Visibility="{Binding IsLastPage, Converter={StaticResource xVisibilityConverter}, ConverterParameter=invert_hide:c}"/>
+            <Button 
+                DockPanel.Dock="Left"
+                Width="32"
+                Padding="8"
+                Style="{StaticResource xSymbolButtonStyle}"
+                Command="{Binding NextPageCommand}">
+                <c:ButtonForegroundImage ImageSource="/Lexicom.Example.Cinema.Client.Wpf;component/images/play.full.a.256.png"/>
+            </Button>
+        </DockPanel>
+    </Grid>
+</UserControl>
