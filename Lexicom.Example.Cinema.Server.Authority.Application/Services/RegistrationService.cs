@@ -45,7 +45,7 @@ public class RegistrationService : IRegistrationService
         }
 
         var addBasicRoleToUserTask = _userService.AddRoleToUserAsync(user.Id, basicRole.Id);
-        var createEmailConfirmationTokenTask = _communicationService.SendUserConfirmEmailCommunciationAsync(user.Id);
+        var createEmailConfirmationTokenTask = _communicationService.AssembleAndSendUserConfirmEmailCommunciationAsync(user.Id);
 
         try
         {

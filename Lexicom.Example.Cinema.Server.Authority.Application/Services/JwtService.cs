@@ -122,8 +122,8 @@ public class JwtService : IJwtService
         {
             Id = bearerToken.Jti,
             UserId = user.Id,
-            CreatedDateTimeOffset = _timeProvider.UtcNow,
-            ExpiresDateTimeOffset = bearerToken.Expires,
+            CreatedDateTimeOffsetUtc = _timeProvider.UtcNow,
+            ExpiresDateTimeOffsetUtc = bearerToken.Expires,
         };
 
         await db.RefreshTokens.AddAsync(userRefreshToken);

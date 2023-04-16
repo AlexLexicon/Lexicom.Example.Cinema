@@ -88,7 +88,7 @@ public class VerificationController : LexicomController
     {
         try
         {
-            await _communicationService.SendUserConfirmEmailCommunciationAsync(requestBody.Email);
+            await _communicationService.AssembleAndSendUserConfirmEmailCommunciationAsync(requestBody.Email);
 
             return NoContent();
         }

@@ -87,7 +87,7 @@ public class PasswordController : LexicomController
     {
         try
         {
-            await _communicationService.SendUserForgotPasswordEmailAsync(requestBody.Email);
+            await _communicationService.AssembleAndSendUserForgotPasswordEmailAsync(requestBody.Email);
 
             return NoContent();
         }

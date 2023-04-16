@@ -6,13 +6,13 @@ namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
 public interface ICommunicationService
 {
     /// <exception cref="UserDoesNotExistException"/>
-    Task SendUserForgotPasswordEmailAsync(string email);
+    Task AssembleAndSendUserForgotPasswordEmailAsync(string email);
     /// <exception cref="UserDoesNotExistException"/>
-    Task SendUserConfirmEmailCommunciationAsync(string email);
+    Task AssembleAndSendUserConfirmEmailCommunciationAsync(string email);
     /// <exception cref="UserDoesNotExistException"/>
-    Task SendUserConfirmEmailCommunciationAsync(Guid userId);
+    Task AssembleAndSendUserConfirmEmailCommunciationAsync(Guid userId);
     /// <exception cref="UserDoesNotExistException"/>
-    Task SendChangeEmailCommunicationAsync(Guid userId, string newEmail);
+    Task AssembleAndSendChangeEmailCommunicationAsync(Guid userId, string newEmail);
 }
 public class CommunicationService : ICommunicationService
 {
@@ -33,7 +33,7 @@ public class CommunicationService : ICommunicationService
         _passwordService = passwordService;
     }
 
-    public async Task SendUserForgotPasswordEmailAsync(string email)
+    public async Task AssembleAndSendUserForgotPasswordEmailAsync(string email)
     {
         User user = await _userService.GetUserByEmailAsync(email);
 
@@ -57,13 +57,13 @@ public class CommunicationService : ICommunicationService
         }
     }
 
-    public async Task SendUserConfirmEmailCommunciationAsync(string email)
+    public async Task AssembleAndSendUserConfirmEmailCommunciationAsync(string email)
     {
         User user = await _userService.GetUserByEmailAsync(email);
 
         await SendUserConfirmEmailCommunciationAsync(user);
     }
-    public async Task SendUserConfirmEmailCommunciationAsync(Guid userId)
+    public async Task AssembleAndSendUserConfirmEmailCommunciationAsync(Guid userId)
     {
         User user = await _userService.GetUserByIdAsync(userId);
 
@@ -91,7 +91,7 @@ public class CommunicationService : ICommunicationService
         }
     }
 
-    public async Task SendChangeEmailCommunicationAsync(Guid userId, string newEmail)
+    public async Task AssembleAndSendChangeEmailCommunicationAsync(Guid userId, string newEmail)
     {
         User user = await _userService.GetUserByIdAsync(userId);
 

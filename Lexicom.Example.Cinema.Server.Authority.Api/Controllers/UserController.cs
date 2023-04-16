@@ -95,7 +95,7 @@ public class UserController : LexicomController
         Guid userId = User.GetId();
         try
         {
-            await _communicationService.SendChangeEmailCommunicationAsync(userId, requestBody.NewEmail);
+            await _communicationService.AssembleAndSendChangeEmailCommunicationAsync(userId, requestBody.NewEmail);
 
             return NoContent();
         }

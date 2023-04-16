@@ -157,7 +157,7 @@ public class SignInService : ISignInService
         //just incase we check here as well since someone might
         //want to modify the token expires date in the database to 
         //invalidate a token early
-        if (refreshToken.ExpiresDateTimeOffset < _timeProvider.UtcNow)
+        if (refreshToken.ExpiresDateTimeOffsetUtc < _timeProvider.UtcNow)
         {
             db.RefreshTokens.Remove(refreshToken);
             await db.SaveChangesAsync();
