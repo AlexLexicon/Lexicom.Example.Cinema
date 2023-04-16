@@ -1,6 +1,6 @@
 ﻿using Lexicom.Authority;
 using Lexicom.DependencyInjection.Primitives;
-using Lexicom.EntityFramework.Exceptions;
+using Lexicom.EntityFramework.Amenities.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Database;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
@@ -188,7 +188,7 @@ public class SignInService : ISignInService
             throw e.ToUnreachableException();
         }
 
-        user.LastSignInDateTimeOffset = _timeProvider.UtcNow;
+        user.LastSignInDateTimeOffsetUtc = _timeProvider.UtcNow;
 
         try
         {

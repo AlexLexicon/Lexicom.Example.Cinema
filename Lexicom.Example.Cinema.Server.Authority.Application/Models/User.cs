@@ -1,4 +1,4 @@
-﻿using Lexicom.EntityFramework.Exceptions;
+﻿using Lexicom.EntityFramework.Amenities.Exceptions;
 using Microsoft.AspNetCore.Identity;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Models;
@@ -6,9 +6,9 @@ public class User : IdentityUser<Guid>
 {
     public string FirstNameEncryptedBase64 { get; set; } = null!;
     public string LastNameEncryptedBase64 { get; set; } = null!;
-    public DateTimeOffset CreatedDateTimeOffset { get; set; }
-    public DateTimeOffset? VerifiedDateTimeOffset { get; set; }
-    public DateTimeOffset? LastSignInDateTimeOffset { get; set; }
+    public DateTimeOffset CreatedDateTimeOffsetUtc { get; set; }
+    public DateTimeOffset? VerifiedDateTimeOffsetUtc { get; set; }
+    public DateTimeOffset? LastSignInDateTimeOffsetUtc { get; set; }
 
     //in this application emails are a required field of the user
     //we can be safe in assuming it will never be null

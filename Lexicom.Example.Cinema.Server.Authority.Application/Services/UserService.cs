@@ -1,6 +1,6 @@
 ﻿using Lexicom.Cryptography;
 using Lexicom.DependencyInjection.Primitives;
-using Lexicom.EntityFramework.Exceptions;
+using Lexicom.EntityFramework.Amenities.Exceptions;
 using Lexicom.EntityFramework.Identity.Exceptions;
 using Lexicom.EntityFramework.Identity.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Database;
@@ -125,9 +125,9 @@ public class UserService : IUserService
             Email = user.Email,
             FirstName = firstName,
             LastName = lastName,
-            CreatedDateTimeOffset = user.CreatedDateTimeOffset,
-            VerifiedDateTimeOffset = user.VerifiedDateTimeOffset,
-            LastSignInDateTimeOffset = user.LastSignInDateTimeOffset,
+            CreatedDateTimeOffset = user.CreatedDateTimeOffsetUtc,
+            VerifiedDateTimeOffset = user.VerifiedDateTimeOffsetUtc,
+            LastSignInDateTimeOffset = user.LastSignInDateTimeOffsetUtc,
             Roles = comprehensiveUserRoles,
         };
 
@@ -176,9 +176,9 @@ public class UserService : IUserService
             Email = email,
             FirstNameEncryptedBase64 = firstNameEncryptedBase64,
             LastNameEncryptedBase64 = lastNameEncryptedBase64,
-            CreatedDateTimeOffset = _timeProvider.UtcNow,
-            VerifiedDateTimeOffset = null,
-            LastSignInDateTimeOffset = null,
+            CreatedDateTimeOffsetUtc = _timeProvider.UtcNow,
+            VerifiedDateTimeOffsetUtc = null,
+            LastSignInDateTimeOffsetUtc = null,
         };
 
         IdentityResult createIdentityResult = await _userManager.CreateAsync(user, password);

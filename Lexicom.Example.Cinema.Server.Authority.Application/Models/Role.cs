@@ -1,4 +1,4 @@
-﻿using Lexicom.EntityFramework.Exceptions;
+﻿using Lexicom.EntityFramework.Amenities.Exceptions;
 using Microsoft.AspNetCore.Identity;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Models;

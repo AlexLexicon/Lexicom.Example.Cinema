@@ -1,18 +1,23 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using FluentValidation.Validators;
+using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
 using Lexicom.Validation;
 using Lexicom.Validation.Amenities.RuleSets;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class SignInViewModel : ObservableObject, INotificationHandler<ShowSignInViewNotification>
+public partial class SignInViewModel : ObservableObject, INotificationHandler<ShowSignInViewNotification>, INotificationHandler<SignInSuccessNotification>, INotificationHandler<SignInFailedNotification>
 {
+    private readonly IMediator _mediator;
 
     public SignInViewModel(
+        IMediator mediator,
         IRuleSetValidator<EmailRuleSet, string?> emailValidator,
         IRuleSetValidator<RequiredRuleSet, string?> requiredValidator)
     {
+        _mediator = mediator;
         _emailValidator = emailValidator;
         _passwordValidator = requiredValidator;
     }
@@ -30,10 +35,24 @@ public partial class SignInViewModel : ObservableObject, INotificationHandler<Sh
     [ObservableProperty]
     private bool _isValid;
 
-
     public Task Handle(ShowSignInViewNotification notification, CancellationToken cancellationToken)
     {
         IsVisible = true;
+
+        return Task.CompletedTask;
+    }
+
+    public Task Handle(SignInSuccessNotification notification, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task Handle(SignInFailedNotification notification, CancellationToken cancellationToken)
+    {
+        if (notification.Error is SignInFailedNotification.Errors.IncorrectCredentials)
+        {
+            //_emailValidator.
+        }
 
         return Task.CompletedTask;
     }
@@ -48,5 +67,14 @@ public partial class SignInViewModel : ObservableObject, INotificationHandler<Sh
     private void Validation()
     {
         IsValid = EmailValidator.IsValid && PasswordValidator.IsValid;
+    }
+
+    [RelayCommand]
+    private async Task SignInAsync()
+    {
+        if (IsValid && Email is not null && Password is not null)
+        {
+            await _mediator.Publish(new SignInNotification(Email, Password));
+        }
     }
 }
