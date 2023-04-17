@@ -15,7 +15,7 @@ public interface IJwtService
     /// <exception cref="UserDoesNotExistException"/>
     Task<BearerToken> CreateAccessTokenAsync(Guid userId);
     /// <exception cref="UserDoesNotExistException"/>
-    Task<BearerToken> CreateRefreshTokenAsync(Guid userId);
+    Task<BearerToken> CreateRefreshTokenAsync(Guid userId, Guid accessTokenJti);
 }
 public class JwtService : IJwtService
 {
@@ -98,7 +98,7 @@ public class JwtService : IJwtService
         return await _accessTokenProvider.CreateAccessTokenAsync(claims);
     }
 
-    public async Task<BearerToken> CreateRefreshTokenAsync(Guid userId)
+    public async Task<BearerToken> CreateRefreshTokenAsync(Guid userId, Guid accessTokenJti)
     {
         User user = await _userService.GetUserByIdAsync(userId);
 
@@ -122,6 +122,7 @@ public class JwtService : IJwtService
         {
             Id = bearerToken.Jti,
             UserId = user.Id,
+            AccessTokenJti = accessTokenJti,
             CreatedDateTimeOffsetUtc = _timeProvider.UtcNow,
             ExpiresDateTimeOffsetUtc = bearerToken.Expires,
         };

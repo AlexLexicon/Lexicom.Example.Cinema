@@ -30,6 +30,7 @@ using System.IdentityModel.Tokens.Jwt;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("appsettings.SecretsExample.json");
+builder.Configuration.AddJsonFile("appsettings.Development.json");
 
 builder.Services.AddControllers();
 

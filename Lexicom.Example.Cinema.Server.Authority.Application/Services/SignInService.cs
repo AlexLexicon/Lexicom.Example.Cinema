@@ -1,6 +1,5 @@
 ﻿using Lexicom.Authority;
 using Lexicom.DependencyInjection.Primitives;
-using Lexicom.EntityFramework.Amenities.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Database;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
@@ -62,8 +61,6 @@ public class SignInService : ISignInService
     {
         User user = await _userService.GetUserByEmailAsync(email);
 
-        NonNullableTableColumnException.ThrowIfNull(user.Email);
-
         SignInResult signInIdentityResult = await _signInManager.CheckPasswordSignInAsync(user, password, lockoutOnFailure: true);
 
         if (!signInIdentityResult.Succeeded)
@@ -88,7 +85,7 @@ public class SignInService : ISignInService
             throw new PasswordIncorrectException();
         }
 
-        return await SignInUserAsync(user);
+        return await CreateSignInTokensAsync(user);
     }
 
     public async Task<SignIn> RefreshUserAsync(string accessBearerToken, string refreshBearerToken)
@@ -152,11 +149,10 @@ public class SignInService : ISignInService
             throw new RefreshTokenUserMismatchException(refreshToken.Id, refreshToken.UserId, accessTokenUserId);
         }
 
-        //the tokens experation should automatically be checked for experation
-        //above then we call 'IsBearerTokenValidAsync(refreshToken)' but
-        //just incase we check here as well since someone might
-        //want to modify the token expires date in the database to 
-        //invalidate a token early
+        //the tokens experation should automatically
+        //be checked by the call 'Is[Bearer]TokenValidAsync'
+        //but just incase we check here as well since someone might
+        //want to modify the token experation date in the database to invalidate a token manually
         if (refreshToken.ExpiresDateTimeOffsetUtc < _timeProvider.UtcNow)
         {
             db.RefreshTokens.Remove(refreshToken);
@@ -167,21 +163,17 @@ public class SignInService : ISignInService
 
         User user = await _userService.GetUserByIdAsync(refreshToken.UserId);
 
-        return await SignInUserAsync(user);
+        return await CreateSignInTokensAsync(user);
     }
 
-    private async Task<SignIn> SignInUserAsync(User user)
+    private async Task<SignIn> CreateSignInTokensAsync(User user)
     {
         BearerToken accessBearerToken;
         BearerToken refreshBearerToken;
-
-        var createAccessTokenTask = _jwtService.CreateAccessTokenAsync(user.Id);
-        var createRefreshTokenTask = _jwtService.CreateRefreshTokenAsync(user.Id);
-
         try
         {
-            accessBearerToken = await createAccessTokenTask;
-            refreshBearerToken = await createRefreshTokenTask;
+            accessBearerToken = await _jwtService.CreateAccessTokenAsync(user.Id);
+            refreshBearerToken = await _jwtService.CreateRefreshTokenAsync(user.Id, accessBearerToken.Jti);
         }
         catch (UserDoesNotExistException e)
         {
