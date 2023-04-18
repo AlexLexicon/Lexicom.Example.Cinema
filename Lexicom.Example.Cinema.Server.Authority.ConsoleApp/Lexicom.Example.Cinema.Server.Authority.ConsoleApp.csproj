@@ -6,6 +6,7 @@
     <LangVersion>latest</LangVersion>
     <OutputType>Exe</OutputType>
     <Nullable>enable</Nullable>
+    <UserSecretsId>a6b56620-137a-4757-82c0-fc45096afe48</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
     <PackageReference Include="Lexicom.Logging.For.ConsoleApp" Version="7.0.8" />
     <PackageReference Include="Lexicom.Smtp.For.ConsoleApp" Version="7.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
   </ItemGroup>
 

@@ -48,6 +48,7 @@ builder.Services.AddDbContextFactory<AuthorityDbContext>(options =>
 {
     string? cs = builder.Configuration.GetConnectionString("authoritydb");
 
+    options.UseSqlServer(cs);
     options.UseSqlite(cs);
 });
 
