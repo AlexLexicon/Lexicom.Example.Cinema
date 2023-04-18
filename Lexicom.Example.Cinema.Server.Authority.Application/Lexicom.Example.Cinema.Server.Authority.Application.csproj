@@ -8,14 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.Authority" Version="7.0.11" />
-    <PackageReference Include="Lexicom.Cryptography" Version="7.0.11" />
-    <PackageReference Include="Lexicom.DependencyInjection.Primitives" Version="7.0.11" />
-    <PackageReference Include="Lexicom.EntityFramework.Amenities" Version="7.0.11" />
-    <PackageReference Include="Lexicom.EntityFramework.Identity" Version="7.0.11" />
-    <PackageReference Include="Lexicom.Extensions.TimeSpans" Version="7.0.11" />
-    <PackageReference Include="Lexicom.Http" Version="7.0.11" />
-    <PackageReference Include="Lexicom.Smtp" Version="7.0.11" />
+    <PackageReference Include="Lexicom.Authority" Version="7.0.12" />
+    <PackageReference Include="Lexicom.Cryptography" Version="7.0.12" />
+    <PackageReference Include="Lexicom.DependencyInjection.Primitives" Version="7.0.12" />
+    <PackageReference Include="Lexicom.EntityFramework.Amenities" Version="7.0.12" />
+    <PackageReference Include="Lexicom.EntityFramework.Identity" Version="7.0.12" />
+    <PackageReference Include="Lexicom.Extensions.TimeSpans" Version="7.0.12" />
+    <PackageReference Include="Lexicom.Http" Version="7.0.12" />
+    <PackageReference Include="Lexicom.Smtp" Version="7.0.12" />
   </ItemGroup>
 
   <ItemGroup>
