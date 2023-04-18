@@ -14,15 +14,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Controllers;
 [Authorize]
 [ApiController]
-[Route("api/authority/user/verification")]
-public class VerificationController : LexicomController
+[Route("api/authority/user/email")]
+public class EmailController : LexicomController
 {
-    private readonly ILogger<VerificationController> _logger;
+    private readonly ILogger<EmailController> _logger;
     private readonly IVerificationService _verificationService;
     private readonly ICommunicationService _communicationService;
 
-    public VerificationController(
-        ILogger<VerificationController> logger,
+    public EmailController(
+        ILogger<EmailController> logger,
         IVerificationService verificationService,
         ICommunicationService communicationService)
     {
@@ -33,13 +33,69 @@ public class VerificationController : LexicomController
 
     [SwaggerExample("""
     {
+        "NewEmail": "test_b@email.com"
+    }
+    """)]
+    [HttpPost("change")]
+    [Authorize(Policy = Policies.Permissions.Authority.Email.EMAIL_CHANGE_POST)]
+    public async Task<IActionResult> UserEmailChangePostAsync([FromBody] UserEmailPostRequestBody requestBody)
+    {
+        Guid userId = User.GetId();
+        try
+        {
+            await _communicationService.AssembleAndSendChangeEmailCommunicationAsync(userId, requestBody.NewEmail);
+
+            return NoContent();
+        }
+        catch (UserDoesNotExistException e)
+        {
+            //because we are authorizing the user must exist
+            throw e.ToUnreachableException();
+        }
+    }
+
+    [SwaggerExample("""
+    {
+        "NewEmail": "test_b@email.com",
+        "EmailChangeToken": "<the-change-token>"
+    }
+    """)]
+    [HttpPost("change/confirm")]
+    [Authorize(Policy = Policies.Permissions.Authority.Email.EMAIL_CHANGE_CONFIRM_POST)]
+    public async Task<IActionResult> UserEmailChangeConfirmPostAsync([FromBody] VerificationEmailChangePostRequestBody requestBody)
+    {
+        Guid userId = User.GetId();
+        try
+        {
+            await _verificationService.ChangeUserEmailAsync(userId, requestBody.NewEmail, requestBody.EmailChangeToken);
+
+            return NoContent();
+        }
+        catch (UserDoesNotExistException e)
+        {
+            //because we are authorizing the user must exist
+            throw e.ToUnreachableException();
+        }
+        catch (EmailChangeTokenNotValidException e)
+        {
+            _logger.LogWarning(e, "Failed to change the email for the user with the id '{userId}' because the provided change token has expired or is no longer valid.", userId);
+
+            return BadRequest()
+                .FromProperty(requestBody.EmailChangeToken)
+                .WithMessage("The token has expired or is not valid.")
+                .AddCode(AuthorityErrorCodes.TOKEN_INVALID);
+        }
+    }
+
+    [SwaggerExample("""
+    {
         "Email": "test_a@email.com", 
         "EmailConfirmationToken": "<the-confirmation-token>"
     }
     """)]
-    [HttpPost("email/confirm")]
+    [HttpPost("confirm")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserVerificationEmailConfirmAsync([FromBody] VerificationEmailConfirmPostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailConfirmPostAsync([FromBody] VerificationEmailConfirmPostRequestBody requestBody)
     {
         try
         {
@@ -82,9 +138,9 @@ public class VerificationController : LexicomController
         "Email": "test_a@email.com"
     }
     """)]
-    [HttpPost("email/confirm/resend")]
+    [HttpPost("confirm/resend")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserVerificationEmailConfirmResendAsync([FromBody] VerificationEmailConfirmResendPostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailConfirmResendPostAsync([FromBody] VerificationEmailConfirmResendPostRequestBody requestBody)
     {
         try
         {
@@ -101,39 +157,6 @@ public class VerificationController : LexicomController
             //with any random email address trying to see if that user exists
             //and we want to protect against enumeration vulnerabilities
             return NoContent();
-        }
-    }
-
-    [SwaggerExample("""
-    {
-        "NewEmail": "test_b@email.com",
-        "EmailChangeToken": "<the-change-token>"
-    }
-    """)]
-    [HttpPost("email/change")]
-    [Authorize(Policy = Policies.Permissions.Authority.Verification.EMAIL_CHANGE_POST)]
-    public async Task<IActionResult> UserVerificationEmailChangeAsync([FromBody] VerificationEmailChangePostRequestBody requestBody)
-    {
-        Guid userId = User.GetId();
-        try
-        {
-            await _verificationService.ChangeUserEmailAsync(userId, requestBody.NewEmail, requestBody.EmailChangeToken);
-
-            return NoContent();
-        }
-        catch (UserDoesNotExistException e)
-        {
-            //because we are authorizing the user must exist
-            throw e.ToUnreachableException();
-        }
-        catch (EmailChangeTokenNotValidException e)
-        {
-            _logger.LogWarning(e, "Failed to change the email for the user with the id '{userId}' because the provided change token has expired or is no longer valid.", userId);
-
-            return BadRequest()
-                .FromProperty(requestBody.EmailChangeToken)
-                .WithMessage("The token has expired or is not valid.")
-                .AddCode(AuthorityErrorCodes.TOKEN_INVALID);
         }
     }
 }

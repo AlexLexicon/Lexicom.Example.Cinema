@@ -2,6 +2,7 @@
 using Lexicom.EntityFramework.Identity.Exceptions;
 using Lexicom.EntityFramework.Identity.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
+using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Jwt;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +15,8 @@ public interface IRoleService
     Task<Role> GetRoleByIdAsync(Guid roleId);
     /// <exception cref="RoleDoesNotExistException"/>
     Task<Role> GetRoleByNameAsync(string name);
+    /// <exception cref="RoleDoesNotExistException"/>
+    Task<ComprehensiveRole> GetComprehensiveRoleAsync(Guid roleId);
     /// <exception cref="RoleDoesNotExistException"/>
     Task<IReadOnlyList<string>> GetRolePermissionsAsync(Guid roleId);
     /// <exception cref="RoleAlreadyExistsException"/>
@@ -71,6 +74,28 @@ public class RoleService : IRoleService
         }
 
         return role;
+    }
+
+    public async Task<ComprehensiveRole> GetComprehensiveRoleAsync(Guid roleId)
+    {
+        Role role = await GetRoleByIdAsync(roleId);
+
+        IReadOnlyList<string> permissions;
+        try
+        {
+            permissions = await GetRolePermissionsAsync(role.Id);
+        }
+        catch (RoleDoesNotExistException e)
+        {
+            throw e.ToUnreachableException();
+        }
+
+        return new ComprehensiveRole
+        {
+            Id = role.Id,
+            Name = role.Name,
+            Permissions = permissions,
+        };
     }
 
     public async Task<IReadOnlyList<string>> GetRolePermissionsAsync(Guid roleId)

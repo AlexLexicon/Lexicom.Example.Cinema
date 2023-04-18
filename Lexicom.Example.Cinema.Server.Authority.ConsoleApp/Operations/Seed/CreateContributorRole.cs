@@ -22,10 +22,9 @@ public class CreateContributorRole : ITuiOperation
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Movies.Movie.PATCH);
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Movies.Movie.POST);
 
-        Consolex.WriteAsJsonWithType(role);
+        ComprehensiveRole comprehensiveRole = await _roleService.GetComprehensiveRoleAsync(role.Id);
 
-        IReadOnlyList<string> permissions = await _roleService.GetRolePermissionsAsync(role.Id);
-        Console.WriteLine("Permissions:");
-        Consolex.WriteAsJson(permissions);
+        Console.WriteLine("Role");
+        Consolex.WriteAsJson(comprehensiveRole);
     }
 }

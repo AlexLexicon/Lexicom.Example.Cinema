@@ -8,5 +8,5 @@ public class ComprehensiveUser
     public required DateTimeOffset CreatedDateTimeOffset { get; init; }
     public required DateTimeOffset? VerifiedDateTimeOffset { get; init; }
     public required DateTimeOffset? LastSignInDateTimeOffset { get; init; }
-    public required IReadOnlyList<ComprehensiveUserRole> Roles { get; init; }
+    public required IReadOnlyList<ComprehensiveRole> Roles { get; init; }
 }

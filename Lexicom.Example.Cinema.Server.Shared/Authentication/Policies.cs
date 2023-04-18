@@ -8,8 +8,8 @@ public static class Policies
             Authority.Password.PATCH,
             Authority.User.GET,
             Authority.User.PATCH,
-            Authority.User.EMAIL_PATCH,
-            Authority.Verification.EMAIL_CHANGE_POST,
+            Authority.Email.EMAIL_CHANGE_POST,
+            Authority.Email.EMAIL_CHANGE_CONFIRM_POST,
             Movies.Movie.POST,
             Movies.Movie.PATCH,
         };
@@ -24,11 +24,11 @@ public static class Policies
             {
                 public const string GET = "user:get";
                 public const string PATCH = "user:patch";
-                public const string EMAIL_PATCH = "user:email:patch";
             }
-            public static class Verification
+            public static class Email
             {
-                public const string EMAIL_CHANGE_POST = "user:verification:email:change:post";
+                public const string EMAIL_CHANGE_POST = "user:email:change:post";
+                public const string EMAIL_CHANGE_CONFIRM_POST = "user:email:change:confirm:post";
             }
         }
         public static class Persons

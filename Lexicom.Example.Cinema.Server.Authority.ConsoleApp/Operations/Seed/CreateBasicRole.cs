@@ -22,13 +22,12 @@ public class CreateBasicRole : ITuiOperation
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.Password.PATCH);
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.User.GET);
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.User.PATCH);
-        await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.User.EMAIL_PATCH);
-        await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.Verification.EMAIL_CHANGE_POST);
+        await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.Email.EMAIL_CHANGE_POST);
+        await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.Email.EMAIL_CHANGE_CONFIRM_POST);
 
-        Consolex.WriteAsJsonWithType(role);
+        ComprehensiveRole comprehensiveRole = await _roleService.GetComprehensiveRoleAsync(role.Id);
 
-        IReadOnlyList<string> permissions = await _roleService.GetRolePermissionsAsync(role.Id);
-        Console.WriteLine("Permissions:");
-        Consolex.WriteAsJson(permissions);
+        Console.WriteLine("Role");
+        Consolex.WriteAsJson(comprehensiveRole);
     }
 }

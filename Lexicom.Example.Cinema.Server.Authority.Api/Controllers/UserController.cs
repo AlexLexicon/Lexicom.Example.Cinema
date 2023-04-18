@@ -17,14 +17,10 @@ namespace Lexicom.Example.Cinema.Server.Authority.Api.Controllers;
 public class UserController : LexicomController
 {
     private readonly IUserService _userService;
-    private readonly ICommunicationService _communicationService;
 
-    public UserController(
-        IUserService userService,
-        ICommunicationService communicationService)
+    public UserController(IUserService userService)
     {
         _userService = userService;
-        _communicationService = communicationService;
     }
 
     [HttpGet]
@@ -73,29 +69,6 @@ public class UserController : LexicomController
         try
         {
             await _userService.UpdateUserAsync(userId, requestBody.FirstName, requestBody.LastName);
-
-            return NoContent();
-        }
-        catch (UserDoesNotExistException e)
-        {
-            //because we are authorizing the user must exist
-            throw e.ToUnreachableException();
-        }
-    }
-
-    [SwaggerExample("""
-    {
-        "NewEmail": "test_b@email.com"
-    }
-    """)]
-    [HttpPatch("email")]
-    [Authorize(Policy = Policies.Permissions.Authority.User.EMAIL_PATCH)]
-    public async Task<IActionResult> UserEmailPatchAsync([FromBody] UserEmailPostRequestBody requestBody)
-    {
-        Guid userId = User.GetId();
-        try
-        {
-            await _communicationService.AssembleAndSendChangeEmailCommunicationAsync(userId, requestBody.NewEmail);
 
             return NoContent();
         }

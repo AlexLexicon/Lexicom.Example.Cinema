@@ -36,10 +36,12 @@ public class AddRoleToUser : ITuiOperation
             }
         }
 
-        Console.WriteLine("Users:");
+        Console.WriteLine("Avaliable Users:");
         Consolex.WriteAsJson(comprehensiveUsers);
 
         Guid userId = Consolex.ReadLineGuid("Enter the id of the user you want to add a role to:");
+        Console.WriteLine("".PadRight(32, '-'));
+        Console.WriteLine();
 
         var aRoles = await db.Roles
             .Select(r => new
@@ -49,10 +51,12 @@ public class AddRoleToUser : ITuiOperation
             }).
             ToListAsync();
 
-        Console.WriteLine("Roles:");
+        Console.WriteLine("Avaliable Roles:");
         Consolex.WriteAsJson(aRoles);
 
         Guid roleId = Consolex.ReadLineGuid("Enter the id of the role you want to add to the user:");
+        Console.WriteLine("".PadRight(32, '-'));
+        Console.WriteLine();
 
         await _userService.AddRoleToUserAsync(userId, roleId);
 

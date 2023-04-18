@@ -5,7 +5,6 @@ using Lexicom.EntityFramework.Identity.Exceptions;
 using Lexicom.EntityFramework.Identity.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Database;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -103,13 +102,13 @@ public class UserService : IUserService
         var getUserByIdTask = GetUserByIdAsync(userId);
 
         IReadOnlyList<Role> roles = await getUserRolesTask;
-        var getComprehensiveUserRoleTasks = new List<Task<ComprehensiveUserRole>>();
+        var getComprehensiveUserRoleTasks = new List<Task<ComprehensiveRole>>();
         foreach (Role role in roles)
         {
-            getComprehensiveUserRoleTasks.Add(GetComprehensiveUserRoleAsync(role));
+            getComprehensiveUserRoleTasks.Add(_roleService.GetComprehensiveRoleAsync(role.Id));
         }
 
-        ComprehensiveUserRole[] comprehensiveUserRoles = await Task.WhenAll(getComprehensiveUserRoleTasks);
+        ComprehensiveRole[] comprehensiveUserRoles = await Task.WhenAll(getComprehensiveUserRoleTasks);
 
         User user = await getUserByIdTask;
 
@@ -130,26 +129,6 @@ public class UserService : IUserService
             LastSignInDateTimeOffset = user.LastSignInDateTimeOffsetUtc,
             Roles = comprehensiveUserRoles,
         };
-
-        async Task<ComprehensiveUserRole> GetComprehensiveUserRoleAsync(Role role)
-        {
-            IReadOnlyList<string> permissions;
-            try
-            {
-                permissions = await _roleService.GetRolePermissionsAsync(role.Id);
-            }
-            catch (RoleDoesNotExistException e)
-            {
-                throw e.ToUnreachableException();
-            }
-
-            return new ComprehensiveUserRole
-            {
-                Id = role.Id,
-                Name = role.Name,
-                Permissions = permissions
-            };
-        }
     }
 
     public async Task<User> CreateUserAsync(string email, string password, string firstName, string lastName)
@@ -207,12 +186,12 @@ public class UserService : IUserService
 
         if (newFirstName is not null)
         {
-            user.FirstNameEncryptedBase64 = newFirstName;
+            user.FirstNameEncryptedBase64 = await _cryptographyService.EncryptAsync(newFirstName);
         }
 
         if (newLastName is not null)
         {
-            user.LastNameEncryptedBase64 = newLastName;
+            user.LastNameEncryptedBase64 = await _cryptographyService.EncryptAsync(newLastName);
         }
 
         await _userManager.UpdateAsync(user);

@@ -110,7 +110,7 @@ public class PasswordController : LexicomController
         "NewPassword": "Password1234!"
     }
     """)]
-    [HttpPost("reset")]
+    [HttpPost("forgot/reset")]
     [AllowAnonymous]
     public async Task<IActionResult> UserPasswordResetPostAsync([FromBody] PasswordResetPostRequestBody requestBody)
     {
