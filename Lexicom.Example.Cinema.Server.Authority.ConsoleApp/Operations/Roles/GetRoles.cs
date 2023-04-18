@@ -20,9 +20,7 @@ public class GetRoles : ITuiOperation
         using var db = await _dbContextFactory.CreateDbContextAsync();
 
         List<Role> roles = await db.Roles.ToListAsync();
-
         Console.WriteLine("Roles:");
         Consolex.WriteAsJson(roles);
-        Console.WriteLine();
     }
 }

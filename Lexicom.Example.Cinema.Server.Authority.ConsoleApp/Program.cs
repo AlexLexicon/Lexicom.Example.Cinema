@@ -10,6 +10,7 @@ using Lexicom.Example.Cinema.Server.Authority.Application.Database;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp;
+using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
 using Lexicom.Logging.ConsoleApp.Extensions;
 using Lexicom.Smtp.ConsoleApp.Extensions;
 using Lexicom.Smtp.Extensions;
@@ -51,6 +52,8 @@ builder.Services.AddDbContextFactory<AuthorityDbContext>(options =>
     options.UseSqlServer(cs);
     //options.UseSqlite(cs);
 });
+
+builder.Services.AddScoped<IComprehensiveService, ComprehensiveService>();  
 
 builder.Services.AddAuthorityApplication();
 

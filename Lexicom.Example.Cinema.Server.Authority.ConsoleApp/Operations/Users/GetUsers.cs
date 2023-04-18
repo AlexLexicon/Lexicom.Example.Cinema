@@ -20,9 +20,7 @@ public class GetUsers : ITuiOperation
         using var db = await _dbContextFactory.CreateDbContextAsync();
 
         List<User> users = await db.Users.ToListAsync();
-
         Console.WriteLine("Users:");
         Consolex.WriteAsJson(users);
-        Console.WriteLine();
     }
 }

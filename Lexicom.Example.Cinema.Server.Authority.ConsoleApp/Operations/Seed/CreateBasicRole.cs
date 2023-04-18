@@ -17,7 +17,9 @@ public class CreateBasicRole : ITuiOperation
 
     public async Task ExecuteAsync()
     {
-        Role role = await _roleService.CreateRoleAsync(Shared.Authentication.Roles.BASIC_NAME);
+        string roleName = Shared.Authentication.Roles.BASIC_NAME;
+
+        Role role = await _roleService.CreateRoleAsync(roleName);
 
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.Password.PATCH);
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.User.GET);
@@ -26,8 +28,7 @@ public class CreateBasicRole : ITuiOperation
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.Email.EMAIL_CHANGE_CONFIRM_POST);
 
         ComprehensiveRole comprehensiveRole = await _roleService.GetComprehensiveRoleAsync(role.Id);
-
-        Console.WriteLine("Role");
+        Console.WriteLine($"'{roleName}' Role");
         Consolex.WriteAsJson(comprehensiveRole);
     }
 }

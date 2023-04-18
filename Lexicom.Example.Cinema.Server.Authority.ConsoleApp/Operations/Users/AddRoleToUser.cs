@@ -1,67 +1,46 @@
 ﻿using Lexicom.ConsoleApp.Amenities;
 using Lexicom.ConsoleApp.Tui;
-using Lexicom.Example.Cinema.Server.Authority.Application.Database;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
-using Microsoft.EntityFrameworkCore;
+using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Users;
 [TuiPage("Users")]
 public class AddRoleToUser : ITuiOperation
 {
-    private readonly IDbContextFactory<AuthorityDbContext> _dbContextFactory;
+    private readonly IComprehensiveService _comprehensiveService;
     private readonly IUserService _userService;
 
     public AddRoleToUser(
-        IDbContextFactory<AuthorityDbContext> dbContextFactory,
+        IComprehensiveService comprehensiveService,
         IUserService userService)
     {
-        _dbContextFactory = dbContextFactory;
+        _comprehensiveService = comprehensiveService;
         _userService = userService;
     }
 
     public async Task ExecuteAsync()
     {
-        using var db = await _dbContextFactory.CreateDbContextAsync();
-
-        var comprehensiveUsers = new List<ComprehensiveUser>();
-        var users = await db.Users.ToListAsync();
-        foreach (User? user in users)
-        {
-            if (user is not null)
-            {
-                ComprehensiveUser comprehensiveUser = await _userService.GetComprehensiveUserAsync(user.Id);
-
-                comprehensiveUsers.Add(comprehensiveUser);
-            }
-        }
-
+        IReadOnlyList<ComprehensiveUser> comprehensiveUsers = await _comprehensiveService.GetComprehensiveUsersAsync();
         Console.WriteLine("Avaliable Users:");
         Consolex.WriteAsJson(comprehensiveUsers);
-
-        Guid userId = Consolex.ReadLineGuid("Enter the id of the user you want to add a role to:");
-        Console.WriteLine("".PadRight(32, '-'));
         Console.WriteLine();
 
-        var aRoles = await db.Roles
-            .Select(r => new
-            {
-                r.Id,
-                r.Name,
-            }).
-            ToListAsync();
+        Guid userId = Consolex.ReadLineGuid("Enter the id of the user you want to add a role to:");
+        Console.WriteLine();
 
+        IReadOnlyList<ComprehensiveRole> comprehensiveRoles = await _comprehensiveService.GetComprehensiveRolesAsync();
         Console.WriteLine("Avaliable Roles:");
-        Consolex.WriteAsJson(aRoles);
+        Consolex.WriteAsJson(comprehensiveRoles);
+        Console.WriteLine();
 
         Guid roleId = Consolex.ReadLineGuid("Enter the id of the role you want to add to the user:");
-        Console.WriteLine("".PadRight(32, '-'));
         Console.WriteLine();
 
         await _userService.AddRoleToUserAsync(userId, roleId);
 
-        ComprehensiveUser newComprehensiveUser = await _userService.GetComprehensiveUserAsync(userId);
-
-        Consolex.WriteAsJsonWithType(newComprehensiveUser);
+        ComprehensiveUser updatedComprehensiveUser = await _userService.GetComprehensiveUserAsync(userId);
+        Console.WriteLine("Updated User:");
+        Consolex.WriteAsJson(updatedComprehensiveUser);
     }
 }

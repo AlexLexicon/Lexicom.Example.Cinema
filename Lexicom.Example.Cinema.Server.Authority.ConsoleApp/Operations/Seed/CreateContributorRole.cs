@@ -17,14 +17,15 @@ public class CreateContributorRole : ITuiOperation
 
     public async Task ExecuteAsync()
     {
-        Role role = await _roleService.CreateRoleAsync(Shared.Authentication.Roles.CONTRIBUTOR_NAME);
+        string roleName = Shared.Authentication.Roles.CONTRIBUTOR_NAME;
+
+        Role role = await _roleService.CreateRoleAsync(roleName);
 
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Movies.Movie.PATCH);
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Movies.Movie.POST);
 
         ComprehensiveRole comprehensiveRole = await _roleService.GetComprehensiveRoleAsync(role.Id);
-
-        Console.WriteLine("Role");
+        Console.WriteLine($"'{roleName}' Role");
         Consolex.WriteAsJson(comprehensiveRole);
     }
 }
