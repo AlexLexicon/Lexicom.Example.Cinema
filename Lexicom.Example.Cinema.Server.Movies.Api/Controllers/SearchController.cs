@@ -1,5 +1,5 @@
 ﻿using Lexicom.AspNetCore.Controllers.Amenities;
-using Lexicom.EntityFramework;
+using Lexicom.EntityFramework.Amenities;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts;
 using Lexicom.Example.Cinema.Server.Movies.Application.Models;
 using Lexicom.Example.Cinema.Server.Movies.Application.Services;
@@ -25,8 +25,8 @@ public class SearchController : LexicomController
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> SearchAsync(
-        [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_OFFSET)] int offset, 
-        [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_LIMIT)] int limit, 
+        [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_OFFSET)] int offset,
+        [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_LIMIT)] int limit,
         [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_SEARCH_TEXT)] string? searchText)
     {
         //validate query string parameters

@@ -29,18 +29,18 @@
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <PackageReference Include="Lexicom.Concentrate.Client.Authentication.For.Wpf" Version="7.0.3" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Amenities" Version="7.0.3" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Controls" Version="7.0.3" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Themes" Version="7.0.3" />
-    <PackageReference Include="Lexicom.Configuration.Settings.For.Wpf" Version="7.0.7" />
-    <PackageReference Include="Lexicom.Extensions.Debugging" Version="7.0.7" />
-    <PackageReference Include="Lexicom.Mvvm.For.Wpf" Version="7.0.7" />
-    <PackageReference Include="Lexicom.Validation.For.Wpf" Version="7.0.7" />
-    <PackageReference Include="Lexicom.Wpf.Amenities" Version="7.0.7" />
-    <PackageReference Include="Lexicom.Wpf.AttachedProperties" Version="7.0.7" />
-    <PackageReference Include="Lexicom.Wpf.Controls" Version="7.0.7" />
-    <PackageReference Include="Lexicom.Wpf.ValueConverters" Version="7.0.7" />
+    <PackageReference Include="Lexicom.Concentrate.Client.Authentication.For.Wpf" Version="7.0.4" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Amenities" Version="7.0.4" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Controls" Version="7.0.4" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Themes" Version="7.0.4" />
+    <PackageReference Include="Lexicom.Configuration.Settings.For.Wpf" Version="7.0.8" />
+    <PackageReference Include="Lexicom.Extensions.Debugging" Version="7.0.8" />
+    <PackageReference Include="Lexicom.Mvvm.For.Wpf" Version="7.0.8" />
+    <PackageReference Include="Lexicom.Validation.For.Wpf" Version="7.0.8" />
+    <PackageReference Include="Lexicom.Wpf.Amenities" Version="7.0.8" />
+    <PackageReference Include="Lexicom.Wpf.AttachedProperties" Version="7.0.8" />
+    <PackageReference Include="Lexicom.Wpf.Controls" Version="7.0.8" />
+    <PackageReference Include="Lexicom.Wpf.ValueConverters" Version="7.0.8" />
     <Resource Include="Fonts\password.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

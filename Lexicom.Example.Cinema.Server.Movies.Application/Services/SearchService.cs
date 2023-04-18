@@ -1,4 +1,4 @@
-﻿using Lexicom.EntityFramework;
+﻿using Lexicom.EntityFramework.Amenities;
 using Lexicom.Example.Cinema.Server.Movies.Application.Database;
 using Lexicom.Example.Cinema.Server.Movies.Application.Models;
 using Microsoft.EntityFrameworkCore;
