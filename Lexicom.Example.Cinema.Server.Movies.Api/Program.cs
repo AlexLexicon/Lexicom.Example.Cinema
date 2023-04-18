@@ -1,6 +1,7 @@
 using Lexicom.AspNetCore.Controllers.Amenities.Extensions;
 using Lexicom.Authentication.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Authorization.AspNetCore.Controllers.Extensions;
+using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Example.Cinema.Server.Movies.Api;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Extensions;
@@ -57,8 +58,11 @@ builder.Lexicom(options =>
         options.AddMoviesApiRuleSets();
     });
     options.AddLogging();
-    options.AddTimeProvider();
-    options.AddGuidProvider();
+    options.AddPrimitives(options =>
+    {
+        options.AddTimeProvider();
+        options.AddGuidProvider();
+    });
 });
 
 builder.Services.AddDbContextFactory<MoviesDbContext>(options =>

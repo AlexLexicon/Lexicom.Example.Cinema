@@ -5,6 +5,7 @@ using Lexicom.Authority.Extensions;
 using Lexicom.Authorization.AspNetCore.Controllers.Extensions;
 using Lexicom.Cryptography.AspNetCore.Controllers.Extensions;
 using Lexicom.Cryptography.Extensions;
+using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers.Extensions;
 using Lexicom.EntityFramework.Identity.AspNetCore.Controllers.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Api;
@@ -75,8 +76,11 @@ builder.Lexicom(options =>
     {
         options.AddFileClient();
     });
-    options.AddTimeProvider();
-    options.AddGuidProvider();
+    options.AddPrimitives(options =>
+    {
+        options.AddTimeProvider();
+        options.AddGuidProvider();
+    });
     options.AddCryptography(options =>
     {
         options.AddStringSecretOptions();

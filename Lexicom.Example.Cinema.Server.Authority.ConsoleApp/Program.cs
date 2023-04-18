@@ -4,6 +4,7 @@ using Lexicom.ConsoleApp.DependencyInjection;
 using Lexicom.ConsoleApp.Tui.Extensions;
 using Lexicom.Cryptography.ConsoleApp.Extensions;
 using Lexicom.Cryptography.Extensions;
+using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.ConsoleApp.Extensions;
 using Lexicom.EntityFramework.Identity.ConsoleApp.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Database;
@@ -29,8 +30,6 @@ builder.Configuration.AddJsonFile("appsettings.Example.json");
 
 builder.Lexicom(options =>
 {
-    options.AddTimeProvider();
-    options.AddGuidProvider();
     options.AddLogging();
     options.AddTui<AssemblyScanMarker>();
     options.AddAuthority();
@@ -42,6 +41,11 @@ builder.Lexicom(options =>
     options.AddCryptography(options =>
     {
         options.AddStringSecretOptions();
+    });
+    options.AddPrimitives(options =>
+    {
+        options.AddTimeProvider();
+        options.AddGuidProvider();
     });
 });
 
