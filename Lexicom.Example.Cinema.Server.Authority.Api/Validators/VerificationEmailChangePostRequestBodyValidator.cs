@@ -5,7 +5,7 @@ using Lexicom.Validation.Extensions;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Validators;
 
-public class VerificationEmailChangePostRequestBodyValidator : AbstractValidator<VerificationEmailChangePostRequestBody>
+public class VerificationEmailChangePostRequestBodyValidator : AbstractValidator<EmailChangePostRequestBody>
 {
     public VerificationEmailChangePostRequestBodyValidator(
         EmailRuleSet emailRuleSet,

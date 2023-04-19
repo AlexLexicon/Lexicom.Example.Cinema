@@ -4,7 +4,7 @@ using Lexicom.Validation.Amenities.RuleSets;
 using Lexicom.Validation.Extensions;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Validators;
-public class VerificationEmailConfirmResendPostRequestBodyValidator : AbstractValidator<VerificationEmailConfirmResendPostRequestBody>
+public class VerificationEmailConfirmResendPostRequestBodyValidator : AbstractValidator<EmailConfirmResendPostRequestBody>
 {
     public VerificationEmailConfirmResendPostRequestBodyValidator(EmailRuleSet emailRuleSet)
     {

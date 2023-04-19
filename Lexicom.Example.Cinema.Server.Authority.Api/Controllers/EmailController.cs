@@ -38,7 +38,7 @@ public class EmailController : LexicomController
     """)]
     [HttpPost("change")]
     [Authorize(Policy = Policies.Permissions.Authority.Email.EMAIL_CHANGE_POST)]
-    public async Task<IActionResult> UserEmailChangePostAsync([FromBody] UserEmailPostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailChangePostAsync([FromBody] EmailPostRequestBody requestBody)
     {
         Guid userId = User.GetId();
         try
@@ -62,7 +62,7 @@ public class EmailController : LexicomController
     """)]
     [HttpPost("change/confirm")]
     [Authorize(Policy = Policies.Permissions.Authority.Email.EMAIL_CHANGE_CONFIRM_POST)]
-    public async Task<IActionResult> UserEmailChangeConfirmPostAsync([FromBody] VerificationEmailChangePostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailChangeConfirmPostAsync([FromBody] EmailChangePostRequestBody requestBody)
     {
         Guid userId = User.GetId();
         try
@@ -95,7 +95,7 @@ public class EmailController : LexicomController
     """)]
     [HttpPost("confirm")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserEmailConfirmPostAsync([FromBody] VerificationEmailConfirmPostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailConfirmPostAsync([FromBody] EmailConfirmPostRequestBody requestBody)
     {
         try
         {
@@ -140,7 +140,7 @@ public class EmailController : LexicomController
     """)]
     [HttpPost("confirm/resend")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserEmailConfirmResendPostAsync([FromBody] VerificationEmailConfirmResendPostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailConfirmResendPostAsync([FromBody] EmailConfirmResendPostRequestBody requestBody)
     {
         try
         {

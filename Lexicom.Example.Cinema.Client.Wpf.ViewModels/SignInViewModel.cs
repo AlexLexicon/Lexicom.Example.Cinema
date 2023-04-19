@@ -50,7 +50,13 @@ public partial class SignInViewModel : ObservableObject, INotificationHandler<Sh
     {
         if (notification.Error is SignInFailedNotification.Errors.IncorrectCredentials)
         {
-            //_emailValidator.
+            EmailValidator.SetInvalid("Wrong email or password");
+            PasswordValidator.SetInvalid("Wrong email or password");
+        }
+        else if (notification.Error is SignInFailedNotification.Errors.LockedOut)
+        {
+            EmailValidator.SetInvalid("Locked out");
+            PasswordValidator.SetInvalid("Locked out");
         }
 
         return Task.CompletedTask;
