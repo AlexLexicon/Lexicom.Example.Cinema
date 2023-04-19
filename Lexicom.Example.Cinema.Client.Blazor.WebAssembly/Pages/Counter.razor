@@ -1,18 +1,10 @@
 ﻿@page "/counter"
+@inherits PageView<CounterViewModel>
 
 <PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
+<h1>@ViewModel.Title</h1>
 
-<p role="status">Current count: @currentCount</p>
+<p role="status">Current count: @ViewModel.Count</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
+<button class="btn btn-primary" @onclick="ViewModel.IncrementCommand.Bind()">Click me</button>

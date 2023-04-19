@@ -56,7 +56,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Clie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Persons.Application.UnitTests", "Lexicom.Example.Cinema.Server.Persons.Application.UnitTests\Lexicom.Example.Cinema.Server.Persons.Application.UnitTests.csproj", "{646C2780-3686-41B7-80E1-C386850D50CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexicom.Example.Cinema.Server.Movies.ConsoleApp", "Lexicom.Example.Cinema.Server.Movies.ConsoleApp\Lexicom.Example.Cinema.Server.Movies.ConsoleApp.csproj", "{C608F65F-F99B-4C92-8F55-172AD75508E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Movies.ConsoleApp", "Lexicom.Example.Cinema.Server.Movies.ConsoleApp\Lexicom.Example.Cinema.Server.Movies.ConsoleApp.csproj", "{C608F65F-F99B-4C92-8F55-172AD75508E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

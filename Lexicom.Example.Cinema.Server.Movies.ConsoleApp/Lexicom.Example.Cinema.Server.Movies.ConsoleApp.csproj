@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.ConsoleApp.Amenities" Version="7.0.12" />
-    <PackageReference Include="Lexicom.ConsoleApp.Tui" Version="7.0.12" />
+    <PackageReference Include="Lexicom.ConsoleApp.Amenities" Version="7.0.13" />
+    <PackageReference Include="Lexicom.ConsoleApp.Tui" Version="7.0.13" />
   </ItemGroup>
 
 </Project>
