@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.Authentication.For.AspNetCore.Controllers" Version="7.0.13" />
-    <PackageReference Include="Lexicom.Authorization.For.AspNetCore.Controllers" Version="7.0.13" />
-    <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers" Version="7.0.13" />
-    <PackageReference Include="Lexicom.Logging.For.AspNetCore.Controllers" Version="7.0.13" />
-    <PackageReference Include="Lexicom.Swashbuckle.For.AspNetCore.Controllers" Version="7.0.13" />
-    <PackageReference Include="Lexicom.Validation.For.AspNetCore.Controllers" Version="7.0.13" />
+    <PackageReference Include="Lexicom.Authentication.For.AspNetCore.Controllers" Version="7.0.17" />
+    <PackageReference Include="Lexicom.Authorization.For.AspNetCore.Controllers" Version="7.0.17" />
+    <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers" Version="7.0.17" />
+    <PackageReference Include="Lexicom.Logging.For.AspNetCore.Controllers" Version="7.0.17" />
+    <PackageReference Include="Lexicom.Swashbuckle.For.AspNetCore.Controllers" Version="7.0.17" />
+    <PackageReference Include="Lexicom.Validation.For.AspNetCore.Controllers" Version="7.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
   </ItemGroup>
 

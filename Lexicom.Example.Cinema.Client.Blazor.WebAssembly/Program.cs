@@ -1,3 +1,4 @@
+using FluentValidation;
 using Lexicom.DependencyInjection.Amenities;
 using Lexicom.DependencyInjection.Amenities.Extensions;
 using Lexicom.DependencyInjection.Primitives.Extensions;
@@ -9,6 +10,7 @@ using Lexicom.Mvvm.Extensions;
 using Lexicom.Mvvm.For.Blazor.WebAssembly.Extensions;
 using Lexicom.Supports.Blazor.WebAssembly.Extensions;
 using Lexicom.Validation.Amenities.Extensions;
+using Lexicom.Validation.Extensions;
 using Lexicom.Validation.For.Blazor.WebAssembly.Extensions;
 using Lexicom.Validation.Options.Extensions;
 using Microsoft.AspNetCore.Components.Web;
@@ -21,7 +23,6 @@ builder.Configuration.AddInMemoryCollection(new ConfigurationInMemorySource
     new MyOptions
     {
         CounterTitle = "Test from config"
-        //CounterTitle = null
     }
 });
 
@@ -30,9 +31,9 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services
     .AddOptions<MyOptions>()
-    .BindConfiguration();
-    //.Validate()
-    //.ValidateOnStart();
+    .BindConfiguration()
+    .Validate()
+    .ValidateOnStart();
 
 builder.Lexicom(options =>
 {
@@ -43,7 +44,7 @@ builder.Lexicom(options =>
     options.AddValidation(options =>
     {
         options.AddAmenities();
-        //options.AddValidators<AssemblyScanMarker>();
+        options.AddValidators<AssemblyScanMarker>();
     });
     options.AddPrimitives(options =>
     {
