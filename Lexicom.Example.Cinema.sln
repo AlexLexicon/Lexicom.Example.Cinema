@@ -58,6 +58,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Movies.ConsoleApp", "Lexicom.Example.Cinema.Server.Movies.ConsoleApp\Lexicom.Example.Cinema.Server.Movies.ConsoleApp.csproj", "{C608F65F-F99B-4C92-8F55-172AD75508E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels", "Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels\Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels.csproj", "{509AE194-81DE-419A-843C-B4A3B1C7CD46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -140,6 +142,10 @@ Global
 		{C608F65F-F99B-4C92-8F55-172AD75508E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C608F65F-F99B-4C92-8F55-172AD75508E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C608F65F-F99B-4C92-8F55-172AD75508E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{509AE194-81DE-419A-843C-B4A3B1C7CD46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{509AE194-81DE-419A-843C-B4A3B1C7CD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{509AE194-81DE-419A-843C-B4A3B1C7CD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{509AE194-81DE-419A-843C-B4A3B1C7CD46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,6 +170,7 @@ Global
 		{0AE9D03D-20EE-486F-B9FE-23E91721EAFD} = {97675FFC-EB10-4AA2-A4BF-8326471F5D0A}
 		{646C2780-3686-41B7-80E1-C386850D50CB} = {0A099907-5324-4F2C-AF6E-F25472E9FA65}
 		{C608F65F-F99B-4C92-8F55-172AD75508E9} = {D73A5E99-15D5-4748-8F92-00EE0E055EF9}
+		{509AE194-81DE-419A-843C-B4A3B1C7CD46} = {97675FFC-EB10-4AA2-A4BF-8326471F5D0A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E519E7F1-C8BA-405F-9DF1-BA96AD251DC5}

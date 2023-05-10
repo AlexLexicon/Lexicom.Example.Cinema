@@ -31,7 +31,7 @@ public class SearchController : LexicomController
     {
         //validate query string parameters
 
-        Aggregate<Movie> movies = await _searchService.SearchMoviesAsync(offset, limit, searchText);
+        Slice<Movie> movies = await _searchService.SearchMoviesAsync(offset, limit, searchText);
 
         return Ok(new SearchGetResponseBody
         {

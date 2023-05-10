@@ -8,3 +8,16 @@
 <p role="status">Current count: @ViewModel.Count</p>
 
 <button class="btn btn-primary" @onclick="ViewModel.IncrementCommand.Bind()">Click me</button>
+
+<h1>Input Stuff:</h1>
+<h2>@ViewModel.Text</h2>
+<input type="text" @bind-value="ViewModel.Text" @bind-value:event="oninput" @bind-value:after="ViewModel.ValidateTextCommand.Binda()" />
+@if (ViewModel.Errors is not null)
+{
+    @foreach (var error in ViewModel.Errors)
+    {
+        <tr>
+            <td>@error</td>
+        </tr>
+    }
+}

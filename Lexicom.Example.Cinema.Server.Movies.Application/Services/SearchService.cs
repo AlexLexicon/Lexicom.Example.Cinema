@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Lexicom.Example.Cinema.Server.Movies.Application.Services;
 public interface ISearchService
 {
-    Task<Aggregate<Movie>> SearchMoviesAsync(int pageIndex, int moviesPerPage, string? titleSearchText);
+    Task<Slice<Movie>> SearchMoviesAsync(int pageIndex, int moviesPerPage, string? titleSearchText);
 }
 public class SearchService : ISearchService
 {
@@ -17,7 +17,7 @@ public class SearchService : ISearchService
         _dbContextFactory = dbContextFactory;
     }
 
-    public async Task<Aggregate<Movie>> SearchMoviesAsync(int pageIndex, int moviesPerPage, string? searchText)
+    public async Task<Slice<Movie>> SearchMoviesAsync(int pageIndex, int moviesPerPage, string? searchText)
     {
         using var db = await _dbContextFactory.CreateDbContextAsync();
 
@@ -39,6 +39,6 @@ public class SearchService : ISearchService
             movies = new List<Movie>();
         }
 
-        return new Aggregate<Movie>(totalMovies, movies);
+        return new Slice<Movie>(totalMovies, movies);
     }
 }

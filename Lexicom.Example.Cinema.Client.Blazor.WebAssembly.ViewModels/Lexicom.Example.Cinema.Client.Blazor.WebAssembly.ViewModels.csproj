@@ -3,11 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Lexicom.Mvvm" Version="7.0.33" />
     <PackageReference Include="Lexicom.Validation.Amenities" Version="7.0.33" />
   </ItemGroup>
 
