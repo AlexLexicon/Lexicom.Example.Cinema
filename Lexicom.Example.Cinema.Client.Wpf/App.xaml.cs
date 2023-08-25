@@ -23,6 +23,7 @@ public partial class App : System.Windows.Application
 {
     public App()
     {
+        //bad
         WpfApplicationBuilder builder = WpfApplication.CreateBuilder(this);
 
         builder.Configuration.AddJsonFile("appsettings.json");
