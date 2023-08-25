@@ -8,18 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.Authentication.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Authority.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Authorization.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Cryptography.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Lexicom.EntityFramework.Identity.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Logging.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Smtp.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Swashbuckle.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Validation.For.AspNetCore.Controllers" Version="7.0.37" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+    <PackageReference Include="Lexicom.Authentication.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Authority.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Authorization.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Cryptography.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Lexicom.EntityFramework.Identity.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Logging.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Smtp.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Swashbuckle.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Validation.For.AspNetCore.Controllers" Version="7.0.38" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.9" />
   </ItemGroup>
 
   <ItemGroup>

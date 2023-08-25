@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Amenities.Abstractions" Version="7.0.22" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Themes.Abstractions" Version="7.0.22" />
-    <PackageReference Include="Lexicom.Configuration.Settings" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Extensions.Enums" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Wpf.Amenities.Abstractions" Version="7.0.37" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Amenities.Abstractions" Version="7.0.23" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Themes.Abstractions" Version="7.0.23" />
+    <PackageReference Include="Lexicom.Configuration.Settings" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Extensions.Enums" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Wpf.Amenities.Abstractions" Version="7.0.38" />
   </ItemGroup>
 
   <ItemGroup>

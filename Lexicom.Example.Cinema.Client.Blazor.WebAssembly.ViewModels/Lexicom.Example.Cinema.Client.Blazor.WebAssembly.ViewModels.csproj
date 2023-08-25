@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.Mvvm" Version="7.0.37" />
-    <PackageReference Include="Lexicom.Validation.Amenities" Version="7.0.37" />
+    <PackageReference Include="Lexicom.Mvvm" Version="7.0.38" />
+    <PackageReference Include="Lexicom.Validation.Amenities" Version="7.0.38" />
   </ItemGroup>
 
 </Project>
