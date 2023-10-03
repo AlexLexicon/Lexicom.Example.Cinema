@@ -20,6 +20,7 @@ public class User : IdentityUser<Guid>
         set => base.Email = value;
 #pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
     }
+
     public override string NormalizedEmail
     {
         get => base.NormalizedEmail ?? throw new NonNullableTableColumnException(NormalizedEmail);
