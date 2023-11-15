@@ -10,31 +10,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.Example.json" />
-    <None Remove="appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="appsettings.Example.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>appsettings.json</DependentUpon>
-    </Content>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="appsettings.SecretsExample.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>appsettings.json</DependentUpon>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.Authority.For.ConsoleApp" Version="7.0.40" />
-    <PackageReference Include="Lexicom.ConsoleApp.Amenities" Version="7.0.40" />
-    <PackageReference Include="Lexicom.ConsoleApp.Tui" Version="7.0.40" />
-    <PackageReference Include="Lexicom.Cryptography.For.ConsoleApp" Version="7.0.40" />
-    <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.ConsoleApp" Version="7.0.40" />
-    <PackageReference Include="Lexicom.EntityFramework.Identity.For.ConsoleApp" Version="7.0.40" />
-    <PackageReference Include="Lexicom.Logging.For.ConsoleApp" Version="7.0.40" />
-    <PackageReference Include="Lexicom.Smtp.For.ConsoleApp" Version="7.0.40" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
+    <PackageReference Include="Lexicom.Authority.For.ConsoleApp" Version="7.0.55" />
+    <PackageReference Include="Lexicom.ConsoleApp.Amenities" Version="7.0.55" />
+    <PackageReference Include="Lexicom.ConsoleApp.Tui" Version="7.0.55" />
+    <PackageReference Include="Lexicom.Cryptography.For.ConsoleApp" Version="7.0.55" />
+    <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.ConsoleApp" Version="7.0.55" />
+    <PackageReference Include="Lexicom.EntityFramework.Identity.For.ConsoleApp" Version="7.0.55" />
+    <PackageReference Include="Lexicom.Logging.For.ConsoleApp" Version="7.0.55" />
+    <PackageReference Include="Lexicom.Smtp.For.ConsoleApp" Version="7.0.55" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
   </ItemGroup>
 
