@@ -11,7 +11,7 @@
     d:DataContext="{d:DesignInstance vm:NavigationPageDirectorViewModel}"
     d:DesignWidth="240"
     Height="28"
-    d:Background="{DynamicResource xThemeSurfacePrimarySoft}">
+    d:Background="{DynamicResource ThemeSurfacePrimarySoft}">
 
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">

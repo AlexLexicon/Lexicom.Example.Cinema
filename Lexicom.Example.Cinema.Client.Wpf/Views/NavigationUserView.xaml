@@ -11,7 +11,7 @@
     d:DesignWidth="240"
     Height="52">
 
-    <Border Background="{DynamicResource xThemeSurfaceFocusSoft}">
+    <Border Background="{DynamicResource ThemeSurfaceFocusSoft}">
         <DockPanel>
             <Button 
                 DockPanel.Dock="Right"
@@ -42,10 +42,10 @@
                                                     DockPanel.Dock="Left"
                                                     Width="32"
                                                     CornerRadius="16"
-                                                    Background="{DynamicResource xThemeSurfacePrimaryHard}">
+                                                    Background="{DynamicResource ThemeSurfacePrimaryHard}">
                                                     <Label 
                                                         Margin="8"
-                                                        Background="{DynamicResource xThemeInteriorPrimarySoft}">
+                                                        Background="{DynamicResource ThemeInteriorPrimarySoft}">
                                                         <Label.OpacityMask>
                                                             <ImageBrush ImageSource="/Lexicom.Example.Cinema.Client.Wpf;component/images/user.full.a.256.png"/>
                                                         </Label.OpacityMask>
@@ -55,7 +55,7 @@
                                                     HorizontalContentAlignment="Left"
                                                     FontSize="16"
                                                     Padding="8,0"
-                                                    Foreground="{DynamicResource xThemeInteriorFocusSoft}">
+                                                    Foreground="{DynamicResource ThemeInteriorFocusSoft}">
                                                     <TextBlock TextTrimming="CharacterEllipsis">
                                                         <TextBlock
                                                             d:Text="First"
@@ -92,10 +92,10 @@
                                                     DockPanel.Dock="Left"
                                                     Width="32"
                                                     CornerRadius="16"
-                                                    Background="{DynamicResource xThemeSurfacePrimaryHard}">
+                                                    Background="{DynamicResource ThemeSurfacePrimaryHard}">
                                                     <Label 
                                                         Margin="8"
-                                                        Background="{DynamicResource xThemeInteriorPrimarySoft}">
+                                                        Background="{DynamicResource ThemeInteriorPrimarySoft}">
                                                         <Label.OpacityMask>
                                                             <ImageBrush ImageSource="/Lexicom.Example.Cinema.Client.Wpf;component/images/add.full.b.256.png"/>
                                                         </Label.OpacityMask>
@@ -105,7 +105,7 @@
                                                     HorizontalContentAlignment="Left"
                                                     FontSize="16"
                                                     Padding="8,0"
-                                                    Foreground="{DynamicResource xThemeInteriorFocusSoft}">
+                                                    Foreground="{DynamicResource ThemeInteriorFocusSoft}">
                                                     <TextBlock TextTrimming="CharacterEllipsis">
                                                         <TextBlock Text="Sign in"/>
                                                     </TextBlock>

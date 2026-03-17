@@ -5,11 +5,12 @@ using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Errors;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
 using Lexicom.Extensions.Exceptions;
-using Lexicom.Swashbuckle;
+using Lexicom.Scalar;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Controllers;
+
 [Authorize]
 [ApiController]
 [Route("api/authority/user/registration")]
@@ -26,7 +27,7 @@ public class RegistrationController : LexicomController
         _registrationService = registrationService;
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "Email": "test_a@email.com", 
         "Password": "Password1234!",

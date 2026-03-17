@@ -7,9 +7,10 @@ using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Jwt.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
+
 public interface ISignInService
 {
     /// <exception cref="UserDoesNotExistException"/>
@@ -107,8 +108,8 @@ public class SignInService : ISignInService
             throw new RefreshBearerTokenNotValidException(refreshBearerToken);
         }
 
-        JwtSecurityToken accessSecurityToken = accessBearerToken.ToJwtSecurityToken();
-        JwtSecurityToken refreshSecurityToken = refreshBearerToken.ToJwtSecurityToken();
+        JsonWebToken accessSecurityToken = accessBearerToken.ToJsonWebToken();
+        JsonWebToken refreshSecurityToken = refreshBearerToken.ToJsonWebToken();
 
         Guid accessTokenUserId = accessSecurityToken.GetSubjectId();
         Guid refreshTokenUserId = refreshSecurityToken.GetSubjectId();
@@ -153,7 +154,7 @@ public class SignInService : ISignInService
         //be checked by the call 'Is[Bearer]TokenValidAsync'
         //but just incase we check here as well since someone might
         //want to modify the token experation date in the database to invalidate a token manually
-        if (refreshToken.ExpiresDateTimeOffsetUtc < _timeProvider.UtcNow)
+        if (refreshToken.ExpiresDateTimeOffsetUtc < _timeProvider.GetUtcNow())
         {
             db.RefreshTokens.Remove(refreshToken);
             await db.SaveChangesAsync();
@@ -180,7 +181,7 @@ public class SignInService : ISignInService
             throw e.ToUnreachableException();
         }
 
-        user.LastSignInDateTimeOffsetUtc = _timeProvider.UtcNow;
+        user.LastSignInDateTimeOffsetUtc = _timeProvider.GetUtcNow();
 
         try
         {

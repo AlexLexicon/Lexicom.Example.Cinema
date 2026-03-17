@@ -2,17 +2,19 @@
 using CommunityToolkit.Mvvm.Input;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSets;
+using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSetTransformers;
 using Lexicom.Validation;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
+
 public partial class PageMovieFormViewModel : ObservableObject, INotificationHandler<ShowPageMovieFormViewNotification>
 {
     public PageMovieFormViewModel(
-        IRuleSetValidator<MovieTitleRuleSet, string?> titleValidator,
-        IRuleSetValidator<MovieReleaseDateTimeOffsetUtcRuleSet, DateTimeOffset, string?, ReleaseDateTransformer> releaseDateValidator,
-        IRuleSetValidator<MovieDurationRuleSet, TimeSpan, string?, DurationTransformer> durationValidator,
-        IRuleSetValidator<MovieSynopsisRuleSet, string?> synopsisValidator)
+        IRuleSetValidator<MovieTitleStringRuleSet, string?> titleValidator,
+        IRuleSetValidator<MovieReleaseStringRuleSet, string?, MovieReleaseStringToDataTimeOffsetTransformer, DateTimeOffset> releaseDateValidator,
+        IRuleSetValidator<MovieDurationStringRuleSet, string?, MovieDurationStringToTimeSpanTransformer, TimeSpan> durationValidator,
+        IRuleSetValidator<MovieSynopsisStringRuleSet, string?> synopsisValidator)
     {
         _titleValidator = titleValidator;
         _releaseDateValidator = releaseDateValidator;
@@ -27,13 +29,13 @@ public partial class PageMovieFormViewModel : ObservableObject, INotificationHan
     [ObservableProperty]
     private bool _isValid;
     [ObservableProperty]
-    private IRuleSetValidator<MovieTitleRuleSet, string?> _titleValidator;
+    private IRuleSetValidator<MovieTitleStringRuleSet, string?> _titleValidator;
     [ObservableProperty]
-    private IRuleSetValidator<MovieReleaseDateTimeOffsetUtcRuleSet, DateTimeOffset, string?, ReleaseDateTransformer> _releaseDateValidator;
+    private IRuleSetValidator<MovieReleaseStringRuleSet, string?, MovieReleaseStringToDataTimeOffsetTransformer, DateTimeOffset> _releaseDateValidator;
     [ObservableProperty]
-    private IRuleSetValidator<MovieDurationRuleSet, TimeSpan, string?, DurationTransformer> _durationValidator;
+    private IRuleSetValidator<MovieDurationStringRuleSet, string?, MovieDurationStringToTimeSpanTransformer, TimeSpan> _durationValidator;
     [ObservableProperty]
-    private IRuleSetValidator<MovieSynopsisRuleSet, string?> _synopsisValidator;
+    private IRuleSetValidator<MovieSynopsisStringRuleSet, string?> _synopsisValidator;
 
     public Task Handle(ShowPageMovieFormViewNotification notification, CancellationToken cancellationToken)
     {
@@ -52,25 +54,5 @@ public partial class PageMovieFormViewModel : ObservableObject, INotificationHan
     private void Validation()
     {
         IsValid = TitleValidator.IsValid && ReleaseDateValidator.IsValid && DurationValidator.IsValid && SynopsisValidator.IsValid;
-    }
-
-    public class ReleaseDateTransformer : IRuleSetTransfromer<DateTimeOffset, string?>
-    {
-        public bool TryTransform(string? inProperty, out DateTimeOffset property)
-        {
-            return DateTimeOffset.TryParse(inProperty, out property);
-        }
-
-        public string ErrorMessageTypeName => "Date";
-    }
-
-    public class DurationTransformer : IRuleSetTransfromer<TimeSpan, string?>
-    {
-        public bool TryTransform(string? inProperty, out TimeSpan property)
-        {
-            return TimeSpan.TryParse(inProperty, out property);
-        }
-
-        public string ErrorMessageTypeName => "Duration";
     }
 }

@@ -20,7 +20,7 @@
     
     <Border 
         Padding="8,8,8,4"
-        Background="{DynamicResource xThemeSurfaceFocusSoft}">
+        Background="{DynamicResource ThemeSurfaceFocusSoft}">
         <ItemsControl ItemsSource="{Binding DomainViewModels}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

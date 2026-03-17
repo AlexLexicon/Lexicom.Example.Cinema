@@ -21,7 +21,7 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     
-    <Border Background="{DynamicResource xThemeSurfacePrimarySoft}">
+    <Border Background="{DynamicResource ThemeSurfacePrimarySoft}">
         <Grid>
             <DockPanel>
                 <v:NavigationView 

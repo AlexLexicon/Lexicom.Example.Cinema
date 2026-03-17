@@ -61,13 +61,13 @@
     </Style>
 
     <Style x:Key="xDefaultCheckBoxStyle" TargetType="CheckBox" BasedOn="{StaticResource xBaseCheckBoxStyle}">
-        <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusSoft}"/>
-        <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
+        <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusSoft}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimarySoft}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
-                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimaryHard}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusHard}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimaryHard}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

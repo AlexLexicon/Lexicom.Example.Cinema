@@ -5,11 +5,12 @@ using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Errors;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
-using Lexicom.Swashbuckle;
+using Lexicom.Scalar;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Controllers;
+
 [Authorize]
 [ApiController]
 [Route("api/authority/user/signin")]
@@ -26,7 +27,7 @@ public class SignInController : LexicomController
         _signInService = signInService;
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "Email": "test_a@email.com", 
         "Password": "Password1234!"
@@ -88,7 +89,7 @@ public class SignInController : LexicomController
         }
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "AccessBearerToken": "<the-access-token>", 
         "RefreshBearerToken": "<the-refresh-token>"

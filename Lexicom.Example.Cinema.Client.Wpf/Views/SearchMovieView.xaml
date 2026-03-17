@@ -12,22 +12,22 @@
     d:DataContext="{d:DesignInstance vm:SearchMovieViewModel}"
     d:DesignWidth="1160"
     d:DesignHeight="950"
-    d:Background="{DynamicResource xThemeSurfacePrimarySoft}">
+    d:Background="{DynamicResource ThemeSurfacePrimarySoft}">
 
     <DockPanel Visibility="{Binding IsVisible, Converter={StaticResource xVisibilityConverter}}">
         <Border
             DockPanel.Dock="Top"
             BorderThickness="0,0,0,3"
             Height="156"
-            Background="{DynamicResource xThemeSurfaceSecondarySoft}"
-            BorderBrush="{DynamicResource xThemeSurfaceSecondaryHard}">
+            Background="{DynamicResource ThemeSurfaceSecondarySoft}"
+            BorderBrush="{DynamicResource ThemeSurfaceSecondaryHard}">
             <DockPanel>
                 <Border
                     DockPanel.Dock="Top"
                     Margin="16,8,16,8"
                     CornerRadius="6"
                     Height="47"
-                    Background="{DynamicResource xThemeSurfaceFocusSoft}">
+                    Background="{DynamicResource ThemeSurfaceFocusSoft}">
                     <DockPanel>
                         <Button 
                             DockPanel.Dock="Right"
@@ -43,16 +43,16 @@
                                 Padding="12,0,6,0"
                                 FontSize="18"
                                 HorizontalContentAlignment="Left"
-                                Foreground="{DynamicResource xThemeInteriorSecondaryHard}"
+                                Foreground="{DynamicResource ThemeInteriorSecondaryHard}"
                                 Visibility="{Binding IsHintVisible, Converter={StaticResource xVisibilityConverter}}">
                                 <TextBlock Text="Movie Search"/>
                             </Label>
                             <TextBox
                                 Padding="12,0,6,0"
                                 FontSize="18"
-                                Foreground="{DynamicResource xThemeInteriorFocusSoft}"
-                                CaretBrush="{DynamicResource xThemeInteriorFocusSoft}"
-                                SelectionBrush="{DynamicResource xThemeInteriorNoticeSoft}"
+                                Foreground="{DynamicResource ThemeInteriorFocusSoft}"
+                                CaretBrush="{DynamicResource ThemeInteriorFocusSoft}"
+                                SelectionBrush="{DynamicResource ThemeInteriorNoticeSoft}"
                                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <b:Interaction.Triggers>
                                     <b:EventTrigger EventName="TextChanged">
@@ -72,8 +72,8 @@
                         Margin="0,0,16,8"
                         CornerRadius="8,8,0,0"
                         BorderThickness="2" 
-                        BorderBrush="{DynamicResource xThemeSurfaceFocusSoft}"
-                        Background="{DynamicResource xThemeSurfaceFocusSoft}">
+                        BorderBrush="{DynamicResource ThemeSurfaceFocusSoft}"
+                        Background="{DynamicResource ThemeSurfaceFocusSoft}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.6*"/>
@@ -85,11 +85,11 @@
                                 Padding="8,0"
                                 Content="Sort on"
                                 FontSize="16"
-                                Foreground="{DynamicResource xThemeInteriorPrimarySoft}"/>
+                                Foreground="{DynamicResource ThemeInteriorPrimarySoft}"/>
                             <Border 
                                 Grid.Column="0"
                                 Grid.Row="1"
-                                Background="{DynamicResource xThemeSurfaceSecondarySoft}">
+                                Background="{DynamicResource ThemeSurfaceSecondarySoft}">
                                 <DockPanel>
                                     <ToggleButton
                                         DockPanel.Dock="Right"
@@ -117,9 +117,9 @@
                                                         </ControlTemplate>
                                                     </Setter.Value>
                                                 </Setter>
-                                                <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusSoft}"/>
+                                                <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusSoft}"/>
                                                 <Setter Property="BorderThickness" Value="0"/>
-                                                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimarySoft}"/>
                                                 <Setter Property="RenderTransform">
                                                     <Setter.Value>
                                                         <TransformGroup>
@@ -162,8 +162,8 @@
                         Margin="16,0,16,8"
                         CornerRadius="8,8,0,0"
                         BorderThickness="2" 
-                        BorderBrush="{DynamicResource xThemeSurfaceFocusSoft}"
-                        Background="{DynamicResource xThemeSurfaceFocusSoft}">
+                        BorderBrush="{DynamicResource ThemeSurfaceFocusSoft}"
+                        Background="{DynamicResource ThemeSurfaceFocusSoft}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -180,11 +180,11 @@
                                 Grid.Row="0"
                                 FontSize="16"
                                 Content="Search on"
-                                Foreground="{DynamicResource xThemeInteriorPrimarySoft}"/>
+                                Foreground="{DynamicResource ThemeInteriorPrimarySoft}"/>
                             <Border 
                                 Grid.Column="0"
                                 Grid.Row="1"
-                                Background="{DynamicResource xThemeSurfaceSecondarySoft}">
+                                Background="{DynamicResource ThemeSurfaceSecondarySoft}">
                                 <DockPanel HorizontalAlignment="Center">
                                     <CheckBox 
                                         DockPanel.Dock="Left"
@@ -192,7 +192,7 @@
                                     <Label 
                                         Padding="8,0,0,0"
                                         FontSize="16"
-                                        Foreground="{DynamicResource xThemeInteriorPrimarySoft}">
+                                        Foreground="{DynamicResource ThemeInteriorPrimarySoft}">
                                         <TextBlock Text="Title"/>
                                     </Label>
                                 </DockPanel>
@@ -200,7 +200,7 @@
                             <Border 
                                 Grid.Column="1"
                                 Grid.Row="1"
-                                Background="{DynamicResource xThemeSurfaceSecondarySoft}">
+                                Background="{DynamicResource ThemeSurfaceSecondarySoft}">
                                 <DockPanel HorizontalAlignment="Center">
                                     <CheckBox 
                                         DockPanel.Dock="Left"
@@ -208,7 +208,7 @@
                                     <Label 
                                         Padding="8,0,0,0"
                                         FontSize="16"
-                                        Foreground="{DynamicResource xThemeInteriorPrimarySoft}">
+                                        Foreground="{DynamicResource ThemeInteriorPrimarySoft}">
                                         <TextBlock Text="ReleaseDate"/>
                                     </Label>
                                 </DockPanel>
@@ -216,7 +216,7 @@
                             <Border 
                                 Grid.Column="2"
                                 Grid.Row="1"
-                                Background="{DynamicResource xThemeSurfaceSecondarySoft}">
+                                Background="{DynamicResource ThemeSurfaceSecondarySoft}">
                                 <DockPanel HorizontalAlignment="Center">
                                     <CheckBox 
                                         DockPanel.Dock="Left"
@@ -224,7 +224,7 @@
                                     <Label 
                                         Padding="8,0,0,0"
                                         FontSize="16"
-                                        Foreground="{DynamicResource xThemeInteriorPrimarySoft}">
+                                        Foreground="{DynamicResource ThemeInteriorPrimarySoft}">
                                         <TextBlock Text="Duration"/>
                                     </Label>
                                 </DockPanel>
@@ -232,7 +232,7 @@
                             <Border
                                 Grid.Column="3"
                                 Grid.Row="1"
-                                Background="{DynamicResource xThemeSurfaceSecondarySoft}">
+                                Background="{DynamicResource ThemeSurfaceSecondarySoft}">
                                 <DockPanel HorizontalAlignment="Center">
                                     <CheckBox 
                                         DockPanel.Dock="Left"
@@ -240,7 +240,7 @@
                                     <Label 
                                         Padding="8,0,0,0"
                                         FontSize="16"
-                                        Foreground="{DynamicResource xThemeInteriorPrimarySoft}">
+                                        Foreground="{DynamicResource ThemeInteriorPrimarySoft}">
                                         <TextBlock Text="Synopsis"/>
                                     </Label>
                                 </DockPanel>
@@ -279,7 +279,7 @@
                 Visibility="{Binding IsSearching, Converter={StaticResource xVisibilityConverter}, ConverterParameter=hide:c}"/>
             <Label
                 FontSize="22"
-                Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                 Visibility="{Binding IsEmptySearch, Converter={StaticResource xVisibilityConverter}, ConverterParameter=hide:c}">
                 <TextBlock TextAlignment="Center">
                     <TextBlock

@@ -8,11 +8,12 @@ using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
 using Lexicom.Extensions.Exceptions;
-using Lexicom.Swashbuckle;
+using Lexicom.Scalar;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Controllers;
+
 [Authorize]
 [ApiController]
 [Route("api/authority/user/password")]
@@ -32,7 +33,7 @@ public class PasswordController : LexicomController
         _communicationService = communicationService;
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "CurrentPassword": "Password1234!",
         "NewPassword": "!4321drowssaP"
@@ -76,7 +77,7 @@ public class PasswordController : LexicomController
         }
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "Email": "test_a@email.com"
     }
@@ -103,7 +104,7 @@ public class PasswordController : LexicomController
         }
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "Email": "test_a@email.com",
         "PasswordResetToken": "<the-reset-token>",

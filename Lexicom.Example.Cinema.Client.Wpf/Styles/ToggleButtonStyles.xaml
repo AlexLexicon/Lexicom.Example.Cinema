@@ -4,18 +4,18 @@
 
     <Style x:Key="xDefaultToggleButtonStyle" TargetType="ToggleButton">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimarySoft}"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfacePrimaryHard}"/>
-                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimaryHard}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfacePrimaryHard}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimaryHard}"/>
             </Trigger>
             <!--<Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfaceSecondarySoft}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfaceSecondarySoft}"/>
             </Trigger>-->
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfacePrimarySoft}"/>
-                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorFocusSoft}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfacePrimarySoft}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorFocusSoft}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

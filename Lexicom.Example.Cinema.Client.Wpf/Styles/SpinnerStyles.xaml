@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="xDefaultSpinnerStyle" TargetType="{x:Type c:Spinner}">
-        <Setter Property="RingBackground" Value="{DynamicResource xThemeInteriorSecondarySoft}"/>
-        <Setter Property="RingForeground" Value="{DynamicResource xThemeInteriorNoticeSoft}"/>
+        <Setter Property="RingBackground" Value="{DynamicResource ThemeInteriorSecondarySoft}"/>
+        <Setter Property="RingForeground" Value="{DynamicResource ThemeInteriorNoticeSoft}"/>
     </Style>
 
     <Style TargetType="{x:Type c:Spinner}" BasedOn="{StaticResource xDefaultSpinnerStyle}"/>

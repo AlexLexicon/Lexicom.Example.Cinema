@@ -7,10 +7,10 @@ namespace Lexicom.Example.Cinema.Server.Movies.Api.Validators;
 public class MoviePostRequestBodyValidator : AbstractValidator<MoviePostRequestBody>
 {
     public MoviePostRequestBodyValidator(
-        MovieTitleRuleSet movieTitleRuleSet,
-        MovieDurationRuleSet movieDurationRuleSet,
-        MovieReleaseDateTimeOffsetUtcRuleSet movieReleaseDateTimeOffsetUtcRuleSet,
-        MovieSynopsisRuleSet movieSynopsisRuleSet)
+        MovieTitleStringRuleSet movieTitleRuleSet,
+        MovieDurationTimeSpanRuleSet movieDurationRuleSet,
+        MovieReleaseDateTimeOffsetRuleSet movieReleaseDateTimeOffsetUtcRuleSet,
+        MovieSynopsisStringRuleSet movieSynopsisRuleSet)
     {
         RuleFor(rb => rb.Title)
             .UseRuleSet(movieTitleRuleSet);

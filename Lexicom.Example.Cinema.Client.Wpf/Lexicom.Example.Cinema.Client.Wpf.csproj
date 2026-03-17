@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <OutputType>WinExe</OutputType>
@@ -29,17 +29,17 @@
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <PackageReference Include="Lexicom.Concentrate.Client.Authentication.For.Wpf" Version="7.0.29" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Amenities" Version="7.0.29" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Controls" Version="7.0.29" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Themes" Version="7.0.29" />
-    <PackageReference Include="Lexicom.Configuration.Settings.For.Wpf" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Mvvm.For.Wpf" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Validation.For.Wpf" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Wpf.Amenities" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Wpf.AttachedProperties" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Wpf.Controls" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Wpf.ValueConverters" Version="7.0.55" />
+    <PackageReference Include="Lexicom.Concentrate.Client.Authentication.For.Wpf" Version="10.0.4" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Amenities" Version="10.0.4" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Controls" Version="10.0.4" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Themes" Version="10.0.4" />
+    <PackageReference Include="Lexicom.Configuration.Settings.For.Wpf" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Mvvm.For.Wpf" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Validation.For.Wpf" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Wpf.Amenities" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Wpf.AttachedProperties" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Wpf.Controls" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Wpf.ValueConverters" Version="10.0.9" />
     <Resource Include="Fonts\password.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

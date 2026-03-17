@@ -64,7 +64,7 @@ public class VerificationService : IVerificationService
             throw new IdentityResultException(confirmEmailIdentityResult);
         }
 
-        user.VerifiedDateTimeOffsetUtc = _timeProvider.UtcNow;
+        user.VerifiedDateTimeOffsetUtc = _timeProvider.GetUtcNow();
 
         await _userManager.UpdateAsync(user);
     }

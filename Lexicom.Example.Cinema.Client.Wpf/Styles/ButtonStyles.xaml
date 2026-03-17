@@ -20,38 +20,38 @@
         </Setter>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
-        <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
+        <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusHard}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimarySoft}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusSoft}"/>
-                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimaryHard}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusSoft}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimaryHard}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfaceSecondaryHard}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfaceSecondaryHard}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfacePrimaryHard}"/>
-                <Setter Property="Foreground" Value="{DynamicResource xThemeSurfaceSecondaryHard}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfacePrimaryHard}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ThemeSurfaceSecondaryHard}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="xSymbolButtonStyle" TargetType="Button" BasedOn="{StaticResource xDefaultButtonStyle}">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorSecondarySoft}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorSecondarySoft}"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfaceSecondarySoft}"/>
-                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfaceSecondarySoft}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimarySoft}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfaceSecondaryHard}"/>
-                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimaryHard}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfaceSecondaryHard}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimaryHard}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -59,10 +59,10 @@
     <Style x:Key="xCloseButtonStyle" TargetType="Button" BasedOn="{StaticResource xSymbolButtonStyle}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorAlertSoft}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorAlertSoft}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorAlertHard}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorAlertHard}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

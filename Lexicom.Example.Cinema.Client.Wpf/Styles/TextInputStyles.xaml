@@ -4,29 +4,29 @@
     xmlns:cc="clr-namespace:Lexicom.Concentrate.Wpf.Controls;assembly=Lexicom.Concentrate.Wpf.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="xDefaultTextInputStyle" TargetType="{x:Type cc:TextInput}" BasedOn="{StaticResource ccDefaultTextInputStyle}">
+    <Style x:Key="xDefaultTextInputStyle" TargetType="{x:Type cc:TextInput}" BasedOn="{StaticResource lccBasicTextInputStyle}">
         <Setter Property="TitlePadding" Value="0,6"/>
         <Setter Property="TitleFontSize" Value="16"/>
-        <Setter Property="TitleForeground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
+        <Setter Property="TitleForeground" Value="{DynamicResource ThemeInteriorPrimarySoft}"/>
 
         <Setter Property="Padding" Value="6,2"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusSoft}"/>
-        <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorFocusSoft}"/>
-        <Setter Property="CaretBrush" Value="{DynamicResource xThemeInteriorFocusSoft}"/>
+        <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusSoft}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorFocusSoft}"/>
+        <Setter Property="CaretBrush" Value="{DynamicResource ThemeInteriorFocusSoft}"/>
         <Setter Property="InputHeight" Value="35"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource xThemeSurfaceSecondarySoft}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ThemeSurfaceSecondarySoft}"/>
         <Setter Property="CornerRadius" Value="6"/>
-        <Setter Property="SelectionBrush" Value="{DynamicResource xThemeInteriorNoticeSoft}"/>
+        <Setter Property="SelectionBrush" Value="{DynamicResource ThemeInteriorNoticeSoft}"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="ErrorPadding" Value="0,4,0,0"/>
         <Setter Property="ErrorFontSize" Value="13"/>
-        <Setter Property="ErrorForeground" Value="{DynamicResource xThemeInteriorAlertSoft}"/>
+        <Setter Property="ErrorForeground" Value="{DynamicResource ThemeInteriorAlertSoft}"/>
         <Style.Triggers>
             <Trigger Property="IsValid" Value="False">
                 <Setter Property="BorderThickness" Value="8,0,0,0"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource xThemeSurfaceAlertHard}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource ThemeSurfaceAlertHard}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -6,10 +6,11 @@ using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Jwt;
 using Microsoft.EntityFrameworkCore;
-using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.JsonWebTokens;
 using System.Security.Claims;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
+
 public interface IJwtService
 {
     /// <exception cref="UserDoesNotExistException"/>
@@ -123,7 +124,7 @@ public class JwtService : IJwtService
             Id = bearerToken.Jti,
             UserId = user.Id,
             AccessTokenJti = accessTokenJti,
-            CreatedDateTimeOffsetUtc = _timeProvider.UtcNow,
+            CreatedDateTimeOffsetUtc = _timeProvider.GetUtcNow(),
             ExpiresDateTimeOffsetUtc = bearerToken.Expires,
         };
 

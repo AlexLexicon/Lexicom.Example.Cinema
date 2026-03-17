@@ -10,7 +10,7 @@
     d:DesignWidth="352"
     Height="32"
     x:Name="xPaginationView"
-    d:Background="{DynamicResource xThemeSurfaceFocusSoft}">
+    d:Background="{DynamicResource ThemeSurfaceFocusSoft}">
 
     <UserControl.Resources>
         <Style x:Key="xPageNumberButtonStyle" TargetType="Button" BasedOn="{StaticResource xSymbolButtonStyle}">
@@ -52,7 +52,7 @@
             <Label 
                 DockPanel.Dock="Right"
                 Padding="6,0"
-                Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                 Visibility="{Binding IsFirstPage, Converter={StaticResource xVisibilityConverter}, ConverterParameter=invert_hide:c}">
                 <TextBlock Text="..."/>
             </Label>
@@ -81,7 +81,7 @@
         <Label 
             Grid.Column="1"
             FontWeight="Bold"
-            Foreground="{DynamicResource xThemeInteriorFocusSoft}">
+            Foreground="{DynamicResource ThemeInteriorFocusSoft}">
             <TextBlock 
                 d:Text="3"
                 Text="{Binding CurrentPageNumber}"/>
@@ -111,7 +111,7 @@
             <Label 
                 DockPanel.Dock="Left"
                 Padding="6,0"
-                Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                 Visibility="{Binding IsLastPage, Converter={StaticResource xVisibilityConverter}, ConverterParameter=invert_hide:c}">
                 <TextBlock Text="..."/>
             </Label>

@@ -2,7 +2,7 @@
 using Lexicom.Validation;
 
 namespace Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSets;
-public class MovieDurationRuleSet : AbstractRuleSet<TimeSpan>
+public class MovieDurationTimeSpanRuleSet : AbstractRuleSet<TimeSpan>
 {
     public override void Use<T>(IRuleBuilderOptions<T, TimeSpan> ruleBuilder)
     {

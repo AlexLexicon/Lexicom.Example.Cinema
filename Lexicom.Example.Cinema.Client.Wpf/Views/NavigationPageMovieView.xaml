@@ -11,7 +11,7 @@
     d:DataContext="{d:DesignInstance vm:NavigationPageMovieViewModel}"
     d:DesignWidth="240"
     Height="28"
-    d:Background="{DynamicResource xThemeSurfacePrimarySoft}">
+    d:Background="{DynamicResource ThemeSurfacePrimarySoft}">
 
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
@@ -24,7 +24,7 @@
             Padding="4"
             IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Command="{Binding SelectCommand}"
-            d:Background="{DynamicResource xThemeSurfacePrimaryHard}"
+            d:Background="{DynamicResource ThemeSurfacePrimaryHard}"
             Visibility="{Binding IsLoading, Converter={StaticResource xVisibilityConverter},ConverterParameter=invert}">
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton" BasedOn="{StaticResource xDefaultToggleButtonStyle}">

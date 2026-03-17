@@ -1,5 +1,5 @@
 ﻿@page "/counter"
-@inherits View<CounterViewModel>
+@inherits InjectedPage<CounterViewModel>
 
 <PageTitle>Counter</PageTitle>
 
@@ -11,7 +11,7 @@
 
 <h1>Input Stuff:</h1>
 <h2>@ViewModel.Text</h2>
-<input type="text" @bind-value="ViewModel.Text" @bind-value:event="oninput" @bind-value:after="ViewModel.ValidateTextCommand.Binda()" />
+<input type="text" @bind-value="ViewModel.Text" @bind-value:event="oninput" @bind-value:after="ViewModel.ValidateTextCommand.BindAfter()" />
 @if (ViewModel.Errors is not null)
 {
     @foreach (var error in ViewModel.Errors)

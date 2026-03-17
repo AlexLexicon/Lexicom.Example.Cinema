@@ -10,7 +10,7 @@ namespace Lexicom.Example.Cinema.Server.Movies.Api.Controllers;
 public class RatingController : LexicomController
 {
     [HttpPost]
-    public async Task<IActionResult> CreateRatingAsync(RatingPostRequestBody requestBody)
+    public async Task<IActionResult?> CreateRatingAsync(RatingPostRequestBody requestBody)
     {
         try
         {

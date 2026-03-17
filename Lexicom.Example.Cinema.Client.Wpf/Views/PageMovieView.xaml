@@ -12,7 +12,7 @@
     d:DataContext="{d:DesignInstance vm:PageMovieViewModel}"
     d:DesignWidth="800"
     d:DesignHeight="450"
-    d:Background="{DynamicResource xThemeSurfacePrimarySoft}">
+    d:Background="{DynamicResource ThemeSurfacePrimarySoft}">
 
     <Grid Visibility="{Binding IsVisible, Converter={StaticResource xVisibilityConverter}}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -28,7 +28,7 @@
                         IsReadOnly="True"
                         FontSize="42"
                         TextWrapping="Wrap"
-                        Foreground="{DynamicResource xThemeInteriorFocusSoft}"
+                        Foreground="{DynamicResource ThemeInteriorFocusSoft}"
                         d:Text="Casablanca"
                         Text="{Binding Title}"/>
                 </Label>
@@ -41,11 +41,11 @@
                             TextWrapping="Wrap"
                             TextAlignment="Left"
                             IsReadOnly="True"
-                            Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                            Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                             Text="{Binding Synopsis}"
                             d:Text="A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco."/>
                     </Label>
-                    <Border Background="{DynamicResource xThemeSurfaceSecondarySoft}">
+                    <Border Background="{DynamicResource ThemeSurfaceSecondarySoft}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="32"/>
@@ -61,7 +61,7 @@
                                 Grid.Column="0"
                                 Grid.Row="0"
                                 Padding="6">
-                                <Label Background="{DynamicResource xThemeInteriorSecondaryHard}">
+                                <Label Background="{DynamicResource ThemeInteriorSecondaryHard}">
                                     <Label.OpacityMask>
                                         <ImageBrush ImageSource="/Lexicom.Example.Cinema.Client.Wpf;component/images/star.256.png"/>
                                     </Label.OpacityMask>
@@ -73,7 +73,7 @@
                                 Content="Rating:"
                                 Padding="0,0,4,0"
                                 HorizontalContentAlignment="Right"
-                                Foreground="{DynamicResource xThemeInteriorFocusHard}"/>
+                                Foreground="{DynamicResource ThemeInteriorFocusHard}"/>
                             <StackPanel
                                 Grid.Column="2"
                                 Grid.Row="0"
@@ -85,18 +85,18 @@
                                         <TextBlock 
                                             FontSize="16"
                                             FontWeight="Bold"
-                                            Foreground="{DynamicResource xThemeInteriorFocusSoft}"
+                                            Foreground="{DynamicResource ThemeInteriorFocusSoft}"
                                             d:Text="0.5"
                                             Text="{Binding Rating}"/><TextBlock 
                                             FontSize="14"
-                                            Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                                            Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                                             Text="/10"/>
                                     </TextBlock>
                                 </Label>
                                 <Label FontSize="12">
                                     <TextBlock>
                                         <TextBlock 
-                                            Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                                            Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                                             Text=" -"/>
                                         <Hyperlink>
                                             <TextBlock
@@ -110,7 +110,7 @@
                                 Grid.Column="0"
                                 Grid.Row="1"
                                 Padding="6">
-                                <Label Background="{DynamicResource xThemeInteriorSecondaryHard}">
+                                <Label Background="{DynamicResource ThemeInteriorSecondaryHard}">
                                     <Label.OpacityMask>
                                         <ImageBrush ImageSource="/Lexicom.Example.Cinema.Client.Wpf;component/images/wait.circle.b.256.png"/>
                                     </Label.OpacityMask>
@@ -122,7 +122,7 @@
                                 Content="Duration:"
                                 Padding="0,0,4,0"
                                 HorizontalContentAlignment="Right"
-                                Foreground="{DynamicResource xThemeInteriorFocusHard}"/>
+                                Foreground="{DynamicResource ThemeInteriorFocusHard}"/>
                             <Label
                                 Grid.Column="2"
                                 Grid.Row="1"
@@ -132,21 +132,21 @@
                                     <TextBlock
                                         FontSize="16"
                                         FontWeight="Bold"
-                                        Foreground="{DynamicResource xThemeInteriorFocusSoft}"
+                                        Foreground="{DynamicResource ThemeInteriorFocusSoft}"
                                         d:Text="1"
                                         Text="{Binding Hours}"
                                         Visibility="{Binding HasHours, Converter={StaticResource xVisibilityConverter}, ConverterParameter=hide:c}"/><TextBlock
                                         FontSize="14"
-                                        Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                                        Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                                         Text=" hours "
                                         Visibility="{Binding HasHours, Converter={StaticResource xVisibilityConverter}, ConverterParameter=hide:c}"/><TextBlock
                                         FontSize="16"
                                         FontWeight="Bold"
-                                        Foreground="{DynamicResource xThemeInteriorFocusSoft}"
+                                        Foreground="{DynamicResource ThemeInteriorFocusSoft}"
                                         d:Text="42"
                                         Text="{Binding Minutes}"/><TextBlock
                                         FontSize="14"
-                                        Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                                        Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                                         Text=" minutes"/>
                                 </TextBlock>
                             </Label>
@@ -154,7 +154,7 @@
                                 Grid.Column="0"
                                 Grid.Row="2"
                                 Padding="6">
-                                <Label Background="{DynamicResource xThemeInteriorSecondaryHard}">
+                                <Label Background="{DynamicResource ThemeInteriorSecondaryHard}">
                                     <Label.OpacityMask>
                                         <ImageBrush ImageSource="/Lexicom.Example.Cinema.Client.Wpf;component/images/date.full.a.256.png"/>
                                     </Label.OpacityMask>
@@ -166,14 +166,14 @@
                                 Content="Release Date:"
                                 Padding="0,0,4,0"
                                 HorizontalContentAlignment="Right"
-                                Foreground="{DynamicResource xThemeInteriorFocusHard}"/>
+                                Foreground="{DynamicResource ThemeInteriorFocusHard}"/>
                             <Label
                                 Grid.Column="2"
                                 Grid.Row="2"
                                 Padding="4,0,0,0"
                                 HorizontalContentAlignment="Left"
                                 FontWeight="Bold"
-                                Foreground="{DynamicResource xThemeInteriorFocusSoft}"
+                                Foreground="{DynamicResource ThemeInteriorFocusSoft}"
                                 d:Content="November 26 1942"
                                 Content="{Binding ReleaseDateTime}"/>
                         </Grid>
@@ -191,8 +191,8 @@
                         Padding="8,4"
                         Height="40"
                         HorizontalContentAlignment="Left"
-                        Background="{DynamicResource xThemeSurfaceSecondarySoft}"
-                        Foreground="{DynamicResource xThemeInteriorPrimaryHard}">
+                        Background="{DynamicResource ThemeSurfaceSecondarySoft}"
+                        Foreground="{DynamicResource ThemeInteriorPrimaryHard}">
                         <TextBlock Text="Cast"/>
                     </Label>
                     <UniformGrid>
@@ -202,8 +202,8 @@
                             Padding="8,4"
                             Height="30"
                             HorizontalContentAlignment="Left"
-                            Background="{DynamicResource xThemeSurfacePrimaryHard}"
-                            Foreground="{DynamicResource xThemeInteriorPrimarySoft}">
+                            Background="{DynamicResource ThemeSurfacePrimaryHard}"
+                            Foreground="{DynamicResource ThemeInteriorPrimarySoft}">
                             <TextBlock Text="Actors"/>
                         </Label>
                         <Label
@@ -212,8 +212,8 @@
                             Padding="8,4"
                             Height="30"
                             HorizontalContentAlignment="Left"
-                            Background="{DynamicResource xThemeSurfacePrimaryHard}"
-                            Foreground="{DynamicResource xThemeInteriorPrimarySoft}">
+                            Background="{DynamicResource ThemeSurfacePrimaryHard}"
+                            Foreground="{DynamicResource ThemeInteriorPrimarySoft}">
                             <TextBlock Text="Directors"/>
                         </Label>
                     </UniformGrid>
@@ -222,8 +222,8 @@
                         Padding="8,4"
                         Height="40"
                         HorizontalContentAlignment="Left"
-                        Background="{DynamicResource xThemeSurfaceSecondarySoft}"
-                        Foreground="{DynamicResource xThemeInteriorPrimaryHard}">
+                        Background="{DynamicResource ThemeSurfaceSecondarySoft}"
+                        Foreground="{DynamicResource ThemeInteriorPrimaryHard}">
                         <TextBlock Text="Reviews"/>
                     </Label>
                     <Button

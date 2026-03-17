@@ -10,7 +10,7 @@
     d:DataContext="{d:DesignInstance vm:SearchMovieResultViewModel}"
     d:DesignWidth="1000"
     Height="64"
-    d:Background="{DynamicResource xThemeSurfacePrimarySoft}">
+    d:Background="{DynamicResource ThemeSurfacePrimarySoft}">
 
     <Button Command="{Binding SelectedCommand}">
         <Button.Style>
@@ -33,10 +33,10 @@
                                             DockPanel.Dock="Right"
                                             Margin="0,8,12,0"
                                             CornerRadius="12"
-                                            Background="{DynamicResource xThemeSurfaceFocusSoft}">
+                                            Background="{DynamicResource ThemeSurfaceFocusSoft}">
                                             <Label 
                                                 Padding="8,0"
-                                                Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                                                Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                                                 FontSize="12">
                                                 <TextBlock
                                                     Text="{Binding ReleaseYear}"
@@ -47,11 +47,11 @@
                                             DockPanel.Dock="Right"
                                             Margin="4,8,4,0"
                                             CornerRadius="12"
-                                            Background="{DynamicResource xThemeSurfaceFocusSoft}">
+                                            Background="{DynamicResource ThemeSurfaceFocusSoft}">
                                             <Label 
                                                 Padding="8,0"
                                                 HorizontalAlignment="Right"
-                                                Foreground="{DynamicResource xThemeInteriorPrimarySoft}"
+                                                Foreground="{DynamicResource ThemeInteriorPrimarySoft}"
                                                 FontSize="12">
                                                 <TextBlock 
                                                     Text="{Binding Duration}"
@@ -63,7 +63,7 @@
                                             HorizontalContentAlignment="Left"
                                             VerticalContentAlignment="Bottom"
                                             FontSize="20"
-                                            Foreground="{DynamicResource xThemeInteriorFocusHard}">
+                                            Foreground="{DynamicResource ThemeInteriorFocusHard}">
                                             <TextBlock 
                                                 TextTrimming="CharacterEllipsis"
                                                 Text="{Binding Title}"
@@ -73,7 +73,7 @@
                                     <Label 
                                         Grid.Row="1"
                                         Padding="12,0"
-                                        Foreground="{DynamicResource xThemeInteriorPrimaryHard}"
+                                        Foreground="{DynamicResource ThemeInteriorPrimaryHard}"
                                         HorizontalContentAlignment="Left"
                                         FontStyle="Italic"
                                         FontSize="14">
@@ -87,14 +87,14 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="Background" Value="{DynamicResource xThemeSurfaceSecondaryHard}"/>
+                <Setter Property="Background" Value="{DynamicResource ThemeSurfaceSecondaryHard}"/>
                 <Setter Property="BorderThickness" Value="0"/>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{DynamicResource xThemeSurfaceNoticeSoft}"/>
+                        <Setter Property="Background" Value="{DynamicResource ThemeSurfaceNoticeSoft}"/>
                     </Trigger>
                     <Trigger Property="IsPressed" Value="True">
-                        <Setter Property="Background" Value="{DynamicResource xThemeSurfaceNoticeHard}"/>
+                        <Setter Property="Background" Value="{DynamicResource ThemeSurfaceNoticeHard}"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>

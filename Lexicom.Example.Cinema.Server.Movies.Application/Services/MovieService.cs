@@ -70,8 +70,8 @@ public class MovieService : IMovieService
             Duration = duration,
             ReleaseDateTimeOffsetUtc = releaseDateTimeOffsetUtc,
             Synopsis = synopsis,
-            CreatedDateTimeOffsetUtc = _timeProvider.UtcNow,
-            ModifiedDateTimeOffsetUtc = _timeProvider.UtcNow,
+            CreatedDateTimeOffsetUtc = _timeProvider.GetUtcNow(),
+            ModifiedDateTimeOffsetUtc = _timeProvider.GetUtcNow(),
         };
 
         await db.AddAsync(movie);
@@ -122,7 +122,7 @@ public class MovieService : IMovieService
 
         if (isModified)
         {
-            movie.ModifiedDateTimeOffsetUtc = _timeProvider.UtcNow;
+            movie.ModifiedDateTimeOffsetUtc = _timeProvider.GetUtcNow();
 
             db.Movies.Update(movie);
 

@@ -15,7 +15,7 @@
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusSoft}"/>
+                                        <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusSoft}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -23,10 +23,10 @@
                         <Label>
                             <Label.Style>
                                 <Style TargetType="Label">
-                                    <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimarySoft}"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorFocusSoft}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorFocusSoft}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -81,23 +81,23 @@
                                         </Setter.Value>
                                     </Setter>
                                     <!--this is the main drop down button (arrow|foreground), border and background-->
-                                    <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusSoft}"/>
-                                    <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
-                                    <Setter Property="BorderBrush" Value="{DynamicResource xThemeSurfaceFocusSoft}"/>
+                                    <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusSoft}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimarySoft}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource ThemeSurfaceFocusSoft}"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
-                                            <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorFocusSoft}"/>
-                                            <Setter Property="BorderBrush" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
+                                            <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusHard}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorFocusSoft}"/>
+                                            <Setter Property="BorderBrush" Value="{DynamicResource ThemeSurfaceFocusHard}"/>
                                         </Trigger>
                                         <!--<Trigger Property="IsPressed" Value="True">
-                                            <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusSoft}"/>
-                                            <Setter Property="BorderBrush" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
+                                            <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusSoft}"/>
+                                            <Setter Property="BorderBrush" Value="{DynamicResource ThemeSurfaceFocusHard}"/>
                                         </Trigger>-->
                                         <Trigger Property="IsChecked" Value="True">
-                                            <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
-                                            <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorFocusSoft}"/>
-                                            <Setter Property="BorderBrush" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
+                                            <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusHard}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorFocusSoft}"/>
+                                            <Setter Property="BorderBrush" Value="{DynamicResource ThemeSurfaceFocusHard}"/>
                                         </Trigger>
                                         <!--<DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="True">
                                             
@@ -127,13 +127,13 @@
                             <Label.Style>
                                 <Style TargetType="Label">
                                     <!--this is the selected item text label-->
-                                    <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorPrimarySoft}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorPrimarySoft}"/>
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=ToggleButton}" Value="True">
-                                            <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorFocusSoft}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorFocusSoft}"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Path=IsChecked, ElementName=ToggleButton}" Value="True">
-                                            <Setter Property="Foreground" Value="{DynamicResource xThemeInteriorFocusSoft}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource ThemeInteriorFocusSoft}"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -158,8 +158,8 @@
                                     <Border.Style>
                                         <!--this is the drop down container panel (background/border parts)-->
                                         <Style TargetType="Border">
-                                            <Setter Property="Background" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
-                                            <Setter Property="BorderBrush" Value="{DynamicResource xThemeSurfaceFocusHard}"/>
+                                            <Setter Property="Background" Value="{DynamicResource ThemeSurfaceFocusHard}"/>
+                                            <Setter Property="BorderBrush" Value="{DynamicResource ThemeSurfaceFocusHard}"/>
                                         </Style>
                                     </Border.Style>
                                     <ScrollViewer 

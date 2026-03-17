@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <OutputType>Exe</OutputType>
@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.ConsoleApp.Amenities" Version="7.0.55" />
-    <PackageReference Include="Lexicom.ConsoleApp.Tui" Version="7.0.55" />
+    <PackageReference Include="Lexicom.ConsoleApp.Amenities" Version="10.0.9" />
+    <PackageReference Include="Lexicom.ConsoleApp.Tui" Version="10.0.9" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 using Lexicom.Validation;
 
 namespace Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSets;
-public class MovieReleaseDateTimeOffsetUtcRuleSet : AbstractRuleSet<DateTimeOffset>
+public class MovieReleaseDateTimeOffsetRuleSet : AbstractRuleSet<DateTimeOffset>
 {
     private static DateTimeOffset MinimumDateTimeOffset { get; } = new DateTimeOffset(1888, 1, 1, 1, 1, 1, TimeSpan.Zero);
 

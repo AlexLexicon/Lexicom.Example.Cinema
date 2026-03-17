@@ -31,11 +31,10 @@ public abstract partial class PaginationViewModel : ObservableObject, INotificat
 
     protected int PageLimit { get; private set; }
     private int MinimumPageIndex { get; set; }
-    private int _currentPageIndex;
     protected int CurrentPageIndex
     {
-        get => _currentPageIndex;
-        private set => _currentPageIndex = Math.Clamp(value, MinimumPageIndex, MaximumPageIndex);
+        get;
+        private set => field = Math.Clamp(value, MinimumPageIndex, MaximumPageIndex);
     }
     private int MaximumPageIndex { get; set; }
 

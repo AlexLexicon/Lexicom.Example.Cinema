@@ -1,21 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.Authority" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Cryptography" Version="7.0.55" />
-    <PackageReference Include="Lexicom.DependencyInjection.Primitives" Version="7.0.55" />
-    <PackageReference Include="Lexicom.EntityFramework.Amenities" Version="7.0.55" />
-    <PackageReference Include="Lexicom.EntityFramework.Identity" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Extensions.TimeSpans" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Http" Version="7.0.55" />
-    <PackageReference Include="Lexicom.Smtp" Version="7.0.55" />
+    <PackageReference Include="Lexicom.Authority" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Cryptography" Version="10.0.9" />
+    <PackageReference Include="Lexicom.DependencyInjection.Primitives" Version="10.0.9" />
+    <PackageReference Include="Lexicom.EntityFramework.Amenities" Version="10.0.9" />
+    <PackageReference Include="Lexicom.EntityFramework.Identity" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Extensions.TimeSpans" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Http" Version="10.0.9" />
+    <PackageReference Include="Lexicom.Smtp" Version="10.0.9" />
   </ItemGroup>
 
   <ItemGroup>

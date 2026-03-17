@@ -7,11 +7,12 @@ using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
-using Lexicom.Swashbuckle;
+using Lexicom.Scalar;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Controllers;
+
 [Authorize]
 [ApiController]
 [Route("api/authority/user/email")]
@@ -31,7 +32,7 @@ public class EmailController : LexicomController
         _communicationService = communicationService;
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "NewEmail": "test_b@email.com"
     }
@@ -54,7 +55,7 @@ public class EmailController : LexicomController
         }
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "NewEmail": "test_b@email.com",
         "EmailChangeToken": "<the-change-token>"
@@ -87,7 +88,7 @@ public class EmailController : LexicomController
         }
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "Email": "test_a@email.com", 
         "EmailConfirmationToken": "<the-confirmation-token>"
@@ -133,7 +134,7 @@ public class EmailController : LexicomController
         }
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "Email": "test_a@email.com"
     }

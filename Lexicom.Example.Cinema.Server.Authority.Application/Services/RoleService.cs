@@ -123,7 +123,7 @@ public class RoleService : IRoleService
         {
             Id = _guidProvider.NewGuid(),
             Name = name,
-            CreatedDateTimeOffsetUtc = _timeProvider.UtcNow,
+            CreatedDateTimeOffsetUtc = _timeProvider.GetUtcNow(),
         };
 
         IdentityResult createRoleIdentityResult = await _roleManager.CreateAsync(role);

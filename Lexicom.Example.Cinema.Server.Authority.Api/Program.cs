@@ -14,15 +14,14 @@ using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
 using Lexicom.Logging.AspNetCore.Controllers.Extensions;
+using Lexicom.Scalar.Extensions;
 using Lexicom.Smtp.AspNetCore.Controllers.Extensions;
 using Lexicom.Smtp.Extensions;
 using Lexicom.Supports.AspNetCore.Controllers.Extensions;
-using Lexicom.Swashbuckle.Extensions;
 using Lexicom.Validation.Amenities.Extensions;
 using Lexicom.Validation.Extensions;
 using Lexicom.Validation.For.AspNetCore.Controllers.Extensions;
 using Microsoft.EntityFrameworkCore;
-using System.IdentityModel.Tokens.Jwt;
 
 /*
  * Lexicom.Example.Cinema.Server.Authority.Api
@@ -57,14 +56,13 @@ builder.Lexicom(options =>
     options.AddAuthentication(options =>
     {
         options.AddAccessTokenAuthentication();
-        options.ReplaceDefaultInboundClaimType(JwtRegisteredClaimNames.Sub);
     });
     options.AddAuthorization(options =>
     {
         options.AddPermissions(Policies.Permissions.All);
     });
     options.AddEntityFrameworkIdentity<AuthorityDbContext, User, Role, Guid>();
-    options.AddSwaggerGen();
+    options.AddScalar();
     options.AddValidation(options =>
     {
         options.AddAmenities();
@@ -101,7 +99,7 @@ var app = builder.Build();
 
 app.UseLexicomExceptionHandlingMiddleware();
 app.UseLexicomLogging();
-app.UseLexicomSwaggerUI();
+app.UseLexicomScalar();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

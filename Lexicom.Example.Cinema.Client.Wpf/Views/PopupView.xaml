@@ -13,7 +13,7 @@
 
     <Grid 
         Visibility="{Binding IsVisible, Converter={StaticResource xVisibilityConverter}}"
-        Background="{DynamicResource xThemeSurfaceMask}">
+        Background="{DynamicResource ThemeSurfaceMask}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -29,7 +29,7 @@
                     DockPanel.Dock="Top"
                     Height="32"
                     CornerRadius="4,4,0,0"
-                    Background="{DynamicResource xThemeSurfaceFocusSoft}">
+                    Background="{DynamicResource ThemeSurfaceFocusSoft}">
                     <DockPanel>
                         <Button
                             DockPanel.Dock="Right"
@@ -43,7 +43,7 @@
                         <Label
                             HorizontalContentAlignment="Left"
                             Padding="6,0"
-                            Foreground="{DynamicResource xThemeInteriorSecondarySoft}">
+                            Foreground="{DynamicResource ThemeInteriorSecondarySoft}">
                             <TextBlock Text="{Binding Title}"/>
                         </Label>
                     </DockPanel>
@@ -51,12 +51,12 @@
                 <Border
                     BorderThickness="3,0,3,3"
                     CornerRadius="0,0,4,4"
-                    BorderBrush="{DynamicResource xThemeSurfaceFocusSoft}"
-                    Background="{DynamicResource xThemeSurfacePrimarySoft}">
+                    BorderBrush="{DynamicResource ThemeSurfaceFocusSoft}"
+                    Background="{DynamicResource ThemeSurfacePrimarySoft}">
                     <Label 
                         Margin="16"
                         FontSize="16"
-                        Foreground="{DynamicResource xThemeInteriorPrimarySoft}">
+                        Foreground="{DynamicResource ThemeInteriorPrimarySoft}">
                         <TextBlock
                             TextWrapping="Wrap"
                             TextTrimming="CharacterEllipsis"

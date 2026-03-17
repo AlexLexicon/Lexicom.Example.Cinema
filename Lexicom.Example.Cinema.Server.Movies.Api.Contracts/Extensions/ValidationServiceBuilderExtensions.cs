@@ -7,5 +7,6 @@ public static class ValidationServiceBuilderExtensions
     public static void AddMoviesApiRuleSets(this IValidationServiceBuilder builder)
     {
         builder.AddRuleSets<AssemblyScanMarker>();
+        builder.AddTransformers<AssemblyScanMarker>();
     }
 }

@@ -155,7 +155,7 @@ public class UserService : IUserService
             Email = email,
             FirstNameEncryptedBase64 = firstNameEncryptedBase64,
             LastNameEncryptedBase64 = lastNameEncryptedBase64,
-            CreatedDateTimeOffsetUtc = _timeProvider.UtcNow,
+            CreatedDateTimeOffsetUtc = _timeProvider.GetUtcNow(),
             VerifiedDateTimeOffsetUtc = null,
             LastSignInDateTimeOffsetUtc = null,
         };

@@ -11,7 +11,7 @@
     Width="240"
     d:DesignHeight="900">
 
-    <Border Background="{DynamicResource xThemeSurfaceSecondarySoft}">
+    <Border Background="{DynamicResource ThemeSurfaceSecondarySoft}">
         <DockPanel>
             <v:NavigationDomainsView 
                 DockPanel.Dock="Top"

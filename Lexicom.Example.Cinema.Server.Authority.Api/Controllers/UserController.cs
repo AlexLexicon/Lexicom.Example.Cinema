@@ -6,11 +6,12 @@ using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
-using Lexicom.Swashbuckle;
+using Lexicom.Scalar;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Controllers;
+
 [Authorize]
 [ApiController]
 [Route("api/authority/user")]
@@ -55,7 +56,7 @@ public class UserController : LexicomController
         }
     }
 
-    [SwaggerExample("""
+    [ScalarDefaultRequestBody("""
     {
         "FirstName": null,
         "LastName": null

@@ -30,23 +30,23 @@ public abstract partial class SearchViewModel : ObservableObject, INotificationH
     private bool _isHintVisible;
     [ObservableProperty]
     private bool _isSearchResultsVisible;
-    private bool _isEmptySearch;
+
     public bool IsEmptySearch
     {
-        get => _isEmptySearch;
+        get;
         set
         {
-            SetProperty(ref _isEmptySearch, value);
+            SetProperty(ref field, value);
             IsSearchResultsVisible = !IsEmptySearch && !IsSearching;
         }
     }
-    private bool _isSearching;
+
     public bool IsSearching
     {
-        get => _isSearching;
+        get;
         set
         {
-            SetProperty(ref _isSearching, value);
+            SetProperty(ref field, value);
             IsSearchResultsVisible = !IsEmptySearch && !IsSearching;
         }
     }
