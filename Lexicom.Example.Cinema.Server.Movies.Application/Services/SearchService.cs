@@ -23,21 +23,20 @@ public class SearchService : ISearchService
 
         int totalMovies = await db.Movies.CountAsync();
 
-        List<Movie> movies;
+        IQueryable<Movie> query = db.Movies;
+
         if (!string.IsNullOrWhiteSpace(searchText))
         {
             string searchTextLower = searchText.ToLower();
-            movies = await db.Movies
-                .Where(m => m.Title.ToLower().Contains(searchTextLower))
-                .OrderBy(m => m.Title)
-                .Skip(pageIndex * moviesPerPage)
-                .Take(moviesPerPage)
-                .ToListAsync();
+
+            query = query.Where(m => m.Title.Contains(searchTextLower, StringComparison.CurrentCultureIgnoreCase));
         }
-        else
-        {
-            movies = new List<Movie>();
-        }
+
+        List<Movie> movies = await query
+            .OrderBy(m => m.Title)
+            .Skip(pageIndex * moviesPerPage)
+            .Take(moviesPerPage)
+            .ToListAsync();
 
         return new Slice<Movie>(totalMovies, movies);
     }

@@ -18,13 +18,13 @@ public class SearchController : LexicomController
         _searchService = searchService;
     }
 
-    [SwaggerParameter(SearchGetRequestQuery.QUERY_STRING_OFFSET, 0)]
-    [SwaggerParameter(SearchGetRequestQuery.QUERY_STRING_LIMIT, 20)]
+    [SwaggerParameter(SearchGetRequestQuery.QUERY_STRING_PAGE, 0)]
+    [SwaggerParameter(SearchGetRequestQuery.QUERY_STRING_COUNT, 20)]
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> SearchAsync(
-        [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_OFFSET)] int offset,
-        [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_LIMIT)] int limit,
+        [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_PAGE)] int page,
+        [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_COUNT)] int count,
         [FromQuery(Name = SearchGetRequestQuery.QUERY_STRING_SEARCH_TEXT)] string? searchText)
     {
         //validate query string parameters

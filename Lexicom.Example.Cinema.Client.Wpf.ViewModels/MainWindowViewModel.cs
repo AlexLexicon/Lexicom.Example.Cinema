@@ -5,6 +5,7 @@ using Lexicom.Mvvm;
 using System.Windows.Input;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
+
 public sealed partial class MainWindowViewModel : ObservableObject, IShowableViewModel
 {
     private readonly IThemeService _themeService;

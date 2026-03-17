@@ -3,9 +3,11 @@ using Lexicom.Concentrate.Wpf.Amenities.Extensions;
 using Lexicom.Concentrate.Wpf.Themes.Extensions;
 using Lexicom.Configuration.Settings.For.Wpf.Extensions;
 using Lexicom.Example.Cinema.Client.Application.Extensions;
+using Lexicom.Example.Cinema.Client.Application.Temp;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Extensions;
 using Lexicom.Example.Cinema.Client.Wpf.Views;
+using Lexicom.Example.Cinema.Shared.Extensions;
 using Lexicom.Mvvm.Amenities.Extensions;
 using Lexicom.Mvvm.Extensions;
 using Lexicom.Mvvm.For.Wpf.Extensions;
@@ -17,8 +19,10 @@ using Lexicom.Wpf.DependencyInjection;
 using MediatR.NotificationPublishers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
 
 namespace Lexicom.Example.Cinema.Client.Wpf;
+
 public partial class App : System.Windows.Application
 {
     public App()
@@ -85,10 +89,25 @@ public partial class App : System.Windows.Application
             });
         });
 
+        builder.Services.AddShared();
         builder.Services.AddClientApplication();
 
-        WpfApplication app = builder.Build();
+        WpfApp = builder.Build();
+    }
 
-        app.StartupWindow<MainWindowView>();
+    private WpfApplication? WpfApp { get; }
+
+    protected override async void OnStartup(StartupEventArgs e)
+    {
+        if (WpfApp is not null)
+        {
+            var domainStore = WpfApp.Services.GetRequiredService<IDomainsStore>();
+
+            await domainStore.LoadAsync();
+
+            WpfApp.StartupWindow<MainWindowView>();
+        }
+
+        base.OnStartup(e);
     }
 }

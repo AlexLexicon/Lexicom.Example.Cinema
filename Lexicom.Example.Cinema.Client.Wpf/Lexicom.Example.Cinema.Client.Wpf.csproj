@@ -80,6 +80,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lexicom.Example.Cinema.Client.Wpf.ViewModels\Lexicom.Example.Cinema.Client.Wpf.ViewModels.csproj" />
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Shared\Lexicom.Example.Cinema.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

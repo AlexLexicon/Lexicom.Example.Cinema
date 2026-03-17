@@ -1,14 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.33213.308
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11527.330 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server.Authority", "Server.Authority", "{DECB30B4-E260-42A0-A0E5-D3AAECA0550A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server.Movies", "Server.Movies", "{D73A5E99-15D5-4748-8F92-00EE0E055EF9}"
-	ProjectSection(SolutionItems) = preProject
-		movies.json = movies.json
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client.Wpf", "Client.Wpf", "{EF195EC8-983F-45F4-BD74-F09113FE588E}"
 EndProject
@@ -58,7 +55,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Server.Movies.ConsoleApp", "Lexicom.Example.Cinema.Server.Movies.ConsoleApp\Lexicom.Example.Cinema.Server.Movies.ConsoleApp.csproj", "{C608F65F-F99B-4C92-8F55-172AD75508E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels", "Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels\Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels.csproj", "{509AE194-81DE-419A-843C-B4A3B1C7CD46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels", "Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels\Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels.csproj", "{509AE194-81DE-419A-843C-B4A3B1C7CD46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".data", ".data", "{FAEE18C5-3F85-4A62-B611-DF671D850A36}"
+	ProjectSection(SolutionItems) = preProject
+		.data\movies.json = .data\movies.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{6A7BDAE7-F343-442C-A72D-833D23A838E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexicom.Example.Cinema.Shared", "Lexicom.Example.Cinema.Shared\Lexicom.Example.Cinema.Shared.csproj", "{3BA9EE06-319F-4767-8063-5700E310A37E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -146,6 +152,10 @@ Global
 		{509AE194-81DE-419A-843C-B4A3B1C7CD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{509AE194-81DE-419A-843C-B4A3B1C7CD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{509AE194-81DE-419A-843C-B4A3B1C7CD46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BA9EE06-319F-4767-8063-5700E310A37E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BA9EE06-319F-4767-8063-5700E310A37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BA9EE06-319F-4767-8063-5700E310A37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BA9EE06-319F-4767-8063-5700E310A37E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,6 +181,7 @@ Global
 		{646C2780-3686-41B7-80E1-C386850D50CB} = {0A099907-5324-4F2C-AF6E-F25472E9FA65}
 		{C608F65F-F99B-4C92-8F55-172AD75508E9} = {D73A5E99-15D5-4748-8F92-00EE0E055EF9}
 		{509AE194-81DE-419A-843C-B4A3B1C7CD46} = {97675FFC-EB10-4AA2-A4BF-8326471F5D0A}
+		{3BA9EE06-319F-4767-8063-5700E310A37E} = {6A7BDAE7-F343-442C-A72D-833D23A838E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E519E7F1-C8BA-405F-9DF1-BA96AD251DC5}

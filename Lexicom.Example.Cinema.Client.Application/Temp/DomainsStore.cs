@@ -1,77 +1,87 @@
-﻿using System.Text.Json;
+﻿using Lexicom.Example.Cinema.Shared.Services;
 
 namespace Lexicom.Example.Cinema.Client.Application.Temp;
+
 public interface IDomainsStore
 {
+    Task LoadAsync();
     IReadOnlyList<MovieStore> Movies { get; }
     IReadOnlyList<DirectorStore> Directors { get; }
     IReadOnlyList<ActorStore> Actors { get; }
 }
 public class DomainsStore : IDomainsStore
 {
-    public DomainsStore()
+    private readonly IDataService _dataService;
+
+    public DomainsStore(IDataService dataService)
     {
-        string moviesString = File.ReadAllText(@"C:\Users\alexr\source\repos\Lexicom.Example.Cinema\movies.json");
+        _dataService = dataService;
 
-        var ms = JsonSerializer.Deserialize<List<MovieStore>>(moviesString)!;
-
-        var movies = new List<MovieStore>();
-        for (int dup = 0; dup < 1; dup++)
-        {
-            movies.AddRange(ms);
-        }
-        Movies = movies;
-
-        foreach (var movie in Movies)
-        {
-            movie.Id = Guid.NewGuid();
-        }
-
-        Directors = new List<DirectorStore>
-        {
-            new DirectorStore
-            {
-                Id = Guid.NewGuid(),
-                Name = "George Lucas",
-            },
-            new DirectorStore
-            {
-                Id = Guid.NewGuid(),
-                Name = "Michael Curtiz",
-            },
-            new DirectorStore
-            {
-                Id = Guid.NewGuid(),
-                Name = "Francis Ford Coppola",
-            },
-        };
-
-        Actors = new List<ActorStore>
-        {
-            new ActorStore
-            {
-                Id = Guid.NewGuid(),
-                Name = "Harrison Ford",
-            },
-            new ActorStore
-            {
-                Id = Guid.NewGuid(),
-                Name = "Al Pacino",
-            },
-            new ActorStore
-            {
-                Id = Guid.NewGuid(),
-                Name = "Samuel L. Jackson",
-            },
-        };
-
-        //Movies = Movies.Take(1).ToList();
-        //Directors = Directors.Take(1).ToList();
-        //Actors = Actors.Take(1).ToList();
+        MoviesStore = [];
+        DirectorsStore = [];
+        ActorsStore = [];
     }
-    public IReadOnlyList<MovieStore> Movies { get; }
-    public IReadOnlyList<DirectorStore> Directors { get; }
-    public IReadOnlyList<ActorStore> Actors { get; }
+
+    private List<MovieStore> MoviesStore { get; set; }
+    private List<DirectorStore> DirectorsStore { get; set; }
+    private List<ActorStore> ActorsStore { get; set; }
+
+    public IReadOnlyList<MovieStore> Movies => MoviesStore;
+    public IReadOnlyList<DirectorStore> Directors => DirectorsStore;
+    public IReadOnlyList<ActorStore> Actors => ActorsStore;
+
+    public async Task LoadAsync()
+    {
+        var movieData = await _dataService.GetAllMovieDataAsync();
+
+        if (movieData is not null)
+        {
+            foreach (var data in movieData)
+            {
+                MoviesStore.Add(new MovieStore
+                {
+                    Id = Guid.NewGuid(),
+                    Title = data.Title,
+                    Duration = data.Duration,
+                    Synopsis = data.Synopsis,
+                    ReleaseDateTimeOffsetUtc = data.ReleaseDateTimeOffsetUtc,
+                });
+            }
+
+        }
+
+        DirectorsStore.Add(new DirectorStore
+        {
+            Id = Guid.NewGuid(),
+            Name = "George Lucas",
+        });
+        DirectorsStore.Add(new DirectorStore
+        {
+            Id = Guid.NewGuid(),
+            Name = "Michael Curtiz",
+        });
+        DirectorsStore.Add(new DirectorStore
+        {
+            Id = Guid.NewGuid(),
+            Name = "Francis Ford Coppola",
+        });
+
+        ActorsStore.Add(new ActorStore
+        {
+            Id = Guid.NewGuid(),
+            Name = "Harrison Ford",
+        });
+        ActorsStore.Add(new ActorStore
+        {
+            Id = Guid.NewGuid(),
+            Name = "Al Pacino",
+        });
+        ActorsStore.Add(new ActorStore
+        {
+            Id = Guid.NewGuid(),
+            Name = "Samuel L. Jackson",
+        });
+    }
 }
 public class MovieStore
 {

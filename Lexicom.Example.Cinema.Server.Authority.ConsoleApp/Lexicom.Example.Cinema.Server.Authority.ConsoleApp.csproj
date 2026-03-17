@@ -6,7 +6,6 @@
     <LangVersion>latest</LangVersion>
     <OutputType>Exe</OutputType>
     <Nullable>enable</Nullable>
-    <UserSecretsId>a6b56620-137a-4757-82c0-fc45096afe48</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

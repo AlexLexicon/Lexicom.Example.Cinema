@@ -30,7 +30,6 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("appsettings.SecretsExample.json");
-builder.Configuration.AddJsonFile("appsettings.Development.json");
 
 builder.Services.AddControllers();
 
@@ -87,10 +86,11 @@ builder.Lexicom(options =>
 
 builder.Services.AddDbContextFactory<AuthorityDbContext>(options =>
 {
-    string? cs = builder.Configuration.GetConnectionString("AuthorityDb");
+    string? sqliteConnectionString = builder.Configuration.GetConnectionString("authoritydb-sqlite");
+    string? sqlConnectionString = builder.Configuration.GetConnectionString("authoritydb-sql");
 
-    options.UseSqlServer(cs);
-    //options.UseSqlite(cs);
+    options.UseSqlite(sqliteConnectionString);
+    //options.UseSqlServer(sqlConnectionString);
 });
 
 builder.Services.AddAuthorityApplication();

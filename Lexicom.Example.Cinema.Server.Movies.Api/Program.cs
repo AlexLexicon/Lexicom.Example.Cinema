@@ -67,9 +67,11 @@ builder.Lexicom(options =>
 
 builder.Services.AddDbContextFactory<MoviesDbContext>(options =>
 {
-    string? cs = builder.Configuration.GetConnectionString("MoviesDb");
+    string? sqliteConnectionString = builder.Configuration.GetConnectionString("moviesdb-sqlite");
+    string? sqlConnectionString = builder.Configuration.GetConnectionString("moviesdb-sql");
 
-    options.UseSqlite(cs);
+    options.UseSqlite(sqliteConnectionString);
+    //options.UseSqlServer(sqlConnectionString);
 });
 
 builder.Services.AddMoviesApplication();

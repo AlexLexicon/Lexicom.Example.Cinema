@@ -20,6 +20,7 @@
     <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Authority.Api.Contracts\Lexicom.Example.Cinema.Server.Authority.Api.Contracts.csproj" />
     <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Movies.Api.Contracts\Lexicom.Example.Cinema.Server.Movies.Api.Contracts.csproj" />
     <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Persons.Api.Contracts\Lexicom.Example.Cinema.Server.Persons.Api.Contracts.csproj" />
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Shared\Lexicom.Example.Cinema.Shared.csproj" />
   </ItemGroup>
 
 </Project>

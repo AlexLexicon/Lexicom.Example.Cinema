@@ -168,7 +168,7 @@ public class EmailService : IEmailService
         All that's left to do is click the link below to confirm your email address so we can finish creating your account.
         <br>
         <br>
-        {url}?{queryString}
+        {url}{queryString}
         <br>
         <br>
         If you did not sign up for {appName}, you should not click the link to confirm this account.

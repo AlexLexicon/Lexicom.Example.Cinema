@@ -25,8 +25,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 ConsoleApplicationBuilder builder = ConsoleApplication.CreateBuilder();
 
-builder.Configuration.AddJsonFile("appsettings.json");
-builder.Configuration.AddJsonFile("appsettings.Example.json");
+builder.Configuration.AddJsonFile("appsettings.SecretsExample.json");
 
 builder.Lexicom(options =>
 {
@@ -51,10 +50,11 @@ builder.Lexicom(options =>
 
 builder.Services.AddDbContextFactory<AuthorityDbContext>(options =>
 {
-    string? cs = builder.Configuration.GetConnectionString("authoritydb");
+    string? sqliteConnectionString = builder.Configuration.GetConnectionString("authoritydb-sqlite");
+    string? sqlConnectionString = builder.Configuration.GetConnectionString("authoritydb-sql");
 
-    options.UseSqlServer(cs);
-    //options.UseSqlite(cs);
+    options.UseSqlite(sqliteConnectionString);
+    //options.UseSqlServer(sqlConnectionString);
 });
 
 builder.Services.AddScoped<IComprehensiveService, ComprehensiveService>();  

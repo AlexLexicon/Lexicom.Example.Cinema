@@ -118,10 +118,10 @@ public class EmailController : LexicomController
         {
             _logger.LogWarning(e, "Failed to confirm the email because the user with the email '{email}' has already confirmed their email.", requestBody.Email);
 
-            return BadRequest()
-                .FromProperty(requestBody.Email)
-                .WithMessage("Already confirmed.")
-                .AddCode(AuthorityErrorCodes.USER_EMAIL_CONFIRMED);
+            //if the email is already confirmed we want to return no content
+            //since this is an anonymouse endpoint and you would be able to
+            //use it to determine what emails exists otherwise
+            return NoContent();
         }
         catch (EmailConfirmationTokenNotValidException e)
         {
