@@ -34,7 +34,7 @@ public class EmailController : LexicomController
 
     [ScalarDefaultRequestBody("""
     {
-        "NewEmail": "test_b@email.com"
+        "NewEmail": "test_a@email.com"
     }
     """)]
     [HttpPost("change")]
@@ -57,7 +57,7 @@ public class EmailController : LexicomController
 
     [ScalarDefaultRequestBody("""
     {
-        "NewEmail": "test_b@email.com",
+        "NewEmail": "test_a@email.com",
         "EmailChangeToken": "<the-change-token>"
     }
     """)]

@@ -4,6 +4,7 @@ using Lexicom.Example.Cinema.Server.Movies.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Movies.Application.Models;
 using Lexicom.Example.Cinema.Server.Movies.Application.Services;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
+using Lexicom.Scalar;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,14 +51,14 @@ public class MovieController : LexicomController
         }
     }
 
-    //[SwaggerExample("""
-    //{
-    //    "Title": "Casablanca",
-    //    "Duration": "01:42:00",
-    //    "ReleaseDateTimeOffsetUtc": "1943-01-23T08:00:00Z",
-    //    "Synopsis": "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco."
-    //}
-    //""")]
+    [ScalarDefaultRequestBody("""
+    {
+        "Title": "Casablanca",
+        "Duration": "01:42:00",
+        "ReleaseDateTimeOffsetUtc": "1943-01-23T08:00:00Z",
+        "Synopsis": "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco."
+    }
+    """)]
     [HttpPost]
     [Authorize(Policy = Policies.Permissions.Movies.Movie.POST)]
     public async Task<IActionResult> CreateMovieAsync([FromBody] MoviePostRequestBody requestBody)
@@ -79,14 +80,14 @@ public class MovieController : LexicomController
         }
     }
 
-    //[SwaggerExample("""
-    //{
-    //    "NewTitle": "Star Wars",
-    //    "NewDuration": "02:01:00",
-    //    "NewReleaseDateTimeOffsetUtc": "1977-05-25T07:00:00Z",
-    //    "NewSynopsis": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader."
-    //}
-    //""")]
+    [ScalarDefaultRequestBody("""
+    {
+        "NewTitle": "Star Wars",
+        "NewDuration": "02:01:00",
+        "NewReleaseDateTimeOffsetUtc": "1977-05-25T07:00:00Z",
+        "NewSynopsis": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader."
+    }
+    """)]
     [HttpPatch("{movieId}")]
     [Authorize(Policy = Policies.Permissions.Movies.Movie.PATCH)]
     public async Task<IActionResult> UpdateMovieAsync([FromRoute] Guid movieId, [FromBody] MoviePatchRequestBody requestBody)

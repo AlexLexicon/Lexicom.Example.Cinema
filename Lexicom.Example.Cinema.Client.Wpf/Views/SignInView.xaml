@@ -65,7 +65,8 @@
                                 Margin="6"
                                 Padding="4"
                                 Content="Sign in"
-                                IsEnabled="{Binding IsValid}"/>
+                                IsEnabled="{Binding IsValid}"
+                                Command="{Binding SignInCommand}"/>
                         </Grid>
                         <StackPanel 
                             Margin="16"
