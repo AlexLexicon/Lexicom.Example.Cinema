@@ -12,6 +12,7 @@ public static class Policies
             Authority.Email.EMAIL_CHANGE_CONFIRM_POST,
             Movies.Movie.POST,
             Movies.Movie.PATCH,
+            Movies.Review.POST,
         };
 
         public static class Authority
@@ -41,6 +42,10 @@ public static class Policies
             {
                 public const string POST = "movie:post";
                 public const string PATCH = "movie:patch";
+            }
+            public static class Review
+            {
+                public const string POST = "movie:post";
             }
         }
     }

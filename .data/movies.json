@@ -484,5 +484,11 @@
         "Duration": "0.00:47:00",
         "ReleaseDateTimeOffsetUtc": "2005-07-10T00:00:00",
         "Synopsis": "While sorting the affairs of his late Uncle, a man accidentally stumbles across a series of dark secrets connected to an ancient horror waiting to be freed."
+    },
+    {
+        "Title": "Lawrence of Arabia",
+        "Duration": "0.03:47:00",
+        "ReleaseDateTimeOffsetUtc": "1962-12-16T00:00:00",
+        "Synopsis": "The story of T.E. Lawrence, the English officer who successfully united and led the diverse, often warring, Arab tribes during World War I in order to fight the Turks."
     }
 ]

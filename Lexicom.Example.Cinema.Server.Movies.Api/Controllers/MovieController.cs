@@ -53,10 +53,10 @@ public class MovieController : LexicomController
 
     [ScalarDefaultRequestBody("""
     {
-        "Title": "Casablanca",
-        "Duration": "01:42:00",
-        "ReleaseDateTimeOffsetUtc": "1943-01-23T08:00:00Z",
-        "Synopsis": "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco."
+        "Title": "My Example Movie",
+        "Duration": "01:23:45",
+        "ReleaseDateTimeOffsetUtc": "2000-01-23T12:34:56Z",
+        "Synopsis": "This is an example for the purposes of testing."
     }
     """)]
     [HttpPost]
@@ -82,10 +82,10 @@ public class MovieController : LexicomController
 
     [ScalarDefaultRequestBody("""
     {
-        "NewTitle": "Star Wars",
-        "NewDuration": "02:01:00",
-        "NewReleaseDateTimeOffsetUtc": "1977-05-25T07:00:00Z",
-        "NewSynopsis": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader."
+        "NewTitle": "My updated Example Movie",
+        "NewDuration": "05:43:21",
+        "NewReleaseDateTimeOffsetUtc": "2222-11-22T22:11:22Z",
+        "NewSynopsis": "This is an updated example for the purposes of testing!"
     }
     """)]
     [HttpPatch("{movieId}")]

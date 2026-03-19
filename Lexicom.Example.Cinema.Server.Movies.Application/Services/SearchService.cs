@@ -29,7 +29,7 @@ public class SearchService : ISearchService
         {
             string searchTextLower = searchText.ToLower();
 
-            query = query.Where(m => m.Title.Contains(searchTextLower, StringComparison.CurrentCultureIgnoreCase));
+            query = query.Where(m => m.Title.ToLower().Contains(searchTextLower));
         }
 
         List<Movie> movies = await query

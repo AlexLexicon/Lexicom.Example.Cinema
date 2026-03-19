@@ -26,6 +26,7 @@ public class CreateBasicRole : ITuiOperation
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.User.PATCH);
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.Email.EMAIL_CHANGE_POST);
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Authority.Email.EMAIL_CHANGE_CONFIRM_POST);
+        await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Movies.Review.POST);
 
         ComprehensiveRole comprehensiveRole = await _roleService.GetComprehensiveRoleAsync(role.Id);
         Console.WriteLine($"'{roleName}' Role");
