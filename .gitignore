@@ -9,10 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-*.db
-*.db-shm
-*.db-wal
-Emails/
+output/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

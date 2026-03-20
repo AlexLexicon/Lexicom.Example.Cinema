@@ -1,0 +1,14 @@
+<Project>
+  <PropertyGroup>
+    <SolutionRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'Lexicom.Example.Cinema.slnx'))\</SolutionRoot>
+
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>$(SolutionRoot)output\bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName)\</OutputPath>
+    <BaseIntermediateOutputPath>$(SolutionRoot)output\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+
+  <Target Name="CreateDatabaseDirectory" BeforeTargets="Build">
+    <MakeDir Directories="$(SolutionRoot)output\databases" />
+  </Target>
+</Project>

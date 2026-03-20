@@ -1,11 +1,12 @@
 using Lexicom.AspNetCore.Controllers.Amenities;
 using Lexicom.Example.Cinema.Server.Persons.Api.Contracts;
 using Lexicom.Example.Cinema.Server.Persons.Application.Services;
-using Lexicom.Swashbuckle;
+using Lexicom.Scalar;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lexicom.Example.Cinema.Server.Persons.Api.Controllers;
+
 [Authorize]
 [ApiController]
 [Route("api/persons/search")]
@@ -18,8 +19,8 @@ public class SearchController : LexicomController
         _searchService = searchService;
     }
 
-    [SwaggerParameter(SearchGetRequestQuery.QUERY_STRING_PAGE, 0)]
-    [SwaggerParameter(SearchGetRequestQuery.QUERY_STRING_COUNT, 20)]
+    [ScalarDefaultParameter(SearchGetRequestQuery.QUERY_STRING_PAGE, 0)]
+    [ScalarDefaultParameter(SearchGetRequestQuery.QUERY_STRING_COUNT, 20)]
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> SearchAsync(

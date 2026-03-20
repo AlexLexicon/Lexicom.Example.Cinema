@@ -20,7 +20,13 @@ public class DataService : IDataService
 
     public async Task<IReadOnlyList<MovieData>?> GetAllMovieDataAsync()
     {
-        string filePath = Path.GetFullPath(_dataOptions.Value.MoviesJsonFilePath);
+        string? relativeFilePath = _dataOptions.Value.MoviesJsonFilePath;
+        if (string.IsNullOrWhiteSpace(relativeFilePath))
+        {
+            return null;
+        }
+
+        string filePath = Path.GetFullPath(relativeFilePath);
 
         string json = await File.ReadAllTextAsync(filePath);
 
