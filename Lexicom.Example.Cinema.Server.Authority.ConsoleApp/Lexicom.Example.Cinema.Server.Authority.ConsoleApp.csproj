@@ -26,8 +26,6 @@
     <PackageReference Include="Lexicom.EntityFramework.Identity.For.ConsoleApp" Version="10.0.13" />
     <PackageReference Include="Lexicom.Logging.For.ConsoleApp" Version="10.0.13" />
     <PackageReference Include="Lexicom.Smtp.For.ConsoleApp" Version="10.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.5" />
   </ItemGroup>
 

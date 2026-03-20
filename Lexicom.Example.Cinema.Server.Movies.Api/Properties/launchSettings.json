@@ -2,7 +2,7 @@
     "$schema": "https://json.schemastore.org/launchsettings.json",
     "profiles":
     {
-        "Lexicom.Example.Cinema.Server.Movies.Api.Http.Dev":
+        "Server.Movies.Api.Http.Dev":
         {
             "commandName": "Project",
             "dotnetRunMessages": true,
@@ -14,18 +14,28 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
-        "Lexicom.Example.Cinema.Server.Movies.Api.Http.Release":
+        "Server.Movies.Api.Http.Dev.Headless":
         {
             "commandName": "Project",
             "dotnetRunMessages": true,
-            "launchBrowser": true,
-            "launchUrl": "scalar/v1",
+            "launchBrowser": false,
+            "applicationUrl": "http://localhost:5086",
+            "environmentVariables":
+            {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        "Server.Movies.Api.Http.Prd":
+        {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": false,
             "applicationUrl": "http://localhost:5086",
             "environmentVariables":
             {
             }
         },
-        "Lexicom.Example.Cinema.Server.Movies.Api.Https.Dev":
+        "Server.Movies.Api.Https.Dev":
         {
             "commandName": "Project",
             "dotnetRunMessages": true,
@@ -37,12 +47,22 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
-        "Lexicom.Example.Cinema.Server.Movies.Api.Https.Release":
+        "Server.Movies.Api.Https.Dev.Headless":
         {
             "commandName": "Project",
             "dotnetRunMessages": true,
-            "launchBrowser": true,
-            "launchUrl": "scalar/v1",
+            "launchBrowser": false,
+            "applicationUrl": "https://localhost:7107;http://localhost:5086",
+            "environmentVariables":
+            {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        "Server.Movies.Api.Https.Prd":
+        {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": false,
             "applicationUrl": "https://localhost:7107;http://localhost:5086",
             "environmentVariables":
             {

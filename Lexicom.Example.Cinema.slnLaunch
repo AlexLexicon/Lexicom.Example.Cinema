@@ -1,0 +1,92 @@
+[
+  {
+    "Name": "Dev Server",
+    "Projects": [
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Authority.Api\\Lexicom.Example.Cinema.Server.Authority.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Server.Authority.Api.Http.Dev"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Movies.Api\\Lexicom.Example.Cinema.Server.Movies.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Server.Movies.Api.Http.Dev"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Persons.Api\\Lexicom.Example.Cinema.Server.Persons.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Server.Persons.Api.Http.Dev"
+      }
+    ]
+  },
+  {
+    "Name": "Dev Server and Wpf",
+    "Projects": [
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Authority.Api\\Lexicom.Example.Cinema.Server.Authority.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Server.Authority.Api.Http.Dev.Headless"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Movies.Api\\Lexicom.Example.Cinema.Server.Movies.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Server.Movies.Api.Http.Dev.Headless"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Client.Wpf\\Lexicom.Example.Cinema.Client.Wpf.csproj",
+        "Action": "Start",
+        "DebugTarget": "Lexicom.Example.Cinema.Client.Wpf"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Persons.Api\\Lexicom.Example.Cinema.Server.Persons.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Server.Persons.Api.Http.Dev.Headless"
+      }
+    ]
+  },
+  {
+    "Name": "Dev Server and Blazor",
+    "Projects": [
+      {
+        "Path": "Lexicom.Example.Cinema.Client.Blazor.WebAssembly\\Lexicom.Example.Cinema.Client.Blazor.WebAssembly.csproj",
+        "Action": "Start",
+        "DebugTarget": "Client.Blazor.WebAssembly.Http.Dev"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Authority.Api\\Lexicom.Example.Cinema.Server.Authority.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Server.Authority.Api.Http.Dev.Headless"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Movies.Api\\Lexicom.Example.Cinema.Server.Movies.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Server.Movies.Api.Http.Dev.Headless"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Persons.Api\\Lexicom.Example.Cinema.Server.Persons.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Server.Persons.Api.Http.Dev.Headless"
+      }
+    ]
+  },
+  {
+    "Name": "Dev Console Apps",
+    "Projects": [
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Authority.ConsoleApp\\Lexicom.Example.Cinema.Server.Authority.ConsoleApp.csproj",
+        "Action": "Start",
+        "DebugTarget": "Lexicom.Example.Cinema.Server.Authority.ConsoleApp"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Movies.ConsoleApp\\Lexicom.Example.Cinema.Server.Movies.ConsoleApp.csproj",
+        "Action": "Start",
+        "DebugTarget": "Lexicom.Example.Cinema.Server.Movies.ConsoleApp"
+      },
+      {
+        "Path": "Lexicom.Example.Cinema.Server.Persons.ConsoleApp\\Lexicom.Example.Cinema.Server.Persons.ConsoleApp.csproj",
+        "Action": "Start",
+        "DebugTarget": "Lexicom.Example.Cinema.Server.Persons.ConsoleApp"
+      }
+    ]
+  }
+]

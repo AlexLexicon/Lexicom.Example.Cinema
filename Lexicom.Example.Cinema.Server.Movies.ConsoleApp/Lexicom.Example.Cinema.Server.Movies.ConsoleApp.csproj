@@ -18,14 +18,11 @@
     <PackageReference Include="Lexicom.ConsoleApp.Tui" Version="10.0.13" />
     <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.ConsoleApp" Version="10.0.13" />
     <PackageReference Include="Lexicom.Logging.For.ConsoleApp" Version="10.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Movies.Application\Lexicom.Example.Cinema.Server.Movies.Application.csproj" />
-    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Persons.Database\Lexicom.Example.Cinema.Server.Persons.Database.csproj" />
     <ProjectReference Include="..\Lexicom.Example.Cinema.Shared\Lexicom.Example.Cinema.Shared.csproj" />
   </ItemGroup>
 
