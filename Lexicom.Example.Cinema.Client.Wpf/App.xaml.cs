@@ -2,8 +2,8 @@
 using Lexicom.Concentrate.Wpf.Amenities.Extensions;
 using Lexicom.Concentrate.Wpf.Themes.Extensions;
 using Lexicom.Configuration.Settings.For.Wpf.Extensions;
-using Lexicom.Example.Cinema.Client.Core.Extensions;
-using Lexicom.Example.Cinema.Client.Core.Temp;
+using Lexicom.Example.Cinema.Client.Application.Extensions;
+using Lexicom.Example.Cinema.Client.Application.Temp;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Extensions;
 using Lexicom.Example.Cinema.Client.Wpf.Views;
@@ -23,7 +23,7 @@ using System.Windows;
 
 namespace Lexicom.Example.Cinema.Client.Wpf;
 
-public partial class App : Application
+public partial class App : System.Windows.Application
 {
     public App()
     {

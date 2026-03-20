@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:vm="clr-namespace:Lexicom.Example.Cinema.Client.Wpf.ViewModels;assembly=Lexicom.Example.Cinema.Client.Wpf.ViewModels"
-    xmlns:m="clr-namespace:Lexicom.Example.Cinema.Client.Core.Models;assembly=Lexicom.Example.Cinema.Client.Core"
+    xmlns:m="clr-namespace:Lexicom.Example.Cinema.Client.Application.Models;assembly=Lexicom.Example.Cinema.Client.Application"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance vm:NavigationDomainViewModel}"
     d:DesignWidth="240"

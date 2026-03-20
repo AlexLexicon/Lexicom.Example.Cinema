@@ -16,7 +16,7 @@
     <Project Path="Lexicom.Example.Cinema.Client.Wpf/Lexicom.Example.Cinema.Client.Wpf.csproj" />
   </Folder>
   <Folder Name="/Client/">
-    <Project Path="Lexicom.Example.Cinema.Client.Core/Lexicom.Example.Cinema.Client.Core.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Client.Application/Lexicom.Example.Cinema.Client.Application.csproj" />
   </Folder>
   <Folder Name="/Server.Authority/">
     <Project Path="Lexicom.Example.Cinema.Server.Authority.Api.Contracts/Lexicom.Example.Cinema.Server.Authority.Api.Contracts.csproj" />

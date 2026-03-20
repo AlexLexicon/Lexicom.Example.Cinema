@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lexicom.Example.Cinema.Client.Core\Lexicom.Example.Cinema.Client.Core.csproj" />
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Client.Application\Lexicom.Example.Cinema.Client.Application.csproj" />
   </ItemGroup>
 
 </Project>
