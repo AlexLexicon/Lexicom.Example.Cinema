@@ -2,9 +2,10 @@
   <Folder Name="/.data/">
     <File Path=".data/movies.json" />
   </Folder>
-  <Folder Name="/.git/">
+  <Folder Name="/.repo/">
     <File Path=".gitattributes" />
     <File Path=".gitignore" />
+    <File Path="LICENSE.txt" />
   </Folder>
   <Folder Name="/Client.Blazor.WebAssembly/">
     <Project Path="Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels/Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels.csproj" />
