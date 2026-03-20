@@ -1,10 +1,11 @@
 ﻿using Lexicom.DependencyInjection.Primitives;
-using Lexicom.Example.Cinema.Server.Movies.Application.Database;
 using Lexicom.Example.Cinema.Server.Movies.Application.Exceptions;
-using Lexicom.Example.Cinema.Server.Movies.Application.Models;
+using Lexicom.Example.Cinema.Server.Movies.Database;
+using Lexicom.Example.Cinema.Server.Movies.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicom.Example.Cinema.Server.Movies.Application.Services;
+
 public interface IMovieService
 {
     /// <exception cref="MovieDoesNotExistException"/>

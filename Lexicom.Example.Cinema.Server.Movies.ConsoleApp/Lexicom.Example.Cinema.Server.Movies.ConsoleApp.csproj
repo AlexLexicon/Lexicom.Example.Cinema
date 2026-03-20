@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Movies.Application\Lexicom.Example.Cinema.Server.Movies.Application.csproj" />
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Persons.Database\Lexicom.Example.Cinema.Server.Persons.Database.csproj" />
     <ProjectReference Include="..\Lexicom.Example.Cinema.Shared\Lexicom.Example.Cinema.Shared.csproj" />
   </ItemGroup>
 

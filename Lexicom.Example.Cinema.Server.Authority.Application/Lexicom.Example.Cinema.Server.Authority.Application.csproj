@@ -10,14 +10,13 @@
     <PackageReference Include="Lexicom.Authority" Version="10.0.13" />
     <PackageReference Include="Lexicom.Cryptography" Version="10.0.13" />
     <PackageReference Include="Lexicom.DependencyInjection.Primitives" Version="10.0.13" />
-    <PackageReference Include="Lexicom.EntityFramework.Amenities" Version="10.0.13" />
-    <PackageReference Include="Lexicom.EntityFramework.Identity" Version="10.0.13" />
     <PackageReference Include="Lexicom.Extensions.TimeSpans" Version="10.0.13" />
     <PackageReference Include="Lexicom.Http" Version="10.0.13" />
     <PackageReference Include="Lexicom.Smtp" Version="10.0.13" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Authority.Database\Lexicom.Example.Cinema.Server.Authority.Database.csproj" />
     <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Shared\Lexicom.Example.Cinema.Server.Shared.csproj" />
   </ItemGroup>
 

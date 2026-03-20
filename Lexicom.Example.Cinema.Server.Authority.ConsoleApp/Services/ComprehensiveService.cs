@@ -1,9 +1,11 @@
-﻿using Lexicom.Example.Cinema.Server.Authority.Application.Database;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+﻿using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
+using Lexicom.Example.Cinema.Server.Authority.Database;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
+
 public interface IComprehensiveService
 {
     public Task<IReadOnlyList<ComprehensiveUser>> GetComprehensiveUsersAsync();

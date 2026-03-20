@@ -1,7 +1,7 @@
 ﻿using Lexicom.ConsoleApp.Amenities;
 using Lexicom.ConsoleApp.Tui;
-using Lexicom.Example.Cinema.Server.Movies.Application.Database;
-using Lexicom.Example.Cinema.Server.Movies.Application.Models;
+using Lexicom.Example.Cinema.Server.Movies.Database;
+using Lexicom.Example.Cinema.Server.Movies.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicom.Example.Cinema.Server.Movies.ConsoleApp.Operations.Movies;

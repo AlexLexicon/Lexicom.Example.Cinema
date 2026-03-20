@@ -3,8 +3,10 @@ using Lexicom.ConsoleApp.Tui;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Roles;
+
 [TuiPage("Roles")]
 public class CreateRole : ITuiOperation
 {

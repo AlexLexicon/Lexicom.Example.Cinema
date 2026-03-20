@@ -5,7 +5,6 @@ using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Example.Cinema.Server.Movies.Api;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Extensions;
-using Lexicom.Example.Cinema.Server.Movies.Application.Database;
 using Lexicom.Example.Cinema.Server.Movies.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
 using Lexicom.Logging.AspNetCore.Controllers.Extensions;
@@ -15,7 +14,8 @@ using Lexicom.Supports.AspNetCore.Controllers.Extensions;
 using Lexicom.Validation.Amenities.Extensions;
 using Lexicom.Validation.Extensions;
 using Lexicom.Validation.For.AspNetCore.Controllers.Extensions;
-using Microsoft.EntityFrameworkCore;
+using Lexicom.Example.Cinema.Server.Movies.Database.Extensions;
+using System.Diagnostics;
 
 /*
  * Lexicom.Example.Cinema.Server.Movies.Api
@@ -36,7 +36,7 @@ builder.Lexicom(options =>
 #if DEBUG
         options.DebugExceptionHandlingMiddleware(e =>
         {
-
+            Debugger.Break();
         });
 #endif
         options.AddInvalidModelStateFactory();
@@ -65,15 +65,7 @@ builder.Lexicom(options =>
     });
 });
 
-builder.Services.AddDbContextFactory<MoviesDbContext>(options =>
-{
-    string? sqliteConnectionString = builder.Configuration.GetConnectionString("moviesdb-sqlite");
-    string? sqlConnectionString = builder.Configuration.GetConnectionString("moviesdb-sql");
-
-    options.UseSqlite(sqliteConnectionString);
-    //options.UseSqlServer(sqlConnectionString);
-});
-
+builder.Services.AddMoviesDatabase();
 builder.Services.AddMoviesApplication();
 
 var app = builder.Build();

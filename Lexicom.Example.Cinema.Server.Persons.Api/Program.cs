@@ -4,8 +4,8 @@ using Lexicom.Authorization.AspNetCore.Controllers.Extensions;
 using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Example.Cinema.Server.Persons.Api;
-using Lexicom.Example.Cinema.Server.Persons.Application.Database;
 using Lexicom.Example.Cinema.Server.Persons.Application.Extensions;
+using Lexicom.Example.Cinema.Server.Persons.Database.Extensions;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
 using Lexicom.Logging.AspNetCore.Controllers.Extensions;
 using Lexicom.Scalar.Extensions;
@@ -14,7 +14,7 @@ using Lexicom.Supports.AspNetCore.Controllers.Extensions;
 using Lexicom.Validation.Amenities.Extensions;
 using Lexicom.Validation.Extensions;
 using Lexicom.Validation.For.AspNetCore.Controllers.Extensions;
-using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 /*
  * Lexicom.Example.Cinema.Server.Persons.Api
@@ -35,7 +35,7 @@ builder.Lexicom(options =>
 #if DEBUG
         options.DebugExceptionHandlingMiddleware(e =>
         {
-
+            Debugger.Break();
         });
 #endif
         options.AddInvalidModelStateFactory();
@@ -64,15 +64,7 @@ builder.Lexicom(options =>
     });
 });
 
-builder.Services.AddDbContextFactory<PersonsDbContext>(options =>
-{
-    string? sqliteConnectionString = builder.Configuration.GetConnectionString("personsdb-sqlite");
-    string? sqlConnectionString = builder.Configuration.GetConnectionString("personsdb-sql");
-
-    options.UseSqlite(sqliteConnectionString);
-    //options.UseSqlServer(sqlConnectionString);
-});
-
+builder.Services.AddPersonsDatabase();
 builder.Services.AddPersonsApplication();
 
 var app = builder.Build();

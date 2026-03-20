@@ -2,9 +2,9 @@
 using Lexicom.EntityFramework.Identity.Options;
 using Lexicom.EntityFramework.Identity.Validators;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Options;
 using Lexicom.Example.Cinema.Server.Authority.Application.Validators;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Lexicom.Extensions.TimeSpans;
 using Lexicom.Http;
 using Lexicom.Smtp;
@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
+
 public interface IEmailService
 {
     /// <exception cref="UserDoesNotExistException"/>

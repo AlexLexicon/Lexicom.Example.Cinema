@@ -1,9 +1,10 @@
-﻿using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+﻿using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Lexicom.Jwt;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.UnitTests.Testing.Extensions;
+
 public static class RoleManagerExtensions
 {
     public static async Task<Role> CreateAsync(this RoleManager<Role> roleManager, string? name = null)

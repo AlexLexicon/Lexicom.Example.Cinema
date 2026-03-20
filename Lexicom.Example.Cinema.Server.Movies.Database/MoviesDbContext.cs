@@ -1,7 +1,8 @@
-﻿using Lexicom.Example.Cinema.Server.Movies.Application.Models;
+﻿using Lexicom.Example.Cinema.Server.Movies.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lexicom.Example.Cinema.Server.Movies.Application.Database;
+namespace Lexicom.Example.Cinema.Server.Movies.Database;
+
 public class MoviesDbContext : DbContext
 {
     public MoviesDbContext(DbContextOptions options) : base(options)

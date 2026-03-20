@@ -2,9 +2,11 @@
 using Lexicom.ConsoleApp.Tui;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Seed;
+
 [TuiPage("Seed")]
 public class CreateBasicRole : ITuiOperation
 {

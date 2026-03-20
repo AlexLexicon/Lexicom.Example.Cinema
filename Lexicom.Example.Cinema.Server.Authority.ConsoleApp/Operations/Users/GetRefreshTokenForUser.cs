@@ -1,11 +1,13 @@
 ﻿using Lexicom.ConsoleApp.Amenities;
 using Lexicom.ConsoleApp.Tui;
-using Lexicom.Example.Cinema.Server.Authority.Application.Database;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
+using Lexicom.Example.Cinema.Server.Authority.Database;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Users;
+
 [TuiPage("Users")]
 public class GetRefreshTokenForUser : ITuiOperation
 {
@@ -13,7 +15,7 @@ public class GetRefreshTokenForUser : ITuiOperation
     private readonly IComprehensiveService _comprehensiveService;
 
     public GetRefreshTokenForUser(
-        IDbContextFactory<AuthorityDbContext> dbContextFactory, 
+        IDbContextFactory<AuthorityDbContext> dbContextFactory,
         IComprehensiveService comprehensiveService)
     {
         _dbContextFactory = dbContextFactory;

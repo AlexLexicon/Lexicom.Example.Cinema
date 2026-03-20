@@ -25,6 +25,7 @@
     <Project Path="Lexicom.Example.Cinema.Server.Authority.Application.UnitTests/Lexicom.Example.Cinema.Server.Authority.Application.UnitTests.csproj" />
     <Project Path="Lexicom.Example.Cinema.Server.Authority.Application/Lexicom.Example.Cinema.Server.Authority.Application.csproj" />
     <Project Path="Lexicom.Example.Cinema.Server.Authority.ConsoleApp/Lexicom.Example.Cinema.Server.Authority.ConsoleApp.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Authority.Database/Lexicom.Example.Cinema.Server.Authority.Database.csproj" Id="508a6ebb-dd99-4467-8293-a42057a28771" />
   </Folder>
   <Folder Name="/Server.Movies/">
     <Project Path="Lexicom.Example.Cinema.Server.Movies.Api.Contracts/Lexicom.Example.Cinema.Server.Movies.Api.Contracts.csproj" />
@@ -32,12 +33,15 @@
     <Project Path="Lexicom.Example.Cinema.Server.Movies.Application.UnitTests/Lexicom.Example.Cinema.Server.Movies.Application.UnitTests.csproj" />
     <Project Path="Lexicom.Example.Cinema.Server.Movies.Application/Lexicom.Example.Cinema.Server.Movies.Application.csproj" />
     <Project Path="Lexicom.Example.Cinema.Server.Movies.ConsoleApp/Lexicom.Example.Cinema.Server.Movies.ConsoleApp.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Movies.Database/Lexicom.Example.Cinema.Server.Movies.Database.csproj" Id="1397f67b-3642-4d99-bf8e-c223ef629aa9" />
   </Folder>
   <Folder Name="/Server.Persons/">
     <Project Path="Lexicom.Example.Cinema.Server.Persons.Api.Contracts/Lexicom.Example.Cinema.Server.Persons.Api.Contracts.csproj" />
     <Project Path="Lexicom.Example.Cinema.Server.Persons.Api/Lexicom.Example.Cinema.Server.Persons.Api.csproj" />
     <Project Path="Lexicom.Example.Cinema.Server.Persons.Application.UnitTests/Lexicom.Example.Cinema.Server.Persons.Application.UnitTests.csproj" />
     <Project Path="Lexicom.Example.Cinema.Server.Persons.Application/Lexicom.Example.Cinema.Server.Persons.Application.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Persons.ConsoleApp/Lexicom.Example.Cinema.Server.Persons.ConsoleApp.csproj" Id="8aabb730-f9e7-40c5-9f31-45676a8aa015" />
+    <Project Path="Lexicom.Example.Cinema.Server.Persons.Database/Lexicom.Example.Cinema.Server.Persons.Database.csproj" Id="583dfa77-3387-4240-99a7-8993ca25b6dd" />
   </Folder>
   <Folder Name="/Server.Shared/">
     <Project Path="Lexicom.Example.Cinema.Server.Shared/Lexicom.Example.Cinema.Server.Shared.csproj" />

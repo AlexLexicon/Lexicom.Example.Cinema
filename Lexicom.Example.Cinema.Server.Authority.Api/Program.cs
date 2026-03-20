@@ -7,11 +7,9 @@ using Lexicom.Cryptography.AspNetCore.Controllers.Extensions;
 using Lexicom.Cryptography.Extensions;
 using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers.Extensions;
-using Lexicom.EntityFramework.Identity.AspNetCore.Controllers.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Api;
-using Lexicom.Example.Cinema.Server.Authority.Application.Database;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+using Lexicom.Example.Cinema.Server.Authority.Database.Extensions;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
 using Lexicom.Logging.AspNetCore.Controllers.Extensions;
 using Lexicom.Scalar.Extensions;
@@ -21,7 +19,7 @@ using Lexicom.Supports.AspNetCore.Controllers.Extensions;
 using Lexicom.Validation.Amenities.Extensions;
 using Lexicom.Validation.Extensions;
 using Lexicom.Validation.For.AspNetCore.Controllers.Extensions;
-using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 /*
  * Lexicom.Example.Cinema.Server.Authority.Api
@@ -42,7 +40,7 @@ builder.Lexicom(options =>
 #if DEBUG
         options.DebugExceptionHandlingMiddleware(e =>
         {
-
+            Debugger.Break();
         });
 #endif
         options.AddInvalidModelStateFactory();
@@ -60,7 +58,6 @@ builder.Lexicom(options =>
     {
         options.AddPermissions(Policies.Permissions.All);
     });
-    options.AddEntityFrameworkIdentity<AuthorityDbContext, User, Role, Guid>();
     options.AddScalar();
     options.AddValidation(options =>
     {
@@ -84,15 +81,7 @@ builder.Lexicom(options =>
     });
 });
 
-builder.Services.AddDbContextFactory<AuthorityDbContext>(options =>
-{
-    string? sqliteConnectionString = builder.Configuration.GetConnectionString("authoritydb-sqlite");
-    string? sqlConnectionString = builder.Configuration.GetConnectionString("authoritydb-sql");
-
-    options.UseSqlite(sqliteConnectionString);
-    //options.UseSqlServer(sqlConnectionString);
-});
-
+builder.Services.AddAuthorityDatabase();
 builder.Services.AddAuthorityApplication();
 
 var app = builder.Build();

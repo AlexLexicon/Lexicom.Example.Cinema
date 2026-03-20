@@ -1,9 +1,10 @@
-﻿using Lexicom.Example.Cinema.Server.Authority.Application.Database;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+﻿using Lexicom.Example.Cinema.Server.Authority.Database;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.UnitTests.Testing.Extensions;
+
 public static class UserManagerExtensions
 {
     public static async Task<User> CreateAsync(this UserManager<User> userManager, Guid? id = null, string? email = null, string password = "Password1234!", string? firstName = null, string? lastName = null)

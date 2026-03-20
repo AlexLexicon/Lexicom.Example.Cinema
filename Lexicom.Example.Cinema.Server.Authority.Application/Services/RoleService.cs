@@ -4,11 +4,13 @@ using Lexicom.EntityFramework.Identity.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Lexicom.Jwt;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
+
 public interface IRoleService
 {
     /// <exception cref="RoleDoesNotExistException"/>

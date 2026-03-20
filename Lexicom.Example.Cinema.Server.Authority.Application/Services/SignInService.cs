@@ -1,9 +1,10 @@
 ﻿using Lexicom.Authority;
 using Lexicom.DependencyInjection.Primitives;
-using Lexicom.Example.Cinema.Server.Authority.Application.Database;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+using Lexicom.Example.Cinema.Server.Authority.Database;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Lexicom.Jwt.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

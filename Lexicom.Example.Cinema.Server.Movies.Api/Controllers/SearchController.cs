@@ -1,8 +1,8 @@
 ﻿using Lexicom.AspNetCore.Controllers.Amenities;
 using Lexicom.EntityFramework.Amenities;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts;
-using Lexicom.Example.Cinema.Server.Movies.Application.Models;
 using Lexicom.Example.Cinema.Server.Movies.Application.Services;
+using Lexicom.Example.Cinema.Server.Movies.Database.Entities;
 using Lexicom.Scalar;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

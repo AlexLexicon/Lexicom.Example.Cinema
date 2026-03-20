@@ -1,9 +1,10 @@
 ﻿using Lexicom.EntityFramework.Amenities;
-using Lexicom.Example.Cinema.Server.Movies.Application.Database;
-using Lexicom.Example.Cinema.Server.Movies.Application.Models;
+using Lexicom.Example.Cinema.Server.Movies.Database;
+using Lexicom.Example.Cinema.Server.Movies.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicom.Example.Cinema.Server.Movies.Application.Services;
+
 public interface ISearchService
 {
     Task<Slice<Movie>> SearchMoviesAsync(int pageIndex, int moviesPerPage, string? titleSearchText);

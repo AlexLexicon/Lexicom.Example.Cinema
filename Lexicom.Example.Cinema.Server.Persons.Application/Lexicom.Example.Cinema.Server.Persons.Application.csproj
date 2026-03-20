@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Persons.Database\Lexicom.Example.Cinema.Server.Persons.Database.csproj" />
+  </ItemGroup>
+
 </Project>

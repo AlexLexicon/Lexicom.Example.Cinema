@@ -1,8 +1,9 @@
 ﻿using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
+
 public interface ICommunicationService
 {
     /// <exception cref="UserDoesNotExistException"/>

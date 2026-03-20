@@ -3,13 +3,15 @@ using Lexicom.DependencyInjection.Primitives;
 using Lexicom.EntityFramework.Amenities.Exceptions;
 using Lexicom.EntityFramework.Identity.Exceptions;
 using Lexicom.EntityFramework.Identity.Extensions;
-using Lexicom.Example.Cinema.Server.Authority.Application.Database;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+using Lexicom.Example.Cinema.Server.Authority.Database;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
+
 public interface IUserService
 {
     /// <exception cref="UserDoesNotExistException"/>

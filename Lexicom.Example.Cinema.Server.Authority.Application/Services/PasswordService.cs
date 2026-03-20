@@ -1,10 +1,11 @@
 ﻿using Lexicom.EntityFramework.Identity.Exceptions;
 using Lexicom.EntityFramework.Identity.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
+
 public interface IPasswordService
 {
     /// <exception cref="UserDoesNotExistException"/>
