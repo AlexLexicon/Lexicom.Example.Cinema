@@ -1,0 +1,46 @@
+<Solution>
+  <Folder Name="/.data/">
+    <File Path=".data/movies.json" />
+  </Folder>
+  <Folder Name="/.git/">
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+  </Folder>
+  <Folder Name="/Client.Blazor.WebAssembly/">
+    <Project Path="Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels/Lexicom.Example.Cinema.Client.Blazor.WebAssembly.ViewModels.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Client.Blazor.WebAssembly/Lexicom.Example.Cinema.Client.Blazor.WebAssembly.csproj" />
+  </Folder>
+  <Folder Name="/Client.Wpf/">
+    <Project Path="Lexicom.Example.Cinema.Client.Wpf.ViewModels/Lexicom.Example.Cinema.Client.Wpf.ViewModels.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Client.Wpf/Lexicom.Example.Cinema.Client.Wpf.csproj" />
+  </Folder>
+  <Folder Name="/Client/">
+    <Project Path="Lexicom.Example.Cinema.Client.Application/Lexicom.Example.Cinema.Client.Application.csproj" />
+  </Folder>
+  <Folder Name="/Server.Authority/">
+    <Project Path="Lexicom.Example.Cinema.Server.Authority.Api.Contracts/Lexicom.Example.Cinema.Server.Authority.Api.Contracts.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Authority.Api/Lexicom.Example.Cinema.Server.Authority.Api.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Authority.Application.UnitTests/Lexicom.Example.Cinema.Server.Authority.Application.UnitTests.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Authority.Application/Lexicom.Example.Cinema.Server.Authority.Application.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Authority.ConsoleApp/Lexicom.Example.Cinema.Server.Authority.ConsoleApp.csproj" />
+  </Folder>
+  <Folder Name="/Server.Movies/">
+    <Project Path="Lexicom.Example.Cinema.Server.Movies.Api.Contracts/Lexicom.Example.Cinema.Server.Movies.Api.Contracts.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Movies.Api/Lexicom.Example.Cinema.Server.Movies.Api.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Movies.Application.UnitTests/Lexicom.Example.Cinema.Server.Movies.Application.UnitTests.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Movies.Application/Lexicom.Example.Cinema.Server.Movies.Application.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Movies.ConsoleApp/Lexicom.Example.Cinema.Server.Movies.ConsoleApp.csproj" />
+  </Folder>
+  <Folder Name="/Server.Persons/">
+    <Project Path="Lexicom.Example.Cinema.Server.Persons.Api.Contracts/Lexicom.Example.Cinema.Server.Persons.Api.Contracts.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Persons.Api/Lexicom.Example.Cinema.Server.Persons.Api.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Persons.Application.UnitTests/Lexicom.Example.Cinema.Server.Persons.Application.UnitTests.csproj" />
+    <Project Path="Lexicom.Example.Cinema.Server.Persons.Application/Lexicom.Example.Cinema.Server.Persons.Application.csproj" />
+  </Folder>
+  <Folder Name="/Server.Shared/">
+    <Project Path="Lexicom.Example.Cinema.Server.Shared/Lexicom.Example.Cinema.Server.Shared.csproj" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="Lexicom.Example.Cinema.Shared/Lexicom.Example.Cinema.Shared.csproj" />
+  </Folder>
+</Solution>
