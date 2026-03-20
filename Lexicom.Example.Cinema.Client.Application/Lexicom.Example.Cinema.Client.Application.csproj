@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.AspNetCore.Controllers.Contracts" Version="10.0.9" />
-    <PackageReference Include="Lexicom.Concentrate.Client.Authentication" Version="10.0.4" />
-    <PackageReference Include="Lexicom.Extensions.Expressions" Version="10.0.9" />
-    <PackageReference Include="Lexicom.Http" Version="10.0.9" />
-    <PackageReference Include="Lexicom.Mvvm.Amenities" Version="10.0.9" />
-    <PackageReference Include="Lexicom.Validation.Options" Version="10.0.9" />
+    <PackageReference Include="Lexicom.AspNetCore.Controllers.Contracts" Version="10.0.13" />
+    <PackageReference Include="Lexicom.Concentrate.Client.Authentication" Version="10.0.5" />
+    <PackageReference Include="Lexicom.Extensions.Expressions" Version="10.0.13" />
+    <PackageReference Include="Lexicom.Http" Version="10.0.13" />
+    <PackageReference Include="Lexicom.Mvvm.Amenities" Version="10.0.13" />
+    <PackageReference Include="Lexicom.Validation.Options" Version="10.0.13" />
   </ItemGroup>
 
   <ItemGroup>
