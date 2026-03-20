@@ -18,14 +18,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lexicom.Authority.For.ConsoleApp" Version="10.0.13" />
-    <PackageReference Include="Lexicom.ConsoleApp.Amenities" Version="10.0.13" />
-    <PackageReference Include="Lexicom.ConsoleApp.Tui" Version="10.0.13" />
-    <PackageReference Include="Lexicom.Cryptography.For.ConsoleApp" Version="10.0.13" />
-    <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.ConsoleApp" Version="10.0.13" />
-    <PackageReference Include="Lexicom.EntityFramework.Identity.For.ConsoleApp" Version="10.0.13" />
-    <PackageReference Include="Lexicom.Logging.For.ConsoleApp" Version="10.0.13" />
-    <PackageReference Include="Lexicom.Smtp.For.ConsoleApp" Version="10.0.13" />
+    <PackageReference Include="Lexicom.Authority.For.ConsoleApp" Version="10.0.14" />
+    <PackageReference Include="Lexicom.ConsoleApp.Amenities" Version="10.0.14" />
+    <PackageReference Include="Lexicom.ConsoleApp.Tui" Version="10.0.14" />
+    <PackageReference Include="Lexicom.Cryptography.For.ConsoleApp" Version="10.0.14" />
+    <PackageReference Include="Lexicom.DependencyInjection.Primitives.For.ConsoleApp" Version="10.0.14" />
+    <PackageReference Include="Lexicom.EntityFramework.Identity.For.ConsoleApp" Version="10.0.14" />
+    <PackageReference Include="Lexicom.Logging.For.ConsoleApp" Version="10.0.14" />
+    <PackageReference Include="Lexicom.Smtp.For.ConsoleApp" Version="10.0.14" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.5" />
   </ItemGroup>
 

@@ -51,4 +51,4 @@ builder.Services.AddAuthorityApplication();
 
 ConsoleApplication app = builder.Build();
 
-await app.RunLexicomTuiAsync();
+await app.RunLexicomTuiAsync("Lexicom.Example.Cinema.Server.Authority.ConsoleApp");

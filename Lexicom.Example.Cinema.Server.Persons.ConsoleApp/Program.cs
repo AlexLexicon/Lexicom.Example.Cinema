@@ -31,4 +31,4 @@ builder.Services.AddPersonsApplication();
 
 ConsoleApplication app = builder.Build();
 
-await app.RunLexicomTuiAsync();
+await app.RunLexicomTuiAsync("Lexicom.Example.Cinema.Server.Persons.ConsoleApp");
