@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Lexicom.Example.Cinema.Client.Application.Mediator;
-using Lexicom.Example.Cinema.Client.Application.Models;
+using Lexicom.Example.Cinema.Client.Core.Mediator;
+using Lexicom.Example.Cinema.Client.Core.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
 using MediatR;
 

@@ -7,7 +7,7 @@
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:v="clr-namespace:Lexicom.Example.Cinema.Client.Wpf.Views"
     xmlns:vm="clr-namespace:Lexicom.Example.Cinema.Client.Wpf.ViewModels;assembly=Lexicom.Example.Cinema.Client.Wpf.ViewModels"
-    xmlns:m="clr-namespace:Lexicom.Example.Cinema.Client.Application.Models;assembly=Lexicom.Example.Cinema.Client.Application"
+    xmlns:m="clr-namespace:Lexicom.Example.Cinema.Client.Core.Models;assembly=Lexicom.Example.Cinema.Client.Core"
     mc:Ignorable="d"
     d:DesignWidth="240"
     d:DesignHeight="736"
