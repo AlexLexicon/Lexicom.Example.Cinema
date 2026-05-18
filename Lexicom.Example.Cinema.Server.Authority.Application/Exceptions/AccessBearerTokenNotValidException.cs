@@ -1,10 +1,7 @@
 ﻿using Lexicom.Jwt.Exceptions;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-public class AccessBearerTokenNotValidException : BearerTokenNotValidException
+
+public class AccessBearerTokenNotValidException(string? bearerToken) : BearerTokenNotValidException(bearerToken, "access")
 {
-    public AccessBearerTokenNotValidException(string bearerToken) : base(bearerToken, "access")
-    {
-        
-    }
 }

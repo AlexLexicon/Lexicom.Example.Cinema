@@ -1,13 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Mvvm.Extensions;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class NavigationDomainViewModel : ObservableObject, INotificationHandler<DomainSelectedNotification>, INotificationHandler<OpenPagesCountChangedNotification>
+public partial class NavigationDomainViewModel : ObservableObject, INotificationHandler<DomainSelectedNotification>, INotificationHandler<OpenPagesCountChangedMessage>
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _mediator;
 
     public NavigationDomainViewModel(
         Domains domain,
@@ -34,7 +36,7 @@ public partial class NavigationDomainViewModel : ObservableObject, INotification
         return Task.CompletedTask;
     }
 
-    public Task Handle(OpenPagesCountChangedNotification notification, CancellationToken cancellationToken)
+    public Task Handle(OpenPagesCountChangedMessage notification, CancellationToken cancellationToken)
     {
         if (notification.Domain == Domain)
         {
@@ -55,7 +57,7 @@ public partial class NavigationDomainViewModel : ObservableObject, INotification
     {
         await _mediator.Publish(new HidePagesNotification());
         await _mediator.Publish(new DomainSelectedNotification(Domain));
-        await _mediator.Publish(new OpenPageNotification(Domain, Guid.Empty));
+        await _mediator.ScheduleAsync(new OpenPageMessage(Domain, Guid.Empty));
     }
 
     [RelayCommand]

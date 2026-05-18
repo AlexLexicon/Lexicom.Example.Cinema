@@ -1,21 +1,18 @@
-﻿using FluentValidation;
-using Lexicom.Example.Cinema.Server.Authority.Application.Options;
-using Lexicom.Validation.Amenities.Extensions;
+﻿using Lexicom.Example.Cinema.Server.Authority.Application.Options;
+using Lexicom.Validation.Amenities.RuleSets;
+using Lexicom.Validation.Extensions;
 using Lexicom.Validation.Options;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Validators;
+
 public class UrlsOptionsValidator : AbstractOptionsValidator<UrlsOptions>
 {
-    public UrlsOptionsValidator()
+    public UrlsOptionsValidator(RequiredRuleSet requiredRuleSet)
     {
         RuleFor(o => o.ConfirmationEmailUrl)
-            .NotNull()
-            .NotSimplyEmpty()
-            .NotAllWhitespaces();
+            .UseRuleSet(requiredRuleSet);
 
         RuleFor(o => o.ForgotPasswordEmailUrl)
-            .NotNull()
-            .NotSimplyEmpty()
-            .NotAllWhitespaces();
+            .UseRuleSet(requiredRuleSet);
     }
 }

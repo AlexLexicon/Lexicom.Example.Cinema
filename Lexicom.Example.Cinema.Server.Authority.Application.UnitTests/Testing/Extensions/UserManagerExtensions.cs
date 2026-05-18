@@ -21,6 +21,9 @@ public static class UserManagerExtensions
             Email = email,
             FirstNameEncryptedBase64 = firstName,
             LastNameEncryptedBase64 = lastName,
+            CreatedDateTimeOffsetUtc = DateTimeOffset.UtcNow,
+            VerifiedDateTimeOffsetUtc = DateTimeOffset.UtcNow,
+            LastSignInDateTimeOffsetUtc = DateTimeOffset.UtcNow,
         };
 
         await userManager.CreateAsync(user, password);

@@ -11,7 +11,7 @@ using Lexicom.Example.Cinema.Server.Authority.Api;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Database.Extensions;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
-using Lexicom.Logging.AspNetCore.Controllers.Extensions;
+using Lexicom.Logging.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Scalar.Extensions;
 using Lexicom.Smtp.AspNetCore.Controllers.Extensions;
 using Lexicom.Smtp.Extensions;

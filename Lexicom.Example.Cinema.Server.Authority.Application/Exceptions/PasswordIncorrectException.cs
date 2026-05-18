@@ -1,7 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-public class PasswordIncorrectException : Exception
+
+public class PasswordIncorrectException() : Exception("The password was incorrect.")
 {
-    public PasswordIncorrectException() : base("The password was incorrect.")
-    {
-    }
 }

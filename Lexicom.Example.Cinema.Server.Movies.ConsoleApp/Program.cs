@@ -1,5 +1,4 @@
-﻿using Lexicom.AspNetCore.Controllers.Extensions;
-using Lexicom.ConsoleApp.DependencyInjection;
+﻿using Lexicom.ConsoleApp.DependencyInjection;
 using Lexicom.ConsoleApp.Tui.Extensions;
 using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.ConsoleApp.Extensions;
@@ -8,6 +7,7 @@ using Lexicom.Example.Cinema.Server.Movies.ConsoleApp;
 using Lexicom.Example.Cinema.Server.Movies.Database.Extensions;
 using Lexicom.Example.Cinema.Shared.Extensions;
 using Lexicom.Logging.ConsoleApp.Extensions;
+using Lexicom.Supports.ConsoleApp.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 /*

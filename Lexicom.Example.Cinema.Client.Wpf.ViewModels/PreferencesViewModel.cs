@@ -2,10 +2,11 @@
 using CommunityToolkit.Mvvm.Input;
 using Lexicom.Concentrate.Wpf.Themes;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
-using MediatR;
+using Lexicom.Mvvm;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class PreferencesViewModel : ObservableObject, INotificationHandler<ShowPreferenceViewNotification>
+
+public partial class PreferencesViewModel : DisposableObservableObject, IAsyncRecipient<ShowPreferenceViewMessage>
 {
     private readonly IThemeService _themeService;
 
@@ -15,27 +16,29 @@ public partial class PreferencesViewModel : ObservableObject, INotificationHandl
     }
 
     [ObservableProperty]
-    private bool _isVisible;
-    [ObservableProperty]
-    private IReadOnlyList<string>? _themes;
-    [ObservableProperty]
-    private string? _selectedTheme;
+    public partial bool IsVisible { get; set; }
 
-    public Task Handle(ShowPreferenceViewNotification notification, CancellationToken cancellationToken)
+    [ObservableProperty]
+    public partial IReadOnlyList<string>? Themes { get; set; }
+
+    [ObservableProperty]
+    public partial string? SelectedTheme { get; set; }
+
+    public override void Dispose()
+    {
+        base.Dispose();
+    }
+
+    public async Task LoadAsync()
+    {
+        await RefreshAsync();
+    }
+
+    public async Task ReceiveAsync(ShowPreferenceViewMessage message, CancellationToken cancellationToken)
     {
         IsVisible = true;
 
-        return Task.CompletedTask;
-    }
-
-    [RelayCommand]
-    private async Task LoadedAsync()
-    {
-        var getThemesTask = _themeService.GetThemesAsync();
-        var getThemeTask = _themeService.GetThemeAsync();
-
-        Themes = await getThemesTask;
-        SelectedTheme = await getThemeTask;
+        await RefreshAsync();
     }
 
     [RelayCommand]
@@ -51,5 +54,14 @@ public partial class PreferencesViewModel : ObservableObject, INotificationHandl
         {
             await _themeService.SetThemeAsync(SelectedTheme);
         }
+    }
+
+    private async Task RefreshAsync()
+    {
+        var getThemesTask = _themeService.GetThemesAsync();
+        var getThemeTask = _themeService.GetThemeAsync();
+
+        Themes = await getThemesTask;
+        SelectedTheme = await getThemeTask;
     }
 }

@@ -1,26 +1,28 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
 using Lexicom.Mvvm;
+using Lexicom.Mvvm.Extensions;
 using Lexicom.Wpf.Amenities.Threading;
-using MediatR;
 using System.Collections.ObjectModel;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class NavigationPagesViewModel<TNavigationPageViewModel> : ObservableObject, INotificationHandler<DomainSelectedNotification>, INotificationHandler<OpenPageNotification>, INotificationHandler<ClosePageNotification> where TNavigationPageViewModel : NavigationPageViewModel
+
+public partial class NavigationPagesViewModel<TNavigationPageViewModel> : DisposableObservableObject, IAsyncRecipient<DomainSelectedNotification>, IAsyncRecipient<OpenPageMessage>, IAsyncRecipient<ClosePageMessage> where TNavigationPageViewModel : NavigationPageViewModel
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _messenger;
     private readonly IViewModelFactory _viewModelFactory;
     private readonly IDispatcher _dspatcher;
 
     public NavigationPagesViewModel(
-        IMediator mediator,
+        IMessenger messenger,
         IViewModelFactory viewModelFactory,
         IDispatcher dspatcher)
     {
-        _mediator = mediator;
+        _messenger = messenger;
         _viewModelFactory = viewModelFactory;
         _dspatcher = dspatcher;
 
@@ -42,54 +44,63 @@ public partial class NavigationPagesViewModel<TNavigationPageViewModel> : Observ
             throw new NotSupportedException($"The type '{pageViewModelType.FullName}' is not a valid type because it was not able to be converted to a '{typeof(Domains).FullName}'.");
         }
 
-        _pageViewModels = new ObservableCollection<TNavigationPageViewModel>();
+        PageViewModels = [];
     }
 
-    [ObservableProperty]
-    private NavigationPageSearchViewModel? _pageSearchViewModel;
-    [ObservableProperty]
-    private Domains _domain;
-    [ObservableProperty]
-    private ObservableCollection<TNavigationPageViewModel> _pageViewModels;
-    [ObservableProperty]
-    private bool _isVisible;
-    [ObservableProperty]
-    private bool _hasPageViewModels;
+    public ObservableCollection<TNavigationPageViewModel> PageViewModels { get; set; }
 
-    public virtual Task Handle(DomainSelectedNotification notification, CancellationToken cancellationToken)
+    public Domains Domain { get; }
+
+    [ObservableProperty]
+    public partial NavigationPageSearchViewModel? PageSearchViewModel { get; set; }
+
+    [ObservableProperty]
+    public partial bool IsVisible { get; set; }
+
+    [ObservableProperty]
+    public partial bool HasPageViewModels { get; set; }
+
+    public async Task LoadAsync()
     {
-        IsVisible = notification.SelectedDomain == Domain;
+        PageSearchViewModel = _viewModelFactory.Create<NavigationPageSearchViewModel, Domains>(Domain);
+
+        await _messenger.SendAsync(new HidePagesNotification());
+        await _messenger.SendAsync(new OpenPageMessage(Domain, Guid.Empty));
+    }
+
+    public Task ReceiveAsync(DomainSelectedNotification message, CancellationToken cancellationToken)
+    {
+        IsVisible = message.SelectedDomain == Domain;
 
         return Task.CompletedTask;
     }
 
-    public virtual async Task Handle(OpenPageNotification notification, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(OpenPageMessage message, CancellationToken cancellationToken)
     {
-        await _dspatcher.InvokeAsync(async () =>
+        if (message.Domain == Domain && message.PageId != Guid.Empty)
         {
-            if (notification.Domain == Domain && notification.Id != Guid.Empty)
+            bool pageViewModelExists = PageViewModels.Any(pvm => pvm.Id == message.PageId);
+
+            if (!pageViewModelExists)
             {
-                bool pageViewModelExists = PageViewModels.Any(pvm => pvm.Id == notification.Id);
+                var vm = _viewModelFactory.Create<TNavigationPageViewModel, Guid>(message.PageId);
 
-                if (!pageViewModelExists)
-                {
-                    var viewModel = _viewModelFactory.Create<TNavigationPageViewModel, Guid>(notification.Id);
+                await vm.LoadAsync();
 
-                    PageViewModels.Add(viewModel);
+                PageViewModels.Add(vm);
 
-                    HasPageViewModels = PageViewModels.Any();
-                }
-
-                await _mediator.Publish(new OpenPagesCountChangedNotification(Domain, PageViewModels.Count), cancellationToken);
+                HasPageViewModels = PageViewModels.Any();
             }
-        });
+
+            await _messenger.SendAsync(new OpenPagesCountChangedMessage(Domain, PageViewModels.Count), cancellationToken);
+        }
     }
 
-    public virtual async Task Handle(ClosePageNotification notification, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(ClosePageMessage message, CancellationToken cancellationToken)
     {
-        if (notification.Domain == Domain)
+        if (message.Domain == Domain)
         {
-            TNavigationPageViewModel? pageViewModel = PageViewModels.FirstOrDefault(pvm => pvm.Id == notification.Id);
+            TNavigationPageViewModel? pageViewModel = PageViewModels.FirstOrDefault(pvm => pvm.Id == message.PageId);
 
             if (pageViewModel is not null)
             {
@@ -98,30 +109,21 @@ public partial class NavigationPagesViewModel<TNavigationPageViewModel> : Observ
                 HasPageViewModels = PageViewModels.Any();
             }
 
-            await _mediator.Publish(new OpenPagesCountChangedNotification(Domain, PageViewModels.Count), cancellationToken);
+            await _messenger.SendAsync(new OpenPagesCountChangedMessage(Domain, PageViewModels.Count), cancellationToken);
         }
-    }
-
-    [RelayCommand]
-    private async Task LoadedAsync()
-    {
-        PageSearchViewModel = _viewModelFactory.Create<NavigationPageSearchViewModel, Domains>(Domain);
-
-        await _mediator.Publish(new HidePagesNotification());
-        await _mediator.Publish(new OpenPageNotification(Domain, Guid.Empty));
     }
 
     [RelayCommand]
     private async Task DismissAsync()
     {
-        await _mediator.Publish(new HidePagesNotification());
-        await _mediator.Publish(new DismissPageNotification(Domain));
-        await _mediator.Publish(new OpenPageNotification(Domain, Guid.Empty));
+        await _messenger.SendAsync(new HidePagesNotification());
+        await _messenger.SendAsync(new DismissPageNotification(Domain));
+        await _messenger.SendAsync(new OpenPageMessage(Domain, Guid.Empty));
     }
 
     [RelayCommand]
     private async Task CreatePageAsync()
     {
-        await _mediator.Publish(new CreatePageNotification(Domain));
+        await _messenger.SendAsync(new CreatePageNotification(Domain));
     }
 }

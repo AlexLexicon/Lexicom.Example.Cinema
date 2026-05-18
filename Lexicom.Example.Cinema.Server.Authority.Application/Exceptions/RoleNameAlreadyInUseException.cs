@@ -1,7 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-public class RoleNameAlreadyInUseException : Exception
+
+public class RoleNameAlreadyInUseException(string? roleName) : Exception($"The role with the name '{roleName ?? "null"}' is already in use.")
 {
-    public RoleNameAlreadyInUseException(string roleName) : base($"The role with the name '{roleName}' is already in use.")
-    {
-    }
 }

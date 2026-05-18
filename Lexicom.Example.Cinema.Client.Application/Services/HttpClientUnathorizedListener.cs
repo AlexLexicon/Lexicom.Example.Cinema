@@ -1,19 +1,21 @@
-﻿using Lexicom.Authentication.Http;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using Lexicom.Authentication.Http;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
-using MediatR;
+using Lexicom.Mvvm.Extensions;
 
 namespace Lexicom.Example.Cinema.Client.Application.Services;
-public class HttpClientUnathorizedListener : IHttpClientUnathorizedListener
-{
-    private readonly IMediator _mediator;
 
-    public HttpClientUnathorizedListener(IMediator mediator)
+public class HttpClientUnathorizedListener : IHttpClientUnauthorizedListener
+{
+    private readonly IMessenger _messenger;
+
+    public HttpClientUnathorizedListener(IMessenger messenger)
     {
-        _mediator = mediator;
+        _messenger = messenger;
     }
 
-    public async Task UnathorizedAsync()
+    public async Task UnauthorizedAsync()
     {
-        await _mediator.Publish(new UnathorizedNotification());
+        await _messenger.SendAsync(new UnathorizedNotification());
     }
 }

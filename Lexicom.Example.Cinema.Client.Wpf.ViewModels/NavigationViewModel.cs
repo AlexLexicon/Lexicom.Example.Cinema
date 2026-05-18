@@ -1,7 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Lexicom.Mvvm;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class NavigationViewModel : ObservableObject
+
+public partial class NavigationViewModel : DisposableObservableObject
 {
     public NavigationViewModel(
         NavigationDomainsViewModel domainChoiceViewModel,
@@ -18,14 +19,26 @@ public partial class NavigationViewModel : ObservableObject
         PagesActorViewModel = pagesActorViewModel;
     }
 
-    [ObservableProperty]
-    private NavigationDomainsViewModel? _domainChoiceViewModel;
-    [ObservableProperty]
-    private NavigationUserViewModel? _userSectionViewModel;
-    [ObservableProperty]
-    private NavigationPagesViewModel<NavigationPageMovieViewModel>? _pagesMovieViewModel;
-    [ObservableProperty]
-    private NavigationPagesViewModel<NavigationPageDirectorViewModel>? _pagesDirectorViewModel;
-    [ObservableProperty]
-    private NavigationPagesViewModel<NavigationPageActorViewModel>? _pagesActorViewModel;
+    public NavigationDomainsViewModel DomainChoiceViewModel { get; }
+    public NavigationUserViewModel UserSectionViewModel { get; }
+    public NavigationPagesViewModel<NavigationPageMovieViewModel> PagesMovieViewModel { get; }
+    public NavigationPagesViewModel<NavigationPageDirectorViewModel> PagesDirectorViewModel { get; }
+    public NavigationPagesViewModel<NavigationPageActorViewModel> PagesActorViewModel { get; }
+
+    public override void Dispose()
+    {
+        DomainChoiceViewModel?.Dispose();
+        UserSectionViewModel?.Dispose();
+        PagesMovieViewModel?.Dispose();
+        PagesDirectorViewModel?.Dispose();
+        PagesActorViewModel?.Dispose();
+
+        base.Dispose();
+    }
+
+    public async Task LoadAsync()
+    {
+        await DomainChoiceViewModel.LoadAsync();
+        await UserSectionViewModel.LoadAsync();
+    }
 }

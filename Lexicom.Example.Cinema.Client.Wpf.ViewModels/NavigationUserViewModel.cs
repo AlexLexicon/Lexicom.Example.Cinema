@@ -1,43 +1,54 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
-using MediatR;
+using Lexicom.Mvvm;
+using Lexicom.Mvvm.Extensions;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class NavigationUserViewModel : ObservableObject
+
+public partial class NavigationUserViewModel : DisposableObservableObject
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _messenger;
 
-    public NavigationUserViewModel(IMediator mediator)
+    public NavigationUserViewModel(IMessenger messenger)
     {
-        _mediator = mediator;
-
-        FirstName = "Alex";
-        LastName = "Stroot";
+        _messenger = messenger;
     }
 
     [ObservableProperty]
-    private string? _firstName;
+    public partial string? FirstName { get; set; }
+
     [ObservableProperty]
-    private string? _lastName;
+    public partial string? LastName { get; set; }
+
     [ObservableProperty]
-    private bool _isAuthenticated;
+    public partial bool IsAuthenticated { get; set; }
+
+    public Task LoadAsync()
+    {
+        FirstName = "Alex";
+        LastName = "Stroot";
+        IsAuthenticated = false;
+
+        return Task.CompletedTask;
+    }
 
     [RelayCommand]
     private async Task ShowPreferencesAsync()
     {
-        await _mediator.Publish(new ShowPreferenceViewNotification());
+        await _messenger.SendAsync(new ShowPreferenceViewMessage());
     }
 
     [RelayCommand]
     private async Task ShowSignInAsync()
     {
-        await _mediator.Publish(new ShowSignInViewNotification());
+        await _messenger.SendAsync(new ShowSignInViewMessage());
     }
 
     [RelayCommand]
     private async Task ShowProfileAsync()
     {
-        await _mediator.Publish(new ShowProfileViewNotification());   
+        await _messenger.SendAsync(new ShowProfileViewMessage());
     }
 }

@@ -1,7 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-public class RoleNameNotValidException : Exception
+
+public class RoleNameNotValidException(string? name) : Exception($"The role name '{name ?? "null"}' is not valid.")
 {
-    public RoleNameNotValidException(string name) : base($"The role name '{name}' is not valid.")
-    {
-    }
 }

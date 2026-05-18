@@ -4,7 +4,7 @@ using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-public abstract partial class PageViewModel : ObservableObject, INotificationHandler<OpenPageNotification>, INotificationHandler<HidePagesNotification>
+public abstract partial class PageViewModel : ObservableObject, INotificationHandler<OpenPageMessage>, INotificationHandler<HidePagesNotification>
 {
     public PageViewModel(Domains domain)
     {
@@ -20,14 +20,14 @@ public abstract partial class PageViewModel : ObservableObject, INotificationHan
     [ObservableProperty]
     private bool _isLoading;
 
-    public async Task Handle(OpenPageNotification notification, CancellationToken cancellationToken)
+    public async Task Handle(OpenPageMessage notification, CancellationToken cancellationToken)
     {
         IsVisible = false;
         IsLoading = false;
 
-        if (notification.Domain == Domain && notification.Id != Guid.Empty)
+        if (notification.Domain == Domain && notification.PageId != Guid.Empty)
         {
-            Id = notification.Id;
+            Id = notification.PageId;
 
             IsVisible = true;
             IsLoading = true;

@@ -1,11 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Lexicom.Example.Cinema.Client.Application.Models;
+﻿using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Mvvm;
 using System.Collections.ObjectModel;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class NavigationDomainsViewModel : ObservableObject
+
+public partial class NavigationDomainsViewModel : DisposableObservableObject
 {
     private readonly IViewModelFactory _viewModelFactory;
 
@@ -13,14 +12,12 @@ public partial class NavigationDomainsViewModel : ObservableObject
     {
         _viewModelFactory = viewModelFactory;
 
-        _domainViewModels = new ObservableCollection<NavigationDomainViewModel>();
+        DomainViewModels = [];
     }
 
-    [ObservableProperty]
-    private ObservableCollection<NavigationDomainViewModel> _domainViewModels;
+    public ObservableCollection<NavigationDomainViewModel> DomainViewModels { get; }
 
-    [RelayCommand]
-    private void Loaded()
+    public Task LoadAsync()
     {
         //we reverse the DomainChoices so that the first one is created (and selected) last
         IEnumerable<Domains> reversedDomains = Enum
@@ -34,5 +31,7 @@ public partial class NavigationDomainsViewModel : ObservableObject
             //we insert at the top so that the last item (which will be selected by default) will show up first
             DomainViewModels.Insert(0, domainViewModel);
         }
+
+        return Task.CompletedTask;
     }
 }

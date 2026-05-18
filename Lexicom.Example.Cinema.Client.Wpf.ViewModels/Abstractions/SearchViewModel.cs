@@ -5,7 +5,7 @@ using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public abstract partial class SearchViewModel : ObservableObject, INotificationHandler<OpenPageNotification>, INotificationHandler<HidePagesNotification>, INotificationHandler<SearchStartedNotification>
+public abstract partial class SearchViewModel : ObservableObject, INotificationHandler<OpenPageMessage>, INotificationHandler<HidePagesNotification>, INotificationHandler<SearchStartedNotification>
 {
     private readonly IMediator _mediator;
 
@@ -51,11 +51,11 @@ public abstract partial class SearchViewModel : ObservableObject, INotificationH
         }
     }
 
-    public async Task Handle(OpenPageNotification notification, CancellationToken cancellationToken)
+    public async Task Handle(OpenPageMessage notification, CancellationToken cancellationToken)
     {
         IsVisible = false;
 
-        if (notification.Id == Guid.Empty && notification.Domain == Domain)
+        if (notification.PageId == Guid.Empty && notification.Domain == Domain)
         {
             IsVisible = true;
 

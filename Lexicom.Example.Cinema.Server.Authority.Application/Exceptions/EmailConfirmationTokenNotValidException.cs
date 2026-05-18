@@ -1,7 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-public class EmailConfirmationTokenNotValidException : Exception
+
+public class EmailConfirmationTokenNotValidException() : Exception("The email confirmation token is not valid.")
 {
-    public EmailConfirmationTokenNotValidException() : base("The email confirmation token is not valid.")
-    {
-    }
 }

@@ -1,4 +1,5 @@
-﻿using Lexicom.Concentrate.Supports.Wpf.Extensions;
+﻿using Lexicom.Concentrate.Client.Authentication.For.Wpf.Extensions;
+using Lexicom.Concentrate.Supports.Wpf.Extensions;
 using Lexicom.Concentrate.Wpf.Amenities.Extensions;
 using Lexicom.Concentrate.Wpf.Themes.Extensions;
 using Lexicom.Configuration.Settings.For.Wpf.Extensions;
@@ -8,7 +9,6 @@ using Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Extensions;
 using Lexicom.Example.Cinema.Client.Wpf.Views;
 using Lexicom.Example.Cinema.Shared.Extensions;
-using Lexicom.Mvvm.Amenities.Extensions;
 using Lexicom.Mvvm.Extensions;
 using Lexicom.Mvvm.For.Wpf.Extensions;
 using Lexicom.Supports.Wpf.Extensions;
@@ -16,7 +16,6 @@ using Lexicom.Validation.Extensions;
 using Lexicom.Validation.For.Wpf.Extensions;
 using Lexicom.Wpf.Amenities.Extensions;
 using Lexicom.Wpf.DependencyInjection;
-using MediatR.NotificationPublishers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
@@ -66,15 +65,6 @@ public partial class App : System.Windows.Application
                 options.AddViewModel<SearchMovieViewModel>();
 
                 options.AddViewModel<SignInViewModel>();
-
-                //add mediatR must come after adding all view models
-                options.AddMediatR(options =>
-                {
-                    options.NotificationPublisherType = typeof(TaskWhenAllPublisher);
-
-                    options.RegisterServicesFromClientApplication();
-                    options.RegisterServicesFromViewModels();
-                });
             });
             options.AddValidation(options =>
             {

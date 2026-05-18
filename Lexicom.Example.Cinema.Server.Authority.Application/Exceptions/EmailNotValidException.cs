@@ -1,7 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-public class EmailNotValidException : Exception
+
+public class EmailNotValidException(string? email) : Exception($"The email '{email ?? "null"}' is not valid.")
 {
-    public EmailNotValidException(string email) : base($"The email '{email}' is not valid.")
-    {
-    }
 }

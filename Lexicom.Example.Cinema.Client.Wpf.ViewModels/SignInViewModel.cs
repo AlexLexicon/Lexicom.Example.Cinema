@@ -1,22 +1,24 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Mvvm;
 using Lexicom.Validation;
 using Lexicom.Validation.Amenities.RuleSets;
-using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class SignInViewModel : ObservableObject, INotificationHandler<ShowSignInViewNotification>, INotificationHandler<SignInSuccessNotification>, INotificationHandler<SignInFailedNotification>
+
+public partial class SignInViewModel : ObservableObject, IAsyncRecipient<ShowSignInViewMessage>, IAsyncRecipient<SignInSuccessNotification>, IAsyncRecipient<SignInFailedNotification>
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _messenger;
 
     public SignInViewModel(
-        IMediator mediator,
+        IMessenger messenger,
         IRuleSetValidator<EmailRuleSet, string?> emailValidator,
         IRuleSetValidator<RequiredRuleSet, string?> requiredValidator)
     {
-        _mediator = mediator;
+        _messenger = messenger;
         _emailValidator = emailValidator;
         _passwordValidator = requiredValidator;
     }
@@ -34,7 +36,7 @@ public partial class SignInViewModel : ObservableObject, INotificationHandler<Sh
     [ObservableProperty]
     private bool _isValid;
 
-    public Task Handle(ShowSignInViewNotification notification, CancellationToken cancellationToken)
+    public Task Handle(ShowSignInViewMessage notification, CancellationToken cancellationToken)
     {
         IsVisible = true;
 
@@ -79,7 +81,7 @@ public partial class SignInViewModel : ObservableObject, INotificationHandler<Sh
     {
         if (IsValid && Email is not null && Password is not null)
         {
-            await _mediator.Publish(new SignInNotification(Email, Password));
+            await _messenger.Publish(new SignInNotification(Email, Password));
         }
     }
 }

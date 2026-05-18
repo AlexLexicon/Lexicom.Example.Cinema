@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace Lexicom.Example.Cinema.Client.Application.Extensions;
+
 public static class ServiceCollectionExtensions
 {
     public static void AddClientApplication(this IServiceCollection services)
@@ -99,9 +100,6 @@ public static class ServiceCollectionExtensions
 
             c.BaseAddress = new Uri(baseAddress);
         });
-
-        services.AddSingleton<IHttpClientAccessTokenRefresher, HttpClientAccessTokenRefresher>();
-        services.AddSingleton<IHttpClientUnathorizedListener, HttpClientUnathorizedListener>();
     }
 
     public static IHttpClientBuilder AddAndConfigureHttpClientAnonymous<THttpClientOptions>(this IServiceCollection services, Action<IServiceProvider, HttpClient> configureClient) where THttpClientOptions : class
@@ -121,8 +119,8 @@ public static class ServiceCollectionExtensions
             .AddHttpAuthenticationHandlers(options =>
             {
                 options.AuthorizeWithAccessToken();
-                options.AutomaticallyRefreshAccessToken();
-                options.ForwardUnathorizedRequests();
+                options.AutomaticallyRefreshAccessToken<HttpClientAccessTokenRefresher>();
+                options.ForwardUnauthorizedRequests<HttpClientUnathorizedListener>();
             });
     }
 }

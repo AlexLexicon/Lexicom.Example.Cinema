@@ -1,13 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Mvvm.Extensions;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-public abstract partial class NavigationPageViewModel : ObservableObject, INotificationHandler<OpenPageNotification>, INotificationHandler<ClosePageNotification>, INotificationHandler<DismissPageNotification>
+public abstract partial class NavigationPageViewModel : ObservableObject, INotificationHandler<OpenPageMessage>, INotificationHandler<ClosePageMessage>, INotificationHandler<DismissPageNotification>
 {
-    protected readonly IMediator _mediator;
+    protected readonly IMessenger _mediator;
 
     public NavigationPageViewModel(
         Domains domain,
@@ -29,19 +31,19 @@ public abstract partial class NavigationPageViewModel : ObservableObject, INotif
     [ObservableProperty]
     private bool _isLoading;
 
-    public virtual Task Handle(OpenPageNotification notification, CancellationToken cancellationToken)
+    public virtual Task Handle(OpenPageMessage notification, CancellationToken cancellationToken)
     {
         if (notification.Domain == Domain)
         {
-            IsSelected = notification.Id == Id;
+            IsSelected = notification.PageId == Id;
         }
 
         return Task.CompletedTask;
     }
 
-    public virtual Task Handle(ClosePageNotification notification, CancellationToken cancellationToken)
+    public virtual Task Handle(ClosePageMessage notification, CancellationToken cancellationToken)
     {
-        if (notification.Domain == Domain && notification.Id == Id)
+        if (notification.Domain == Domain && notification.PageId == Id)
         {
             IsSelected = false;
         }
@@ -73,14 +75,14 @@ public abstract partial class NavigationPageViewModel : ObservableObject, INotif
     protected virtual async Task SelectAsync()
     {
         await _mediator.Publish(new HidePagesNotification());
-        await _mediator.Publish(new OpenPageNotification(Domain, Id));
+        await _mediator.ScheduleAsync(new OpenPageMessage(Domain, Id));
     }
 
     [RelayCommand]
     protected virtual async Task CloseAsync()
     {
         await _mediator.Publish(new HidePagesNotification());
-        await _mediator.Publish(new ClosePageNotification(Domain, Id));
-        await _mediator.Publish(new OpenPageNotification(Domain, Guid.Empty));
+        await _mediator.Publish(new ClosePageMessage(Domain, Id));
+        await _mediator.ScheduleAsync(new OpenPageMessage(Domain, Guid.Empty));
     }
 }

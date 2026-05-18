@@ -1,7 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
-public class EmailAlreadyInUseException : Exception
+
+public class EmailAlreadyInUseException(string? email) : Exception($"The email '{email ?? "null"}' is already in use.")
 {
-    public EmailAlreadyInUseException(string email) : base($"The email '{email}' is already in use.")
-    {
-    }
 }

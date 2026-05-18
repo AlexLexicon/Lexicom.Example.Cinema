@@ -1,15 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Extensions;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Mvvm.Extensions;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 public partial class SearchMovieResultViewModel : ObservableObject
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _mediator;
 
     public SearchMovieResultViewModel(
         MovieSearchResponseNotificationMovie movie, 
@@ -41,6 +43,6 @@ public partial class SearchMovieResultViewModel : ObservableObject
     private async Task SelectedAsync()
     {
         await _mediator.Publish(new HidePagesNotification());
-        await _mediator.Publish(new OpenPageNotification(Domains.Movies, MovieId));
+        await _mediator.ScheduleAsync(new OpenPageMessage(Domains.Movies, MovieId));
     }
 }

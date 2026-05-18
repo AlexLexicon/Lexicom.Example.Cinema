@@ -27,6 +27,7 @@ public static class ServiceCollectionExtensions
             .ValidateOnStart();
 
         services.AddScoped<ICommunicationService, CommunicationService>();
+        services.AddSingleton<IDateTimeService, DateTimeService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IModerationService, ModerationService>();

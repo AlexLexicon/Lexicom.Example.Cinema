@@ -1,5 +1,4 @@
-﻿using Lexicom.AspNetCore.Controllers.Extensions;
-using Lexicom.Authority.ConsoleApp.Extensions;
+﻿using Lexicom.Authority.ConsoleApp.Extensions;
 using Lexicom.ConsoleApp.DependencyInjection;
 using Lexicom.ConsoleApp.Tui.Extensions;
 using Lexicom.Cryptography.ConsoleApp.Extensions;
@@ -13,6 +12,7 @@ using Lexicom.Example.Cinema.Server.Authority.Database.Extensions;
 using Lexicom.Logging.ConsoleApp.Extensions;
 using Lexicom.Smtp.ConsoleApp.Extensions;
 using Lexicom.Smtp.Extensions;
+using Lexicom.Supports.ConsoleApp.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -5,8 +5,8 @@ public class ComprehensiveUser
     public required string Email { get; init; }
     public required string FirstName { get; init; }
     public required string LastName { get; init; }
-    public required DateTimeOffset CreatedDateTimeOffset { get; init; }
-    public required DateTimeOffset? VerifiedDateTimeOffset { get; init; }
-    public required DateTimeOffset? LastSignInDateTimeOffset { get; init; }
+    public required string WhenVerified { get; init; }
+    public required string WhenLastSignIn { get; init; }
+    public required string WhenCreated { get; init; }
     public required IReadOnlyList<ComprehensiveRole> Roles { get; init; }
 }

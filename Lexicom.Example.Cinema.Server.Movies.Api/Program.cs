@@ -6,15 +6,14 @@ using Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers.Extensio
 using Lexicom.Example.Cinema.Server.Movies.Api;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Extensions;
 using Lexicom.Example.Cinema.Server.Movies.Application.Extensions;
+using Lexicom.Example.Cinema.Server.Movies.Database.Extensions;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
-using Lexicom.Logging.AspNetCore.Controllers.Extensions;
+using Lexicom.Logging.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Scalar.Extensions;
-using Lexicom.Smtp.AspNetCore.Controllers.Extensions;
 using Lexicom.Supports.AspNetCore.Controllers.Extensions;
 using Lexicom.Validation.Amenities.Extensions;
 using Lexicom.Validation.Extensions;
 using Lexicom.Validation.For.AspNetCore.Controllers.Extensions;
-using Lexicom.Example.Cinema.Server.Movies.Database.Extensions;
 using System.Diagnostics;
 
 /*
