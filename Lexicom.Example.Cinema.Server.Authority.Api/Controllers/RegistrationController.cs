@@ -1,7 +1,7 @@
 ﻿using Lexicom.AspNetCore.Controllers.Amenities;
 using Lexicom.AspNetCore.Controllers.Amenities.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts;
-using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Errors;
+using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Registration;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
 using Lexicom.Extensions.Exceptions;
@@ -37,7 +37,7 @@ public class RegistrationController : LexicomController
     """)]
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> UserRegistrationPostAsync([FromBody] RegistrationPostRequestBody requestBody)
+    public async Task<IActionResult> UserRegistrationPostAsync([FromBody] UserRegistrationPostRequestBody requestBody)
     {
         try
         {

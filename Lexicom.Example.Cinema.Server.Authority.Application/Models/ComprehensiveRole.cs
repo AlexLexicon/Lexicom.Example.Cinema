@@ -3,5 +3,6 @@ public class ComprehensiveRole
 {
     public required Guid Id { get; init; }
     public required string Name { get; init; }
+    public required DateTimeOffset CreatedDateTimeOffsetUtc { get; init; }
     public required IReadOnlyList<string> Permissions { get; init; }
 }

@@ -1,7 +1,7 @@
 ﻿using Lexicom.AspNetCore.Controllers.Amenities;
 using Lexicom.AspNetCore.Controllers.Amenities.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts;
-using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Errors;
+using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.SignIn;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
@@ -35,13 +35,13 @@ public class SignInController : LexicomController
     """)]
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> UserSignInPostAsync([FromBody] SignInPostRequestBody requestBody)
+    public async Task<IActionResult> UserSignInPostAsync([FromBody] UserSignInPostRequestBody requestBody)
     {
         try
         {
             SignIn signIn = await _signInService.SignInUserAsync(requestBody.Email, requestBody.Password);
 
-            return Ok(new SignInPostResponseBody
+            return Ok(new UserSignInPostResponseBody
             {
                 AccessBearerToken = signIn.AccessToken,
                 RefreshBearerToken = signIn.RefreshToken,
@@ -97,13 +97,13 @@ public class SignInController : LexicomController
     """)]
     [HttpPost("refresh")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserSignInRefreshPostAsync([FromBody] SignInRefreshPostRequestBody requestBody)
+    public async Task<IActionResult> UserSignInRefreshPostAsync([FromBody] UserSignInRefreshPostRequestBody requestBody)
     {
         try
         {
             SignIn signIn = await _signInService.RefreshUserAsync(requestBody.AccessBearerToken, requestBody.RefreshBearerToken);
 
-            return Ok(new SignInRefreshPostResponseBody
+            return Ok(new UserSignInRefreshPostResponseBody
             {
                 AccessBearerToken = signIn.AccessToken,
                 RefreshBearerToken = signIn.RefreshToken,
@@ -116,7 +116,7 @@ public class SignInController : LexicomController
          */
         catch (AccessBearerTokenNotValidException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user beasuse the access token was not valid.");
+            _logger.LogWarning(e, "Failed to refresh the user because the access token was not valid.");
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -127,7 +127,7 @@ public class SignInController : LexicomController
         }
         catch (RefreshBearerTokenNotValidException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user becuase the refresh token was not valid.");
+            _logger.LogWarning(e, "Failed to refresh the user because the refresh token was not valid.");
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -138,7 +138,7 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenDoesNotExistException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user becuase the refresh token did not exist. This usually would mean this refresh token had already been used.");
+            _logger.LogWarning(e, "Failed to refresh the user because the refresh token did not exist. This usually would mean this refresh token had already been used.");
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -149,7 +149,7 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenAccessTokenJtiMismatchException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user becuase the refresh token's access token jti did not match the provided access token's jti. This usually would mean someone passed a new access token with a refresh token from a previous signin.");
+            _logger.LogWarning(e, "Failed to refresh the user because the refresh token's access token jti did not match the provided access token's jti. This usually would mean someone passed a new access token with a refresh token from a previous signin.");
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -160,7 +160,7 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenAccessTokenSubjectMismatchException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user beasuse the refresh token's subject was different from access token's subject.");
+            _logger.LogWarning(e, "Failed to refresh the user because the refresh token's subject was different from access token's subject.");
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -171,7 +171,7 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenUserMismatchException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user beasuse the refresh token's subject was different from access token's subject.");
+            _logger.LogWarning(e, "Failed to refresh the user because the refresh token's subject was different from access token's subject.");
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -182,7 +182,7 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenExpiredException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user beasuse the refresh token has expired.");
+            _logger.LogWarning(e, "Failed to refresh the user because the refresh token has expired.");
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)

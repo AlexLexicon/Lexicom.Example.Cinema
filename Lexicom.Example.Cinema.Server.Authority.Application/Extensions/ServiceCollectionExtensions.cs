@@ -27,12 +27,11 @@ public static class ServiceCollectionExtensions
             .ValidateOnStart();
 
         services.AddScoped<ICommunicationService, CommunicationService>();
-        services.AddSingleton<IDateTimeService, DateTimeService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IModerationService, ModerationService>();
         services.AddScoped<IPasswordService, PasswordService>();
-        services.AddScoped<IPermissionService, PermissionService>();
+        services.AddSingleton<IPermissionService, PermissionService>();
         services.AddSingleton<IRefreshTokenService, RefreshTokenService>();
         services.AddScoped<IRegistrationService, RegistrationService>();
         services.AddScoped<IRoleService, RoleService>();

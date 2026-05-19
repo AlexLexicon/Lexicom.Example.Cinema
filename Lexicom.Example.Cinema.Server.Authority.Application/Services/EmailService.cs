@@ -134,9 +134,9 @@ public class EmailService : IEmailService
             throw BrandOptionsValidator.ToUnreachableException();
         }
 
-        UrlsOptions UrlsOptions = _urlsOptions.Value;
+        UrlsOptions urlsOptions = _urlsOptions.Value;
 
-        string? url = UrlsOptions.ConfirmationEmailUrl;
+        string? url = urlsOptions.ConfirmationEmailUrl;
 
         if (string.IsNullOrWhiteSpace(url))
         {
@@ -197,9 +197,9 @@ public class EmailService : IEmailService
             throw BrandOptionsValidator.ToUnreachableException();
         }
 
-        UrlsOptions UrlsOptions = _urlsOptions.Value;
+        UrlsOptions urlsOptions = _urlsOptions.Value;
 
-        string? url = UrlsOptions.ChangeEmailUrl;
+        string? url = urlsOptions.ChangeEmailUrl;
 
         if (string.IsNullOrWhiteSpace(url))
         {
@@ -210,7 +210,7 @@ public class EmailService : IEmailService
 
         if (emailChangeTimeSpan <= TimeSpan.Zero)
         {
-            throw IdentityPasswordResetTokenProviderOptionsValidator.ToUnreachableException();
+            throw IdentityChangeEmailTokenProviderOptionsValidator.ToUnreachableException();
         }
 
         string emailChangeTimeSpanFriendlyString = emailChangeTimeSpan.ToShortestString();

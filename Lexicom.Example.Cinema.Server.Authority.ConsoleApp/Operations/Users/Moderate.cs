@@ -1,7 +1,7 @@
 ﻿using Lexicom.ConsoleApp.Amenities;
 using Lexicom.ConsoleApp.Tui;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
+using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Models;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Users;
@@ -9,22 +9,22 @@ namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Users;
 [TuiPage("Users")]
 public class Moderate : ITuiOperation
 {
-    private readonly IComprehensiveService _comprehensiveService;
+    private readonly IExtendedComprehensiveService _extendedComprehensiveService;
     private readonly IModerationService _moderationService;
 
     public Moderate(
-        IComprehensiveService comprehensiveService,
+        IExtendedComprehensiveService extendedComprehensiveService,
         IModerationService moderationService)
     {
-        _comprehensiveService = comprehensiveService;
+        _extendedComprehensiveService = extendedComprehensiveService;
         _moderationService = moderationService;
     }
 
     public async Task ExecuteAsync()
     {
-        IReadOnlyList<ComprehensiveUser> comprehensiveUsers = await _comprehensiveService.GetComprehensiveUsersAsync();
+        IReadOnlyList<ExtendedComprehensiveUser> extendedComprehensiveUsers = await _extendedComprehensiveService.GetExtendedComprehensiveUsersAsync();
         Console.WriteLine("Avaliable Users:");
-        Consolex.WriteAsJson(comprehensiveUsers);
+        Consolex.WriteAsJson(extendedComprehensiveUsers);
         Console.WriteLine();
 
         Guid userId = Consolex.ReadLineGuid("Enter the id of the user you want to moderate:");
@@ -40,10 +40,20 @@ public class Moderate : ITuiOperation
         if (lockUser)
         {
             await _moderationService.LockUserAsync(userId);
+
+            Console.WriteLine("User Locked Successfully.");
+            Console.WriteLine();
         }
         else
         {
             await _moderationService.UnlockUserAsync(userId);
+
+            Console.WriteLine("User UnLocked Successfully.");
+            Console.WriteLine();
         }
+
+        ExtendedComprehensiveUser updatedExtendedComprehensiveUser = await _extendedComprehensiveService.GetExtendedComprehensiveUserAsync(userId);
+        Console.WriteLine("Updated User:");
+        Consolex.WriteAsJson(updatedExtendedComprehensiveUser);
     }
 }

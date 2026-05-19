@@ -2,7 +2,7 @@
 using Lexicom.AspNetCore.Controllers.Amenities.Extensions;
 using Lexicom.Authentication.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts;
-using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Errors;
+using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Email;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
@@ -39,7 +39,7 @@ public class EmailController : LexicomController
     """)]
     [HttpPost("change")]
     [Authorize(Policy = Policies.Permissions.Authority.Email.EMAIL_CHANGE_POST)]
-    public async Task<IActionResult> UserEmailChangePostAsync([FromBody] EmailPostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailChangePostAsync([FromBody] UserEmailChangePostRequestBody requestBody)
     {
         Guid userId = User.GetId();
         try
@@ -63,7 +63,7 @@ public class EmailController : LexicomController
     """)]
     [HttpPost("change/confirm")]
     [Authorize(Policy = Policies.Permissions.Authority.Email.EMAIL_CHANGE_CONFIRM_POST)]
-    public async Task<IActionResult> UserEmailChangeConfirmPostAsync([FromBody] EmailChangePostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailChangeConfirmPostAsync([FromBody] UserEmailChangeConfirmPostRequestBody requestBody)
     {
         Guid userId = User.GetId();
         try
@@ -96,7 +96,7 @@ public class EmailController : LexicomController
     """)]
     [HttpPost("confirm")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserEmailConfirmPostAsync([FromBody] EmailConfirmPostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailConfirmPostAsync([FromBody] UserEmailConfirmPostRequestBody requestBody)
     {
         try
         {
@@ -119,7 +119,7 @@ public class EmailController : LexicomController
             _logger.LogWarning(e, "Failed to confirm the email because the user with the email '{email}' has already confirmed their email.", requestBody.Email);
 
             //if the email is already confirmed we want to return no content
-            //since this is an anonymouse endpoint and you would be able to
+            //since this is an anonymous endpoint and you would be able to
             //use it to determine what emails exists otherwise
             return NoContent();
         }
@@ -141,11 +141,11 @@ public class EmailController : LexicomController
     """)]
     [HttpPost("confirm/resend")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserEmailConfirmResendPostAsync([FromBody] EmailConfirmResendPostRequestBody requestBody)
+    public async Task<IActionResult> UserEmailConfirmResendPostAsync([FromBody] UserEmailConfirmResendPostRequestBody requestBody)
     {
         try
         {
-            await _communicationService.AssembleAndSendUserConfirmEmailCommunciationAsync(requestBody.Email);
+            await _communicationService.AssembleAndSendUserConfirmEmailCommunicationAsync(requestBody.Email);
 
             return NoContent();
         }

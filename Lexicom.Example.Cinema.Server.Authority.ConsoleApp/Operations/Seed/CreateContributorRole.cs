@@ -1,7 +1,8 @@
 ﻿using Lexicom.ConsoleApp.Amenities;
 using Lexicom.ConsoleApp.Tui;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
+using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Models;
+using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
 using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
 
@@ -11,10 +12,14 @@ namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Seed;
 public class CreateContributorRole : ITuiOperation
 {
     private readonly IRoleService _roleService;
+    private readonly IExtendedComprehensiveService _extendedComprehensiveService;
 
-    public CreateContributorRole(IRoleService roleService)
+    public CreateContributorRole(
+        IRoleService roleService,
+        IExtendedComprehensiveService extendedComprehensiveService)
     {
         _roleService = roleService;
+        _extendedComprehensiveService = extendedComprehensiveService;
     }
 
     public async Task ExecuteAsync()
@@ -26,8 +31,8 @@ public class CreateContributorRole : ITuiOperation
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Movies.Movie.PATCH);
         await _roleService.AddPermissionToRoleAsync(role.Id, Policies.Permissions.Movies.Movie.POST);
 
-        ComprehensiveRole comprehensiveRole = await _roleService.GetComprehensiveRoleAsync(role.Id);
+        ExtendedComprehensiveRole extendedComprehensiveRole = await _extendedComprehensiveService.GetExtendedComprehensiveRoleAsync(role.Id);
         Console.WriteLine($"'{roleName}' Role");
-        Consolex.WriteAsJson(comprehensiveRole);
+        Consolex.WriteAsJson(extendedComprehensiveRole);
     }
 }

@@ -36,7 +36,7 @@ public class SignInService : ISignInService
     private readonly IUserService _userService;
     private readonly SignInManager<User> _signInManager;
     private readonly IJwtService _jwtService;
-    private readonly IAccessTokenProvider _accessTokenService;
+    private readonly IAccessTokenProvider _accessTokenProvider;
     private readonly IRefreshTokenProvider _refreshTokenProvider;
     private readonly UserManager<User> _userManager;
     private readonly ITimeProvider _timeProvider;
@@ -59,7 +59,7 @@ public class SignInService : ISignInService
         _userService = userService;
         _signInManager = signInManager;
         _jwtService = jwtService;
-        _accessTokenService = accessTokenProvider;
+        _accessTokenProvider = accessTokenProvider;
         _userManager = userManager;
         _timeProvider = timeProvider;
         _dbContextFactory = dbContextFactory;
@@ -76,11 +76,11 @@ public class SignInService : ISignInService
 
         if (!signInIdentityResult.Succeeded)
         {
+            //if a user is not able to log in we want to remove their refresh token
+            await _refreshTokenService.RemoveRefreshTokenAsync(user.Id);
+
             if (signInIdentityResult.IsLockedOut)
             {
-                //if a user is locked out we want to remove their refresh token
-                await _refreshTokenService.RemoveRefreshTokenAsync(user.Id);
-
                 throw new UserLockedOutException(user.Id);
             }
 
@@ -107,7 +107,7 @@ public class SignInService : ISignInService
 
     public async Task<SignIn> RefreshUserAsync(string accessBearerToken, string refreshBearerToken)
     {
-        var isAccessTokenValidTask = _accessTokenService.IsAccessTokenValidAsync(accessBearerToken, validateLifetime: false);
+        var isAccessTokenValidTask = _accessTokenProvider.IsAccessTokenValidAsync(accessBearerToken, validateLifetime: false);
         var isRefreshTokenValidTask = _refreshTokenProvider.IsRefreshTokenValidAsync(refreshBearerToken);
 
         bool isAccessTokenValid = await isAccessTokenValidTask;
@@ -166,10 +166,10 @@ public class SignInService : ISignInService
             throw new RefreshTokenUserMismatchException(dbRefreshToken.Id, dbRefreshToken.UserId, accessTokenUserId);
         }
 
-        //the tokens experation should automatically
-        //be checked by the call 'Is[Bearer]TokenValidAsync'
-        //but just incase we check here as well since someone might
-        //want to modify the token experation date in the database to invalidate a token manually
+        //the tokens expiration should automatically be checked by
+        //the call 'Is[Bearer]TokenValidAsync' but just incase we
+        //check here as well since someone might want to modify the 
+        //expiration date in the database to invalidate a token manually
         if (dbRefreshToken.ExpiresDateTimeOffsetUtc < _timeProvider.GetUtcNow())
         {
             db.RefreshTokens.Remove(dbRefreshToken);

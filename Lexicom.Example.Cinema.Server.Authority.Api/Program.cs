@@ -33,53 +33,53 @@ builder.Configuration.AddJsonFile("appsettings.SecretsExample.json");
 
 builder.Services.AddControllers();
 
-builder.Lexicom(options =>
+builder.Lexicom(l =>
 {
-    options.AddAmenities(options =>
+    l.AddAmenities(a =>
     {
-        options.AddErrorResponseActionFilter();
-        options.AddExceptionHandlingMiddleware();
+        a.AddErrorResponseActionFilter();
+        a.AddExceptionHandlingMiddleware();
 #if DEBUG
-        options.DebugExceptionHandlingMiddleware(e =>
+        a.DebugExceptionHandlingMiddleware(e =>
         {
             Debugger.Break();
         });
 #endif
-        options.AddInvalidModelStateFactory();
+        a.AddInvalidModelStateFactory();
     });
-    options.AddAuthority(options =>
+    l.AddAuthority(auth =>
     {
-        options.AddAccessTokenProvider();
-        options.AddRefreshTokenProvider();
+        auth.AddAccessTokenProvider();
+        auth.AddRefreshTokenProvider();
     });
-    options.AddAuthentication(options =>
+    l.AddAuthentication(auth =>
     {
-        options.AddAccessTokenAuthentication();
+        auth.AddAccessTokenAuthentication();
     });
-    options.AddAuthorization(options =>
+    l.AddAuthorization(auth =>
     {
-        options.AddPermissions(Policies.Permissions.All);
+        auth.AddPermissions(Policies.Permissions.All);
     });
-    options.AddScalar();
-    options.AddValidation(options =>
+    l.AddScalar();
+    l.AddValidation(v =>
     {
-        options.AddAmenities();
-        options.AddRequestBodyActionFilter();
-        options.AddValidators<AssemblyScanMarker>();
+        v.AddAmenities();
+        v.AddRequestBodyActionFilter();
+        v.AddValidators<AssemblyScanMarker>();
     });
-    options.AddLogging();
-    options.AddSmtp(options =>
+    l.AddLogging();
+    l.AddSmtp(smtp =>
     {
-        options.AddFileClient();
+        smtp.AddFileClient();
     });
-    options.AddPrimitives(options =>
+    l.AddPrimitives(p =>
     {
-        options.AddTimeProvider();
-        options.AddGuidProvider();
+        p.AddTimeProvider();
+        p.AddGuidProvider();
     });
-    options.AddCryptography(options =>
+    l.AddCryptography(c =>
     {
-        options.AddStringSecretOptions();
+        c.AddStringSecretOptions();
     });
 });
 

@@ -1,6 +1,6 @@
 ﻿using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Options;
-using Lexicom.Example.Cinema.Server.Authority.Api.Contracts;
+using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.User;
 using Lexicom.Http.Extensions;
 using MediatR;
 

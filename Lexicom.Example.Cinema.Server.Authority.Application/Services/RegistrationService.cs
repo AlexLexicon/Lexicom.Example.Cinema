@@ -46,7 +46,7 @@ public class RegistrationService : IRegistrationService
         }
 
         var addBasicRoleToUserTask = _userService.AddRoleToUserAsync(user.Id, basicRole.Id);
-        var assembleAndSendUserConfirmEmailCommunciationTask = _communicationService.AssembleAndSendUserConfirmEmailCommunciationAsync(user.Id);
+        var assembleAndSendUserConfirmEmailCommunicationTask = _communicationService.AssembleAndSendUserConfirmEmailCommunicationAsync(user.Id);
 
         try
         {
@@ -67,7 +67,7 @@ public class RegistrationService : IRegistrationService
 
         try
         {
-            await assembleAndSendUserConfirmEmailCommunciationTask;
+            await assembleAndSendUserConfirmEmailCommunicationTask;
         }
         catch (UserDoesNotExistException e)
         {

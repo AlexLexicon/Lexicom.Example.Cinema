@@ -9,7 +9,7 @@ public class Role : IdentityRole<Guid>
 
     public override string Name
     {
-        get => base.Name ?? throw new NonNullableTableColumnException(Name);
+        get => base.Name ?? throw new NonNullableTableColumnException(nameof(Name));
 #pragma warning disable CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         set
 #pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
@@ -25,7 +25,7 @@ public class Role : IdentityRole<Guid>
 
     public override string NormalizedName
     {
-        get => base.NormalizedName ?? throw new NonNullableTableColumnException(NormalizedName);
+        get => base.NormalizedName ?? throw new NonNullableTableColumnException(nameof(NormalizedName));
 #pragma warning disable CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         set
 #pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).

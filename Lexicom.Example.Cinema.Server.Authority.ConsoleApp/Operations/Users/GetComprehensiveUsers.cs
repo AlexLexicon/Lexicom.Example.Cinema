@@ -1,23 +1,24 @@
 ﻿using Lexicom.ConsoleApp.Amenities;
 using Lexicom.ConsoleApp.Tui;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Models;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Users;
+
 [TuiPage("Users")]
 public class GetComprehensiveUsers : ITuiOperation
 {
-    private readonly IComprehensiveService _comprehensiveService;
+    private readonly IExtendedComprehensiveService _extendedComprehensiveService;
 
-    public GetComprehensiveUsers(IComprehensiveService comprehensiveService)
+    public GetComprehensiveUsers(IExtendedComprehensiveService extendedComprehensiveService)
     {
-        _comprehensiveService = comprehensiveService;
+        _extendedComprehensiveService = extendedComprehensiveService;
     }
 
     public async Task ExecuteAsync()
     {
-        IReadOnlyList<ComprehensiveUser> comprehensiveUsers = await _comprehensiveService.GetComprehensiveUsersAsync();
+        IReadOnlyList<ExtendedComprehensiveUser> extendedComprehensiveUsers = await _extendedComprehensiveService.GetExtendedComprehensiveUsersAsync();
         Console.WriteLine("Users:");
-        Consolex.WriteAsJson(comprehensiveUsers);
+        Consolex.WriteAsJson(extendedComprehensiveUsers);
     }
 }

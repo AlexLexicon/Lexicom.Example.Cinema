@@ -9,9 +9,9 @@ public interface ICommunicationService
     /// <exception cref="UserDoesNotExistException"/>
     Task AssembleAndSendUserForgotPasswordEmailAsync(string email);
     /// <exception cref="UserDoesNotExistException"/>
-    Task AssembleAndSendUserConfirmEmailCommunciationAsync(string email);
+    Task AssembleAndSendUserConfirmEmailCommunicationAsync(string email);
     /// <exception cref="UserDoesNotExistException"/>
-    Task AssembleAndSendUserConfirmEmailCommunciationAsync(Guid userId);
+    Task AssembleAndSendUserConfirmEmailCommunicationAsync(Guid userId);
     /// <exception cref="UserDoesNotExistException"/>
     Task AssembleAndSendChangeEmailCommunicationAsync(Guid userId, string newEmail);
 }
@@ -58,19 +58,19 @@ public class CommunicationService : ICommunicationService
         }
     }
 
-    public async Task AssembleAndSendUserConfirmEmailCommunciationAsync(string email)
+    public async Task AssembleAndSendUserConfirmEmailCommunicationAsync(string email)
     {
         User user = await _userService.GetUserByEmailAsync(email);
 
-        await SendUserConfirmEmailCommunciationAsync(user);
+        await SendUserConfirmEmailCommunicationAsync(user);
     }
-    public async Task AssembleAndSendUserConfirmEmailCommunciationAsync(Guid userId)
+    public async Task AssembleAndSendUserConfirmEmailCommunicationAsync(Guid userId)
     {
         User user = await _userService.GetUserByIdAsync(userId);
 
-        await SendUserConfirmEmailCommunciationAsync(user);
+        await SendUserConfirmEmailCommunicationAsync(user);
     }
-    private async Task SendUserConfirmEmailCommunciationAsync(User user)
+    private async Task SendUserConfirmEmailCommunicationAsync(User user)
     {
         string emailConfirmationToken;
         try

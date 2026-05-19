@@ -4,7 +4,9 @@ using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.ConsoleApp.Extensions;
 using Lexicom.Example.Cinema.Server.Movies.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Movies.ConsoleApp;
+using Lexicom.Example.Cinema.Server.Movies.Database;
 using Lexicom.Example.Cinema.Server.Movies.Database.Extensions;
+using Lexicom.Example.Cinema.Server.Shared.Extensions;
 using Lexicom.Example.Cinema.Shared.Extensions;
 using Lexicom.Logging.ConsoleApp.Extensions;
 using Lexicom.Supports.ConsoleApp.Extensions;
@@ -32,5 +34,7 @@ builder.Services.AddMoviesDatabase();
 builder.Services.AddMoviesApplication();
 
 ConsoleApplication app = builder.Build();
+
+await app.Services.EnsureDatabaseCreatedAsync<MoviesDbContext>();
 
 await app.RunLexicomTuiAsync("Lexicom.Example.Cinema.Server.Movies.ConsoleApp");

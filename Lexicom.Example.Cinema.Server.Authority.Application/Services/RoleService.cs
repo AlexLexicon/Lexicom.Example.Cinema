@@ -96,6 +96,7 @@ public class RoleService : IRoleService
         {
             Id = role.Id,
             Name = role.Name,
+            CreatedDateTimeOffsetUtc = role.CreatedDateTimeOffsetUtc,
             Permissions = permissions,
         };
     }

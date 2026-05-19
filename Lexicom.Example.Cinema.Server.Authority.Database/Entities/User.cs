@@ -14,7 +14,7 @@ public class User : IdentityUser<Guid>
 
     public override string Email
     {
-        get => base.Email ?? throw new NonNullableTableColumnException(Email);
+        get => base.Email ?? throw new NonNullableTableColumnException(nameof(Email));
 #pragma warning disable CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         set
 #pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
@@ -30,7 +30,7 @@ public class User : IdentityUser<Guid>
 
     public override string NormalizedEmail
     {
-        get => base.NormalizedEmail ?? throw new NonNullableTableColumnException(NormalizedEmail);
+        get => base.NormalizedEmail ?? throw new NonNullableTableColumnException(nameof(NormalizedEmail));
 #pragma warning disable CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         set
 #pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).

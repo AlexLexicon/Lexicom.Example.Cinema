@@ -36,7 +36,6 @@ public interface IUserService
     /// <exception cref="RoleDoesNotExistException"/>
     /// <exception cref="UserDoesNotHaveRoleException"/>
     Task RemoveRoleFromUserAsync(Guid userId, Guid roleId);
-    /// <exception cref="IdentityResultException"></exception>
 }
 public class UserService : IUserService
 {
@@ -46,7 +45,6 @@ public class UserService : IUserService
     private readonly IDbContextFactory<AuthorityDbContext> _dbContextFactory;
     private readonly ITimeProvider _timeProvider;
     private readonly IGuidProvider _guidProvider;
-    private readonly IDateTimeService _dateTimeService;
 
     public UserService(
         UserManager<User> userManager,
@@ -54,8 +52,7 @@ public class UserService : IUserService
         ICryptographyService cryptographyService,
         IDbContextFactory<AuthorityDbContext> dbContextFactory,
         ITimeProvider timeProvider,
-        IGuidProvider guidProvider,
-        IDateTimeService dateTimeService)
+        IGuidProvider guidProvider)
     {
         _userManager = userManager;
         _roleService = roleService;
@@ -63,7 +60,6 @@ public class UserService : IUserService
         _dbContextFactory = dbContextFactory;
         _timeProvider = timeProvider;
         _guidProvider = guidProvider;
-        _dateTimeService = dateTimeService;
     }
 
     public async Task<User> GetUserByIdAsync(Guid userId)
@@ -121,18 +117,8 @@ public class UserService : IUserService
         var firstNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.FirstNameEncryptedBase64);
         var lastNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.LastNameEncryptedBase64);
 
-        var whenCreatedTask = _dateTimeService.GetLocalDateTimeStringFromUtcAsync(user.CreatedDateTimeOffsetUtc);
-        var whenVerifiedTask = _dateTimeService.GetLocalDateTimeStringFromUtcAsync(user.VerifiedDateTimeOffsetUtc);
-        var whenLastSignInTask = _dateTimeService.GetLocalDateTimeStringFromUtcAsync(user.LastSignInDateTimeOffsetUtc);
-        var lockedOutUntilTask = _dateTimeService.GetLocalDateTimeStringFromUtcAsync(user.LockoutEnd);
-
         string firstName = await firstNameEncryptedBase64DecryptTask;
         string lastName = await lastNameEncryptedBase64DecryptTask;
-
-        string whenCreated = await whenCreatedTask;
-        string whenVerified = await whenVerifiedTask;
-        string whenLastSignIn = await whenLastSignInTask;
-        string lockedOutUntil = await lockedOutUntilTask;
 
         return new ComprehensiveUser
         {
@@ -140,11 +126,10 @@ public class UserService : IUserService
             Email = user.Email,
             FirstName = firstName,
             LastName = lastName,
-            WhenCreated = whenCreated,
-            WhenVerified = whenVerified,
-            WhenLastSignIn = whenLastSignIn,
-            LockedOutUntil = lockedOutUntil,
             CreatedDateTimeOffsetUtc = user.CreatedDateTimeOffsetUtc,
+            VerifiedDateTimeOffsetUtc = user.VerifiedDateTimeOffsetUtc,
+            LastSignInDateTimeOffsetUtc = user.LastSignInDateTimeOffsetUtc,
+            LockoutEndDateTimeOffsetUtc = user.LockoutEnd,
             Roles = comprehensiveUserRoles,
         };
     }

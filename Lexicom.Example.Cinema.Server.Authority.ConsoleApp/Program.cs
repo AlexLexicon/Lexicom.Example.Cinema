@@ -1,4 +1,6 @@
-﻿using Lexicom.Authority.ConsoleApp.Extensions;
+﻿using Lexicom.Authentication.For.ConsoleApp.Extensions;
+using Lexicom.Authority.ConsoleApp.Extensions;
+using Lexicom.Authority.Extensions;
 using Lexicom.ConsoleApp.DependencyInjection;
 using Lexicom.ConsoleApp.Tui.Extensions;
 using Lexicom.Cryptography.ConsoleApp.Extensions;
@@ -8,7 +10,9 @@ using Lexicom.DependencyInjection.Primitives.For.ConsoleApp.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
+using Lexicom.Example.Cinema.Server.Authority.Database;
 using Lexicom.Example.Cinema.Server.Authority.Database.Extensions;
+using Lexicom.Example.Cinema.Server.Shared.Extensions;
 using Lexicom.Logging.ConsoleApp.Extensions;
 using Lexicom.Smtp.ConsoleApp.Extensions;
 using Lexicom.Smtp.Extensions;
@@ -24,31 +28,42 @@ ConsoleApplicationBuilder builder = ConsoleApplication.CreateBuilder();
 
 builder.Configuration.AddJsonFile("appsettings.SecretsExample.json");
 
-builder.Lexicom(options =>
+builder.Lexicom(l =>
 {
-    options.AddLogging();
-    options.AddTui<AssemblyScanMarker>();
-    options.AddAuthority();
-    options.AddSmtp(options =>
+    l.AddLogging();
+    l.AddTui<AssemblyScanMarker>();
+    l.AddAuthority(auth =>
     {
-        options.AddFileClient();
+        auth.AddAccessTokenProvider();
+        auth.AddRefreshTokenProvider();
     });
-    options.AddCryptography(options =>
+    l.AddAuthentication(auth =>
     {
-        options.AddStringSecretOptions();
+        auth.AddAccessTokenAuthentication();
     });
-    options.AddPrimitives(options =>
+    l.AddSmtp(smtp =>
     {
-        options.AddTimeProvider();
-        options.AddGuidProvider();
+        smtp.AddFileClient();
+    });
+    l.AddCryptography(c =>
+    {
+        c.AddStringSecretOptions();
+    });
+    l.AddPrimitives(p =>
+    {
+        p.AddTimeProvider();
+        p.AddGuidProvider();
     });
 });
-
-builder.Services.AddScoped<IComprehensiveService, ComprehensiveService>();
 
 builder.Services.AddAuthorityDatabase();
 builder.Services.AddAuthorityApplication();
 
+builder.Services.AddScoped<IExtendedComprehensiveService, ExtendedComprehensiveService>();
+builder.Services.AddSingleton<IDateTimeService, DateTimeService>();
+
 ConsoleApplication app = builder.Build();
+
+await app.Services.EnsureDatabaseCreatedAsync<AuthorityDbContext>();
 
 await app.RunLexicomTuiAsync("Lexicom.Example.Cinema.Server.Authority.ConsoleApp");

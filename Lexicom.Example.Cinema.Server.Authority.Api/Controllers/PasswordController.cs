@@ -2,7 +2,7 @@
 using Lexicom.AspNetCore.Controllers.Amenities.Extensions;
 using Lexicom.Authentication.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts;
-using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Errors;
+using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Password;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
@@ -41,7 +41,7 @@ public class PasswordController : LexicomController
     """)]
     [HttpPatch]
     [Authorize(Policy = Policies.Permissions.Authority.Password.PATCH)]
-    public async Task<IActionResult> UserPasswordPatchAsync([FromBody] PasswordPostRequestBody requestBody)
+    public async Task<IActionResult> UserPasswordPatchAsync([FromBody] UserPasswordPostRequestBody requestBody)
     {
         Guid userId = User.GetId();
         try
@@ -59,7 +59,7 @@ public class PasswordController : LexicomController
             //we want to catch missing password requirements with our IPasswordRequirementsRuleSet validator
             //so if this exception is reached we need to update that validator
             var unreachableException = e.ToUnreachableException("a password was missing requirements but not caught with our validation.");
-            _logger.LogCritical(unreachableException, "Failed to reset the password for the user with tthe id '{userId}' beacause the new password did not meet the password requirements.", userId);
+            _logger.LogCritical(unreachableException, "Failed to reset the password for the user with the id '{userId}' because the new password did not meet the password requirements.", userId);
 
             return BadRequest()
                 .FromProperty(requestBody.NewPassword)
@@ -84,7 +84,7 @@ public class PasswordController : LexicomController
     """)]
     [HttpPost("forgot")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserPasswordForgotPostAsync([FromBody] PasswordForgotPostRequestBody requestBody)
+    public async Task<IActionResult> UserPasswordForgotPostAsync([FromBody] UserPasswordForgotPostRequestBody requestBody)
     {
         try
         {
@@ -94,7 +94,7 @@ public class PasswordController : LexicomController
         }
         catch (UserDoesNotExistException e)
         {
-            _logger.LogWarning(e, "Failed to reguest the forgot password email because the user with the email '{email}' does not exist.", requestBody.Email);
+            _logger.LogWarning(e, "Failed to request the forgot password email because the user with the email '{email}' does not exist.", requestBody.Email);
 
             //if the user does not exist, we want to return no content
             //since this is an anonymous endpoint anyone could call this
@@ -113,7 +113,7 @@ public class PasswordController : LexicomController
     """)]
     [HttpPost("forgot/reset")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserPasswordResetPostAsync([FromBody] PasswordResetPostRequestBody requestBody)
+    public async Task<IActionResult> UserPasswordResetPostAsync([FromBody] UserPasswordForgotResetPostRequestBody requestBody)
     {
         try
         {

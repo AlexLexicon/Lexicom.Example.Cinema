@@ -1,23 +1,24 @@
 ﻿using Lexicom.ConsoleApp.Amenities;
 using Lexicom.ConsoleApp.Tui;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
+using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Models;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Roles;
+
 [TuiPage("Roles")]
 public class GetComprehensiveRoles : ITuiOperation
 {
-    private readonly IComprehensiveService _comprehensiveService;
+    private readonly IExtendedComprehensiveService _extendedComprehensiveService;
 
-    public GetComprehensiveRoles(IComprehensiveService comprehensiveService)
+    public GetComprehensiveRoles(IExtendedComprehensiveService extendedComprehensiveService)
     {
-        _comprehensiveService = comprehensiveService;
+        _extendedComprehensiveService = extendedComprehensiveService;
     }
 
     public async Task ExecuteAsync()
     {
-        IReadOnlyList<ComprehensiveRole> comprehensiveRoles = await _comprehensiveService.GetComprehensiveRolesAsync();
+        IReadOnlyList<ExtendedComprehensiveRole> extendedComprehensiveRoles = await _extendedComprehensiveService.GetExtendedComprehensiveRolesAsync();
         Console.WriteLine("Roles:");
-        Consolex.WriteAsJson(comprehensiveRoles);
+        Consolex.WriteAsJson(extendedComprehensiveRoles);
     }
 }

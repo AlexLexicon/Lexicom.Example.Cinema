@@ -1,6 +1,6 @@
 ﻿using Lexicom.AspNetCore.Controllers.Amenities;
 using Lexicom.Authentication.For.AspNetCore.Controllers.Extensions;
-using Lexicom.Example.Cinema.Server.Authority.Api.Contracts;
+using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.User;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
