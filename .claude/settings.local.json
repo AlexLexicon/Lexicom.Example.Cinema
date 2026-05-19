@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(Select-String -Pattern \"Authority|Server|Api\")",
-      "Bash(Select-Object -First 200)"
+      "Bash(Select-Object -First 200)",
+      "Bash(dotnet build *)"
     ]
   }
 }

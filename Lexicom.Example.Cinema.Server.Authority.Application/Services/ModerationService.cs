@@ -1,7 +1,9 @@
 ﻿using Lexicom.EntityFramework.Identity.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
+using Lexicom.Example.Cinema.Server.Authority.Database;
 using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
 
@@ -18,13 +20,16 @@ public class ModerationService : IModerationService
 {
     private readonly IUserService _userService;
     private readonly UserManager<User> _userManager;
+    private readonly IRefreshTokenService _refreshTokenService;
 
     public ModerationService(
         IUserService userService,
-        UserManager<User> userManager)
+        UserManager<User> userManager,
+        IRefreshTokenService refreshTokenService)
     {
         _userService = userService;
         _userManager = userManager;
+        _refreshTokenService = refreshTokenService;
     }
 
     public async Task LockUserAsync(Guid userId)
@@ -38,12 +43,15 @@ public class ModerationService : IModerationService
             throw new UserAlreadyLockedOutException(userId);
         }
 
-        IdentityResult SetLockoutEndDateIdentityResult = await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue.UtcDateTime);
+        IdentityResult SetLockoutEndDateIdentityResult = await _userManager.SetLockoutEndDateAsync(user, lockoutEnd: DateTimeOffset.MaxValue.UtcDateTime);
 
         if (!SetLockoutEndDateIdentityResult.Succeeded)
         {
             throw new IdentityResultException(SetLockoutEndDateIdentityResult);
         }
+
+        //if a user is locked out we should delete all of their refresh tokens
+        await _refreshTokenService.RemoveRefreshTokenAsync(user.Id);
     }
 
     public async Task UnlockUserAsync(Guid userId)
@@ -57,7 +65,7 @@ public class ModerationService : IModerationService
             throw new UserNotLockedOutException(userId);
         }
 
-        IdentityResult SetLockoutEndDateIdentityResult = await _userManager.SetLockoutEndDateAsync(user, null);
+        IdentityResult SetLockoutEndDateIdentityResult = await _userManager.SetLockoutEndDateAsync(user, lockoutEnd: null);
 
         if (!SetLockoutEndDateIdentityResult.Succeeded)
         {

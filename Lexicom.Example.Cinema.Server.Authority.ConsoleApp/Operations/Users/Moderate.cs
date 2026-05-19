@@ -3,24 +3,21 @@ using Lexicom.ConsoleApp.Tui;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Users;
 
 [TuiPage("Users")]
-public class UserLockOut : ITuiOperation
+public class Moderate : ITuiOperation
 {
     private readonly IComprehensiveService _comprehensiveService;
-    private readonly IUserService _userService;
+    private readonly IModerationService _moderationService;
 
-    public UserLockOut(
+    public Moderate(
         IComprehensiveService comprehensiveService,
-        IUserService userService)
+        IModerationService moderationService)
     {
         _comprehensiveService = comprehensiveService;
-        _userService = userService;
+        _moderationService = moderationService;
     }
 
     public async Task ExecuteAsync()
@@ -30,25 +27,23 @@ public class UserLockOut : ITuiOperation
         Consolex.WriteAsJson(comprehensiveUsers);
         Console.WriteLine();
 
-        Guid userId = Consolex.ReadLineGuid("Enter the id of the user you want to add a role to:");
+        Guid userId = Consolex.ReadLineGuid("Enter the id of the user you want to moderate:");
         Console.WriteLine();
 
         bool lockUser = Consolex
             .BinaryQuestion()
-            .SetTrue("Lock")
-            .SetFalse("UnLock")
-            .Ask("What do you want to do to the user?");
+            .SetTrue("Lock User")
+            .SetFalse("UnLock User")
+            .Ask("What do you want to do?");
         Console.WriteLine();
 
         if (lockUser)
         {
-            DateTimeOffset lockoutEndDate = Consolex.ReadLineDateTimeOffset("Enter the date time you want to lock out the user until");
-
-            await _userService.LockUserAsync(userId, lockoutEndDate);
+            await _moderationService.LockUserAsync(userId);
         }
         else
         {
-            await _userService.UnLockUserAsync(userId);
+            await _moderationService.UnlockUserAsync(userId);
         }
     }
 }

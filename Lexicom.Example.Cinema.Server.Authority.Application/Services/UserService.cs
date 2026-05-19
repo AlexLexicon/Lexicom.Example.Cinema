@@ -37,9 +37,6 @@ public interface IUserService
     /// <exception cref="UserDoesNotHaveRoleException"/>
     Task RemoveRoleFromUserAsync(Guid userId, Guid roleId);
     /// <exception cref="IdentityResultException"></exception>
-    Task UnLockUserAsync(Guid userId);
-    /// <exception cref="IdentityResultException"></exception>
-    Task LockUserAsync(Guid userId, DateTimeOffset lockoutEndDate);
 }
 public class UserService : IUserService
 {
@@ -257,28 +254,6 @@ public class UserService : IUserService
             }
 
             throw new IdentityResultException(removeFromRoleIdentityResult);
-        }
-    }
-
-    public async Task UnLockUserAsync(Guid userId)
-    {
-        await SetUserLockoutEndDateAsync(userId, lockoutEndDateTimeOffset: null);
-    }
-
-    public async Task LockUserAsync(Guid userId, DateTimeOffset lockoutEndDate)
-    {
-        await SetUserLockoutEndDateAsync(userId, lockoutEndDate);
-    }
-
-    private async Task SetUserLockoutEndDateAsync(Guid userId, DateTimeOffset? lockoutEndDateTimeOffset)
-    {
-        User user = await GetUserByIdAsync(userId);
-
-        IdentityResult result = await _userManager.SetLockoutEndDateAsync(user, lockoutEndDateTimeOffset);
-
-        if (!result.Succeeded)
-        {
-            throw new IdentityResultException(result);
         }
     }
 }
