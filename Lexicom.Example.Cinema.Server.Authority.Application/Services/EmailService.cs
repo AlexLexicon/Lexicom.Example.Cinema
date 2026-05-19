@@ -106,7 +106,7 @@ public class EmailService : IEmailService
         To reset your {appName} password click on the following link. Please note that this password reset link will expire in {passwordResetTimeSpanFriendlyString}.
         <br>
         <br>
-        {url}?{queryString}
+        {url}{queryString}
         <br>
         <br>
         If you did not request this change, you can safely ignore this email.
@@ -199,7 +199,7 @@ public class EmailService : IEmailService
 
         UrlsOptions UrlsOptions = _urlsOptions.Value;
 
-        string? url = UrlsOptions.ConfirmationEmailUrl;
+        string? url = UrlsOptions.ChangeEmailUrl;
 
         if (string.IsNullOrWhiteSpace(url))
         {
@@ -238,7 +238,7 @@ public class EmailService : IEmailService
         To change your {appName} account email click on the following link. Please note that this change email link will expire in {emailChangeTimeSpanFriendlyString}.
         <br>
         <br>
-        {url}?{queryString}
+        {url}{queryString}
         <br>
         <br>
         If you did not request this change, you can safely ignore this email.

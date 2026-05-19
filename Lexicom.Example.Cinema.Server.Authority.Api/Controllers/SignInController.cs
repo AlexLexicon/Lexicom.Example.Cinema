@@ -191,5 +191,34 @@ public class SignInController : LexicomController
                 .WithMessage("The access token or refresh token is not valid.")
                 .AddCode(AuthorityErrorCodes.TOKEN_INVALID);
         }
+        catch (UserDoesNotExistException e)
+        {
+            _logger.LogWarning(e, "Failed to refresh the user because the user does not exist.");
+
+            return BadRequest()
+                .FromProperty(requestBody.AccessBearerToken)
+                .WithMessage("The access token or refresh token is not valid.")
+                .FromProperty(requestBody.RefreshBearerToken)
+                .WithMessage("The access token or refresh token is not valid.")
+                .AddCode(AuthorityErrorCodes.TOKEN_INVALID);
+        }
+        catch (UserLockedOutException e)
+        {
+            _logger.LogWarning(e, "Failed to refresh the user because the user is locked out.");
+
+            return Forbid()
+               .FromKey("User")
+               .WithMessage("Locked out.")
+               .AddCode(AuthorityErrorCodes.USER_MODERATION_LOCKED);
+        }
+        catch (UserNotVerifiedException e)
+        {
+            _logger.LogWarning(e, "Failed to refresh the user because the user is not verified.");
+
+            return Forbid()
+                .FromKey("User")
+                .WithMessage("Not verified.")
+                .AddCode(AuthorityErrorCodes.USER_VERIFICATION_INCOMPLETE);
+        }
     }
 }

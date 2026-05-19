@@ -45,7 +45,7 @@ public static class Policies
             }
             public static class Review
             {
-                public const string POST = "movie:post";
+                public const string POST = "review:post";
             }
         }
     }

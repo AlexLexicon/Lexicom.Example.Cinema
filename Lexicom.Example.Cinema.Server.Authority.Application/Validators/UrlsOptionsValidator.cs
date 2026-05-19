@@ -12,6 +12,9 @@ public class UrlsOptionsValidator : AbstractOptionsValidator<UrlsOptions>
         RuleFor(o => o.ConfirmationEmailUrl)
             .UseRuleSet(requiredRuleSet);
 
+        RuleFor(o => o.ChangeEmailUrl)
+            .UseRuleSet(requiredRuleSet);
+
         RuleFor(o => o.ForgotPasswordEmailUrl)
             .UseRuleSet(requiredRuleSet);
     }

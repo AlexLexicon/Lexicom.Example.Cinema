@@ -26,6 +26,9 @@ public interface ISignInService
     /// <exception cref="RefreshTokenAccessTokenJtiMismatchException"/>
     /// <exception cref="RefreshTokenUserMismatchException"/>
     /// <exception cref="RefreshTokenExpiredException"/>
+    /// <exception cref="UserDoesNotExistException"/>
+    /// <exception cref="UserLockedOutException"/>
+    /// <exception cref="UserNotVerifiedException"/>
     Task<SignIn> RefreshUserAsync(string accessBearerToken, string refreshBearerToken);
 }
 public class SignInService : ISignInService
@@ -123,50 +126,61 @@ public class SignInService : ISignInService
 
         using var db = await _dbContextFactory.CreateDbContextAsync();
 
-        RefreshToken? refreshToken = await db.RefreshTokens.FirstOrDefaultAsync(urt => urt.Id == refreshTokenJti);
+        RefreshToken? dbRefreshToken = await db.RefreshTokens.FirstOrDefaultAsync(urt => urt.Id == refreshTokenJti);
 
-        if (refreshToken is null)
+        if (dbRefreshToken is null)
         {
             throw new RefreshTokenDoesNotExistException(refreshTokenJti);
         }
 
         if (accessTokenUserId != refreshTokenUserId)
         {
-            db.RefreshTokens.Remove(refreshToken);
+            db.RefreshTokens.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
             throw new RefreshTokenAccessTokenSubjectMismatchException(accessTokenUserId, refreshTokenUserId);
         }
 
-        if (refreshToken.AccessTokenJti != accessTokenJti)
+        if (dbRefreshToken.AccessTokenJti != accessTokenJti)
         {
-            db.RefreshTokens.Remove(refreshToken);
+            db.RefreshTokens.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
-            throw new RefreshTokenAccessTokenJtiMismatchException(refreshToken.Id, refreshToken.AccessTokenJti, accessTokenJti);
+            throw new RefreshTokenAccessTokenJtiMismatchException(dbRefreshToken.Id, dbRefreshToken.AccessTokenJti, accessTokenJti);
         }
 
-        if (refreshToken.UserId != accessTokenUserId)
+        if (dbRefreshToken.UserId != accessTokenUserId)
         {
-            db.RefreshTokens.Remove(refreshToken);
+            db.RefreshTokens.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
-            throw new RefreshTokenUserMismatchException(refreshToken.Id, refreshToken.UserId, accessTokenUserId);
+            throw new RefreshTokenUserMismatchException(dbRefreshToken.Id, dbRefreshToken.UserId, accessTokenUserId);
         }
 
         //the tokens experation should automatically
         //be checked by the call 'Is[Bearer]TokenValidAsync'
         //but just incase we check here as well since someone might
         //want to modify the token experation date in the database to invalidate a token manually
-        if (refreshToken.ExpiresDateTimeOffsetUtc < _timeProvider.GetUtcNow())
+        if (dbRefreshToken.ExpiresDateTimeOffsetUtc < _timeProvider.GetUtcNow())
         {
-            db.RefreshTokens.Remove(refreshToken);
+            db.RefreshTokens.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
-            throw new RefreshTokenExpiredException(refreshToken.Id);
+            throw new RefreshTokenExpiredException(dbRefreshToken.Id);
         }
 
-        User user = await _userService.GetUserByIdAsync(refreshToken.UserId);
+        User user= await _userService.GetUserByIdAsync(dbRefreshToken.UserId);
+
+        bool isLockedOut = await _userManager.IsLockedOutAsync(user);
+        if (isLockedOut)
+        {
+            throw new UserLockedOutException(user.Id);
+        }
+
+        if (user.VerifiedDateTimeOffsetUtc is null)
+        {
+            throw new UserNotVerifiedException(user.Id);
+        }
 
         return await CreateSignInTokensAsync(user);
     }
