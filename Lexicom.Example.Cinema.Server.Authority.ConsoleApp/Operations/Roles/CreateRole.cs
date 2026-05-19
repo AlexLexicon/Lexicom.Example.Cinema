@@ -1,6 +1,5 @@
 ﻿using Lexicom.ConsoleApp.Amenities;
 using Lexicom.ConsoleApp.Tui;
-using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Models;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
