@@ -8,7 +8,6 @@ public class AuthorityDbContext : IdentityDbContext<User, Role, Guid>
 {
     public AuthorityDbContext(DbContextOptions<AuthorityDbContext> options) : base(options)
     {
-        Database.EnsureCreated();
     }
 
     public DbSet<RefreshToken> RefreshTokens { get; set; }

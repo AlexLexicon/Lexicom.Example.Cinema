@@ -9,8 +9,10 @@ using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Api;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
+using Lexicom.Example.Cinema.Server.Authority.Database;
 using Lexicom.Example.Cinema.Server.Authority.Database.Extensions;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
+using Lexicom.Example.Cinema.Server.Shared.Extensions;
 using Lexicom.Logging.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Scalar.Extensions;
 using Lexicom.Smtp.AspNetCore.Controllers.Extensions;
@@ -86,6 +88,7 @@ builder.Services.AddAuthorityApplication();
 
 var app = builder.Build();
 
+await app.Services.EnsureDatabaseCreatedAsync<AuthorityDbContext>();
 app.UseLexicomExceptionHandlingMiddleware();
 app.UseLexicomLogging();
 app.UseLexicomScalar();

@@ -7,7 +7,6 @@ public class MoviesDbContext : DbContext
 {
     public MoviesDbContext(DbContextOptions options) : base(options)
     {
-        Database.EnsureCreated();
     }
 
     public DbSet<Movie> Movies { get; set; }

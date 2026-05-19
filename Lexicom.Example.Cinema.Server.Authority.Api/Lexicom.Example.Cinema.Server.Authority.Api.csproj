@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Authority.Api.Contracts\Lexicom.Example.Cinema.Server.Authority.Api.Contracts.csproj" />
     <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Authority.Application\Lexicom.Example.Cinema.Server.Authority.Application.csproj" />
+    <ProjectReference Include="..\Lexicom.Example.Cinema.Server.Shared\Lexicom.Example.Cinema.Server.Shared.csproj" />
   </ItemGroup>
 
 </Project>

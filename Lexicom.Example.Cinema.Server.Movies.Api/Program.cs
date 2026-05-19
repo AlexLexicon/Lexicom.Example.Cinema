@@ -6,8 +6,10 @@ using Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers.Extensio
 using Lexicom.Example.Cinema.Server.Movies.Api;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Extensions;
 using Lexicom.Example.Cinema.Server.Movies.Application.Extensions;
+using Lexicom.Example.Cinema.Server.Movies.Database;
 using Lexicom.Example.Cinema.Server.Movies.Database.Extensions;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
+using Lexicom.Example.Cinema.Server.Shared.Extensions;
 using Lexicom.Logging.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Scalar.Extensions;
 using Lexicom.Supports.AspNetCore.Controllers.Extensions;
@@ -69,6 +71,7 @@ builder.Services.AddMoviesApplication();
 
 var app = builder.Build();
 
+await app.Services.EnsureDatabaseCreatedAsync<MoviesDbContext>();
 app.UseLexicomExceptionHandlingMiddleware();
 app.UseLexicomLogging();
 app.UseLexicomScalar();
