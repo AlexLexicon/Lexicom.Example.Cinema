@@ -24,7 +24,7 @@ public class AddRoleToUser : ITuiOperation
     public async Task ExecuteAsync()
     {
         IReadOnlyList<ExtendedComprehensiveUser> extendedComprehensiveUsers = await _extendedComprehensiveService.GetExtendedComprehensiveUsersAsync();
-        Console.WriteLine("Avaliable Users:");
+        Console.WriteLine("Available Users:");
         Consolex.WriteAsJson(extendedComprehensiveUsers);
         Console.WriteLine();
 
@@ -32,7 +32,7 @@ public class AddRoleToUser : ITuiOperation
         Console.WriteLine();
 
         IReadOnlyList<ExtendedComprehensiveRole> extendedComprehensiveRoles = await _extendedComprehensiveService.GetExtendedComprehensiveRolesAsync();
-        Console.WriteLine("Avaliable Roles:");
+        Console.WriteLine("Available Roles:");
         Consolex.WriteAsJson(extendedComprehensiveRoles);
         Console.WriteLine();
 

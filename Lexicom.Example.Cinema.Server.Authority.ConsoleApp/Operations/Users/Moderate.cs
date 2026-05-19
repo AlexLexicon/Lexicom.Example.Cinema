@@ -23,7 +23,7 @@ public class Moderate : ITuiOperation
     public async Task ExecuteAsync()
     {
         IReadOnlyList<ExtendedComprehensiveUser> extendedComprehensiveUsers = await _extendedComprehensiveService.GetExtendedComprehensiveUsersAsync();
-        Console.WriteLine("Avaliable Users:");
+        Console.WriteLine("Available Users:");
         Consolex.WriteAsJson(extendedComprehensiveUsers);
         Console.WriteLine();
 
@@ -33,7 +33,7 @@ public class Moderate : ITuiOperation
         bool lockUser = Consolex
             .BinaryQuestion()
             .SetTrue("Lock User")
-            .SetFalse("UnLock User")
+            .SetFalse("Unlock User")
             .Ask("What do you want to do?");
         Console.WriteLine();
 
@@ -48,7 +48,7 @@ public class Moderate : ITuiOperation
         {
             await _moderationService.UnlockUserAsync(userId);
 
-            Console.WriteLine("User UnLocked Successfully.");
+            Console.WriteLine("User Unlocked Successfully.");
             Console.WriteLine();
         }
 

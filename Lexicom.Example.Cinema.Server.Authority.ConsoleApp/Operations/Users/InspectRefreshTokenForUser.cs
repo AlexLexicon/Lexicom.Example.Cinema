@@ -25,7 +25,7 @@ public class InspectRefreshTokenForUser : ITuiOperation
     public async Task ExecuteAsync()
     {
         IReadOnlyList<ExtendedComprehensiveUser> extendedComprehensiveUsers = await _extendedComprehensiveService.GetExtendedComprehensiveUsersAsync();
-        Console.WriteLine("Avaliable Users:");
+        Console.WriteLine("Available Users:");
         Consolex.WriteAsJson(extendedComprehensiveUsers);
         Console.WriteLine();
 
@@ -34,7 +34,7 @@ public class InspectRefreshTokenForUser : ITuiOperation
 
         using var db = await _dbContextFactory.CreateDbContextAsync();
 
-        RefreshToken? refreshToken = await db.RefreshTokens.FirstOrDefaultAsync(rt => rt.UserId == userId);
+        RefreshTokenEntry? refreshToken = await db.RefreshTokenEntries.FirstOrDefaultAsync(rt => rt.UserId == userId);
 
         if (refreshToken is null)
         {

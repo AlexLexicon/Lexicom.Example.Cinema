@@ -10,5 +10,5 @@ public class AuthorityDbContext : IdentityDbContext<User, Role, Guid>
     {
     }
 
-    public DbSet<RefreshToken> RefreshTokens { get; set; }
+    public DbSet<RefreshTokenEntry> RefreshTokenEntries { get; set; }
 }

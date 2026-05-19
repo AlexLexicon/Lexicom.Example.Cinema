@@ -1,6 +1,6 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 
-public class RefreshToken
+public class RefreshTokenEntry
 {
     public required Guid Id { get; init; }
     public required Guid UserId { get; init; }

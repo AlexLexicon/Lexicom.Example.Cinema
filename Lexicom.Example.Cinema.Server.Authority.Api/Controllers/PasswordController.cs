@@ -113,7 +113,7 @@ public class PasswordController : LexicomController
     """)]
     [HttpPost("forgot/reset")]
     [AllowAnonymous]
-    public async Task<IActionResult> UserPasswordResetPostAsync([FromBody] UserPasswordForgotResetPostRequestBody requestBody)
+    public async Task<IActionResult> UserPasswordForgotResetPostAsync([FromBody] UserPasswordForgotResetPostRequestBody requestBody)
     {
         try
         {
@@ -141,7 +141,7 @@ public class PasswordController : LexicomController
             //we want to catch missing password requirements with our IPasswordRequirementsRuleSet validator
             //so if this exception is reached we need to update that validator
             var unreachableException = e.ToUnreachableException("a password was missing requirements but not caught with our validation.");
-            _logger.LogCritical(unreachableException, "Failed to reset the password for the email '{email}' beacause the new password did not meet the password requirements.", requestBody.Email);
+            _logger.LogCritical(unreachableException, "Failed to reset the password for the email '{email}' because the new password did not meet the password requirements.", requestBody.Email);
 
             return BadRequest()
                 .FromProperty(requestBody.NewPassword)

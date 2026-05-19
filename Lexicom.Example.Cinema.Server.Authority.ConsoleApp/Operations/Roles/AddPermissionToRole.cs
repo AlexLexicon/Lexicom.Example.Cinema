@@ -24,14 +24,14 @@ public class AddPermissionToRole : ITuiOperation
     public async Task ExecuteAsync()
     {
         IReadOnlyList<ExtendedComprehensiveRole> extendedComprehensiveRoles = await _extendedComprehensiveService.GetExtendedComprehensiveRolesAsync();
-        Console.WriteLine("Avaliable Roles:");
+        Console.WriteLine("Available Roles:");
         Consolex.WriteAsJson(extendedComprehensiveRoles);
         Console.WriteLine();
 
         Guid roleId = Consolex.ReadLineGuid("Enter the id of the role you want to add a permission to:");
         Console.WriteLine();
 
-        Console.WriteLine("Avaliable Permissions:");
+        Console.WriteLine("Available Permissions:");
         Consolex.WriteAsJson(Policies.Permissions.All);
         Console.WriteLine();
 

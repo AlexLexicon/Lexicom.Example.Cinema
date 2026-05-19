@@ -42,7 +42,7 @@ public class SignInService : ISignInService
     private readonly ITimeProvider _timeProvider;
     private readonly IDbContextFactory<AuthorityDbContext> _dbContextFactory;
     private readonly IModerationService _moderationService;
-    private readonly IRefreshTokenService _refreshTokenService;
+    private readonly IRefreshTokenEntryService _refreshTokenEntryService;
 
     public SignInService(
         IUserService userService,
@@ -54,7 +54,7 @@ public class SignInService : ISignInService
         ITimeProvider timeProvider,
         IDbContextFactory<AuthorityDbContext> dbContextFactory,
         IModerationService moderationService,
-        IRefreshTokenService refreshTokenService)
+        IRefreshTokenEntryService refreshTokenEntryService)
     {
         _userService = userService;
         _signInManager = signInManager;
@@ -65,7 +65,7 @@ public class SignInService : ISignInService
         _dbContextFactory = dbContextFactory;
         _refreshTokenProvider = refreshTokenProvider;
         _moderationService = moderationService;
-        _refreshTokenService = refreshTokenService;
+        _refreshTokenEntryService = refreshTokenEntryService;
     }
 
     public async Task<SignIn> SignInUserAsync(string email, string password)
@@ -76,8 +76,8 @@ public class SignInService : ISignInService
 
         if (!signInIdentityResult.Succeeded)
         {
-            //if a user is not able to log in we want to remove their refresh token
-            await _refreshTokenService.RemoveRefreshTokenAsync(user.Id);
+            //if a user is not able to log in we want to remove their refresh token entry(s)
+            await _refreshTokenEntryService.RemoveRefreshTokenEntriesAsync(user.Id);
 
             if (signInIdentityResult.IsLockedOut)
             {
@@ -135,7 +135,7 @@ public class SignInService : ISignInService
 
         using var db = await _dbContextFactory.CreateDbContextAsync();
 
-        RefreshToken? dbRefreshToken = await db.RefreshTokens.FirstOrDefaultAsync(urt => urt.Id == refreshTokenJti);
+        RefreshTokenEntry? dbRefreshToken = await db.RefreshTokenEntries.FirstOrDefaultAsync(urt => urt.Id == refreshTokenJti);
 
         if (dbRefreshToken is null)
         {
@@ -144,7 +144,7 @@ public class SignInService : ISignInService
 
         if (accessTokenUserId != refreshTokenUserId)
         {
-            db.RefreshTokens.Remove(dbRefreshToken);
+            db.RefreshTokenEntries.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
             throw new RefreshTokenAccessTokenSubjectMismatchException(accessTokenUserId, refreshTokenUserId);
@@ -152,7 +152,7 @@ public class SignInService : ISignInService
 
         if (dbRefreshToken.AccessTokenJti != accessTokenJti)
         {
-            db.RefreshTokens.Remove(dbRefreshToken);
+            db.RefreshTokenEntries.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
             throw new RefreshTokenAccessTokenJtiMismatchException(dbRefreshToken.Id, dbRefreshToken.AccessTokenJti, accessTokenJti);
@@ -160,7 +160,7 @@ public class SignInService : ISignInService
 
         if (dbRefreshToken.UserId != accessTokenUserId)
         {
-            db.RefreshTokens.Remove(dbRefreshToken);
+            db.RefreshTokenEntries.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
             throw new RefreshTokenUserMismatchException(dbRefreshToken.Id, dbRefreshToken.UserId, accessTokenUserId);
@@ -172,7 +172,7 @@ public class SignInService : ISignInService
         //expiration date in the database to invalidate a token manually
         if (dbRefreshToken.ExpiresDateTimeOffsetUtc < _timeProvider.GetUtcNow())
         {
-            db.RefreshTokens.Remove(dbRefreshToken);
+            db.RefreshTokenEntries.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
             throw new RefreshTokenExpiredException(dbRefreshToken.Id);
@@ -183,7 +183,7 @@ public class SignInService : ISignInService
         bool isLockedOut = await _userManager.IsLockedOutAsync(user);
         if (isLockedOut)
         {
-            db.RefreshTokens.Remove(dbRefreshToken);
+            db.RefreshTokenEntries.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
             throw new UserLockedOutException(user.Id);
@@ -191,7 +191,7 @@ public class SignInService : ISignInService
 
         if (user.VerifiedDateTimeOffsetUtc is null)
         {
-            db.RefreshTokens.Remove(dbRefreshToken);
+            db.RefreshTokenEntries.Remove(dbRefreshToken);
             await db.SaveChangesAsync();
 
             throw new UserNotVerifiedException(user.Id);
@@ -206,8 +206,8 @@ public class SignInService : ISignInService
         BearerToken refreshBearerToken;
         try
         {
-            accessBearerToken = await _jwtService.CreateAccessTokenAsync(user.Id);
-            refreshBearerToken = await _jwtService.CreateRefreshTokenAsync(user.Id, accessBearerToken.Jti);
+            accessBearerToken = await _jwtService.GenerateAccessTokenAsync(user.Id);
+            refreshBearerToken = await _jwtService.GenerateRefreshTokenAsync(user.Id, accessBearerToken.Jti);
         }
         catch (UserDoesNotExistException e)
         {

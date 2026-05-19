@@ -119,34 +119,34 @@ public abstract partial class PaginationViewModel : ObservableObject, INotificat
     [RelayCommand]
     private async Task NextPageAsync()
     {
-        await SearchWhenCurrentPageIndexDiffrentAsync(CurrentPageIndex + 1);
+        await SearchWhenCurrentPageIndexDifferentAsync(CurrentPageIndex + 1);
     }
 
     [RelayCommand]
     private async Task PreviousPageAsync()
     {
-        await SearchWhenCurrentPageIndexDiffrentAsync(CurrentPageIndex - 1);
+        await SearchWhenCurrentPageIndexDifferentAsync(CurrentPageIndex - 1);
     }
 
     [RelayCommand]
     private async Task FirstPageAsync()
     {
-        await SearchWhenCurrentPageIndexDiffrentAsync(MinimumPageIndex);
+        await SearchWhenCurrentPageIndexDifferentAsync(MinimumPageIndex);
     }
 
     [RelayCommand]
     private async Task LastPageAsync()
     {
-        await SearchWhenCurrentPageIndexDiffrentAsync(MaximumPageIndex);
+        await SearchWhenCurrentPageIndexDifferentAsync(MaximumPageIndex);
     }
 
     [RelayCommand]
     private async Task PageAsync(int pageNumber)
     {
-        await SearchWhenCurrentPageIndexDiffrentAsync(pageNumber - 1);
+        await SearchWhenCurrentPageIndexDifferentAsync(pageNumber - 1);
     }
 
-    private async Task SearchWhenCurrentPageIndexDiffrentAsync(int newCurrentPageIndex)
+    private async Task SearchWhenCurrentPageIndexDifferentAsync(int newCurrentPageIndex)
     {
         int previousPageIndex = CurrentPageIndex;
         CurrentPageIndex = newCurrentPageIndex;

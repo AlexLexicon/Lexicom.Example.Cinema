@@ -1,11 +1,8 @@
 ﻿using Lexicom.Authority;
-using Lexicom.DependencyInjection.Primitives;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
-using Lexicom.Example.Cinema.Server.Authority.Database;
 using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
 using Lexicom.Jwt;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.JsonWebTokens;
 using System.Security.Claims;
 
@@ -14,9 +11,9 @@ namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
 public interface IJwtService
 {
     /// <exception cref="UserDoesNotExistException"/>
-    Task<BearerToken> CreateAccessTokenAsync(Guid userId);
+    Task<BearerToken> GenerateAccessTokenAsync(Guid userId);
     /// <exception cref="UserDoesNotExistException"/>
-    Task<BearerToken> CreateRefreshTokenAsync(Guid userId, Guid accessTokenJti);
+    Task<BearerToken> GenerateRefreshTokenAsync(Guid userId, Guid accessTokenJti);
 }
 public class JwtService : IJwtService
 {
@@ -24,26 +21,23 @@ public class JwtService : IJwtService
     private readonly IRoleService _roleService;
     private readonly IAccessTokenProvider _accessTokenProvider;
     private readonly IRefreshTokenProvider _refreshTokenProvider;
-    private readonly IDbContextFactory<AuthorityDbContext> _dbContextFactory;
-    private readonly ITimeProvider _timeProvider;
+    private readonly IRefreshTokenEntryService _refreshTokenEntryService;
 
     public JwtService(
         IUserService userService,
         IRoleService roleService,
         IAccessTokenProvider accessTokenProvider,
         IRefreshTokenProvider refreshTokenProvider,
-        IDbContextFactory<AuthorityDbContext> dbContextFactory,
-        ITimeProvider timeProvider)
+        IRefreshTokenEntryService refreshTokenEntryService)
     {
         _userService = userService;
         _roleService = roleService;
         _accessTokenProvider = accessTokenProvider;
         _refreshTokenProvider = refreshTokenProvider;
-        _dbContextFactory = dbContextFactory;
-        _timeProvider = timeProvider;
+        _refreshTokenEntryService = refreshTokenEntryService;
     }
 
-    public async Task<BearerToken> CreateAccessTokenAsync(Guid userId)
+    public async Task<BearerToken> GenerateAccessTokenAsync(Guid userId)
     {
         User user = await _userService.GetUserByIdAsync(userId);
 
@@ -99,7 +93,7 @@ public class JwtService : IJwtService
         return await _accessTokenProvider.CreateAccessTokenAsync(claims);
     }
 
-    public async Task<BearerToken> CreateRefreshTokenAsync(Guid userId, Guid accessTokenJti)
+    public async Task<BearerToken> GenerateRefreshTokenAsync(Guid userId, Guid accessTokenJti)
     {
         User user = await _userService.GetUserByIdAsync(userId);
 
@@ -110,27 +104,7 @@ public class JwtService : IJwtService
 
         BearerToken bearerToken = await _refreshTokenProvider.CreateRefreshTokenAsync(claims);
 
-        using var db = await _dbContextFactory.CreateDbContextAsync();
-
-        RefreshToken? userRefreshToken = await db.RefreshTokens.FirstOrDefaultAsync(urt => urt.UserId == user.Id);
-
-        if (userRefreshToken is not null)
-        {
-            db.RefreshTokens.Remove(userRefreshToken);
-        }
-
-        userRefreshToken = new RefreshToken
-        {
-            Id = bearerToken.Jti,
-            UserId = user.Id,
-            AccessTokenJti = accessTokenJti,
-            CreatedDateTimeOffsetUtc = _timeProvider.GetUtcNow(),
-            ExpiresDateTimeOffsetUtc = bearerToken.Expires,
-        };
-
-        await db.RefreshTokens.AddAsync(userRefreshToken);
-
-        await db.SaveChangesAsync();
+        await _refreshTokenEntryService.CreateRefreshTokenEntryAsync(userId, accessTokenJti, bearerToken);
 
         return bearerToken;
     }

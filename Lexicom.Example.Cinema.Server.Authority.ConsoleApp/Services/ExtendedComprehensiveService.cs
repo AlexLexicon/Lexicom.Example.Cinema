@@ -10,7 +10,7 @@ namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
 public interface IExtendedComprehensiveService
 {
     Task<ExtendedComprehensiveUser> GetExtendedComprehensiveUserAsync(Guid userId);
-    public Task<IReadOnlyList<ExtendedComprehensiveUser>> GetExtendedComprehensiveUsersAsync();
+    Task<IReadOnlyList<ExtendedComprehensiveUser>> GetExtendedComprehensiveUsersAsync();
     Task<ExtendedComprehensiveRole> GetExtendedComprehensiveRoleAsync(Guid roleId);
     Task<IReadOnlyList<ExtendedComprehensiveRole>> GetExtendedComprehensiveRolesAsync();
 }

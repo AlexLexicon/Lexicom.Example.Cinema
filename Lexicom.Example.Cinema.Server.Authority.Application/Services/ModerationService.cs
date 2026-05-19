@@ -17,16 +17,16 @@ public class ModerationService : IModerationService
 {
     private readonly IUserService _userService;
     private readonly UserManager<User> _userManager;
-    private readonly IRefreshTokenService _refreshTokenService;
+    private readonly IRefreshTokenEntryService _refreshTokenEntriesService;
 
     public ModerationService(
         IUserService userService,
         UserManager<User> userManager,
-        IRefreshTokenService refreshTokenService)
+        IRefreshTokenEntryService refreshTokenEntriesService)
     {
         _userService = userService;
         _userManager = userManager;
-        _refreshTokenService = refreshTokenService;
+        _refreshTokenEntriesService = refreshTokenEntriesService;
     }
 
     public async Task LockUserAsync(Guid userId)
@@ -47,8 +47,8 @@ public class ModerationService : IModerationService
             throw new IdentityResultException(setLockoutEndDateIdentityResult);
         }
 
-        //if a user is locked out we should delete their refresh token
-        await _refreshTokenService.RemoveRefreshTokenAsync(user.Id);
+        //if a user is locked out we should delete their refresh token entry(s)
+        await _refreshTokenEntriesService.RemoveRefreshTokenEntriesAsync(user.Id);
     }
 
     public async Task UnlockUserAsync(Guid userId)

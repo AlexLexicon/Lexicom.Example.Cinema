@@ -32,7 +32,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IModerationService, ModerationService>();
         services.AddScoped<IPasswordService, PasswordService>();
         services.AddSingleton<IPermissionService, PermissionService>();
-        services.AddSingleton<IRefreshTokenService, RefreshTokenService>();
+        services.AddSingleton<IRefreshTokenEntryService, RefreshTokenEntryService>();
         services.AddScoped<IRegistrationService, RegistrationService>();
         services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<ISignInService, SignInService>();
