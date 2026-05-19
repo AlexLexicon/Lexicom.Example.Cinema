@@ -27,7 +27,6 @@ public class EmailService : IEmailService
 {
     private readonly ILogger<EmailService> _logger;
     private readonly IUserService _userService;
-    private readonly ICryptographyService _cryptographyService;
     private readonly IOptions<BrandOptions> _brandOptions;
     private readonly IOptions<UrlsOptions> _urlsOptions;
     private readonly IOptions<PasswordResetTokenProviderOptions> _passwordResetTokenProviderOptions;
@@ -37,7 +36,6 @@ public class EmailService : IEmailService
     public EmailService(
         ILogger<EmailService> logger,
         IUserService userService,
-        ICryptographyService cryptographyService,
         IOptions<BrandOptions> brandOptions,
         IOptions<UrlsOptions> urlsOptions,
         IOptions<PasswordResetTokenProviderOptions> passwordResetTokenProviderOptions,
@@ -46,7 +44,6 @@ public class EmailService : IEmailService
     {
         _logger = logger;
         _userService = userService;
-        _cryptographyService = cryptographyService;
         _brandOptions = brandOptions;
         _urlsOptions = urlsOptions;
         _passwordResetTokenProviderOptions = passwordResetTokenProviderOptions;
