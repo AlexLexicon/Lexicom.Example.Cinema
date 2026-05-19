@@ -87,6 +87,9 @@ public class SignInService : ISignInService
             throw new PasswordIncorrectException();
         }
 
+        //if a user successfully logged in they are no longer locked out, as such i want to unlock the user
+        await _userService.UnLockUserAsync(user.Id);
+
         return await CreateSignInTokensAsync(user);
     }
 

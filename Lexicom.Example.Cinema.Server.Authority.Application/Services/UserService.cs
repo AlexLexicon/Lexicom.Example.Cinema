@@ -36,6 +36,10 @@ public interface IUserService
     /// <exception cref="RoleDoesNotExistException"/>
     /// <exception cref="UserDoesNotHaveRoleException"/>
     Task RemoveRoleFromUserAsync(Guid userId, Guid roleId);
+    /// <exception cref="IdentityResultException"></exception>
+    Task UnLockUserAsync(Guid userId);
+    /// <exception cref="IdentityResultException"></exception>
+    Task LockUserAsync(Guid userId, DateTimeOffset lockoutEndDate);
 }
 public class UserService : IUserService
 {
@@ -119,15 +123,19 @@ public class UserService : IUserService
 
         var firstNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.FirstNameEncryptedBase64);
         var lastNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.LastNameEncryptedBase64);
+
         var whenCreatedTask = _dateTimeService.GetLocalDateTimeStringFromUtcAsync(user.CreatedDateTimeOffsetUtc);
         var whenVerifiedTask = _dateTimeService.GetLocalDateTimeStringFromUtcAsync(user.VerifiedDateTimeOffsetUtc);
         var whenLastSignInTask = _dateTimeService.GetLocalDateTimeStringFromUtcAsync(user.LastSignInDateTimeOffsetUtc);
+        var lockedOutUntilTask = _dateTimeService.GetLocalDateTimeStringFromUtcAsync(user.LockoutEnd);
 
         string firstName = await firstNameEncryptedBase64DecryptTask;
         string lastName = await lastNameEncryptedBase64DecryptTask;
+
         string whenCreated = await whenCreatedTask;
         string whenVerified = await whenVerifiedTask;
         string whenLastSignIn = await whenLastSignInTask;
+        string lockedOutUntil = await lockedOutUntilTask;
 
         return new ComprehensiveUser
         {
@@ -138,6 +146,8 @@ public class UserService : IUserService
             WhenCreated = whenCreated,
             WhenVerified = whenVerified,
             WhenLastSignIn = whenLastSignIn,
+            LockedOutUntil = lockedOutUntil,
+            CreatedDateTimeOffsetUtc = user.CreatedDateTimeOffsetUtc,
             Roles = comprehensiveUserRoles,
         };
     }
@@ -247,6 +257,28 @@ public class UserService : IUserService
             }
 
             throw new IdentityResultException(removeFromRoleIdentityResult);
+        }
+    }
+
+    public async Task UnLockUserAsync(Guid userId)
+    {
+        await SetUserLockoutEndDateAsync(userId, lockoutEndDateTimeOffset: null);
+    }
+
+    public async Task LockUserAsync(Guid userId, DateTimeOffset lockoutEndDate)
+    {
+        await SetUserLockoutEndDateAsync(userId, lockoutEndDate);
+    }
+
+    private async Task SetUserLockoutEndDateAsync(Guid userId, DateTimeOffset? lockoutEndDateTimeOffset)
+    {
+        User user = await GetUserByIdAsync(userId);
+
+        IdentityResult result = await _userManager.SetLockoutEndDateAsync(user, lockoutEndDateTimeOffset);
+
+        if (!result.Succeeded)
+        {
+            throw new IdentityResultException(result);
         }
     }
 }

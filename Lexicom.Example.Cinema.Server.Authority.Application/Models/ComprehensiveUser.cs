@@ -8,5 +8,7 @@ public class ComprehensiveUser
     public required string WhenVerified { get; init; }
     public required string WhenLastSignIn { get; init; }
     public required string WhenCreated { get; init; }
+    public required string LockedOutUntil { get; init; }
+    public required DateTimeOffset CreatedDateTimeOffsetUtc { get; init; }
     public required IReadOnlyList<ComprehensiveRole> Roles { get; init; }
 }

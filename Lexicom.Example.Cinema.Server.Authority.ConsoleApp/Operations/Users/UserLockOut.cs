@@ -3,16 +3,19 @@ using Lexicom.ConsoleApp.Tui;
 using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Services;
 using Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Services;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Lexicom.Example.Cinema.Server.Authority.ConsoleApp.Operations.Users;
 
 [TuiPage("Users")]
-public class AddRoleToUser : ITuiOperation
+public class UserLockOut : ITuiOperation
 {
     private readonly IComprehensiveService _comprehensiveService;
     private readonly IUserService _userService;
 
-    public AddRoleToUser(
+    public UserLockOut(
         IComprehensiveService comprehensiveService,
         IUserService userService)
     {
@@ -30,18 +33,22 @@ public class AddRoleToUser : ITuiOperation
         Guid userId = Consolex.ReadLineGuid("Enter the id of the user you want to add a role to:");
         Console.WriteLine();
 
-        IReadOnlyList<ComprehensiveRole> comprehensiveRoles = await _comprehensiveService.GetComprehensiveRolesAsync();
-        Console.WriteLine("Avaliable Roles:");
-        Consolex.WriteAsJson(comprehensiveRoles);
+        bool lockUser = Consolex
+            .BinaryQuestion()
+            .SetTrue("Lock")
+            .SetFalse("UnLock")
+            .Ask("What do you want to do to the user?");
         Console.WriteLine();
 
-        Guid roleId = Consolex.ReadLineGuid("Enter the id of the role you want to add to the user:");
-        Console.WriteLine();
+        if (lockUser)
+        {
+            DateTimeOffset lockoutEndDate = Consolex.ReadLineDateTimeOffset("Enter the date time you want to lock out the user until");
 
-        await _userService.AddRoleToUserAsync(userId, roleId);
-
-        ComprehensiveUser updatedComprehensiveUser = await _userService.GetComprehensiveUserAsync(userId);
-        Console.WriteLine("Updated User:");
-        Consolex.WriteAsJson(updatedComprehensiveUser);
+            await _userService.LockUserAsync(userId, lockoutEndDate);
+        }
+        else
+        {
+            await _userService.UnLockUserAsync(userId);
+        }
     }
 }

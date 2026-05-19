@@ -40,7 +40,7 @@ public class UserController : LexicomController
                 Email = comprehensiveUser.Email,
                 FirstName = comprehensiveUser.FirstName,
                 LastName = comprehensiveUser.LastName,
-                CreatedDateTimeOffsetUtc = comprehensiveUser.CreatedDateTimeOffset,
+                CreatedDateTimeOffsetUtc = comprehensiveUser.CreatedDateTimeOffsetUtc,
                 Roles = comprehensiveUser.Roles.Select(cr => new UserGetResponseBodyRole
                 {
                     Id = cr.Id,
