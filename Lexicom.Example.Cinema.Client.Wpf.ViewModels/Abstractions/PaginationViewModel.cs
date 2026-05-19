@@ -1,12 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lexicom.Example.Cinema.Client.Application.Models;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using MediatR;
 using System.Collections.ObjectModel;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-public abstract partial class PaginationViewModel : ObservableObject, INotificationHandler<SearchInitiateNotification>
+public abstract partial class PaginationViewModel : ObservableObject, INotificationHandler<SearchInitiateMessage>
 {
     private const int TOTAL_PAGE_NUMBER_BUTTONS_PER_SIDE = 2;
 
@@ -55,7 +55,7 @@ public abstract partial class PaginationViewModel : ObservableObject, INotificat
     [ObservableProperty]
     private int _lastPageNumber;
 
-    public async Task Handle(SearchInitiateNotification notification, CancellationToken cancellationToken)
+    public async Task Handle(SearchInitiateMessage notification, CancellationToken cancellationToken)
     {
         if (notification.Domain == Domain)
         {

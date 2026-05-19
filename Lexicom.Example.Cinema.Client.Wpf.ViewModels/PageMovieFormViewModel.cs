@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSets;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSetTransformers;
 using Lexicom.Validation;
@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 
-public partial class PageMovieFormViewModel : ObservableObject, INotificationHandler<ShowPageMovieFormViewNotification>
+public partial class PageMovieFormViewModel : ObservableObject, INotificationHandler<ShowPageMovieFormViewMessage>
 {
     public PageMovieFormViewModel(
         IRuleSetValidator<MovieTitleStringRuleSet, string?> titleValidator,
@@ -37,7 +37,7 @@ public partial class PageMovieFormViewModel : ObservableObject, INotificationHan
     [ObservableProperty]
     private IRuleSetValidator<MovieSynopsisStringRuleSet, string?> _synopsisValidator;
 
-    public Task Handle(ShowPageMovieFormViewNotification notification, CancellationToken cancellationToken)
+    public Task Handle(ShowPageMovieFormViewMessage notification, CancellationToken cancellationToken)
     {
         IsVisible = true;
 

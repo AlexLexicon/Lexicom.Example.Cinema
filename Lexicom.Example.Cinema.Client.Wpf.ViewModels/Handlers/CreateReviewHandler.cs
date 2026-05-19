@@ -1,9 +1,9 @@
 ﻿using Lexicom.Concentrate.Client.Authentication;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Handlers;
-public class CreateReviewHandler : INotificationHandler<CreateReviewNotification>
+public class CreateReviewHandler : INotificationHandler<CreateReviewMessage>
 {
     private readonly IMediator _mediator;
     private readonly IAuthenticationTokenStore _authenticationTokenStore;
@@ -16,13 +16,13 @@ public class CreateReviewHandler : INotificationHandler<CreateReviewNotification
         _authenticationTokenStore = authenticationTokenStore;
     }
 
-    public async Task Handle(CreateReviewNotification notification, CancellationToken cancellationToken)
+    public async Task Handle(CreateReviewMessage notification, CancellationToken cancellationToken)
     {
         bool isAuthenticated = await _authenticationTokenStore.IsAuthenticatedAsync();
 
         if (!isAuthenticated)
         {
-            await _mediator.Publish(new FeatureRequiresSignInNotification(), cancellationToken);
+            await _mediator.Publish(new FeatureRequiresSignInMessage(), cancellationToken);
         }
     }
 }

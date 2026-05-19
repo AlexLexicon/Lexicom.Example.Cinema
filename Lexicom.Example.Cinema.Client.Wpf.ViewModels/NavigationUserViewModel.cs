@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Mvvm;
 using Lexicom.Mvvm.Extensions;
 

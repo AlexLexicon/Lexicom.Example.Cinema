@@ -1,11 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lexicom.Example.Cinema.Client.Application.Models;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public abstract partial class SearchViewModel : ObservableObject, INotificationHandler<OpenPageMessage>, INotificationHandler<HidePagesNotification>, INotificationHandler<SearchStartedNotification>
+public abstract partial class SearchViewModel : ObservableObject, INotificationHandler<OpenPageMessage>, INotificationHandler<HidePagesMessage>, INotificationHandler<SearchStartedMessage>
 {
     private readonly IMediator _mediator;
 
@@ -63,14 +63,14 @@ public abstract partial class SearchViewModel : ObservableObject, INotificationH
         }
     }
 
-    public Task Handle(HidePagesNotification notification, CancellationToken cancellationToken)
+    public Task Handle(HidePagesMessage notification, CancellationToken cancellationToken)
     {
         IsVisible = false;
 
         return Task.CompletedTask;
     }
 
-    public Task Handle(SearchStartedNotification notification, CancellationToken cancellationToken)
+    public Task Handle(SearchStartedMessage notification, CancellationToken cancellationToken)
     {
         IsEmptySearch = false;
         IsSearching = true;
@@ -87,6 +87,6 @@ public abstract partial class SearchViewModel : ObservableObject, INotificationH
     [RelayCommand]
     private async Task SearchAsync()
     {
-        await _mediator.Publish(new SearchInitiateNotification(Domain));
+        await _mediator.Publish(new SearchInitiateMessage(Domain));
     }
 }

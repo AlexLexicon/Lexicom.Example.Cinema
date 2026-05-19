@@ -2,12 +2,12 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Mvvm.Extensions;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class NavigationDomainViewModel : ObservableObject, INotificationHandler<DomainSelectedNotification>, INotificationHandler<OpenPagesCountChangedMessage>
+public partial class NavigationDomainViewModel : ObservableObject, INotificationHandler<DomainSelectedMessage>, INotificationHandler<OpenPagesCountChangedMessage>
 {
     private readonly IMessenger _mediator;
 
@@ -29,7 +29,7 @@ public partial class NavigationDomainViewModel : ObservableObject, INotification
     [ObservableProperty]
     private int _openPageCount;
 
-    public Task Handle(DomainSelectedNotification notification, CancellationToken cancellationToken)
+    public Task Handle(DomainSelectedMessage notification, CancellationToken cancellationToken)
     {
         IsSelected = notification.SelectedDomain == Domain;
 
@@ -55,8 +55,8 @@ public partial class NavigationDomainViewModel : ObservableObject, INotification
     [RelayCommand]
     private async Task SelectAsync()
     {
-        await _mediator.Publish(new HidePagesNotification());
-        await _mediator.Publish(new DomainSelectedNotification(Domain));
+        await _mediator.Publish(new HidePagesMessage());
+        await _mediator.Publish(new DomainSelectedMessage(Domain));
         await _mediator.ScheduleAsync(new OpenPageMessage(Domain, Guid.Empty));
     }
 

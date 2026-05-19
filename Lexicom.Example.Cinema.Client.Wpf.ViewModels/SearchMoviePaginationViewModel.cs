@@ -1,7 +1,7 @@
 ﻿using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
@@ -13,7 +13,7 @@ public class SearchMoviePaginationViewModel : PaginationViewModel, INotification
 
     protected override async Task SearchAsync() 
     {
-        await _mediator.Publish(new SearchStartedNotification());
+        await _mediator.Publish(new SearchStartedMessage());
         await _mediator.Publish(new MovieSearchRequestNotification(CurrentPageIndex, PageLimit));
     }
 

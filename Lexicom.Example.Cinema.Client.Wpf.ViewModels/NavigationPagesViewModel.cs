@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Mvvm;
 using Lexicom.Mvvm.Extensions;
 using Lexicom.Wpf.Amenities.Threading;
@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 
-public partial class NavigationPagesViewModel<TNavigationPageViewModel> : DisposableObservableObject, IAsyncRecipient<DomainSelectedNotification>, IAsyncRecipient<OpenPageMessage>, IAsyncRecipient<ClosePageMessage> where TNavigationPageViewModel : NavigationPageViewModel
+public partial class NavigationPagesViewModel<TNavigationPageViewModel> : DisposableObservableObject, IAsyncRecipient<DomainSelectedMessage>, IAsyncRecipient<OpenPageMessage>, IAsyncRecipient<ClosePageMessage> where TNavigationPageViewModel : NavigationPageViewModel
 {
     private readonly IMessenger _messenger;
     private readonly IViewModelFactory _viewModelFactory;
@@ -64,11 +64,11 @@ public partial class NavigationPagesViewModel<TNavigationPageViewModel> : Dispos
     {
         PageSearchViewModel = _viewModelFactory.Create<NavigationPageSearchViewModel, Domains>(Domain);
 
-        await _messenger.SendAsync(new HidePagesNotification());
+        await _messenger.SendAsync(new HidePagesMessage());
         await _messenger.SendAsync(new OpenPageMessage(Domain, Guid.Empty));
     }
 
-    public Task ReceiveAsync(DomainSelectedNotification message, CancellationToken cancellationToken)
+    public Task ReceiveAsync(DomainSelectedMessage message, CancellationToken cancellationToken)
     {
         IsVisible = message.SelectedDomain == Domain;
 
@@ -116,14 +116,14 @@ public partial class NavigationPagesViewModel<TNavigationPageViewModel> : Dispos
     [RelayCommand]
     private async Task DismissAsync()
     {
-        await _messenger.SendAsync(new HidePagesNotification());
-        await _messenger.SendAsync(new DismissPageNotification(Domain));
+        await _messenger.SendAsync(new HidePagesMessage());
+        await _messenger.SendAsync(new DismissPageMessage(Domain));
         await _messenger.SendAsync(new OpenPageMessage(Domain, Guid.Empty));
     }
 
     [RelayCommand]
     private async Task CreatePageAsync()
     {
-        await _messenger.SendAsync(new CreatePageNotification(Domain));
+        await _messenger.SendAsync(new CreatePageMessage(Domain));
     }
 }

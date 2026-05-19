@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
@@ -52,24 +52,24 @@ public partial class PageMovieViewModel : PageViewModel
     [RelayCommand]
     private async Task AddDirectorAsync()
     {
-        await _mediator.Publish(new AddDirectorToMovieNotification());
+        await _mediator.Publish(new AddDirectorToMovieMessage());
     }
 
     [RelayCommand]
     private async Task AddActorAsync()
     {
-        await _mediator.Publish(new AddActorToMovieNotification());
+        await _mediator.Publish(new AddActorToMovieMessage());
     }
 
     [RelayCommand]
     private async Task CreateReviewAsync()
     {
-        await _mediator.Publish(new CreateReviewNotification());
+        await _mediator.Publish(new CreateReviewMessage());
     }
 
     [RelayCommand]
     private async Task EditAsync()
     {
-        await _mediator.Publish(new EditMovieNotification());
+        await _mediator.Publish(new EditMovieMessage());
     }
 }

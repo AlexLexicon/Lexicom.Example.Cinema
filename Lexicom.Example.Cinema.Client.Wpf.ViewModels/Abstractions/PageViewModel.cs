@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Lexicom.Example.Cinema.Client.Application.Models;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-public abstract partial class PageViewModel : ObservableObject, INotificationHandler<OpenPageMessage>, INotificationHandler<HidePagesNotification>
+public abstract partial class PageViewModel : ObservableObject, INotificationHandler<OpenPageMessage>, INotificationHandler<HidePagesMessage>
 {
     public PageViewModel(Domains domain)
     {
@@ -38,7 +38,7 @@ public abstract partial class PageViewModel : ObservableObject, INotificationHan
         }
     }
 
-    public Task Handle(HidePagesNotification notification, CancellationToken cancellationToken)
+    public Task Handle(HidePagesMessage notification, CancellationToken cancellationToken)
     {
         IsVisible = false;
 

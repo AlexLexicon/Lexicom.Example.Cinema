@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class PopupViewModel : ObservableObject, INotificationHandler<FeatureRequiresSignInNotification>
+public partial class PopupViewModel : ObservableObject, INotificationHandler<FeatureRequiresSignInMessage>
 {
 
     public PopupViewModel()
@@ -19,7 +19,7 @@ public partial class PopupViewModel : ObservableObject, INotificationHandler<Fea
     [ObservableProperty]
     private string? _message;
 
-    public Task Handle(FeatureRequiresSignInNotification notification, CancellationToken cancellationToken)
+    public Task Handle(FeatureRequiresSignInMessage notification, CancellationToken cancellationToken)
     {
         IsVisible = true;
 

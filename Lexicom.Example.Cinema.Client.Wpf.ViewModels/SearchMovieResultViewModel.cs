@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Extensions;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Mediator;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Mvvm.Extensions;
 using MediatR;
 
@@ -42,7 +42,7 @@ public partial class SearchMovieResultViewModel : ObservableObject
     [RelayCommand]
     private async Task SelectedAsync()
     {
-        await _mediator.Publish(new HidePagesNotification());
+        await _mediator.Publish(new HidePagesMessage());
         await _mediator.ScheduleAsync(new OpenPageMessage(Domains.Movies, MovieId));
     }
 }
