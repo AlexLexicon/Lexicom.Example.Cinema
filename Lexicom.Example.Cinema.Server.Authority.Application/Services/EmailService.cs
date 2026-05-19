@@ -2,6 +2,7 @@
 using Lexicom.EntityFramework.Identity.Options;
 using Lexicom.EntityFramework.Identity.Validators;
 using Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
+using Lexicom.Example.Cinema.Server.Authority.Application.Models;
 using Lexicom.Example.Cinema.Server.Authority.Application.Options;
 using Lexicom.Example.Cinema.Server.Authority.Application.Validators;
 using Lexicom.Example.Cinema.Server.Authority.Database.Entities;
@@ -55,24 +56,7 @@ public class EmailService : IEmailService
 
     public async Task SendForgotPasswordEmailAsync(Guid userId, string passwordResetToken)
     {
-        BrandOptions brandOptions = _brandOptions.Value;
-
-        string? companyName = brandOptions.CompanyName;
-        string? appName = brandOptions.AppName;
-
-        if (string.IsNullOrWhiteSpace(companyName) || string.IsNullOrWhiteSpace(appName))
-        {
-            throw BrandOptionsValidator.ToUnreachableException();
-        }
-
-        UrlsOptions urlsOptions = _urlsOptions.Value;
-
-        string? url = urlsOptions.ForgotPasswordEmailUrl;
-
-        if (string.IsNullOrWhiteSpace(url))
-        {
-            throw UrlsOptionsValidator.ToUnreachableException();
-        }
+        (string companyName, string appName, string url) = await GetEmailOptionValues(uo => uo.ForgotPasswordEmailUrl);
 
         TimeSpan passwordResetTimeSpan = _passwordResetTokenProviderOptions.Value.TokenLifespan;
 
@@ -83,30 +67,19 @@ public class EmailService : IEmailService
 
         string passwordResetTimeSpanFriendlyString = passwordResetTimeSpan.ToShortestString();
 
-        User user = await _userService.GetUserByIdAsync(userId);
-
-        var queryString = new HttpQueryString
-        {
-            new HttpQueryParameter("e", user.Email),
-            new HttpQueryParameter("prt", passwordResetToken)
-        };
-
-        var firstNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.FirstNameEncryptedBase64);
-        var lastNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.LastNameEncryptedBase64);
-
-        string firstName = await firstNameEncryptedBase64DecryptTask;
-        string lastName = await lastNameEncryptedBase64DecryptTask;
+        DecryptedUser user = await _userService.GetDecryptedUserByIdAsync(userId);
+        HttpQueryString queryString = GetUserTokenHttpQueryString(user, passwordResetToken);
 
         string subject = $"Requested password reset for {appName}";
         string body =
         $"""
-        Hello {firstName} {lastName},
+        Hello {user.DecryptedFirstName} {user.DecryptedLastName},
         <br>
         <br>
         To reset your {appName} password click on the following link. Please note that this password reset link will expire in {passwordResetTimeSpanFriendlyString}.
         <br>
         <br>
-        {url}{queryString}
+        {queryString.ToString(url)}
         <br>
         <br>
         If you did not request this change, you can safely ignore this email.
@@ -124,43 +97,15 @@ public class EmailService : IEmailService
 
     public async Task SendConfirmationEmailAsync(Guid userId, string emailConfirmationToken)
     {
-        BrandOptions brandOptions = _brandOptions.Value;
+        (string companyName, string appName, string url) = await GetEmailOptionValues(uo => uo.ConfirmationEmailUrl);
 
-        string? companyName = brandOptions.CompanyName;
-        string? appName = brandOptions.AppName;
-
-        if (string.IsNullOrWhiteSpace(companyName) || string.IsNullOrWhiteSpace(appName))
-        {
-            throw BrandOptionsValidator.ToUnreachableException();
-        }
-
-        UrlsOptions urlsOptions = _urlsOptions.Value;
-
-        string? url = urlsOptions.ConfirmationEmailUrl;
-
-        if (string.IsNullOrWhiteSpace(url))
-        {
-            throw UrlsOptionsValidator.ToUnreachableException();
-        }
-
-        User user = await _userService.GetUserByIdAsync(userId);
-
-        var queryString = new HttpQueryString
-        {
-            new HttpQueryParameter("e", user.Email),
-            new HttpQueryParameter("ct", emailConfirmationToken)
-        };
-
-        var firstNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.FirstNameEncryptedBase64);
-        var lastNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.LastNameEncryptedBase64);
-
-        string firstName = await firstNameEncryptedBase64DecryptTask;
-        string lastName = await lastNameEncryptedBase64DecryptTask;
+        DecryptedUser user = await _userService.GetDecryptedUserByIdAsync(userId);
+        HttpQueryString queryString = GetUserTokenHttpQueryString(user, emailConfirmationToken);
 
         string subject = $"Confirm your email for {appName}";
         string body =
         $"""
-        Hello {firstName} {lastName},
+        Hello {user.DecryptedFirstName} {user.DecryptedLastName},
         <br>
         <br>
         Welcome to {appName}!
@@ -169,7 +114,7 @@ public class EmailService : IEmailService
         All that's left to do is click the link below to confirm your email address so we can finish creating your account.
         <br>
         <br>
-        {url}{queryString}
+        {queryString.ToString(url)}
         <br>
         <br>
         If you did not sign up for {appName}, you should not click the link to confirm this account.
@@ -187,24 +132,7 @@ public class EmailService : IEmailService
 
     public async Task SendChangeEmailAsync(Guid userId, string emailChangeToken)
     {
-        BrandOptions brandOptions = _brandOptions.Value;
-
-        string? companyName = brandOptions.CompanyName;
-        string? appName = brandOptions.AppName;
-
-        if (string.IsNullOrWhiteSpace(companyName) || string.IsNullOrWhiteSpace(appName))
-        {
-            throw BrandOptionsValidator.ToUnreachableException();
-        }
-
-        UrlsOptions urlsOptions = _urlsOptions.Value;
-
-        string? url = urlsOptions.ChangeEmailUrl;
-
-        if (string.IsNullOrWhiteSpace(url))
-        {
-            throw UrlsOptionsValidator.ToUnreachableException();
-        }
+        (string companyName, string appName, string url) = await GetEmailOptionValues(uo => uo.ChangeEmailUrl);
 
         TimeSpan emailChangeTimeSpan = _changeEmailTokenProviderOptions.Value.TokenLifespan;
 
@@ -215,30 +143,19 @@ public class EmailService : IEmailService
 
         string emailChangeTimeSpanFriendlyString = emailChangeTimeSpan.ToShortestString();
 
-        User user = await _userService.GetUserByIdAsync(userId);
-
-        var queryString = new HttpQueryString
-        {
-            new HttpQueryParameter("e", user.Email),
-            new HttpQueryParameter("ct", emailChangeToken)
-        };
-
-        var firstNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.FirstNameEncryptedBase64);
-        var lastNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.LastNameEncryptedBase64);
-
-        string firstName = await firstNameEncryptedBase64DecryptTask;
-        string lastName = await lastNameEncryptedBase64DecryptTask;
+        DecryptedUser user = await _userService.GetDecryptedUserByIdAsync(userId);
+        HttpQueryString queryString = GetUserTokenHttpQueryString(user, emailChangeToken);
 
         string subject = $"Change your email for {appName}";
         string body =
         $"""
-        Hello {firstName} {lastName},
+        Hello {user.DecryptedFirstName} {user.DecryptedLastName},
         <br>
         <br>
         To change your {appName} account email click on the following link. Please note that this change email link will expire in {emailChangeTimeSpanFriendlyString}.
         <br>
         <br>
-        {url}{queryString}
+        {queryString.ToString(url)}
         <br>
         <br>
         If you did not request this change, you can safely ignore this email.
@@ -252,5 +169,38 @@ public class EmailService : IEmailService
         await _smtpEmailHandler.SendEmailAsync(user.Email, subject, body);
 
         _logger.LogInformation("Sent change email to '{userEmail}'.", user.Email);
+    }
+
+    private async Task<(string companyName, string appName, string url)> GetEmailOptionValues(Func<UrlsOptions, string?> urlOptionDelegate)
+    {
+        BrandOptions brandOptions = _brandOptions.Value;
+
+        string? companyName = brandOptions.CompanyName;
+        string? appName = brandOptions.AppName;
+
+        if (string.IsNullOrWhiteSpace(companyName) || string.IsNullOrWhiteSpace(appName))
+        {
+            throw BrandOptionsValidator.ToUnreachableException();
+        }
+
+        UrlsOptions urlsOptions = _urlsOptions.Value;
+
+        string? url = urlOptionDelegate.Invoke(urlsOptions);
+
+        if (string.IsNullOrWhiteSpace(url))
+        {
+            throw UrlsOptionsValidator.ToUnreachableException();
+        }
+
+        return (companyName, appName, url);
+    }
+
+    private HttpQueryString GetUserTokenHttpQueryString(User user, string token)
+    {
+        return new HttpQueryString
+        {
+            new HttpQueryParameter("e", user.Email),
+            new HttpQueryParameter("t", token)
+        };
     }
 }

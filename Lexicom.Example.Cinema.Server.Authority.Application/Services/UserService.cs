@@ -17,6 +17,8 @@ public interface IUserService
     /// <exception cref="UserDoesNotExistException"/>
     Task<User> GetUserByIdAsync(Guid userId);
     /// <exception cref="UserDoesNotExistException"/>
+    Task<DecryptedUser> GetDecryptedUserByIdAsync(Guid userId);
+    /// <exception cref="UserDoesNotExistException"/>
     Task<User> GetUserByEmailAsync(string email);
     /// <exception cref="UserDoesNotExistException"/>
     Task<IReadOnlyList<Role>> GetUserRolesAsync(Guid userId);
@@ -72,6 +74,48 @@ public class UserService : IUserService
         }
 
         return user;
+    }
+
+    public async Task<DecryptedUser> GetDecryptedUserByIdAsync(Guid userId)
+    {
+        User user = await GetUserByIdAsync(userId);
+
+        var firstNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.FirstNameEncryptedBase64);
+        var lastNameEncryptedBase64DecryptTask = _cryptographyService.DecryptAsync(user.LastNameEncryptedBase64);
+
+        string decryptedFirstName = await firstNameEncryptedBase64DecryptTask;
+        string decryptedLastName = await lastNameEncryptedBase64DecryptTask;
+
+        return new DecryptedUser
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            NormalizedUserName = user.NormalizedUserName,
+            Email = user.Email,
+            NormalizedEmail = user.NormalizedEmail,
+            EmailConfirmed = user.EmailConfirmed,
+
+            PasswordHash = user.PasswordHash,
+
+            ConcurrencyStamp = user.ConcurrencyStamp,
+            SecurityStamp = user.SecurityStamp,
+
+            LockoutEnabled = user.LockoutEnabled,
+            LockoutEnd = user.LockoutEnd,
+            AccessFailedCount = user.AccessFailedCount,
+            PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+            TwoFactorEnabled = user.TwoFactorEnabled,
+            PhoneNumber = user.PasswordHash,
+
+            CreatedDateTimeOffsetUtc = user.CreatedDateTimeOffsetUtc,
+            LastSignInDateTimeOffsetUtc = user.LastSignInDateTimeOffsetUtc,
+            VerifiedDateTimeOffsetUtc = user.VerifiedDateTimeOffsetUtc,
+
+            FirstNameEncryptedBase64 = user.FirstNameEncryptedBase64,
+            LastNameEncryptedBase64 = user.LastNameEncryptedBase64,
+            DecryptedFirstName = decryptedFirstName,
+            DecryptedLastName = decryptedLastName,
+        };
     }
 
     public async Task<User> GetUserByEmailAsync(string email)
