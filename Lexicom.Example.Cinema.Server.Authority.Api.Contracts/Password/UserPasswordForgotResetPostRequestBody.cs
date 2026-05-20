@@ -1,4 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Api.Contracts.Password;
+
 public class UserPasswordForgotResetPostRequestBody
 {
     public required string Email { get; set; }

@@ -1,4 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Application.Exceptions;
+
 public class UserDoesNotExistException : Exception
 {
     public UserDoesNotExistException(Guid userId) : base($"The user with the id '{userId}' does not exist.")

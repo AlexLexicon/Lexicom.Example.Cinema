@@ -47,7 +47,10 @@ public class RegistrationController : LexicomController
         }
         catch (EmailAlreadyInUseException e)
         {
-            _logger.LogWarning(e, "Failed to register the user because the email '{email}' is already in use.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to register the user because the email '{email}' is already in use.", requestBody.Email);
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.Email)
@@ -59,7 +62,10 @@ public class RegistrationController : LexicomController
             //we want to catch invalid emails with our IEmailRuleSet validator
             //so if this exception is reached we need to update that validator
             var unreachableException = e.ToUnreachableException($"The email '{requestBody.Email}' was not valid but not caught with our validation.");
-            _logger.LogCritical(unreachableException, "Failed to register the user because the provided email '{email}' is not valid.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Critical))
+            {
+                _logger.LogCritical(unreachableException, "Failed to register the user because the provided email '{email}' is not valid.", requestBody.Email);
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.Email)
@@ -68,7 +74,10 @@ public class RegistrationController : LexicomController
         }
         catch (PasswordMissingRequirementsException e)
         {
-            _logger.LogWarning(e, "Failed to register the user because the provided password did not meet all of the security requirements.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to register the user because the provided password did not meet all of the security requirements.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.Password)

@@ -3,6 +3,7 @@ using Lexicom.Extensions.Exceptions;
 using System.Diagnostics;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
+
 public static class ExceptionExtensions
 {
     public static UnreachableException ToUnreachableException(this UserDoesNotExistException e)

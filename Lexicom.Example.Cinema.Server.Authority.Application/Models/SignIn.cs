@@ -1,4 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Application.Models;
+
 public class SignIn
 {
     public required string AccessToken { get; init; }

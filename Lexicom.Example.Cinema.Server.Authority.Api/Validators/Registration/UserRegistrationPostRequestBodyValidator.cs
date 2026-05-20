@@ -4,6 +4,7 @@ using Lexicom.Validation.Amenities.RuleSets;
 using Lexicom.Validation.Extensions;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Validators.Registration;
+
 public class UserRegistrationPostRequestBodyValidator : AbstractValidator<UserRegistrationPostRequestBody>
 {
     public UserRegistrationPostRequestBodyValidator(

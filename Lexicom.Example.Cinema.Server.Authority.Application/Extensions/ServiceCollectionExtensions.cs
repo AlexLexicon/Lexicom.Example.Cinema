@@ -6,6 +6,7 @@ using Lexicom.Validation.Options.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Extensions;
+
 public static class ServiceCollectionExtensions
 {
     public static void AddAuthorityApplication(this IServiceCollection services)

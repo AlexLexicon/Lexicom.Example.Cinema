@@ -79,7 +79,10 @@ public class EmailController : LexicomController
         }
         catch (EmailChangeTokenNotValidException e)
         {
-            _logger.LogWarning(e, "Failed to change the email for the user with the id '{userId}' because the provided change token has expired or is no longer valid.", userId);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to change the email for the user with the id '{userId}' because the provided change token has expired or is no longer valid.", userId);
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.EmailChangeToken)
@@ -106,7 +109,10 @@ public class EmailController : LexicomController
         }
         catch (UserDoesNotExistException e)
         {
-            _logger.LogWarning(e, "Failed to confirm the email because the user with the email '{email}' does not exist.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to confirm the email because the user with the email '{email}' does not exist.", requestBody.Email);
+            }
 
             //if the user does not exist, we want to return no content
             //since this is an anonymous endpoint anyone could call this
@@ -116,7 +122,10 @@ public class EmailController : LexicomController
         }
         catch (UserEmailAlreadyConfirmedException e)
         {
-            _logger.LogWarning(e, "Failed to confirm the email because the user with the email '{email}' has already confirmed their email.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to confirm the email because the user with the email '{email}' has already confirmed their email.", requestBody.Email);
+            }
 
             //if the email is already confirmed we want to return no content
             //since this is an anonymous endpoint and you would be able to
@@ -125,7 +134,10 @@ public class EmailController : LexicomController
         }
         catch (EmailConfirmationTokenNotValidException e)
         {
-            _logger.LogWarning(e, "Failed to confirm the email because the provided confirmation token has expired or is no longer valid.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to confirm the email because the provided confirmation token has expired or is no longer valid.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.EmailConfirmationToken)
@@ -151,7 +163,10 @@ public class EmailController : LexicomController
         }
         catch (UserDoesNotExistException e)
         {
-            _logger.LogWarning(e, "Failed to resend the confirm email because the user with the email '{email}' does not exist.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to resend the confirm email because the user with the email '{email}' does not exist.", requestBody.Email);
+            }
 
             //if the user does not exist, we want to return no content
             //since this is an anonymous endpoint anyone could call this

@@ -89,7 +89,10 @@ public class EmailService : IEmailService
 
         await _smtpEmailHandler.SendEmailAsync(user.Email, subject, body);
 
-        _logger.LogInformation("Sent forgot password email to '{userEmail}'.", user.Email);
+        if (_logger.IsEnabled(LogLevel.Information))
+        {
+            _logger.LogInformation("Sent forgot password email to '{userEmail}'.", user.Email);
+        }
     }
 
     public async Task SendConfirmationEmailAsync(Guid userId, string emailConfirmationToken)
@@ -124,7 +127,10 @@ public class EmailService : IEmailService
 
         await _smtpEmailHandler.SendEmailAsync(user.Email, subject, body);
 
-        _logger.LogInformation("Sent confirmation email to '{userEmail}'.", user.Email);
+        if (_logger.IsEnabled(LogLevel.Information))
+        {
+            _logger.LogInformation("Sent confirmation email to '{userEmail}'.", user.Email);
+        }
     }
 
     public async Task SendChangeEmailAsync(Guid userId, string emailChangeToken)
@@ -165,7 +171,10 @@ public class EmailService : IEmailService
 
         await _smtpEmailHandler.SendEmailAsync(user.Email, subject, body);
 
-        _logger.LogInformation("Sent change email to '{userEmail}'.", user.Email);
+        if (_logger.IsEnabled(LogLevel.Information))
+        {
+            _logger.LogInformation("Sent change email to '{userEmail}'.", user.Email);
+        }
     }
 
     private async Task<(string companyName, string appName, string url)> GetEmailOptionValues(Func<UrlsOptions, string?> urlOptionDelegate)

@@ -1,4 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Api.Contracts.User;
+
 public class UserGetResponseBody
 {
     public required Guid Id { get; set; }

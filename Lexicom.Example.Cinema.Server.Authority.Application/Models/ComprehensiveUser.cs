@@ -1,4 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Application.Models;
+
 public class ComprehensiveUser
 {
     public required Guid Id { get; init; }

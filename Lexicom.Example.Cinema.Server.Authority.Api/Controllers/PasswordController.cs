@@ -59,7 +59,10 @@ public class PasswordController : LexicomController
             //we want to catch missing password requirements with our IPasswordRequirementsRuleSet validator
             //so if this exception is reached we need to update that validator
             var unreachableException = e.ToUnreachableException("a password was missing requirements but not caught with our validation.");
-            _logger.LogCritical(unreachableException, "Failed to reset the password for the user with the id '{userId}' because the new password did not meet the password requirements.", userId);
+            if (_logger.IsEnabled(LogLevel.Critical))
+            {
+                _logger.LogCritical(unreachableException, "Failed to reset the password for the user with the id '{userId}' because the new password did not meet the password requirements.", userId);
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.NewPassword)
@@ -68,7 +71,10 @@ public class PasswordController : LexicomController
         }
         catch (PasswordIncorrectException e)
         {
-            _logger.LogWarning(e, "Failed to update the password for the user with the id '{userId}' because the current password was incorrect.", userId);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to update the password for the user with the id '{userId}' because the current password was incorrect.", userId);
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.NewPassword)
@@ -94,7 +100,10 @@ public class PasswordController : LexicomController
         }
         catch (UserDoesNotExistException e)
         {
-            _logger.LogWarning(e, "Failed to request the forgot password email because the user with the email '{email}' does not exist.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to request the forgot password email because the user with the email '{email}' does not exist.", requestBody.Email);
+            }
 
             //if the user does not exist, we want to return no content
             //since this is an anonymous endpoint anyone could call this
@@ -123,7 +132,10 @@ public class PasswordController : LexicomController
         }
         catch (UserDoesNotExistException e)
         {
-            _logger.LogWarning(e, "Failed to reset the password because the user with the email '{email}' does not exist.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to reset the password because the user with the email '{email}' does not exist.", requestBody.Email);
+            }
 
             //if the user does not exist, we want to return
             //that the password reset token is expired since
@@ -141,7 +153,10 @@ public class PasswordController : LexicomController
             //we want to catch missing password requirements with our IPasswordRequirementsRuleSet validator
             //so if this exception is reached we need to update that validator
             var unreachableException = e.ToUnreachableException("a password was missing requirements but not caught with our validation.");
-            _logger.LogCritical(unreachableException, "Failed to reset the password for the email '{email}' because the new password did not meet the password requirements.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Critical))
+            {
+                _logger.LogCritical(unreachableException, "Failed to reset the password for the email '{email}' because the new password did not meet the password requirements.", requestBody.Email);
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.NewPassword)
@@ -150,7 +165,10 @@ public class PasswordController : LexicomController
         }
         catch (PasswordResetTokenNotValidException e)
         {
-            _logger.LogWarning(e, "Failed to reset the password because the provided reset token has expired or is no longer valid.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to reset the password because the provided reset token has expired or is no longer valid.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.PasswordResetToken)

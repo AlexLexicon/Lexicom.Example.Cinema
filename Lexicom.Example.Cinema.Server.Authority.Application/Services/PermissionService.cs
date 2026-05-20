@@ -1,6 +1,7 @@
 ﻿using Lexicom.Example.Cinema.Server.Shared.Authentication;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Services;
+
 public interface IPermissionService
 {
     Task<bool> PermissionExistsAsync(string permission);

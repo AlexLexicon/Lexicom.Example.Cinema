@@ -1,4 +1,4 @@
-﻿using Lexicom.AspNetCore.Controllers.Amenities;
+using Lexicom.AspNetCore.Controllers.Amenities;
 using Lexicom.AspNetCore.Controllers.Amenities.Extensions;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.SignIn;
@@ -29,7 +29,7 @@ public class SignInController : LexicomController
 
     [ScalarDefaultRequestBody("""
     {
-        "Email": "test_a@email.com", 
+        "Email": "test_a@email.com",
         "Password": "Password1234!"
     }
     """)]
@@ -49,7 +49,10 @@ public class SignInController : LexicomController
         }
         catch (UserDoesNotExistException e)
         {
-            _logger.LogWarning(e, "Failed to sign-in the user with the email '{email}' because they did not exist.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to sign-in the user with the email '{email}' because they did not exist.", requestBody.Email);
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.Email)
@@ -60,7 +63,10 @@ public class SignInController : LexicomController
         }
         catch (UserLockedOutException e)
         {
-            _logger.LogWarning(e, "Failed to sign-in the user with the email '{email}' because they are locked out.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to sign-in the user with the email '{email}' because they are locked out.", requestBody.Email);
+            }
 
             return Forbid()
                 .FromKey("User")
@@ -69,7 +75,10 @@ public class SignInController : LexicomController
         }
         catch (UserNotVerifiedException e)
         {
-            _logger.LogWarning(e, "Failed to sign-in the user with the email '{email}' because they are not verified.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to sign-in the user with the email '{email}' because they are not verified.", requestBody.Email);
+            }
 
             return Forbid()
                 .FromKey("User")
@@ -78,7 +87,10 @@ public class SignInController : LexicomController
         }
         catch (PasswordIncorrectException e)
         {
-            _logger.LogWarning(e, "Failed to sign-in the user with the email '{email}' because the password was incorrect.", requestBody.Email);
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to sign-in the user with the email '{email}' because the password was incorrect.", requestBody.Email);
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.Email)
@@ -91,7 +103,7 @@ public class SignInController : LexicomController
 
     [ScalarDefaultRequestBody("""
     {
-        "AccessBearerToken": "<the-access-token>", 
+        "AccessBearerToken": "<the-access-token>",
         "RefreshBearerToken": "<the-refresh-token>"
     }
     """)]
@@ -116,7 +128,10 @@ public class SignInController : LexicomController
          */
         catch (AccessBearerTokenNotValidException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the access token was not valid.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the access token was not valid.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -127,7 +142,10 @@ public class SignInController : LexicomController
         }
         catch (RefreshBearerTokenNotValidException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the refresh token was not valid.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the refresh token was not valid.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -138,7 +156,10 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenDoesNotExistException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the refresh token did not exist. This usually would mean this refresh token had already been used.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the refresh token did not exist. This usually would mean this refresh token had already been used.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -149,7 +170,10 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenAccessTokenJtiMismatchException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the refresh token's access token jti did not match the provided access token's jti. This usually would mean someone passed a new access token with a refresh token from a previous signin.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the refresh token's access token jti did not match the provided access token's jti. This usually would mean someone passed a new access token with a refresh token from a previous signin.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -160,7 +184,10 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenAccessTokenSubjectMismatchException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the refresh token's subject was different from access token's subject.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the refresh token's subject was different from access token's subject.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -171,7 +198,10 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenUserMismatchException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the refresh token's subject was different from access token's subject.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the refresh token's subject was different from access token's subject.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -182,7 +212,10 @@ public class SignInController : LexicomController
         }
         catch (RefreshTokenExpiredException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the refresh token has expired.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the refresh token has expired.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -193,7 +226,10 @@ public class SignInController : LexicomController
         }
         catch (UserDoesNotExistException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the user does not exist.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the user does not exist.");
+            }
 
             return BadRequest()
                 .FromProperty(requestBody.AccessBearerToken)
@@ -204,7 +240,10 @@ public class SignInController : LexicomController
         }
         catch (UserLockedOutException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the user is locked out.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the user is locked out.");
+            }
 
             return Forbid()
                .FromKey("User")
@@ -213,7 +252,10 @@ public class SignInController : LexicomController
         }
         catch (UserNotVerifiedException e)
         {
-            _logger.LogWarning(e, "Failed to refresh the user because the user is not verified.");
+            if (_logger.IsEnabled(LogLevel.Warning))
+            {
+                _logger.LogWarning(e, "Failed to refresh the user because the user is not verified.");
+            }
 
             return Forbid()
                 .FromKey("User")

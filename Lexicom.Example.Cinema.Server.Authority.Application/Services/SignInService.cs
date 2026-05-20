@@ -167,8 +167,8 @@ public class SignInService : ISignInService
         }
 
         //the tokens expiration should automatically be checked by
-        //the call 'Is[Bearer]TokenValidAsync' but just incase we
-        //check here as well since someone might want to modify the 
+        //the call 'Is[Bearer]TokenValidAsync' but just in case we
+        //check here as well since someone might want to modify the
         //expiration date in the database to invalidate a token manually
         if (dbRefreshToken.ExpiresDateTimeOffsetUtc < _timeProvider.GetUtcNow())
         {

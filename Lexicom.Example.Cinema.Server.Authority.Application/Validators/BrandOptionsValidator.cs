@@ -4,6 +4,7 @@ using Lexicom.Validation.Extensions;
 using Lexicom.Validation.Options;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Application.Validators;
+
 public class BrandOptionsValidator : AbstractOptionsValidator<BrandOptions>
 {
     public BrandOptionsValidator(RequiredRuleSet requiredRuleSet)

@@ -4,6 +4,7 @@ using Lexicom.Validation.Amenities.RuleSets;
 using Lexicom.Validation.Extensions;
 
 namespace Lexicom.Example.Cinema.Server.Authority.Api.Validators.SignIn;
+
 public class UserSignInPostRequestBodyValidator : AbstractValidator<UserSignInPostRequestBody>
 {
     public UserSignInPostRequestBodyValidator(

@@ -1,4 +1,5 @@
 ﻿namespace Lexicom.Example.Cinema.Server.Authority.Api.Contracts;
+
 public static class AuthorityErrorCodes
 {
     public const string TOKEN_INVALID = "token:invalid";
