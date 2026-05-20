@@ -1,11 +1,9 @@
-﻿using MediatR;
-
 namespace Lexicom.Example.Cinema.Client.Application.Mediator;
-public record class SignInFailedNotification : INotification
+public record class SignInFailedNotification
 {
     public SignInFailedNotification(Errors error)
     {
-        Error = error;  
+        Error = error;
     }
 
     public Errors Error { get; }

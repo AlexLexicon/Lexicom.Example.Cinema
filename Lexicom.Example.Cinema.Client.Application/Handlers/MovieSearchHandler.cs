@@ -1,33 +1,35 @@
-﻿using Lexicom.Example.Cinema.Client.Application.Mediator;
+using CommunityToolkit.Mvvm.Messaging;
+using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Temp;
 using Lexicom.Extensions.Expressions;
-using MediatR;
+using Lexicom.Mvvm;
+using Lexicom.Mvvm.Extensions;
 using System.Linq.Expressions;
 
 namespace Lexicom.Example.Cinema.Client.Application.Handlers;
-public class MovieSearchHandler : INotificationHandler<MovieSearchRequestNotification>
+public class MovieSearchHandler : IAsyncRecipient<MovieSearchRequestNotification>
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _messenger;
     private readonly IDomainsStore _domainsStore;
 
     public MovieSearchHandler(
-        IMediator mediator,
+        IMessenger messenger,
         IDomainsStore domainsStore)
     {
-        _mediator = mediator;
+        _messenger = messenger;
         _domainsStore = domainsStore;
     }
 
-    public async Task Handle(MovieSearchRequestNotification notification, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(MovieSearchRequestNotification message, CancellationToken cancellationToken)
     {
-        var movieSearchGetTextRequestTask = _mediator.Send(new MovieSearchGetTextRequest(), cancellationToken);
-        var movieSearchGetFiltersRequestTask = _mediator.Send(new MovieSearchGetFiltersRequest(), cancellationToken);
+        var movieSearchGetTextRequestTask = _messenger.Send(new MovieSearchGetTextRequest(), cancellationToken);
+        var movieSearchGetFiltersRequestTask = _messenger.Send(new MovieSearchGetFiltersRequest(), cancellationToken);
 
         MovieSearchGetTextResponse movieSearchGetTextResponse = await movieSearchGetTextRequestTask;
         MovieSearchGetFiltersResponse movieSearchGetFiltersResponse = await movieSearchGetFiltersRequestTask;
 
-        int pageIndex = notification.PageIndex;
-        int pageLimit = notification.PageLimit;
+        int pageIndex = message.PageIndex;
+        int pageLimit = message.PageLimit;
         string? searchText = movieSearchGetTextResponse.SearchText?.ToLower();
 
         var query = _domainsStore.Movies.Where(m => true);
@@ -71,6 +73,6 @@ public class MovieSearchHandler : INotificationHandler<MovieSearchRequestNotific
 
         await Task.Delay(500, cancellationToken);
 
-        await _mediator.Publish(new MovieSearchResponseNotification(results, totalCount), cancellationToken);
+        await _messenger.SendAsync(new MovieSearchResponseNotification(results, totalCount), cancellationToken);
     }
 }

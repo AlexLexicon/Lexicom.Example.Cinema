@@ -1,13 +1,13 @@
-﻿using Lexicom.Concentrate.Client.Authentication;
+using Lexicom.Concentrate.Client.Authentication;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Options;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.SignIn;
 using Lexicom.Http.Extensions;
-using MediatR;
+using Lexicom.Mvvm;
 using System.Net.Http.Json;
 
 namespace Lexicom.Example.Cinema.Client.Application.Handlers;
-public class SignInRefreshHandler : INotificationHandler<SignInRefreshNotification>
+public class SignInRefreshHandler : IAsyncRecipient<SignInRefreshNotification>
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IAuthenticationTokenStore _authenticationTokenStore;
@@ -20,7 +20,7 @@ public class SignInRefreshHandler : INotificationHandler<SignInRefreshNotificati
         _authenticationTokenStore = authenticationService;
     }
 
-    public async Task Handle(SignInRefreshNotification request, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(SignInRefreshNotification message, CancellationToken cancellationToken)
     {
         var setAccessTokenTask = _authenticationTokenStore.SetAccessTokenAsync(null);
         var setRefreshTokenTask = _authenticationTokenStore.SetRefreshTokenAsync(null);
@@ -32,8 +32,8 @@ public class SignInRefreshHandler : INotificationHandler<SignInRefreshNotificati
 
         HttpResponseMessage response = await httpClient.PostAsJsonAsync("user/signin/refresh", new UserSignInRefreshPostRequestBody
         {
-            AccessBearerToken = request.AccessToken,
-            RefreshBearerToken = request.RefreshToken,
+            AccessBearerToken = message.AccessToken,
+            RefreshBearerToken = message.RefreshToken,
         }, cancellationToken);
 
         response.EnsureSuccessStatusCode();

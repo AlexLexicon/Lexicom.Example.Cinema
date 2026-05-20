@@ -1,15 +1,16 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Mvvm;
+using Lexicom.Mvvm.Extensions;
 using Lexicom.Validation;
 using Lexicom.Validation.Amenities.RuleSets;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 
-public partial class SignInViewModel : ObservableObject, IAsyncRecipient<ShowSignInViewMessage>, IAsyncRecipient<SignInSuccessNotification>, IAsyncRecipient<SignInFailedNotification>
+public partial class SignInViewModel : DisposableObservableObject, IAsyncRecipient<ShowSignInViewMessage>, IAsyncRecipient<SignInSuccessNotification>, IAsyncRecipient<SignInFailedNotification>
 {
     private readonly IMessenger _messenger;
 
@@ -19,43 +20,45 @@ public partial class SignInViewModel : ObservableObject, IAsyncRecipient<ShowSig
         IRuleSetValidator<RequiredRuleSet, string?> requiredValidator)
     {
         _messenger = messenger;
-        _emailValidator = emailValidator;
-        _passwordValidator = requiredValidator;
+        EmailValidator = emailValidator;
+        PasswordValidator = requiredValidator;
     }
 
     [ObservableProperty]
-    private bool _isVisible;
+    public partial bool IsVisible { get; set; }
     [ObservableProperty]
-    private string? _email;
+    public partial string? Email { get; set; }
     [ObservableProperty]
-    private IRuleSetValidator<EmailRuleSet, string?> _emailValidator;
+    public partial IRuleSetValidator<EmailRuleSet, string?> EmailValidator { get; set; }
     [ObservableProperty]
-    private string? _password;
+    public partial string? Password { get; set; }
     [ObservableProperty]
-    private IRuleSetValidator<RequiredRuleSet, string?> _passwordValidator;
+    public partial IRuleSetValidator<RequiredRuleSet, string?> PasswordValidator { get; set; }
     [ObservableProperty]
-    private bool _isValid;
+    public partial bool IsValid { get; set; }
 
-    public Task Handle(ShowSignInViewMessage notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(ShowSignInViewMessage message, CancellationToken cancellationToken)
     {
         IsVisible = true;
 
         return Task.CompletedTask;
     }
 
-    public Task Handle(SignInSuccessNotification notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(SignInSuccessNotification message, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        IsVisible = false;
+
+        return Task.CompletedTask;
     }
 
-    public Task Handle(SignInFailedNotification notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(SignInFailedNotification message, CancellationToken cancellationToken)
     {
-        if (notification.Error is SignInFailedNotification.Errors.IncorrectCredentials)
+        if (message.Error is SignInFailedNotification.Errors.IncorrectCredentials)
         {
             EmailValidator.ValidationErrors.Add("Wrong email or password");
             PasswordValidator.ValidationErrors.Add("Wrong email or password");
         }
-        else if (notification.Error is SignInFailedNotification.Errors.LockedOut)
+        else if (message.Error is SignInFailedNotification.Errors.LockedOut)
         {
             EmailValidator.ValidationErrors.Add("Locked out");
             PasswordValidator.ValidationErrors.Add("Locked out");
@@ -81,7 +84,7 @@ public partial class SignInViewModel : ObservableObject, IAsyncRecipient<ShowSig
     {
         if (IsValid && Email is not null && Password is not null)
         {
-            await _messenger.Publish(new SignInNotification(Email, Password));
+            await _messenger.SendAsync(new SignInNotification(Email, Password));
         }
     }
 }

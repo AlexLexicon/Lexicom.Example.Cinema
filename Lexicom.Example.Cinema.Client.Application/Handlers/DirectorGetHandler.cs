@@ -1,9 +1,8 @@
-﻿using Lexicom.Example.Cinema.Client.Application.Mediator;
+using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Temp;
-using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Application.Handlers;
-public class DirectorGetHandler : IRequestHandler<DirectorGetRequest, DirectorGetResponse>
+public class DirectorGetHandler
 {
     private readonly IDomainsStore _domainsStore;
 

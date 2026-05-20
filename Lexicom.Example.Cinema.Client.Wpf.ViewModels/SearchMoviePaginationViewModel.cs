@@ -1,25 +1,30 @@
-﻿using Lexicom.Example.Cinema.Client.Application.Mediator;
+using CommunityToolkit.Mvvm.Messaging;
+using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
-using MediatR;
+using Lexicom.Mvvm;
+using Lexicom.Mvvm.Extensions;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public class SearchMoviePaginationViewModel : PaginationViewModel, INotificationHandler<MovieSearchResponseNotification>
+public partial class SearchMoviePaginationViewModel : PaginationViewModel, IAsyncRecipient<MovieSearchResponseNotification>
 {
-    public SearchMoviePaginationViewModel(IMediator mediator) : base(Domains.Movies, mediator)
+    public SearchMoviePaginationViewModel(IMessenger messenger) 
+        : base(
+            Domains.Movies, 
+            messenger)
     {
     }
 
-    protected override async Task SearchAsync() 
+    protected override async Task SearchAsync()
     {
-        await _mediator.Publish(new SearchStartedMessage());
-        await _mediator.Publish(new MovieSearchRequestNotification(CurrentPageIndex, PageLimit));
+        await _messenger.SendAsync(new SearchStartedMessage());
+        await _messenger.SendAsync(new MovieSearchRequestNotification(CurrentPageIndex, PageLimit));
     }
 
-    public Task Handle(MovieSearchResponseNotification notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(MovieSearchResponseNotification message, CancellationToken cancellationToken)
     {
-        Update(notification.TotalCount);
+        Update(message.TotalCount);
 
         return Task.CompletedTask;
     }

@@ -1,14 +1,14 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSets;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSetTransformers;
+using Lexicom.Mvvm;
 using Lexicom.Validation;
-using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 
-public partial class PageMovieFormViewModel : ObservableObject, INotificationHandler<ShowPageMovieFormViewMessage>
+public partial class PageMovieFormViewModel : DisposableObservableObject, IAsyncRecipient<ShowPageMovieFormViewMessage>
 {
     public PageMovieFormViewModel(
         IRuleSetValidator<MovieTitleStringRuleSet, string?> titleValidator,
@@ -16,28 +16,28 @@ public partial class PageMovieFormViewModel : ObservableObject, INotificationHan
         IRuleSetValidator<MovieDurationStringRuleSet, string?, MovieDurationStringToTimeSpanTransformer, TimeSpan> durationValidator,
         IRuleSetValidator<MovieSynopsisStringRuleSet, string?> synopsisValidator)
     {
-        _titleValidator = titleValidator;
-        _releaseDateValidator = releaseDateValidator;
-        _durationValidator = durationValidator;
-        _synopsisValidator = synopsisValidator;
+        TitleValidator = titleValidator;
+        ReleaseDateValidator = releaseDateValidator;
+        DurationValidator = durationValidator;
+        SynopsisValidator = synopsisValidator;
     }
 
     [ObservableProperty]
-    private bool _isVisible;
+    public partial bool IsVisible { get; set; }
     [ObservableProperty]
-    private bool _isEditing;
+    public partial bool IsEditing { get; set; }
     [ObservableProperty]
-    private bool _isValid;
+    public partial bool IsValid { get; set; }
     [ObservableProperty]
-    private IRuleSetValidator<MovieTitleStringRuleSet, string?> _titleValidator;
+    public partial IRuleSetValidator<MovieTitleStringRuleSet, string?> TitleValidator { get; set; }
     [ObservableProperty]
-    private IRuleSetValidator<MovieReleaseStringRuleSet, string?, MovieReleaseStringToDataTimeOffsetTransformer, DateTimeOffset> _releaseDateValidator;
+    public partial IRuleSetValidator<MovieReleaseStringRuleSet, string?, MovieReleaseStringToDataTimeOffsetTransformer, DateTimeOffset> ReleaseDateValidator { get; set; }
     [ObservableProperty]
-    private IRuleSetValidator<MovieDurationStringRuleSet, string?, MovieDurationStringToTimeSpanTransformer, TimeSpan> _durationValidator;
+    public partial IRuleSetValidator<MovieDurationStringRuleSet, string?, MovieDurationStringToTimeSpanTransformer, TimeSpan> DurationValidator { get; set; }
     [ObservableProperty]
-    private IRuleSetValidator<MovieSynopsisStringRuleSet, string?> _synopsisValidator;
+    public partial IRuleSetValidator<MovieSynopsisStringRuleSet, string?> SynopsisValidator { get; set; }
 
-    public Task Handle(ShowPageMovieFormViewMessage notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(ShowPageMovieFormViewMessage message, CancellationToken cancellationToken)
     {
         IsVisible = true;
 

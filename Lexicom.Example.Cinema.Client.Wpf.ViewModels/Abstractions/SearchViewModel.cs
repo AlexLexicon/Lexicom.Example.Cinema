@@ -1,19 +1,21 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
-using MediatR;
+using Lexicom.Mvvm;
+using Lexicom.Mvvm.Extensions;
 
-namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public abstract partial class SearchViewModel : ObservableObject, INotificationHandler<OpenPageMessage>, INotificationHandler<HidePagesMessage>, INotificationHandler<SearchStartedMessage>
+namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
+public abstract partial class SearchViewModel : DisposableObservableObject, IAsyncRecipient<OpenPageMessage>, IAsyncRecipient<HidePagesMessage>, IAsyncRecipient<SearchStartedMessage>
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _messenger;
 
     protected SearchViewModel(
         Domains domain,
-        IMediator mediator)
+        IMessenger messenger)
     {
-        _mediator = mediator;
+        _messenger = messenger;
 
         Domain = domain;
 
@@ -21,15 +23,15 @@ public abstract partial class SearchViewModel : ObservableObject, INotificationH
     }
 
     [ObservableProperty]
-    private Domains _domain;
+    public partial Domains Domain { get; set; }
     [ObservableProperty]
-    private bool _isVisible;
+    public partial bool IsVisible { get; set; }
     [ObservableProperty]
-    private string? _searchText;
+    public partial string? SearchText { get; set; }
     [ObservableProperty]
-    private bool _isHintVisible;
+    public partial bool IsHintVisible { get; set; }
     [ObservableProperty]
-    private bool _isSearchResultsVisible;
+    public partial bool IsSearchResultsVisible { get; set; }
 
     public bool IsEmptySearch
     {
@@ -51,11 +53,11 @@ public abstract partial class SearchViewModel : ObservableObject, INotificationH
         }
     }
 
-    public async Task Handle(OpenPageMessage notification, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(OpenPageMessage message, CancellationToken cancellationToken)
     {
         IsVisible = false;
 
-        if (notification.PageId == Guid.Empty && notification.Domain == Domain)
+        if (message.PageId == Guid.Empty && message.Domain == Domain)
         {
             IsVisible = true;
 
@@ -63,14 +65,14 @@ public abstract partial class SearchViewModel : ObservableObject, INotificationH
         }
     }
 
-    public Task Handle(HidePagesMessage notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(HidePagesMessage message, CancellationToken cancellationToken)
     {
         IsVisible = false;
 
         return Task.CompletedTask;
     }
 
-    public Task Handle(SearchStartedMessage notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(SearchStartedMessage message, CancellationToken cancellationToken)
     {
         IsEmptySearch = false;
         IsSearching = true;
@@ -87,6 +89,6 @@ public abstract partial class SearchViewModel : ObservableObject, INotificationH
     [RelayCommand]
     private async Task SearchAsync()
     {
-        await _mediator.Publish(new SearchInitiateMessage(Domain));
+        await _messenger.SendAsync(new SearchInitiateMessage(Domain));
     }
 }

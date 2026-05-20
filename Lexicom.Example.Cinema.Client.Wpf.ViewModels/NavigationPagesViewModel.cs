@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
@@ -60,6 +60,14 @@ public partial class NavigationPagesViewModel<TNavigationPageViewModel> : Dispos
     [ObservableProperty]
     public partial bool HasPageViewModels { get; set; }
 
+    public override void Dispose()
+    {
+        PageSearchViewModel?.Dispose();
+        PageViewModels.DisposeChildren();
+
+        base.Dispose();
+    }
+
     public async Task LoadAsync()
     {
         PageSearchViewModel = _viewModelFactory.Create<NavigationPageSearchViewModel, Domains>(Domain);
@@ -105,6 +113,7 @@ public partial class NavigationPagesViewModel<TNavigationPageViewModel> : Dispos
             if (pageViewModel is not null)
             {
                 PageViewModels.Remove(pageViewModel);
+                pageViewModel.Dispose();
 
                 HasPageViewModels = PageViewModels.Any();
             }

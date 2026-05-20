@@ -1,32 +1,37 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
 using Lexicom.Mvvm;
-using MediatR;
+using Lexicom.Mvvm.Extensions;
 using System.Collections.ObjectModel;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class SearchMovieViewModel : SearchViewModel, IRequestHandler<MovieSearchGetTextRequest, MovieSearchGetTextResponse>, INotificationHandler<MovieSearchResponseNotification>, IRequestHandler<MovieSearchGetFiltersRequest, MovieSearchGetFiltersResponse>
+public partial class SearchMovieViewModel : SearchViewModel, IAsyncRecipient<MovieSearchResponseNotification>
 {
     private readonly IViewModelFactory _viewModelFactory;
 
     public SearchMovieViewModel(
-        IMediator mediator,
+        IMessenger messenger,
         IViewModelFactory viewModelFactory,
-        SearchMoviePaginationViewModel paginationViewModel) : base(Domains.Movies, mediator)
+        SearchMoviePaginationViewModel paginationViewModel) 
+        : base(
+            Domains.Movies, 
+            messenger)
     {
         _viewModelFactory = viewModelFactory;
-        _paginationViewModel = paginationViewModel;
 
-        _resultViewModels = new ObservableCollection<SearchMovieResultViewModel>();
-        _sortOn = new List<string>
-        {
+        PaginationViewModel = paginationViewModel;
+        ResultViewModels = [];
+        SortOn =
+        [
             "Title",
             "ReleaseDate",
             "Duration",
             "Synopsis",
-        };
-        _selectedSortOn = SortOn.First();
+        ];
+        SelectedSortOn = SortOn.First();
 
         IsTitleFilter = true;
         IsReleaseDateFilter = true;
@@ -35,32 +40,34 @@ public partial class SearchMovieViewModel : SearchViewModel, IRequestHandler<Mov
     }
 
     [ObservableProperty]
-    private SearchMoviePaginationViewModel _paginationViewModel;
+    public partial SearchMoviePaginationViewModel PaginationViewModel { get; set; }
     [ObservableProperty]
-    private ObservableCollection<SearchMovieResultViewModel> _resultViewModels;
+    public partial ObservableCollection<SearchMovieResultViewModel> ResultViewModels { get; set; }
     [ObservableProperty]
-    private bool _isTitleFilter;
+    public partial bool IsTitleFilter { get; set; }
     [ObservableProperty]
-    private bool _isReleaseDateFilter;
+    public partial bool IsReleaseDateFilter { get; set; }
     [ObservableProperty]
-    private bool _isDurationFilter;
+    public partial bool IsDurationFilter { get; set; }
     [ObservableProperty]
-    private bool _isSynopsisFilter;
+    public partial bool IsSynopsisFilter { get; set; }
     [ObservableProperty]
-    private IReadOnlyList<string> _sortOn;
+    public partial IReadOnlyList<string> SortOn { get; set; }
     [ObservableProperty]
-    private string? _selectedSortOn;
+    public partial string? SelectedSortOn { get; set; }
 
-    public Task<MovieSearchGetTextResponse> Handle(MovieSearchGetTextRequest request, CancellationToken cancellationToken)
+    public override void Dispose()
     {
-        return Task.FromResult(new MovieSearchGetTextResponse(SearchText));
+        PaginationViewModel?.Dispose();
+        ResultViewModels.DisposeChildren();
+
+        base.Dispose();
     }
 
-    public Task Handle(MovieSearchResponseNotification notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(MovieSearchResponseNotification message, CancellationToken cancellationToken)
     {
-        ResultViewModels.Clear();
-
-        foreach (MovieSearchResponseNotificationMovie movie in notification.ResultsSlice)
+        ResultViewModels.DisposeAndClearChildren();
+        foreach (MovieSearchResponseNotificationMovie movie in message.ResultsSlice)
         {
             var viewModel = _viewModelFactory.Create<SearchMovieResultViewModel, MovieSearchResponseNotificationMovie>(movie);
 
@@ -71,10 +78,5 @@ public partial class SearchMovieViewModel : SearchViewModel, IRequestHandler<Mov
         IsSearching = false;
 
         return Task.CompletedTask;
-    }
-
-    public Task<MovieSearchGetFiltersResponse> Handle(MovieSearchGetFiltersRequest request, CancellationToken cancellationToken)
-    {
-        return Task.FromResult(new MovieSearchGetFiltersResponse(IsTitleFilter, IsReleaseDateFilter, IsDurationFilter, IsSynopsisFilter));
     }
 }

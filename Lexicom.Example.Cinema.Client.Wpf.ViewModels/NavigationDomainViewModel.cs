@@ -1,46 +1,46 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
+using Lexicom.Mvvm;
 using Lexicom.Mvvm.Extensions;
-using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class NavigationDomainViewModel : ObservableObject, INotificationHandler<DomainSelectedMessage>, INotificationHandler<OpenPagesCountChangedMessage>
+public partial class NavigationDomainViewModel : DisposableObservableObject, IAsyncRecipient<DomainSelectedMessage>, IAsyncRecipient<OpenPagesCountChangedMessage>
 {
-    private readonly IMessenger _mediator;
+    private readonly IMessenger _messenger;
 
     public NavigationDomainViewModel(
         Domains domain,
-        IMediator mediator)
+        IMessenger messenger)
     {
-        _mediator = mediator;
+        _messenger = messenger;
 
         Domain = domain;
     }
 
     [ObservableProperty]
-    private Domains _domain;
+    public partial Domains Domain { get; set; }
     [ObservableProperty]
-    private bool _isSelected;
+    public partial bool IsSelected { get; set; }
     [ObservableProperty]
-    private bool _isHover;
+    public partial bool IsHover { get; set; }
     [ObservableProperty]
-    private int _openPageCount;
+    public partial int OpenPageCount { get; set; }
 
-    public Task Handle(DomainSelectedMessage notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(DomainSelectedMessage message, CancellationToken cancellationToken)
     {
-        IsSelected = notification.SelectedDomain == Domain;
+        IsSelected = message.SelectedDomain == Domain;
 
         return Task.CompletedTask;
     }
 
-    public Task Handle(OpenPagesCountChangedMessage notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(OpenPagesCountChangedMessage message, CancellationToken cancellationToken)
     {
-        if (notification.Domain == Domain)
+        if (message.Domain == Domain)
         {
-            OpenPageCount = notification.Count;
+            OpenPageCount = message.Count;
         }
 
         return Task.CompletedTask;
@@ -55,9 +55,9 @@ public partial class NavigationDomainViewModel : ObservableObject, INotification
     [RelayCommand]
     private async Task SelectAsync()
     {
-        await _mediator.Publish(new HidePagesMessage());
-        await _mediator.Publish(new DomainSelectedMessage(Domain));
-        await _mediator.ScheduleAsync(new OpenPageMessage(Domain, Guid.Empty));
+        await _messenger.SendAsync(new HidePagesMessage());
+        await _messenger.SendAsync(new DomainSelectedMessage(Domain));
+        await _messenger.ScheduleAsync(new OpenPageMessage(Domain, Guid.Empty));
     }
 
     [RelayCommand]

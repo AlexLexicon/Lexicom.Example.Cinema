@@ -1,4 +1,2 @@
-﻿using MediatR;
-
 namespace Lexicom.Example.Cinema.Client.Application.Mediator;
-public record class SignInSuccessNotification() : INotification;
+public record class SignInSuccessNotification();

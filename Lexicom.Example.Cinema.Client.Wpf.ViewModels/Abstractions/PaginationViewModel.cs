@@ -1,22 +1,23 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
-using MediatR;
+using Lexicom.Mvvm;
 using System.Collections.ObjectModel;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-public abstract partial class PaginationViewModel : ObservableObject, INotificationHandler<SearchInitiateMessage>
+public abstract partial class PaginationViewModel : DisposableObservableObject, IAsyncRecipient<SearchInitiateMessage>
 {
     private const int TOTAL_PAGE_NUMBER_BUTTONS_PER_SIDE = 2;
 
-    protected readonly IMediator _mediator;
+    protected readonly IMessenger _messenger;
 
     public PaginationViewModel(
         Domains domain,
-        IMediator mediator)
+        IMessenger messenger)
     {
-        _mediator = mediator;
+        _messenger = messenger;
 
         PageLimit = 25;
         MinimumPageIndex = 0;
@@ -24,9 +25,9 @@ public abstract partial class PaginationViewModel : ObservableObject, INotificat
         MaximumPageIndex = 1;
 
         Domain = domain;
-        _previousPageNumbers = new ObservableCollection<int>();
+        PreviousPageNumbers = [];
         CurrentPageNumber = 1;
-        _nextPageNumbers = new ObservableCollection<int>();
+        NextPageNumbers = [];
     }
 
     protected int PageLimit { get; private set; }
@@ -39,25 +40,25 @@ public abstract partial class PaginationViewModel : ObservableObject, INotificat
     private int MaximumPageIndex { get; set; }
 
     [ObservableProperty]
-    private Domains _domain;
+    public partial Domains Domain { get; set; }
     [ObservableProperty]
-    private ObservableCollection<int> _previousPageNumbers;
+    public partial ObservableCollection<int> PreviousPageNumbers { get; set; }
     [ObservableProperty]
-    private int _currentPageNumber;
+    public partial int CurrentPageNumber { get; set; }
     [ObservableProperty]
-    private ObservableCollection<int> _nextPageNumbers;
+    public partial ObservableCollection<int> NextPageNumbers { get; set; }
     [ObservableProperty]
-    private bool _isFirstPage;
+    public partial bool IsFirstPage { get; set; }
     [ObservableProperty]
-    private int _firstPageNumber;
+    public partial int FirstPageNumber { get; set; }
     [ObservableProperty]
-    private bool _isLastPage;
+    public partial bool IsLastPage { get; set; }
     [ObservableProperty]
-    private int _lastPageNumber;
+    public partial int LastPageNumber { get; set; }
 
-    public async Task Handle(SearchInitiateMessage notification, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(SearchInitiateMessage message, CancellationToken cancellationToken)
     {
-        if (notification.Domain == Domain)
+        if (message.Domain == Domain)
         {
             CurrentPageIndex = MinimumPageIndex;
 

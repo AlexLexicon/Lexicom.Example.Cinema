@@ -1,41 +1,42 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
-using MediatR;
+using Lexicom.Mvvm.Extensions;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 public partial class PageMovieViewModel : PageViewModel
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _messenger;
 
-    public PageMovieViewModel(IMediator mediator) : base(Domains.Movies)
+    public PageMovieViewModel(IMessenger messenger) : base(Domains.Movies)
     {
-        _mediator = mediator;
+        _messenger = messenger;
     }
 
     [ObservableProperty]
-    private string? _title;
+    public partial string? Title { get; set; }
     [ObservableProperty]
-    private string? _releaseDateTime;
+    public partial string? ReleaseDateTime { get; set; }
     [ObservableProperty]
-    private bool _hasHours;
+    public partial bool HasHours { get; set; }
     [ObservableProperty]
-    private int _hours;
+    public partial int Hours { get; set; }
     [ObservableProperty]
-    private int _minutes;
+    public partial int Minutes { get; set; }
     [ObservableProperty]
-    private string? _synopsis;
+    public partial string? Synopsis { get; set; }
     [ObservableProperty]
-    private string? _rating;
+    public partial string? Rating { get; set; }
     [ObservableProperty]
-    private string? _reviewsTotal;
+    public partial string? ReviewsTotal { get; set; }
 
     public override async Task OpenedAsync()
     {
-        MovieGetResponse movie = await _mediator.Send(new MovieGetRequest(Id));
+        MovieGetResponse movie = await _messenger.Send(new MovieGetRequest(Id));
 
         double rating = 0.5;
 
@@ -52,24 +53,24 @@ public partial class PageMovieViewModel : PageViewModel
     [RelayCommand]
     private async Task AddDirectorAsync()
     {
-        await _mediator.Publish(new AddDirectorToMovieMessage());
+        await _messenger.SendAsync(new AddDirectorToMovieMessage());
     }
 
     [RelayCommand]
     private async Task AddActorAsync()
     {
-        await _mediator.Publish(new AddActorToMovieMessage());
+        await _messenger.SendAsync(new AddActorToMovieMessage());
     }
 
     [RelayCommand]
     private async Task CreateReviewAsync()
     {
-        await _mediator.Publish(new CreateReviewMessage());
+        await _messenger.SendAsync(new CreateReviewMessage());
     }
 
     [RelayCommand]
     private async Task EditAsync()
     {
-        await _mediator.Publish(new EditMovieMessage());
+        await _messenger.SendAsync(new EditMovieMessage());
     }
 }

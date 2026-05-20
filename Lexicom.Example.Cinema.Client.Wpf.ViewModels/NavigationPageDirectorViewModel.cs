@@ -1,22 +1,28 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 public partial class NavigationPageDirectorViewModel : NavigationPageViewModel
 {
-    public NavigationPageDirectorViewModel(Guid id, IMediator mediator) : base(Domains.Directors, id, mediator)
+    public NavigationPageDirectorViewModel(
+        Guid id, 
+        IMessenger messenger) 
+        : base(
+            Domains.Directors, 
+            id, 
+            messenger)
     {
     }
 
     [ObservableProperty]
-    private string? _name;
+    public partial string? Name { get; set; }
 
     public override async Task LoadAsync()
     {
-        DirectorGetResponse movie = await _mediator.Send(new DirectorGetRequest(Id));
+        DirectorGetResponse movie = await _messenger.Send(new DirectorGetRequest(Id));
 
         Name = movie.Name;
     }

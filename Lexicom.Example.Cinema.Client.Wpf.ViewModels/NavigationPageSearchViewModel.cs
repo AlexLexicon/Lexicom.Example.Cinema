@@ -1,11 +1,17 @@
-﻿using Lexicom.Example.Cinema.Client.Application.Models;
+using CommunityToolkit.Mvvm.Messaging;
+using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 public partial class NavigationPageSearchViewModel : NavigationPageViewModel
 {
-    public NavigationPageSearchViewModel(Domains domain, IMediator mediator) : base(domain, Guid.Empty, mediator)
+    public NavigationPageSearchViewModel(
+        Domains domain, 
+        IMessenger messenger) 
+        : base(
+            domain, 
+            Guid.Empty, 
+            messenger)
     {
     }
 

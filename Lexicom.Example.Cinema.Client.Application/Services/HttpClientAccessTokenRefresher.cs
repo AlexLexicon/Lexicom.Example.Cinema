@@ -1,15 +1,16 @@
-﻿using Lexicom.Authentication.Http;
+using CommunityToolkit.Mvvm.Messaging;
+using Lexicom.Authentication.Http;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
-using MediatR;
+using Lexicom.Mvvm.Extensions;
 
 namespace Lexicom.Example.Cinema.Client.Application.Services;
 public class HttpClientAccessTokenRefresher : IHttpClientAccessTokenRefresher
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _messenger;
 
-    public HttpClientAccessTokenRefresher(IMediator mediator)
+    public HttpClientAccessTokenRefresher(IMessenger messenger)
     {
-        _mediator = mediator;
+        _messenger = messenger;
     }
 
     public async Task RefreshAuthenticationAsync(string? accessToken, string? refreshToken)
@@ -17,6 +18,6 @@ public class HttpClientAccessTokenRefresher : IHttpClientAccessTokenRefresher
         ArgumentNullException.ThrowIfNull(accessToken);
         ArgumentNullException.ThrowIfNull(refreshToken);
 
-        await _mediator.Publish(new SignInRefreshNotification(accessToken, refreshToken));
+        await _messenger.SendAsync(new SignInRefreshNotification(accessToken, refreshToken));
     }
 }

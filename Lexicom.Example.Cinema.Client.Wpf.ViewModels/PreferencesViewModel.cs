@@ -24,11 +24,6 @@ public partial class PreferencesViewModel : DisposableObservableObject, IAsyncRe
     [ObservableProperty]
     public partial string? SelectedTheme { get; set; }
 
-    public override void Dispose()
-    {
-        base.Dispose();
-    }
-
     public async Task LoadAsync()
     {
         await RefreshAsync();

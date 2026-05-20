@@ -1,10 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
-using MediatR;
+using Lexicom.Mvvm;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
-public abstract partial class PageViewModel : ObservableObject, INotificationHandler<OpenPageMessage>, INotificationHandler<HidePagesMessage>
+public abstract partial class PageViewModel : DisposableObservableObject, IAsyncRecipient<OpenPageMessage>, IAsyncRecipient<HidePagesMessage>
 {
     public PageViewModel(Domains domain)
     {
@@ -14,20 +14,20 @@ public abstract partial class PageViewModel : ObservableObject, INotificationHan
     public Domains Domain { get; }
 
     [ObservableProperty]
-    private Guid _id;
+    public partial Guid Id { get; set; }
     [ObservableProperty]
-    private bool _isVisible;
+    public partial bool IsVisible { get; set; }
     [ObservableProperty]
-    private bool _isLoading;
+    public partial bool IsLoading { get; set; }
 
-    public async Task Handle(OpenPageMessage notification, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(OpenPageMessage message, CancellationToken cancellationToken)
     {
         IsVisible = false;
         IsLoading = false;
 
-        if (notification.Domain == Domain && notification.PageId != Guid.Empty)
+        if (message.Domain == Domain && message.PageId != Guid.Empty)
         {
-            Id = notification.PageId;
+            Id = message.PageId;
 
             IsVisible = true;
             IsLoading = true;
@@ -38,7 +38,7 @@ public abstract partial class PageViewModel : ObservableObject, INotificationHan
         }
     }
 
-    public Task Handle(HidePagesMessage notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(HidePagesMessage message, CancellationToken cancellationToken)
     {
         IsVisible = false;
 

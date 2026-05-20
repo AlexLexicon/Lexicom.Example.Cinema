@@ -1,5 +1,6 @@
-﻿using Lexicom.Example.Cinema.Client.Application.Models;
+using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Mvvm;
+using Lexicom.Mvvm.Extensions;
 using System.Collections.ObjectModel;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
@@ -16,6 +17,13 @@ public partial class NavigationDomainsViewModel : DisposableObservableObject
     }
 
     public ObservableCollection<NavigationDomainViewModel> DomainViewModels { get; }
+
+    public override void Dispose()
+    {
+        DomainViewModels.DisposeChildren();
+
+        base.Dispose();
+    }
 
     public Task LoadAsync()
     {

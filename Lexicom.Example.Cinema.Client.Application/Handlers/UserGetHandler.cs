@@ -1,11 +1,10 @@
-﻿using Lexicom.Example.Cinema.Client.Application.Mediator;
+using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Options;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.User;
 using Lexicom.Http.Extensions;
-using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Application.Handlers;
-public class UserGetHandler : IRequestHandler<UserGetRequest, UserGetResponse>
+public class UserGetHandler
 {
     private readonly IHttpClientFactory _httpClientFactory;
 

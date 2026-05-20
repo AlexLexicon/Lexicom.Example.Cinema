@@ -1,25 +1,23 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
-using MediatR;
+using Lexicom.Mvvm;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class PopupViewModel : ObservableObject, INotificationHandler<FeatureRequiresSignInMessage>
+public partial class PopupViewModel : DisposableObservableObject, IAsyncRecipient<FeatureRequiresSignInMessage>
 {
-
     public PopupViewModel()
     {
-
     }
 
     [ObservableProperty]
-    private bool _isVisible;
+    public partial bool IsVisible { get; set; }
     [ObservableProperty]
-    private string? _title;
+    public partial string? Title { get; set; }
     [ObservableProperty]
-    private string? _message;
+    public partial string? Message { get; set; }
 
-    public Task Handle(FeatureRequiresSignInMessage notification, CancellationToken cancellationToken)
+    public Task ReceiveAsync(FeatureRequiresSignInMessage message, CancellationToken cancellationToken)
     {
         IsVisible = true;
 

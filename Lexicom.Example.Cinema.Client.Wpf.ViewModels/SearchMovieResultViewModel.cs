@@ -1,49 +1,48 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
-using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Extensions;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Extensions.TimeSpans;
+using Lexicom.Mvvm;
 using Lexicom.Mvvm.Extensions;
-using MediatR;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class SearchMovieResultViewModel : ObservableObject
+public partial class SearchMovieResultViewModel : DisposableObservableObject
 {
-    private readonly IMessenger _mediator;
+    private readonly IMessenger _messenger;
 
     public SearchMovieResultViewModel(
-        MovieSearchResponseNotificationMovie movie, 
-        IMediator mediator)
+        MovieSearchResponseNotificationMovie movie,
+        IMessenger messenger)
     {
-        _mediator = mediator;
+        _messenger = messenger;
 
         MovieId = movie.Id;
         Title = movie.Title;
         ReleaseYear = movie.ReleasedDateTimeOffsetUtc.ToString("yyyy");
-        Duration = movie.Duration.ToShortestString
+        Duration = movie.Duration.ToShortestString();
         Synopsis = movie.Synopsis;
     }
 
     [ObservableProperty]
-    private Guid _resultId;
+    public partial Guid ResultId { get; set; }
     [ObservableProperty]
-    private Guid _movieId;
+    public partial Guid MovieId { get; set; }
     [ObservableProperty]
-    private string? _title;
+    public partial string? Title { get; set; }
     [ObservableProperty]
-    private string? _releaseYear;
+    public partial string? ReleaseYear { get; set; }
     [ObservableProperty]
-    private string? _duration;
+    public partial string? Duration { get; set; }
     [ObservableProperty]
-    private string? _synopsis;
+    public partial string? Synopsis { get; set; }
 
     [RelayCommand]
     private async Task SelectedAsync()
     {
-        await _mediator.Publish(new HidePagesMessage());
-        await _mediator.ScheduleAsync(new OpenPageMessage(Domains.Movies, MovieId));
+        await _messenger.SendAsync(new HidePagesMessage());
+        await _messenger.ScheduleAsync(new OpenPageMessage(Domains.Movies, MovieId));
     }
 }

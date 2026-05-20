@@ -1,4 +1,5 @@
-﻿using Lexicom.AspNetCore.Controllers.Contracts;
+using CommunityToolkit.Mvvm.Messaging;
+using Lexicom.AspNetCore.Controllers.Contracts;
 using Lexicom.AspNetCore.Controllers.Contracts.Extensions;
 using Lexicom.Concentrate.Client.Authentication;
 using Lexicom.Example.Cinema.Client.Application.Mediator;
@@ -6,53 +7,54 @@ using Lexicom.Example.Cinema.Client.Application.Options;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts;
 using Lexicom.Example.Cinema.Server.Authority.Api.Contracts.SignIn;
 using Lexicom.Http.Extensions;
-using MediatR;
+using Lexicom.Mvvm;
+using Lexicom.Mvvm.Extensions;
 using System.Net.Http.Json;
 
 namespace Lexicom.Example.Cinema.Client.Application.Handlers;
-public class SignInHandler : INotificationHandler<SignInNotification>
+public class SignInHandler : IAsyncRecipient<SignInNotification>
 {
-    private readonly IMediator _mediator;
+    private readonly IMessenger _messenger;
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IAuthenticationTokenStore _authenticationTokenStore;
 
     public SignInHandler(
-        IMediator mediator,
+        IMessenger messenger,
         IHttpClientFactory httpClientFactory,
         IAuthenticationTokenStore authenticationService)
     {
-        _mediator = mediator;
+        _messenger = messenger;
         _httpClientFactory = httpClientFactory;
         _authenticationTokenStore = authenticationService;
     }
 
-    public async Task Handle(SignInNotification request, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(SignInNotification message, CancellationToken cancellationToken)
     {
         HttpClient httpClient = _httpClientFactory.CreateClient(nameof(HttpClientAuthorityAnonymousApiOptions));
 
         HttpResponseMessage response = await httpClient.PostAsJsonAsync("user/signin", new UserSignInPostRequestBody
         {
-            Email = request.Email,
-            Password = request.Password,
+            Email = message.Email,
+            Password = message.Password,
         }, cancellationToken);
 
         ErrorResponse? errorResponse = await response.TryToErrorResponseAsync();
 
         if (errorResponse.HasCode(AuthorityErrorCodes.USER_CREDENTIALS_INCORRECT))
         {
-            await _mediator.Publish(new SignInFailedNotification(SignInFailedNotification.Errors.IncorrectCredentials), cancellationToken);
+            await _messenger.SendAsync(new SignInFailedNotification(SignInFailedNotification.Errors.IncorrectCredentials), cancellationToken);
             return;
         }
 
         if (errorResponse.HasCode(AuthorityErrorCodes.USER_MODERATION_LOCKED))
         {
-            await _mediator.Publish(new SignInFailedNotification(SignInFailedNotification.Errors.LockedOut), cancellationToken);
+            await _messenger.SendAsync(new SignInFailedNotification(SignInFailedNotification.Errors.LockedOut), cancellationToken);
             return;
         }
 
         if (errorResponse.HasCode(AuthorityErrorCodes.USER_VERIFICATION_INCOMPLETE))
         {
-            await _mediator.Publish(new SignInFailedNotification(SignInFailedNotification.Errors.NotVerified), cancellationToken);
+            await _messenger.SendAsync(new SignInFailedNotification(SignInFailedNotification.Errors.NotVerified), cancellationToken);
             return;
         }
 
@@ -69,6 +71,6 @@ public class SignInHandler : INotificationHandler<SignInNotification>
         await setAccessTokenTask;
         await setRefreshTokenTask;
 
-        await _mediator.Publish(new SignInSuccessNotification(), cancellationToken);
+        await _messenger.SendAsync(new SignInSuccessNotification(), cancellationToken);
     }
 }
