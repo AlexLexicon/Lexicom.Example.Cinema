@@ -30,52 +30,53 @@ public partial class App : System.Windows.Application
 
         builder.Configuration.AddJsonFile("appsettings.json");
 
-        builder.Lexicom(options =>
+        builder.Lexicom(l =>
         {
-            options.AddSettings(Wpf.Properties.Settings.Default);
-            options.AddAmenities();
-            options.AddMvvm(options =>
+            l.Concentrate(lc =>
             {
-                options.AddViewModel<MainWindowViewModel>(options =>
+                lc.AddAmenities();
+                lc.AddTheming();
+                lc.AddClientAuthentication();
+            });
+
+            l.AddSettings(Wpf.Properties.Settings.Default);
+            l.AddAmenities();
+            l.AddMvvm(mvvm =>
+            {
+                mvvm.AddViewModel<MainWindowViewModel>(vm =>
                 {
-                    options.ForWindow<MainWindowView>();
+                    vm.ForWindow<MainWindowView>();
                 });
 
-                options.AddViewModel<NavigationDomainsViewModel>();
-                options.AddViewModel<NavigationDomainViewModel>(ServiceLifetime.Transient);
-                options.AddViewModel<NavigationPageActorViewModel>(ServiceLifetime.Transient);
-                options.AddViewModel<NavigationPageDirectorViewModel>(ServiceLifetime.Transient);
-                options.AddViewModel<NavigationPageMovieViewModel>(ServiceLifetime.Transient);
-                options.AddViewModel<NavigationPageSearchViewModel>(ServiceLifetime.Transient);
-                options.AddViewModel<NavigationPagesViewModel<NavigationPageMovieViewModel>>();
-                options.AddViewModel<NavigationPagesViewModel<NavigationPageDirectorViewModel>>();
-                options.AddViewModel<NavigationPagesViewModel<NavigationPageActorViewModel>>();
-                options.AddViewModel<NavigationUserViewModel>();
-                options.AddViewModel<NavigationViewModel>();
+                mvvm.AddViewModel<NavigationDomainsViewModel>();
+                mvvm.AddViewModel<NavigationDomainViewModel>(ServiceLifetime.Transient);
+                mvvm.AddViewModel<NavigationPageActorViewModel>(ServiceLifetime.Transient);
+                mvvm.AddViewModel<NavigationPageDirectorViewModel>(ServiceLifetime.Transient);
+                mvvm.AddViewModel<NavigationPageMovieViewModel>(ServiceLifetime.Transient);
+                mvvm.AddViewModel<NavigationPageSearchViewModel>(ServiceLifetime.Transient);
+                mvvm.AddViewModel<NavigationPagesViewModel<NavigationPageMovieViewModel>>();
+                mvvm.AddViewModel<NavigationPagesViewModel<NavigationPageDirectorViewModel>>();
+                mvvm.AddViewModel<NavigationPagesViewModel<NavigationPageActorViewModel>>();
+                mvvm.AddViewModel<NavigationUserViewModel>();
+                mvvm.AddViewModel<NavigationViewModel>();
 
-                options.AddViewModel<PageMovieFormViewModel>();
-                options.AddViewModel<PageMovieViewModel>();
+                mvvm.AddViewModel<PageMovieFormViewModel>();
+                mvvm.AddViewModel<PageMovieViewModel>();
 
-                options.AddViewModel<PopupViewModel>();
+                mvvm.AddViewModel<PopupViewModel>();
 
-                options.AddViewModel<PreferencesViewModel>();
+                mvvm.AddViewModel<PreferencesViewModel>();
 
-                options.AddViewModel<SearchMoviePaginationViewModel>();
-                options.AddViewModel<SearchMovieResultViewModel>(ServiceLifetime.Transient);
-                options.AddViewModel<SearchMovieViewModel>();
+                mvvm.AddViewModel<SearchMoviePaginationViewModel>();
+                mvvm.AddViewModel<SearchMovieResultViewModel>(ServiceLifetime.Transient);
+                mvvm.AddViewModel<SearchMovieViewModel>();
 
-                options.AddViewModel<SignInViewModel>();
+                mvvm.AddViewModel<SignInViewModel>();
             });
-            options.AddValidation(options =>
+            l.AddValidation(v =>
             {
-                options.AddValidators<AssemblyScanMarker>();
-                options.AddClientApplication();
-            });
-            options.Concentrate(options =>
-            {
-                options.AddAmenities();
-                options.AddTheming();
-                options.AddClientAuthentication();
+                v.AddValidators<AssemblyScanMarker>();
+                v.AddClientApplication();
             });
         });
 

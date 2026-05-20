@@ -5,6 +5,7 @@ using Lexicom.Example.Cinema.Client.Application.Mediator;
 using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Extensions;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
+using Lexicom.Extensions.TimeSpans;
 using Lexicom.Mvvm.Extensions;
 using MediatR;
 
@@ -22,7 +23,7 @@ public partial class SearchMovieResultViewModel : ObservableObject
         MovieId = movie.Id;
         Title = movie.Title;
         ReleaseYear = movie.ReleasedDateTimeOffsetUtc.ToString("yyyy");
-        Duration = movie.Duration.ToDurationString();
+        Duration = movie.Duration.ToShortestString
         Synopsis = movie.Synopsis;
     }
 
