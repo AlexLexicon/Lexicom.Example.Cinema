@@ -43,6 +43,6 @@ public partial class SearchMovieResultViewModel : DisposableObservableObject
     private async Task SelectedAsync()
     {
         await _messenger.SendAsync(new HidePagesMessage());
-        await _messenger.ScheduleAsync(new OpenPageMessage(Domains.Movies, MovieId));
+        await _messenger.ScheduleAsync(new OpenPageMessage(Domain.Movies, MovieId));
     }
 }

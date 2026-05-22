@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using Lexicom.Example.Cinema.Server.Movies.Api.Contracts;
-using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSets;
+using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Review;
+using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Validation.RuleSets;
 
 namespace Lexicom.Example.Cinema.Server.Movies.Api.Validators;
 

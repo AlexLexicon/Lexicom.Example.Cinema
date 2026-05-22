@@ -8,7 +8,7 @@
     xmlns:c="clr-namespace:Lexicom.Wpf.Controls;assembly=Lexicom.Wpf.Controls"
     xmlns:vm="clr-namespace:Lexicom.Example.Cinema.Client.Wpf.ViewModels;assembly=Lexicom.Example.Cinema.Client.Wpf.ViewModels"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance vm:PreferencesViewModel}"
+    d:DataContext="{d:DesignInstance vm:PreferencesDialogViewModel}"
     d:DesignWidth="1400"
     d:DesignHeight="950">
 

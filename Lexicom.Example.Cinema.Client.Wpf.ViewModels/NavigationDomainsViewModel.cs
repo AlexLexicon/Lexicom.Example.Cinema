@@ -1,4 +1,7 @@
+using CommunityToolkit.Mvvm.Messaging;
 using Lexicom.Example.Cinema.Client.Application.Models;
+using Lexicom.Example.Cinema.Client.Application.Services;
+using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Mvvm;
 using Lexicom.Mvvm.Extensions;
 using System.Collections.ObjectModel;
@@ -7,11 +10,18 @@ namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 
 public partial class NavigationDomainsViewModel : DisposableObservableObject
 {
+    private readonly IMessenger _messenger;
     private readonly IViewModelFactory _viewModelFactory;
+    private readonly IDomainService _domainService;
 
-    public NavigationDomainsViewModel(IViewModelFactory viewModelFactory)
+    public NavigationDomainsViewModel(
+        IMessenger messenger,
+        IViewModelFactory viewModelFactory,
+        IDomainService domainService)
     {
+        _messenger = messenger;
         _viewModelFactory = viewModelFactory;
+        _domainService = domainService;
 
         DomainViewModels = [];
     }
@@ -25,21 +35,22 @@ public partial class NavigationDomainsViewModel : DisposableObservableObject
         base.Dispose();
     }
 
-    public Task LoadAsync()
+    public async Task LoadAsync()
     {
-        //we reverse the DomainChoices so that the first one is created (and selected) last
-        IEnumerable<Domains> reversedDomains = Enum
-            .GetValues<Domains>()
-            .Reverse();
+        IReadOnlyList<Domain> domains = await _domainService.GetDomainsAsync();
 
-        foreach (Domains domain in reversedDomains)
+        DomainViewModels.DisposeAndClearChildren();
+        foreach (Domain domain in domains)
         {
-            var domainViewModel = _viewModelFactory.Create<NavigationDomainViewModel, Domains>(domain);
+            var vm = _viewModelFactory.Create<NavigationDomainViewModel, Domain>(domain);
 
-            //we insert at the top so that the last item (which will be selected by default) will show up first
-            DomainViewModels.Insert(0, domainViewModel);
+            await vm.LoadAsync();
+
+            DomainViewModels.Add(vm);
         }
 
-        return Task.CompletedTask;
+        Domain firstDomain = domains.First();
+
+        await _messenger.SendAsync(new NavigationDomainSelectMessage(firstDomain));
     }
 }

@@ -3,10 +3,10 @@ using Lexicom.Example.Cinema.Client.Application.Models;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class NavigationPageSearchViewModel : NavigationPageViewModel
+public partial class NavigationPageSearchViewModel : AbstractNavigationPageViewModel
 {
     public NavigationPageSearchViewModel(
-        Domains domain, 
+        Domain domain, 
         IMessenger messenger) 
         : base(
             domain, 

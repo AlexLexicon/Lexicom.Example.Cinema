@@ -1,6 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Lexicom.Example.Cinema.Client.Application.Models;
+using Lexicom.Example.Cinema.Client.Application.Services;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Mvvm;
 using Lexicom.Mvvm.Extensions;
@@ -10,10 +12,14 @@ namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 public partial class NavigationUserViewModel : DisposableObservableObject
 {
     private readonly IMessenger _messenger;
+    private readonly IUserService _userService;
 
-    public NavigationUserViewModel(IMessenger messenger)
+    public NavigationUserViewModel(
+        IMessenger messenger, 
+        IUserService userService)
     {
         _messenger = messenger;
+        _userService = userService;
     }
 
     [ObservableProperty]
@@ -23,32 +29,44 @@ public partial class NavigationUserViewModel : DisposableObservableObject
     public partial string? LastName { get; set; }
 
     [ObservableProperty]
-    public partial bool IsAuthenticated { get; set; }
+    public partial bool IsLoggedIn { get; set; }
 
-    public Task LoadAsync()
+    public async Task LoadAsync()
     {
-        FirstName = "Alex";
-        LastName = "Stroot";
-        IsAuthenticated = false;
+        await RefreshAsync();
+    }
 
-        return Task.CompletedTask;
+    private async Task RefreshAsync()
+    {
+        User? user = await _userService.GetLoggedInUserAsync();
+
+        if (user is not null)
+        {
+            IsLoggedIn = true;
+            FirstName = "Alex";
+            LastName = "Stroot";
+        }
+        else
+        {
+            IsLoggedIn = false;
+        }
     }
 
     [RelayCommand]
-    private async Task ShowPreferencesAsync()
+    private async Task ShowPreferencesDialogAsync()
     {
-        await _messenger.SendAsync(new ShowPreferenceViewMessage());
+        await _messenger.SendAsync(new PreferencesDialogShowMessage());
     }
 
     [RelayCommand]
-    private async Task ShowSignInAsync()
+    private async Task ShowSignInDialogAsync()
     {
-        await _messenger.SendAsync(new ShowSignInViewMessage());
+        await _messenger.SendAsync(new SignInDialogShowMessage());
     }
 
     [RelayCommand]
-    private async Task ShowProfileAsync()
+    private async Task ShowProfileDialogAsync()
     {
-        await _messenger.SendAsync(new ShowProfileViewMessage());
+        await _messenger.SendAsync(new ProfileDialogShowMessage());
     }
 }

@@ -6,56 +6,37 @@ using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 using Lexicom.Mvvm;
 using Lexicom.Mvvm.Extensions;
-using Lexicom.Wpf.Amenities.Threading;
 using System.Collections.ObjectModel;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 
-public partial class NavigationPagesViewModel<TNavigationPageViewModel> : DisposableObservableObject, IAsyncRecipient<DomainSelectedMessage>, IAsyncRecipient<OpenPageMessage>, IAsyncRecipient<ClosePageMessage> where TNavigationPageViewModel : NavigationPageViewModel
+public partial class NavigationPagesViewModel<TNavigationPageViewModel> : DisposableObservableObject, IAsyncRecipient<NavigationDomainSelectMessage>, IAsyncRecipient<PageOpenMessage>, IAsyncRecipient<PageCloseMessage> where TNavigationPageViewModel : AbstractNavigationPageViewModel
 {
     private readonly IMessenger _messenger;
     private readonly IViewModelFactory _viewModelFactory;
-    private readonly IDispatcher _dspatcher;
 
     public NavigationPagesViewModel(
+        Domain domain,
         IMessenger messenger,
-        IViewModelFactory viewModelFactory,
-        IDispatcher dspatcher)
+        IViewModelFactory viewModelFactory)
     {
         _messenger = messenger;
         _viewModelFactory = viewModelFactory;
-        _dspatcher = dspatcher;
 
-        Type pageViewModelType = typeof(TNavigationPageViewModel);
-        if (pageViewModelType == typeof(NavigationPageMovieViewModel))
-        {
-            Domain = Domains.Movies;
-        }
-        else if (pageViewModelType == typeof(NavigationPageDirectorViewModel))
-        {
-            Domain = Domains.Directors;
-        }
-        else if (pageViewModelType == typeof(NavigationPageActorViewModel))
-        {
-            Domain = Domains.Actors;
-        }
-        else
-        {
-            throw new NotSupportedException($"The type '{pageViewModelType.FullName}' is not a valid type because it was not able to be converted to a '{typeof(Domains).FullName}'.");
-        }
+        Domain = domain;
 
         PageViewModels = [];
     }
 
     public ObservableCollection<TNavigationPageViewModel> PageViewModels { get; set; }
 
-    public Domains Domain { get; }
+    public Domain Domain { get; }
 
     [ObservableProperty]
     public partial NavigationPageSearchViewModel? PageSearchViewModel { get; set; }
 
     [ObservableProperty]
-    public partial bool IsVisible { get; set; }
+    public partial bool IsSelected { get; set; }
 
     [ObservableProperty]
     public partial bool HasPageViewModels { get; set; }
@@ -68,22 +49,23 @@ public partial class NavigationPagesViewModel<TNavigationPageViewModel> : Dispos
         base.Dispose();
     }
 
-    public async Task LoadAsync()
+    public Task LoadAsync()
     {
-        PageSearchViewModel = _viewModelFactory.Create<NavigationPageSearchViewModel, Domains>(Domain);
+        PageSearchViewModel = _viewModelFactory.Create<NavigationPageSearchViewModel, Domain>(Domain);
 
-        await _messenger.SendAsync(new HidePagesMessage());
-        await _messenger.SendAsync(new OpenPageMessage(Domain, Guid.Empty));
+        return Task.CompletedTask;
+        //await _messenger.SendAsync(new HidePagesMessage());
+        //await _messenger.SendAsync(new OpenPageMessage(Domain, Guid.Empty));
     }
 
-    public Task ReceiveAsync(DomainSelectedMessage message, CancellationToken cancellationToken)
+    public Task ReceiveAsync(NavigationDomainSelectMessage message, CancellationToken cancellationToken)
     {
-        IsVisible = message.SelectedDomain == Domain;
+        IsSelected = message.Domain == Domain;
 
         return Task.CompletedTask;
     }
 
-    public async Task ReceiveAsync(OpenPageMessage message, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(PageOpenMessage message, CancellationToken cancellationToken)
     {
         if (message.Domain == Domain && message.PageId != Guid.Empty)
         {
@@ -99,35 +81,32 @@ public partial class NavigationPagesViewModel<TNavigationPageViewModel> : Dispos
 
                 HasPageViewModels = PageViewModels.Any();
             }
-
-            await _messenger.SendAsync(new OpenPagesCountChangedMessage(Domain, PageViewModels.Count), cancellationToken);
         }
     }
 
-    public async Task ReceiveAsync(ClosePageMessage message, CancellationToken cancellationToken)
+    public async Task ReceiveAsync(PageCloseMessage message, CancellationToken cancellationToken)
     {
-        if (message.Domain == Domain)
+        if (message.Domain == Domain && message.PageId != Guid.Empty)
         {
             TNavigationPageViewModel? pageViewModel = PageViewModels.FirstOrDefault(pvm => pvm.Id == message.PageId);
 
             if (pageViewModel is not null)
             {
                 PageViewModels.Remove(pageViewModel);
+
                 pageViewModel.Dispose();
 
                 HasPageViewModels = PageViewModels.Any();
             }
-
-            await _messenger.SendAsync(new OpenPagesCountChangedMessage(Domain, PageViewModels.Count), cancellationToken);
         }
     }
 
     [RelayCommand]
-    private async Task DismissAsync()
+    private async Task DismissPagesAsync()
     {
-        await _messenger.SendAsync(new HidePagesMessage());
-        await _messenger.SendAsync(new DismissPageMessage(Domain));
-        await _messenger.SendAsync(new OpenPageMessage(Domain, Guid.Empty));
+        //await _messenger.SendAsync(new HidePagesMessage());
+        await _messenger.SendAsync(new DismissPagesMessage(Domain));
+        //await _messenger.SendAsync(new OpenPageMessage(Domain, Guid.Empty));
     }
 
     [RelayCommand]

@@ -1,44 +1,50 @@
-﻿using Lexicom.Mvvm;
+﻿using Lexicom.Example.Cinema.Client.Application.Models;
+using Lexicom.Mvvm;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 
 public partial class NavigationViewModel : DisposableObservableObject
 {
-    public NavigationViewModel(
-        NavigationDomainsViewModel domainChoiceViewModel,
-        NavigationUserViewModel userSectionViewModel,
-        NavigationPagesViewModel<NavigationPageMovieViewModel> pagesMoviesViewModel,
-        NavigationPagesViewModel<NavigationPageDirectorViewModel> pagesDirectorViewModel,
-        NavigationPagesViewModel<NavigationPageActorViewModel> pagesActorViewModel)
-    {
+    private readonly IViewModelFactory _viewModelFactory;
 
-        DomainChoiceViewModel = domainChoiceViewModel;
-        UserSectionViewModel = userSectionViewModel;
-        PagesMovieViewModel = pagesMoviesViewModel;
-        PagesDirectorViewModel = pagesDirectorViewModel;
-        PagesActorViewModel = pagesActorViewModel;
+    public NavigationViewModel(
+        NavigationDomainsViewModel domainsViewModel,
+        NavigationUserViewModel userViewModel,
+        IViewModelFactory viewModelFactory)
+    {
+        _viewModelFactory = viewModelFactory;
+
+        DomainsViewModel = domainsViewModel;
+        UserViewModel = userViewModel;
     }
 
-    public NavigationDomainsViewModel DomainChoiceViewModel { get; }
-    public NavigationUserViewModel UserSectionViewModel { get; }
-    public NavigationPagesViewModel<NavigationPageMovieViewModel> PagesMovieViewModel { get; }
-    public NavigationPagesViewModel<NavigationPageDirectorViewModel> PagesDirectorViewModel { get; }
-    public NavigationPagesViewModel<NavigationPageActorViewModel> PagesActorViewModel { get; }
+    public NavigationDomainsViewModel DomainsViewModel { get; }
+    public NavigationUserViewModel UserViewModel { get; }
+    public NavigationPagesViewModel<NavigationPageMovieViewModel>? MoviePagesViewModel { get; set; }
+    public NavigationPagesViewModel<NavigationPageDirectorViewModel>? DirectorPagesViewModel { get; set; }
+    public NavigationPagesViewModel<NavigationPageActorViewModel>? ActorPagesViewModel { get; set; }
 
     public override void Dispose()
     {
-        DomainChoiceViewModel?.Dispose();
-        UserSectionViewModel?.Dispose();
-        PagesMovieViewModel?.Dispose();
-        PagesDirectorViewModel?.Dispose();
-        PagesActorViewModel?.Dispose();
+        DomainsViewModel.Dispose();
+        UserViewModel.Dispose();
+        MoviePagesViewModel?.Dispose();
+        DirectorPagesViewModel?.Dispose();
+        ActorPagesViewModel?.Dispose();
 
         base.Dispose();
     }
 
     public async Task LoadAsync()
     {
-        await DomainChoiceViewModel.LoadAsync();
-        await UserSectionViewModel.LoadAsync();
+        MoviePagesViewModel = _viewModelFactory.Create<NavigationPagesViewModel<NavigationPageMovieViewModel>, Domain>(Domain.Movies);
+        DirectorPagesViewModel = _viewModelFactory.Create<NavigationPagesViewModel<NavigationPageDirectorViewModel>, Domain>(Domain.Directors);
+        ActorPagesViewModel = _viewModelFactory.Create<NavigationPagesViewModel<NavigationPageActorViewModel>, Domain>(Domain.Actors);
+
+        await DomainsViewModel.LoadAsync();
+        await UserViewModel.LoadAsync();
+        await MoviePagesViewModel.LoadAsync();
+        await DirectorPagesViewModel.LoadAsync();
+        await ActorPagesViewModel.LoadAsync();
     }
 }

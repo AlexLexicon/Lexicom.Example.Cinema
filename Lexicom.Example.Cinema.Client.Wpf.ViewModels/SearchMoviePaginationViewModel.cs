@@ -11,7 +11,7 @@ public partial class SearchMoviePaginationViewModel : PaginationViewModel, IAsyn
 {
     public SearchMoviePaginationViewModel(IMessenger messenger) 
         : base(
-            Domains.Movies, 
+            Domain.Movies, 
             messenger)
     {
     }

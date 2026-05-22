@@ -12,7 +12,7 @@ public abstract partial class SearchViewModel : DisposableObservableObject, IAsy
     private readonly IMessenger _messenger;
 
     protected SearchViewModel(
-        Domains domain,
+        Domain domain,
         IMessenger messenger)
     {
         _messenger = messenger;
@@ -23,7 +23,7 @@ public abstract partial class SearchViewModel : DisposableObservableObject, IAsy
     }
 
     [ObservableProperty]
-    public partial Domains Domain { get; set; }
+    public partial Domain Domain { get; set; }
     [ObservableProperty]
     public partial bool IsVisible { get; set; }
     [ObservableProperty]

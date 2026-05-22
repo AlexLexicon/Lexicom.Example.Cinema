@@ -17,7 +17,7 @@ public partial class SearchMovieViewModel : SearchViewModel, IAsyncRecipient<Mov
         IViewModelFactory viewModelFactory,
         SearchMoviePaginationViewModel paginationViewModel) 
         : base(
-            Domains.Movies, 
+            Domain.Movies, 
             messenger)
     {
         _viewModelFactory = viewModelFactory;

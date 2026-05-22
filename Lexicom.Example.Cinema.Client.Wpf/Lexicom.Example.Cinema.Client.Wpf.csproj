@@ -28,17 +28,17 @@
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <PackageReference Include="Lexicom.Concentrate.Client.Authentication.For.Wpf" Version="10.0.11" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Amenities" Version="10.0.11" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Controls" Version="10.0.11" />
-    <PackageReference Include="Lexicom.Concentrate.Wpf.Themes" Version="10.0.11" />
-    <PackageReference Include="Lexicom.Configuration.Settings.For.Wpf" Version="10.0.29" />
-    <PackageReference Include="Lexicom.Mvvm.For.Wpf" Version="10.0.29" />
-    <PackageReference Include="Lexicom.Validation.For.Wpf" Version="10.0.29" />
-    <PackageReference Include="Lexicom.Wpf.Amenities" Version="10.0.29" />
-    <PackageReference Include="Lexicom.Wpf.AttachedProperties" Version="10.0.29" />
-    <PackageReference Include="Lexicom.Wpf.Controls" Version="10.0.29" />
-    <PackageReference Include="Lexicom.Wpf.ValueConverters" Version="10.0.29" />
+    <PackageReference Include="Lexicom.Concentrate.Client.Authentication.For.Wpf" Version="10.0.15" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Amenities" Version="10.0.15" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Controls" Version="10.0.15" />
+    <PackageReference Include="Lexicom.Concentrate.Wpf.Themes" Version="10.0.15" />
+    <PackageReference Include="Lexicom.Configuration.Settings.For.Wpf" Version="10.0.37" />
+    <PackageReference Include="Lexicom.Mvvm.For.Wpf" Version="10.0.37" />
+    <PackageReference Include="Lexicom.Validation.For.Wpf" Version="10.0.37" />
+    <PackageReference Include="Lexicom.Wpf.Amenities" Version="10.0.37" />
+    <PackageReference Include="Lexicom.Wpf.AttachedProperties" Version="10.0.37" />
+    <PackageReference Include="Lexicom.Wpf.Controls" Version="10.0.37" />
+    <PackageReference Include="Lexicom.Wpf.ValueConverters" Version="10.0.37" />
     <Resource Include="Fonts\password.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

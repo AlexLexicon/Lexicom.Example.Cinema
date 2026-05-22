@@ -1,3 +1,3 @@
-﻿namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
+﻿//namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 
-public record class FeatureRequiresSignInMessage;
+//public record class FeatureRequiresSignInMessage;

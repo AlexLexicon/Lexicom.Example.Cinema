@@ -1,5 +1,6 @@
 ﻿using Lexicom.AspNetCore.Controllers.Amenities;
 using Lexicom.Example.Cinema.Server.Movies.Api.Contracts;
+using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Movie;
 using Lexicom.Example.Cinema.Server.Movies.Application.Exceptions;
 using Lexicom.Example.Cinema.Server.Movies.Application.Services;
 using Lexicom.Example.Cinema.Server.Movies.Database.Entities;

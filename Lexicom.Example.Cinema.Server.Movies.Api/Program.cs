@@ -4,7 +4,7 @@ using Lexicom.Authorization.AspNetCore.Controllers.Extensions;
 using Lexicom.DependencyInjection.Primitives.Extensions;
 using Lexicom.DependencyInjection.Primitives.For.AspNetCore.Controllers.Extensions;
 using Lexicom.Example.Cinema.Server.Movies.Api;
-using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Extensions;
+using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Validation.Extensions;
 using Lexicom.Example.Cinema.Server.Movies.Application.Extensions;
 using Lexicom.Example.Cinema.Server.Movies.Database;
 using Lexicom.Example.Cinema.Server.Movies.Database.Extensions;

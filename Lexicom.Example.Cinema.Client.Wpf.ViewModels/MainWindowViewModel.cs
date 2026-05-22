@@ -11,7 +11,7 @@ public sealed partial class MainWindowViewModel : DisposableObservableObject, IS
 
     public MainWindowViewModel(
         IThemeService themeService,
-        PreferencesViewModel preferencesViewModel,
+        PreferencesDialogViewModel preferencesDialogViewModel,
         NavigationViewModel navigationViewModel,
         SearchMovieViewModel searchMovieViewModel,
         PageMovieViewModel pageMovieViewModel,
@@ -21,7 +21,7 @@ public sealed partial class MainWindowViewModel : DisposableObservableObject, IS
     {
         _themeService = themeService;
 
-        PreferencesViewModel = preferencesViewModel;
+        PreferencesDialogViewModel = preferencesDialogViewModel;
         NavigationViewModel = navigationViewModel;
         SearchMovieViewModel = searchMovieViewModel;
         PageMovieViewModel = pageMovieViewModel;
@@ -32,7 +32,7 @@ public sealed partial class MainWindowViewModel : DisposableObservableObject, IS
 
     public ICommand? ShowCommand { private get; set; }
 
-    public PreferencesViewModel PreferencesViewModel { get; }
+    public PreferencesDialogViewModel PreferencesDialogViewModel { get; }
     public NavigationViewModel NavigationViewModel { get; }
     public SearchMovieViewModel SearchMovieViewModel { get; }
     public PageMovieViewModel PageMovieViewModel { get; }
@@ -42,7 +42,7 @@ public sealed partial class MainWindowViewModel : DisposableObservableObject, IS
 
     public override void Dispose()
     {
-        PreferencesViewModel?.Dispose();
+        PreferencesDialogViewModel?.Dispose();
         NavigationViewModel?.Dispose();
         SearchMovieViewModel?.Dispose();
         PageMovieViewModel?.Dispose();
@@ -56,7 +56,7 @@ public sealed partial class MainWindowViewModel : DisposableObservableObject, IS
     [RelayCommand]
     private async Task LoadedAsync()
     {
-        await PreferencesViewModel.LoadAsync();
+        await PreferencesDialogViewModel.LoadAsync();
         await NavigationViewModel.LoadAsync();
 
         await _themeService.LoadThemeAsync();

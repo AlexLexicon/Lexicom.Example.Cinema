@@ -1,4 +1,4 @@
-﻿using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Extensions;
+﻿using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Validation.Extensions;
 using Lexicom.Validation;
 using Lexicom.Validation.Amenities.Extensions;
 using Lexicom.Validation.Extensions;

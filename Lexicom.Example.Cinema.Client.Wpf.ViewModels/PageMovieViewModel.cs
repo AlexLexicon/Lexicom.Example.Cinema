@@ -12,7 +12,7 @@ public partial class PageMovieViewModel : PageViewModel
 {
     private readonly IMessenger _messenger;
 
-    public PageMovieViewModel(IMessenger messenger) : base(Domains.Movies)
+    public PageMovieViewModel(IMessenger messenger) : base(Domain.Movies)
     {
         _messenger = messenger;
     }

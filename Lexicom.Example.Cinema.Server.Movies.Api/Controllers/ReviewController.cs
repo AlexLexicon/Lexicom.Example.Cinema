@@ -1,5 +1,5 @@
 ﻿using Lexicom.AspNetCore.Controllers.Amenities;
-using Lexicom.Example.Cinema.Server.Movies.Api.Contracts;
+using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Review;
 using Lexicom.Example.Cinema.Server.Movies.Application.Services;
 using Lexicom.Example.Cinema.Server.Shared.Authentication;
 using Lexicom.Scalar;

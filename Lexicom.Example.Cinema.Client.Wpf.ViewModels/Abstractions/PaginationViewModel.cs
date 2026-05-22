@@ -14,7 +14,7 @@ public abstract partial class PaginationViewModel : DisposableObservableObject, 
     protected readonly IMessenger _messenger;
 
     public PaginationViewModel(
-        Domains domain,
+        Domain domain,
         IMessenger messenger)
     {
         _messenger = messenger;
@@ -40,7 +40,7 @@ public abstract partial class PaginationViewModel : DisposableObservableObject, 
     private int MaximumPageIndex { get; set; }
 
     [ObservableProperty]
-    public partial Domains Domain { get; set; }
+    public partial Domain Domain { get; set; }
     [ObservableProperty]
     public partial ObservableCollection<int> PreviousPageNumbers { get; set; }
     [ObservableProperty]

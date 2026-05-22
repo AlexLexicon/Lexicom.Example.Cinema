@@ -1,5 +1,5 @@
-﻿using Lexicom.Example.Cinema.Client.Application.Models;
+﻿//using Lexicom.Example.Cinema.Client.Application.Models;
 
-namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
+//namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
 
-public record class ClosePageMessage(Domains Domain, Guid PageId);
+//public record class ClosePageMessage(Domain Domain, Guid PageId);

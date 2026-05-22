@@ -1,8 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Messages;
-using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSets;
-using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.RuleSetTransformers;
+using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Validation.RuleSets;
+using Lexicom.Example.Cinema.Server.Movies.Api.Contracts.Validation.RuleSetTransformers;
 using Lexicom.Mvvm;
 using Lexicom.Validation;
 

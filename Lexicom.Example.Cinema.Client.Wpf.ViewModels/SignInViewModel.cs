@@ -10,7 +10,7 @@ using Lexicom.Validation.Amenities.RuleSets;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
 
-public partial class SignInViewModel : DisposableObservableObject, IAsyncRecipient<ShowSignInViewMessage>, IAsyncRecipient<SignInSuccessNotification>, IAsyncRecipient<SignInFailedNotification>
+public partial class SignInViewModel : DisposableObservableObject, IAsyncRecipient<SignInDialogShowMessage>, IAsyncRecipient<SignInSuccessNotification>, IAsyncRecipient<SignInFailedNotification>
 {
     private readonly IMessenger _messenger;
 
@@ -37,7 +37,7 @@ public partial class SignInViewModel : DisposableObservableObject, IAsyncRecipie
     [ObservableProperty]
     public partial bool IsValid { get; set; }
 
-    public Task ReceiveAsync(ShowSignInViewMessage message, CancellationToken cancellationToken)
+    public Task ReceiveAsync(SignInDialogShowMessage message, CancellationToken cancellationToken)
     {
         IsVisible = true;
 

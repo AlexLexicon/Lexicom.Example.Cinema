@@ -6,13 +6,13 @@ using Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
 using Lexicom.Mvvm.Extensions;
 
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels;
-public partial class NavigationPageActorViewModel : NavigationPageViewModel
+public partial class NavigationPageActorViewModel : AbstractNavigationPageViewModel
 {
     public NavigationPageActorViewModel(
         Guid id, 
         IMessenger messenger) 
         : base(
-            Domains.Actors, 
+            Domain.Actors, 
             id, 
             messenger)
     {

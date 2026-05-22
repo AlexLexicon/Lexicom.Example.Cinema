@@ -65,7 +65,7 @@ public partial class App : System.Windows.Application
 
                 mvvm.AddViewModel<PopupViewModel>();
 
-                mvvm.AddViewModel<PreferencesViewModel>();
+                mvvm.AddViewModel<PreferencesDialogViewModel>();
 
                 mvvm.AddViewModel<SearchMoviePaginationViewModel>();
                 mvvm.AddViewModel<SearchMovieResultViewModel>(ServiceLifetime.Transient);
@@ -84,6 +84,8 @@ public partial class App : System.Windows.Application
         builder.Services.AddClientApplication();
 
         WpfApp = builder.Build();
+
+        WpfApp.Services.GetRequiredService
     }
 
     private WpfApplication? WpfApp { get; }

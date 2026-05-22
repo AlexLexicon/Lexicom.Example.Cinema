@@ -6,12 +6,12 @@ using Lexicom.Mvvm;
 namespace Lexicom.Example.Cinema.Client.Wpf.ViewModels.Abstractions;
 public abstract partial class PageViewModel : DisposableObservableObject, IAsyncRecipient<OpenPageMessage>, IAsyncRecipient<HidePagesMessage>
 {
-    public PageViewModel(Domains domain)
+    public PageViewModel(Domain domain)
     {
         Domain = domain;
     }
 
-    public Domains Domain { get; }
+    public Domain Domain { get; }
 
     [ObservableProperty]
     public partial Guid Id { get; set; }
